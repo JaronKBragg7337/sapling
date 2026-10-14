@@ -1,0 +1,11 @@
+== session 2 (new process, same memory) ==
+> what does glorp mean ?
+the word glorp means happy .  [memory:1 user/captured]
+> what does brindle mean ?
+the word brindle means a small brave boat .  [memory:2 user/captured]
+> what does spect mean ?
+the root spect means look .
+> /report
+memory report (chain ok: True)
+  #1   [short_term] recalls=2   strength=3.0      (user/captured) the word glorp means happy
+  #2   [short_term] recalls=1   strength=2.0      (user/captured) the word brindle means a small brave boat

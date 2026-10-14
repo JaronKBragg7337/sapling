@@ -1,0 +1,8 @@
+== session 1 (teach) ==
+> /teach the word glorp means happy
+remembered as memory:1 (user/captured)
+> /teach the word brindle means a small brave boat
+remembered as memory:2 (user/captured)
+> what does glorp mean ?
+the word glorp means happy .  [memory:1 user/captured]
+demo memory file: /tmp/sapling_demo_memory.db  (kept for --demo2)
