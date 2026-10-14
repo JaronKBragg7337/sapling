@@ -132,16 +132,24 @@ sapling/
   model.py         # tiny decoder-only transformer; grow_vocab() resizes the tied embedding safely
   train.py         # school training (gen 0), tokenizer with add_tokens, checkpoint save/load
   membrane.py      # reads membrane.yaml (rules with origin + switch); no write path
+  archive.py       # hourly: keep last 10 + 1/day local, move the rest to cloud (Supabase 'sapling-archive'), restore any gen
 membrane.yaml      # the rules and the settings - the owner's file
+tools/             # OWNER side, outside the AI's package:
+  owner_relay.py   # phone/remote door: pushes state to Supabase, runs owner commands (chat, rule switch, restore, parole)
+  owner_rules.py   # flips a rule's enabled line when the owner clicks; logged
+  self_memory_drift.py # compares exams with vs without self-made memories in training
+DESIGN-CHOICES.md  # every design choice an AI made, who made it, what it affects, options not chosen
+PROPOSALS.md       # open questions for the owner; nothing in here is built
+CHANGELOG.md       # v1 -> v2 -> v2.1, each change tied to Jaron's decision
 results/           # report card (history kept, FAILs kept), train log, stop reports, memory.db, checkpoints/
-tests/             # 20 pytest tests + plain runner
+tests/             # 26 pytest tests + plain runner
 ```
 
 ## Lineage
 
 v1 by Kimi (10/14) from Jaron's principle repos: Live-Reference Principle, fed-not-filled, ECIH,
 memory-as-spatial-arrangement, persistent-memory-substrate, Atomic Chronicle, Keava-Owent,
-fly-school, watch, pam-continuum, accumulation-sort. v2 by Claude (Fable 5.1), same day, to
+fly-school, watch, pam-continuum, accumulation-sort. v2 and v2.1 (phone control room, cloud archive, parole) by Claude (Fable 5.1), same day, to
 his decisions. The fly mattered for the heartbeat - constant going - not as the brain.
 
 License: MIT.
