@@ -40,6 +40,7 @@ from .archive import archive_step
 from .clock import Clock, Meter
 from .consolidate import consolidate, pending_facts
 from .curriculum import ROOTS, PREFIXES, SUFFIXES, split_combos, compose
+from .curriculum2 import NAMES
 from .goals import GoalTracker, pick_practice
 from .memory import MemoryStore
 from .session import Brain, Session
@@ -159,9 +160,13 @@ class Heartbeat:
         seeds = [f"the root {r}", f"{self.rng.choice(list(PREFIXES))} + {r} =",
                  f"she will {compose([self.rng.choice(list(PREFIXES)), r])}",
                  f"{r} + {self.rng.choice(list(SUFFIXES))} ="]
+        if int((self.brain.meta or {}).get("core_version", 2)) >= 3:
+            # v3: it can write sentences now - half of its free generation starts from one
+            seeds += ["once upon a time ,", f"{self.rng.choice(NAMES)} has a", "the little dog",
+                      f"q : what does {self.rng.choice(NAMES)} like to do ? a :"]
         prompt = self.rng.choice(seeds)
         with Meter(self.clock, "explore_generate", on_gpu=True):
-            out = self.brain.generate(prompt).strip()
+            out = self.brain.generate(prompt, max_new=40).strip()
         text = f"{prompt} {out}".strip()
         mid = self.store.remember(text, provenance="self", state="captured")
         return {"kind": "generate", "prompt": prompt, "said": out, "memory": mid}

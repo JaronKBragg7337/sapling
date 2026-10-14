@@ -29,6 +29,7 @@ import torch
 
 from .curriculum import LESSONS, build_corpus
 from .exams import run_exams
+from .model import autocast_ctx
 from .goals import pick_practice
 from .train import CHECKPOINT, CHECKPOINT_DIR, get_batch, save_checkpoint, sentences_to_tensor
 
@@ -57,14 +58,47 @@ def _fact_sentences(fact: dict) -> list[str]:
 
 
 FACT_SHARE = 0.30   # facts are ~30% of the sentences it trains on (at ~3% they blended into one)
+# v3 retune (DESIGN-CHOICES D14): the 12M core takes a gentler step than the 0.82M one did, and rehearses
+# BOTH levels so a consolidation does not cost it its sentences. First try (lr 3e-4, 300 level-2 sentences,
+# 60 stories): gen 153 fit its mix to loss 0.045 in 200 steps and E7 fell 27 -> 20/40, E6 14 -> 13/48 - the
+# big core memorises a small mix fast. Second setting (below): half the step, twice the level-2 rehearsal.
+LR_V3 = 1.5e-4
+REHEARSAL2 = 600     # level-2 generated sentences per consolidation
+REHEARSAL_STORIES = 150
+_CORPUS2 = {}
 
 
-def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float = 5e-4,
+def record_sentences(store) -> list[str]:
+    """Everything it was taught or said, as training sentences, weighted the way
+    consolidation weights them (confirmed x3, recalled-twice x2, else x1).
+    Shared by consolidate() and grow() so the grown core carries the same record."""
+    out: list[str] = []
+    for f in store.facts():
+        if f["state"] == "invalidated":
+            continue
+        w = 3 if f["state"] == "confirmed" else (2 if f["recalls"] >= 2 else 1)
+        for s in _fact_sentences(f):
+            out += [s] * w
+    return out
+
+
+def _corpus2(seed: int):
+    if seed not in _CORPUS2:
+        from .curriculum2 import build_corpus2
+        _CORPUS2[seed] = build_corpus2(seed, stories=True, max_stories=2000)
+    return _CORPUS2[seed]
+
+
+def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | None = None,
                 batch_size: int = 32, seed: int = 7337, verbose: bool = True,
                 rehearsal: int = 400) -> dict:
     t0 = time.time()
     rng = random.Random(seed + brain.generation + 1)
     torch.manual_seed(seed + brain.generation + 1)
+    model, tok = brain.model, brain.tok
+    v3 = int((brain.meta or {}).get("core_version", 2)) >= 3
+    if lr is None:
+        lr = LR_V3 if v3 else 5e-4
 
     facts = [f for f in store.facts() if f["state"] != "invalidated"]
     pending = pending_facts(store)
@@ -82,6 +116,12 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float = 5
     corpus = build_corpus(seed)
     school = [s for name in LESSONS for s in corpus["lessons"][name]]
     other += rng.sample(school, min(rehearsal, len(school)))
+    if v3:
+        c2 = _corpus2(seed)
+        gen2 = [s for n in ("simple", "grammar", "paragraphs", "comprehension") for s in c2["lessons"][n]]
+        other += rng.sample(gen2, min(int(rehearsal * REHEARSAL2 / 400), len(gen2)))
+        if c2["lessons"]["stories"]:
+            other += rng.sample(c2["lessons"]["stories"], min(int(rehearsal * REHEARSAL_STORIES / 400), len(c2["lessons"]["stories"])))
     rep = max(1, int(len(other) * FACT_SHARE / (1 - FACT_SHARE) / max(1, len(fact_mix)))) if fact_mix else 0
     mix = other + fact_mix * rep
     rng.shuffle(mix)
@@ -90,15 +130,16 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float = 5
     for s in mix:
         added += brain.grow_vocab_for(s, why="consolidation")
 
-    model, tok = brain.model, brain.tok
     with brain.lock:
         model.train()
         data = sentences_to_tensor(mix, tok, model.block_size).to(brain.device)
         opt = torch.optim.AdamW(model.parameters(), lr=lr)
         losses = []
+        ctx = autocast_ctx(str(brain.device))
         for _ in range(steps):
             x, y = get_batch(data, model.block_size, batch_size, rng)
-            _, loss = model(x, y)
+            with ctx:
+                _, loss = model(x, y)
             opt.zero_grad(set_to_none=True)
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
@@ -107,7 +148,8 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float = 5
         model.eval()
         brain.generation += 1
         meta = {"seed": seed, "corpus_sha": (brain.meta or {}).get("corpus_sha"),
-                "generation": brain.generation,
+                "generation": brain.generation, "core_version": (brain.meta or {}).get("core_version", 2),
+                "grown_from": (brain.meta or {}).get("grown_from"),
                 "note": f"consolidation {brain.generation}: {len(pending)} new facts, {len(facts)} total"}
         brain.meta = {**(brain.meta or {}), **meta}
         kept = save_checkpoint(model, tok, meta,

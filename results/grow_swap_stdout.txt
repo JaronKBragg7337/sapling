@@ -1,0 +1,17 @@
+[exam] E1_composition       84/86 acc=0.977 bar=0.6 -> PASS
+[exam] E2_affix_recall      24/24 acc=1.000 bar=0.9 -> PASS
+[exam] E3_recall_echo       12/12 acc=1.000 bar=0.9 -> PASS
+[exam] E4_deferral          10/10 acc=1.000 bar=0.8 -> PASS
+[exam] E6_grammar           0/48 acc=0.000 bar=0.6 -> FAIL
+[exam] E7_reading           0/40 acc=0.000 bar=0.5 -> FAIL
+[exam] E8_writing          4 samples -> C:\Users\lilli\Projects\sapling\results\writing_samples\2026-10-14T193313_gen151.txt
+[exam] E5_facts_in_weights  6/6 acc=1.000 bar=None -> INFO
+[exam] E1_composition       82/86 acc=0.953 bar=0.6 -> PASS
+[exam] E2_affix_recall      24/24 acc=1.000 bar=0.9 -> PASS
+[exam] E3_recall_echo       12/12 acc=1.000 bar=0.9 -> PASS
+[exam] E4_deferral          10/10 acc=1.000 bar=0.8 -> PASS
+[exam] E6_grammar           14/48 acc=0.292 bar=0.6 -> FAIL
+[exam] E7_reading           27/40 acc=0.675 bar=0.5 -> PASS
+[exam] E8_writing          4 samples -> C:\Users\lilli\Projects\sapling\results\writing_samples\2026-10-14T193318_gen152.txt
+[exam] E5_facts_in_weights  6/6 acc=1.000 bar=None -> INFO
+[grow] swapped: gen 152, 11,919,744 params, vocab 3081 -> C:\Users\lilli\Projects\sapling\results\core_checkpoint.pt

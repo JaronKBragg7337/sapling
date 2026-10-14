@@ -52,11 +52,26 @@ fake, and a membrane the owner holds. v2 implements every box below.
  └────────────────────────────────────────────────────────────────────────────────────────────┘
                 │ recall [ provenance ] : the word <m1> means <m2> . ... q : ... a :
                 ▼
- ┌──────────── CORE (model.py, tiny decoder-only transformer, ~0.82M params) ────────────────┐
- │ trained from scratch school-style (curriculum.py: roots -> affixes -> composition ->       │
- │ sentences -> recall with 8 slots), then grown by consolidation; vocabulary resizes in     │
- │ place (tied embedding, new rows at the mean). One checkpoint per generation.              │
+ ┌──────────── CORE (model.py, decoder-only transformer; v3 ~11.9M params, 256 tokens) ──────┐
+ │ trained from scratch school-style: LEVEL 1 (curriculum.py: roots -> affixes ->            │
+ │ composition -> sentences -> recall with 8 slots) then LEVEL 2 (curriculum2.py: simple ->  │
+ │ grammar -> paragraphs -> comprehension -> stories) then its own RECORD (memory.db), then   │
+ │ grown by consolidation; vocabulary = word parts + whole words, resizes in place.           │
+ │ One checkpoint per generation. v2 -> v3 was one `growth` ledger row (grow.py, 10/14).      │
  └────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+## Level 2 (v3, 10/14 7 PM: "school level 2: real sentences")
+
+```
+ curriculum2.py   simple / grammar / paragraphs / comprehension: generated, labelled by construction,
+                  seeded held-out splits (E6: verb+object pairs; E7: name+noun+colour and name+place facts)
+                  stories: TinyStories GPT-4 validation split, CDLA-Sharing-1.0, capped to 3,000 words
+ text.py          normalize(): phone typing / story text -> the school's spacing ("mean?" -> "mean ?")
+ grow.py          school (staged file, heartbeat keeps running) -> swap (stopped heartbeat, one growth row)
+ exams.py         + E6 grammar (bar .60), E7 reading (bar .50), E8 writing (info; results/writing_samples/)
+ session.py       answers in sentences where it can ("q : ... ? a :" was taught); /write = seeded sampling
+ consolidate.py   rehearses both levels (D14) so a consolidation does not cost it its sentences
 ```
 
 ## The loops (all built)

@@ -22,7 +22,7 @@ import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from . import membrane
-from .exams import REPORT_CARD
+from .exams import REPORT_CARD, WRITING_DIR
 from .archive import list_local, manifest_local
 from .heartbeat import STOP_DIR
 
@@ -67,7 +67,20 @@ def state_of(hb) -> dict:
             owner_actions = [json.loads(x) for x in lines[-20:]][::-1]
         except Exception:
             owner_actions = []
+    writing = []
+    if os.path.isdir(WRITING_DIR):
+        for name in sorted(os.listdir(WRITING_DIR), reverse=True)[:3]:
+            try:
+                writing.append({"file": name, "text": open(os.path.join(WRITING_DIR, name), encoding="utf-8").read()[:3000]})
+            except Exception:
+                pass
+    growth = hb.store.last_ledger("growth")
     return {
+        "core": hb.brain.core_info(),
+        "growth": {k: growth.get(k) for k in ("event", "ts", "seconds")} | {
+            "from": {k: (growth.get("from") or {}).get(k) for k in ("generation", "params", "vocab_size")},
+            "to": {k: (growth.get("to") or {}).get(k) for k in ("generation", "params", "vocab_size")}} if growth else None,
+        "writing": writing,
         "consolidations": [{k: r.get(k) for k in ("generation", "facts_self", "facts_user", "facts_total", "self_new")}
                            for r in hb.store.ledger_rows("consolidation", limit=12)],
         "archive": {"rows": arch_rows, "local_gens": [c["gen"] for c in local],

@@ -393,3 +393,76 @@ def test_crash_writes_a_crash_report(tmp_path, monkeypatch):
     assert len(names) == 1 and names[0].endswith("_crash.json")
     r = json.load(open(tmp_path / "stops" / names[0]))
     assert r["kind"] == "crash" and "boom" in r["drives"]["traceback"] and "last_ticks" in r
+
+
+# -- v3 (10/14 7 PM, "school level 2: real sentences") ---------------------------------------
+def test_normalize_spaces_text_like_the_school():
+    from sapling.text import normalize, sentences
+    assert normalize('Tom said, "I don\'t like it!" What?') == "tom said , i don't like it ! what ?"
+    assert normalize("what does hello mean?") == "what does hello mean ?"
+    assert sentences("a b . c d ? e") == ["a b .", "c d ?", "e"]
+
+
+def test_level2_is_reproducible_and_exams_are_cold():
+    from sapling.curriculum2 import build_corpus2, exam_items_grammar, exam_items_reading, split_level2, VERBS
+    a = build_corpus2(7337, stories=False)
+    b = build_corpus2(7337, stories=False)
+    assert a["lessons"] == b["lessons"]
+    sp = split_level2(7337)
+    assert not set(sp["vo_train"]) & set(sp["vo_exam"])
+    assert not set(sp["fact_train"]) & set(sp["fact_exam"])
+    # no held-out (verb, object) pair, in any form, inside any generated lesson
+    text = " " + " ".join(s for L in a["lessons"].values() for s in L) + " "
+    for v, o in sp["vo_exam"]:
+        head, _, rest = v.partition(" ")
+        for form in (head,) + VERBS[head]:
+            assert f" {form}{(' ' + rest) if rest else ''} {o} " not in text
+    assert exam_items_grammar(7337) == exam_items_grammar(7337) and len(exam_items_grammar(7337)) == 48
+    r = exam_items_reading(7337)
+    assert len(r) == 40 and all(it["q"].startswith("passage :") and it["q"].endswith("a :") for it in r)
+    # reading passages use held-out facts only: a held-out (name, noun, colour) never appears in a lesson
+    for nm, noun, col in sp["fact_exam"][:50]:
+        assert f"{nm} has a {col} {noun} ." not in text
+
+
+def test_v3_core_is_bigger_and_old_checkpoints_still_load():
+    from sapling.model import SaplingCore, V3_CONFIG
+    m = SaplingCore(3200, **V3_CONFIG)
+    assert 10_000_000 <= m.n_params() <= 20_000_000
+    assert m.config()["block_size"] == 256 and m.head.weight.data_ptr() == m.tok_emb.weight.data_ptr()
+    small = SaplingCore(178, d_model=128, n_head=4, n_layer=4, block_size=64)   # the v2 shape
+    assert small.n_params() < 1_000_000
+    import torch
+    x = torch.randint(0, 178, (2, 10))
+    logits, loss = small(x, x)
+    assert logits.shape == (2, 10, 178) and loss.item() < 8.0          # small init: starts near ln(vocab)
+
+
+def test_exam_bars_for_level2_are_predeclared():
+    from sapling.exams import BARS
+    assert BARS["E6_grammar"] == 0.60 and BARS["E7_reading"] == 0.50
+    assert BARS["E1_composition"] == 0.60                                # old bars untouched
+
+
+def test_growth_smoke_keeps_chain_and_logs_one_growth_row():
+    """The whole pipeline on CPU in a temp dir: level 1 + level 2 + the record -> v3 core,
+    vocab carries every old token, one `growth` ledger row, E1-E8 on the card."""
+    import shutil
+    from sapling.grow import smoke
+    out = smoke(verbose=False)
+    try:
+        st = out["store"]
+        assert st.verify_chain()
+        rows = st.ledger_rows("growth", limit=10)
+        assert len(rows) == 1 and rows[0]["event"] == "growth: core v2 -> v3"
+        assert rows[0]["to"]["core_version"] == 3 and rows[0]["to"]["vocab_size"] == len(out["tok"].itos)
+        if rows[0]["from"]:
+            assert rows[0]["to"]["generation"] == rows[0]["from"]["generation"] + 1
+            assert set(rows[0]["from"]["exams"] and [e["exam"] for e in rows[0]["from"]["exams"]]) >= {"E6_grammar", "E7_reading"}
+        names = {e["exam"] for e in rows[0]["to"]["exams"]}
+        assert {"E1_composition", "E6_grammar", "E7_reading", "E8_writing"} <= names
+        assert "hello" in out["tok"].stoi and "once" in out["tok"].stoi    # record + stories both in the vocabulary
+        assert os.path.isdir(os.path.join(out["tmp"], "writing")) and os.listdir(os.path.join(out["tmp"], "writing"))
+        st.db.close()
+    finally:
+        shutil.rmtree(out["tmp"], ignore_errors=True)

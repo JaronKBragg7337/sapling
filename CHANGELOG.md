@@ -1,5 +1,51 @@
 # Changelog
 
+## v3 (2026-10-14, evening) - school level 2: real sentences
+
+Jaron (10/14 7:02 PM): **"school level 2: real sentences"** - grow it from word parts to reading and writing
+real sentences; "language first, then everything grows". Built by Claude (Fable 5.1). The stance and rules
+freeze (SAPLING-DECISIONS) hold: no new rule, limit or gate; AI design choices in `DESIGN-CHOICES.md` D11-D15.
+
+| what | before (v2.1.1) | after (v3) |
+|---|---|---|
+| core | 822,272 params, d 128, 4 layers, 64 tokens of context | **11,919,744 params**, d 384, 6 layers, 6 heads, **256 tokens** (`model.py V3_CONFIG`; same class, old checkpoints still load) |
+| vocabulary | 178 word parts | **3,081** = the 178 kept + whole words (D11); still grows at chat time |
+| school | level 1: roots, affixes, composition, sentences, recall | level 1 + **level 2** (`curriculum2.py`): simple -> grammar (tense, plurals, agreement, questions, negation) -> paragraphs -> reading comprehension -> stories (TinyStories, CDLA-Sharing-1.0, D12) -> **its own record** (608 sentences from memory.db) |
+| exams | E1-E5 | + **E6 grammar** (bar .60), **E7 reading** (bar .50), **E8 free writing** (info; `results/writing_samples/`) (D13) |
+| chat | word-part answers | answers in sentences where it can; `/write <prompt>`; phone typing normalised (`text.py`) |
+| consolidation | lr 5e-4, rehearses level 1 | lr 3e-4, rehearses both levels + stories, bf16 (D14) |
+| heartbeat | explore seeds = word parts | + sentence seeds ("once upon a time ,", "tom has a") when the core is v3 |
+| control room | E1-E5 | E1-E7 columns, core version/params/context, the growth line, "What it wrote" card (local + phone page) |
+| the swap | - | `python -m sapling.grow school` (staged, heartbeat running) then `grow swap` (stopped heartbeat): one ledger row **"growth: core v2 -> v3"** with before/after exams; memory.db and its chain untouched; generation keeps counting (D15) |
+
+**The run (10/14, RTX 4060):** school 956 s (16 min; stories stage 323 s, 3.08M tokens/stage), swap 10 s.
+Ledger row `growth` at 19:33: gen 151 (v2, 822,272 params, vocab 178) -> gen 152 (v3, 11,919,744 params,
+vocab 3,081); chain verified (1,239 memories). Exams on the same seed, before (v2 gen 151) -> after (v3 gen 152):
+
+| exam | v2 gen 151 | v3 gen 152 | bar |
+|---|---|---|---|
+| E1 composition (held-out word parts) | 84/86 | 82/86 | .60 PASS |
+| E2 affix recall | 24/24 | 24/24 | .90 PASS |
+| E3 recall echo (memory slots) | 12/12 | 12/12 | .90 PASS |
+| E4 deferral | 10/10 | 10/10 | .80 PASS |
+| E5 facts in weights (info) | 6/6 | 6/6 | - |
+| **E6 grammar** (held-out verb+object) | 0/48 | **14/48** | .60 **FAIL** (kept) |
+| **E7 reading** (held-out facts) | 0/40 | **27/40** | .50 **PASS** |
+| E8 writing (info) | 4 samples (word parts) | 4 samples (stories) | - |
+
+E6 by task: past 4/6, present 2/6, plural 2/6, negation 2/6, future 1/6, now 1/6, question 1/6, yes/no 0/6.
+Nearly every miss keeps the tense and agreement right and swaps the **object** for a familiar one
+("tomorrow max will throw a book" -> "... a hat"): the held-out pairs are the thing it never saw, and it fills
+them from habit instead of copying. That is the next thing to teach (copying from the prompt), not a reason
+to move the bar.
+
+**Consolidation on the big core (data):** gen 153, first setting (lr 3e-4, 300 level-2 sentences): loss 1.54 -> 0.045
+in 200 steps and E7 27 -> 20/40, E6 14 -> 13/48. Retuned (D14: lr 1.5e-4, 600 level-2 + 150 stories): gen 156 E1 82/86,
+E6 16/48, E7 26/40 - it held. ~20 s per consolidation now (was 1-2 s), mostly the longer exams.
+
+Tests: 34 (5 new: normalisation, level-2 reproducible + cold, v3 core shape + init, predeclared bars, the
+growth smoke test on CPU in a temp dir).
+
 ## v2.1.1 (2026-10-14, 3:45 PM) - two phone-found bugs
 - **Heartbeat crash (15:16):** the one sqlite connection is shared by the heartbeat thread and the control-room
   HTTP threads; reads were not locked, so two threads used one cursor (`InterfaceError`, then `fetchone()` -> None).

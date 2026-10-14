@@ -291,7 +291,9 @@ class MemoryStore:
     # -- retrieval ------------------------------------------------------------
     # stopwords carry no retrieval signal ("the" alone must never pull a memory)
     STOPWORDS = {"the", "a", "an", "what", "does", "do", "mean", "means",
-                 "is", "of", "?", "word", ".", ":"}
+                 "is", "of", "?", "word", ".", ":",
+                 # v3 (sentences): little words that pulled unrelated memories ("at" matched "at generation 152")
+                 "at", "in", "on", "to", "and", "it", "i", "you", "he", "she", "they", "we", "are", "was", ","}
 
     @classmethod
     def _overlap(cls, query: str, content: str) -> float:

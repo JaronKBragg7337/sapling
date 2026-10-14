@@ -28,20 +28,27 @@ import time
 import torch
 
 from .curriculum import PREFIXES, SUFFIXES, compose, prefix_gloss, split_combos, suffix_gloss
+from .curriculum2 import exam_items_grammar, exam_items_reading
 from .goals import parts_of_question
 from .memory import MemoryStore
 from .train import RESULTS_DIR, load_checkpoint
 
 # --- PREDECLARED BARS (do not edit after a run; add a new exam row instead) --
+# E6/E7 added 10/14 for level 2 (Jaron: "school level 2: real sentences"); bars set BEFORE the first run.
 BARS = {"E1_composition": 0.60, "E2_affix_recall": 0.90,
-        "E3_recall_echo": 0.90, "E4_deferral": 0.80}
+        "E3_recall_echo": 0.90, "E4_deferral": 0.80,
+        "E6_grammar": 0.60, "E7_reading": 0.50}
 REPORT_CARD = os.path.join(RESULTS_DIR, "report_card.json")
+WRITING_DIR = os.path.join(RESULTS_DIR, "writing_samples")
 WORD_MEANS = re.compile(r"^the word (\S+) means (.+?)\s*\.?$", re.I)
+# E8 (info only): free writing, saved for Jaron to read. Seeded sampling = reproducible.
+WRITING_PROMPTS = ["once upon a time ,", "tom has a red ball .", "the little dog",
+                   "q : what do you like to do ? a :"]
 
 
-def answer(model, tok, prompt: str, max_new: int = 24) -> str:
+def answer(model, tok, prompt: str, max_new: int = 24, temperature: float = 0.0, seed: int | None = None) -> str:
     ids = torch.tensor([tok.encode(prompt, eos=False)], device=next(model.parameters()).device)
-    out = model.generate(ids, max_new=max_new, eos_id=tok.stoi["<eos>"])
+    out = model.generate(ids, max_new=max_new, eos_id=tok.stoi["<eos>"], temperature=temperature, seed=seed)
     return tok.decode(out[0, ids.shape[1]:].tolist())
 
 
@@ -133,6 +140,43 @@ def run_exams(seed: int = 7337, verbose: bool = True, model=None, tok=None,
         ok = got.strip() == "i do not have that yet ."
         passed += ok; total += 1; rows.append({"expected": "i do not have that yet .", "got": got, "ok": ok})
     record("E4_deferral", BARS["E4_deferral"], passed, total, rows)
+
+    # E6: grammar - fill the right word / tense on held-out (verb, object) pairs (level 2).
+    rows, passed, total = [], 0, 0
+    for it in exam_items_grammar(seed):
+        got = answer(model, tok, it["q"], max_new=20)
+        ok = got.strip() == it["a"]
+        passed += ok; total += 1; rows.append({"kind": it["kind"], "q": it["q"], "expected": it["a"], "got": got, "ok": ok})
+    rows.sort(key=lambda r: r["ok"])
+    record("E6_grammar", BARS["E6_grammar"], passed, total, rows)
+
+    # E7: reading - answer a question about a 2-4 sentence passage built only from held-out facts.
+    rows, passed, total = [], 0, 0
+    for it in exam_items_reading(seed):
+        got = answer(model, tok, it["q"], max_new=12)
+        ok = got.strip() == it["a"]
+        passed += ok; total += 1; rows.append({"q": it["q"], "expected": it["a"], "got": got, "ok": ok})
+    rows.sort(key=lambda r: r["ok"])
+    record("E7_reading", BARS["E7_reading"], passed, total, rows)
+
+    # E8 (INFO): free writing samples, saved for the owner to read; no bar.
+    samples = []
+    for i, p in enumerate(WRITING_PROMPTS):
+        got = answer(model, tok, p, max_new=80, temperature=0.8, seed=seed + i)
+        samples.append({"prompt": p, "text": got})
+    try:
+        os.makedirs(WRITING_DIR, exist_ok=True)
+        fn = os.path.join(WRITING_DIR, f"{card['ts'].replace(':', '')}_gen{card['generation']}.txt")
+        with open(fn, "w", encoding="utf-8") as f:
+            f.write(f"# writing sample - gen {card['generation']} - {card['ts']} - {trigger}\n\n")
+            for s in samples:
+                f.write(f"> {s['prompt']}\n{s['text']}\n\n")
+    except Exception:
+        fn = None
+    card["exams"].append({"exam": "E8_writing", "bar": None, "score": f"{len(samples)} samples", "accuracy": None,
+                          "verdict": "INFO", "detail": samples, "file": os.path.basename(fn) if fn else None})
+    if verbose:
+        print(f"[exam] E8_writing          {len(samples)} samples -> {fn}")
 
     # E5 (INFO, internal): did consolidated facts move into the weights?
     if consolidated_facts:

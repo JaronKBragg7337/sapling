@@ -12,3 +12,5 @@ results/archive_manifest.json
 results/owner_actions.jsonl
 results/relay.log
 results/relay.stdout.log
+results/core_v3_staged.pt
+data/

@@ -27,6 +27,7 @@ import torch
 
 from .curriculum import MAX_RECALLS, SLOTS
 from .memory import MemoryStore
+from .text import normalize, sentences
 from .train import load_checkpoint
 
 WORD_MEANS = re.compile(r"^the word (\S+) means (.+?)\s*\.?$", re.I)
@@ -70,15 +71,22 @@ class Brain:
         return new
 
     @torch.no_grad()
-    def generate(self, prompt: str, max_new: int = 24) -> str:
+    def generate(self, prompt: str, max_new: int = 24, temperature: float = 0.0, seed: int | None = None) -> str:
         with self.lock:
             was_training = self.model.training
             self.model.eval()
             ids = torch.tensor([self.tok.encode(prompt, eos=False)], device=self.device)
-            out = self.model.generate(ids, max_new=max_new, eos_id=self.tok.stoi["<eos>"])
+            out = self.model.generate(ids, max_new=max_new, eos_id=self.tok.stoi["<eos>"],
+                                      temperature=temperature, seed=seed)
             if was_training:
                 self.model.train()
             return self.tok.decode(out[0, ids.shape[1]:].tolist())
+
+    def core_info(self) -> dict:
+        if not self.ok:
+            return {"version": None, "params": 0, "config": None}
+        return {"version": int((self.meta or {}).get("core_version", 2)), "params": self.model.n_params(),
+                "config": self.model.config(), "grown_from": (self.meta or {}).get("grown_from")}
 
     @torch.no_grad()
     def embed(self, text: str) -> list[float]:
@@ -108,8 +116,9 @@ class Session:
     # -- the one-loop turn -----------------------------------------------------
     def ask(self, query: str) -> str:
         t0 = time.time()
+        query = normalize(query)            # v3: phone typing ("mean?") -> school spacing ("mean ?")
         if self.has_core:
-            self.brain.grow_vocab_for(query.lower(), why="chat")
+            self.brain.grow_vocab_for(query, why="chat")
         embed_fn = self.brain.embed if self.has_core else None
         hits = self.store.search(query, embed_fn=embed_fn)
         slots: dict[str, str] = {}
@@ -138,12 +147,24 @@ class Session:
                 raw = raw.replace(tok, real)
             cites = " ".join(f"[memory:{h['id']} {h['provenance']}/{h['state']}]" for h, _, _ in parsed)
             answer = f"{raw}  {cites}"
-        elif hits:
+        elif hits and not self.has_core:
             h = hits[0]
             answer = (f"i recall : {h['content']} "
                       f"[memory:{h['id']} {h['provenance']}/{h['state']}, tier={h['tier']}]")
         elif self.has_core:
-            answer = self.brain.generate(f"q : {query.lower()} a :")
+            # v3: it answers in sentences where it can (level 2 taught "q : ... ? a : <sentence>").
+            # Two or more sentences ending in a question go in the reading frame it was taught
+            # ("passage : ... q : ... ? a :"); an unparseable memory hit rides along as a citation.
+            q = query if query.endswith(("?", ".", "!")) else query + " ?"
+            parts = sentences(q)
+            if len(parts) >= 2 and parts[-1].endswith("?"):
+                prompt = f"passage : {' '.join(parts[:-1])} q : {parts[-1]} a :"
+                answer = self.brain.generate(prompt, max_new=24)
+            else:
+                answer = self.brain.generate(f"q : {q} a :", max_new=48)
+            if hits:
+                h = hits[0]
+                answer += f"  [memory:{h['id']} {h['provenance']}/{h['state']}: {h['content'][:80]}]"
         else:
             answer = "i do not have that yet . (no trained core found — run train.py)"
 
@@ -156,9 +177,21 @@ class Session:
         return answer
 
     # -- commands ---------------------------------------------------------------
+    def write(self, prompt: str) -> str:
+        """Free writing (seeded sampling, reproducible from the seed = turn count)."""
+        if not self.has_core:
+            return "i do not have that yet . (no trained core found)"
+        prompt = normalize(prompt) or "once upon a time ,"
+        self.brain.grow_vocab_for(prompt, why="chat")
+        out = self.brain.generate(prompt, max_new=80, temperature=0.8, seed=self.turns + 1)
+        self.turns += 1
+        self.store.meter("consumption", {"turn": self.turns, "tokens_in": len(prompt.split()),
+                                         "tokens_out": len(out.split()), "recalls": 0, "kind": "write"})
+        return f"{prompt} {out}".strip()
+
     def teach(self, fact: str) -> str:
-        fact = fact.strip().rstrip(".").strip()
-        new = self.brain.grow_vocab_for(fact.lower(), why="teach") if self.has_core else []
+        fact = normalize(fact).rstrip(".").strip()
+        new = self.brain.grow_vocab_for(fact, why="teach") if self.has_core else []
         mid = self.store.remember(fact, provenance="user", state="captured")
         extra = f"; new word parts: {' '.join(new)}" if new else ""
         return f"remembered as memory:{mid} (user/captured{extra})"
@@ -192,6 +225,8 @@ class Session:
             self.clock.note_input()
         if line.startswith("/teach "):
             return self.teach(line[len("/teach "):])
+        if line.startswith("/write"):
+            return self.write(line[len("/write"):])
         if line.startswith("/keep "):
             return self.keep(int(line[len("/keep "):].strip()))
         if line.startswith("/confirm "):

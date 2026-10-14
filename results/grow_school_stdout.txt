@@ -1,0 +1,17 @@
+[grow] old core: v2 gen 145 params=822,272 vocab=178
+[grow] new core: params=11,919,744 vocab=3081 config={'d_model': 384, 'n_head': 6, 'n_layer': 6, 'block_size': 256} device=cuda
+[grow] stories: {"present": true, "path": "C:\\Users\\lilli\\Projects\\sapling\\data\\tinystories\\TinyStoriesV2-GPT4-valid.txt", "stories_in_file": 27630, "distinct_words_in_file": 10410, "vocab_cap": 3000, "kept": 12000, "tokens": 1934591, "note": "TinyStories (Eldan & Li, 2023), dataset roneneldan/TinyStories on
+[grow] record: 608 sentences from memory.db
+[grow] stage=roots          examples=96     tokens=1024     loss 8.159 -> 0.017 (20.7s)
+[grow] stage=affixes        examples=112    tokens=1024     loss 4.258 -> 0.014 (20.3s)
+[grow] stage=composition    examples=3279   tokens=41984    loss 5.442 -> 0.044 (46.3s)
+[grow] stage=sentences      examples=1107   tokens=12800    loss 5.672 -> 0.034 (20.4s)
+[grow] stage=recall         examples=1752   tokens=33280    loss 5.718 -> 0.039 (40.7s)
+[grow] stage=simple         examples=1819   tokens=20736    loss 7.030 -> 0.040 (33.9s)
+[grow] stage=grammar        examples=6133   tokens=107008   loss 5.965 -> 0.050 (102.8s)
+[grow] stage=paragraphs     examples=2006   tokens=31488    loss 8.099 -> 0.046 (42.9s)
+[grow] stage=comprehension  examples=5648   tokens=126464   loss 4.613 -> 0.059 (108.0s)
+[grow] stage=stories        examples=88112  tokens=3078144  loss 9.674 -> 0.752 (322.6s)
+[grow] stage=record         examples=762    tokens=7936     loss 1.387 -> 0.024 (42.3s)
+[grow] stage=all            examples=27687  tokens=538880   loss 1.671 -> 0.092 (150.9s)
+[grow] school done in 956.4s -> C:\Users\lilli\Projects\sapling\results\core_v3_staged.pt (staged; run `swap` to install)

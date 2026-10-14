@@ -1,18 +1,30 @@
-"""Sapling core — a tiny decoder-only transformer, trained from scratch.
+"""Sapling core — a decoder-only transformer, trained from scratch.
 
-Deliberately small (~0.9M parameters at the default config): the core is the
-*owned* seed. Knowledge lives in the live retrieval and memory layers, not in
-these weights (fed-not-filled / Live-Reference Principle). Runs the full
-curriculum in minutes on an RTX 4060 (8 GB), and in a few minutes on CPU.
+v1/v2: ~0.82M parameters (d 128, 4 layers, 64 tokens of context) - word parts.
+v3 (10/14, Jaron: "school level 2: real sentences"): ~12M parameters (d 384,
+6 layers, 6 heads, 256 tokens of context) - the same class, bigger numbers, so
+every checkpoint from gen 0 still loads. Fits the RTX 4060 (8 GB) with room;
+trains the whole school in minutes there, and runs (slowly) on CPU.
+
+The core is the *owned* seed; what it has met lives first in memory and is
+consolidated into these weights by the heartbeat (v2, no gate).
 """
 
 from __future__ import annotations
 
-import math
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+
+V3_CONFIG = dict(d_model=384, n_head=6, n_layer=6, block_size=256)
+
+
+def autocast_ctx(device: str):
+    """bf16 autocast on CUDA (the 4060 supports it; ~2x faster, same results in practice); no-op on CPU."""
+    from contextlib import nullcontext
+    if str(device).startswith("cuda") and torch.cuda.is_bf16_supported():
+        return torch.autocast("cuda", dtype=torch.bfloat16)
+    return nullcontext()
 
 
 class CausalSelfAttention(nn.Module):
@@ -22,11 +34,6 @@ class CausalSelfAttention(nn.Module):
         self.n_head = n_head
         self.qkv = nn.Linear(d_model, 3 * d_model, bias=False)
         self.proj = nn.Linear(d_model, d_model, bias=False)
-        self.register_buffer(
-            "mask",
-            torch.tril(torch.ones(block_size, block_size)).view(1, 1, block_size, block_size),
-            persistent=False,
-        )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         B, T, C = x.shape
@@ -35,10 +42,8 @@ class CausalSelfAttention(nn.Module):
         q = q.view(B, T, self.n_head, hs).transpose(1, 2)
         k = k.view(B, T, self.n_head, hs).transpose(1, 2)
         v = v.view(B, T, self.n_head, hs).transpose(1, 2)
-        att = (q @ k.transpose(-2, -1)) / math.sqrt(hs)
-        att = att.masked_fill(self.mask[:, :, :T, :T] == 0, float("-inf"))
-        att = F.softmax(att, dim=-1)
-        y = att @ v
+        # v3: the fused kernel (same math as the explicit mask; ~2-3x faster at 256 tokens)
+        y = F.scaled_dot_product_attention(q, k, v, is_causal=True)
         y = y.transpose(1, 2).contiguous().view(B, T, C)
         return self.proj(y)
 
@@ -74,6 +79,16 @@ class SaplingCore(nn.Module):
         self.ln_f = nn.LayerNorm(d_model)
         self.head = nn.Linear(d_model, vocab_size, bias=False)
         self.head.weight = self.tok_emb.weight  # weight tying
+        # v3: small init (GPT-2 style). The default N(0,1) embedding with a tied head put the
+        # first loss at ~43 (ln(vocab) is ~7); old checkpoints are unaffected (weights are loaded over this).
+        self.apply(self._init_weights)
+
+    @staticmethod
+    def _init_weights(m):
+        if isinstance(m, (nn.Linear, nn.Embedding)):
+            nn.init.normal_(m.weight, mean=0.0, std=0.02)
+            if isinstance(m, nn.Linear) and m.bias is not None:
+                nn.init.zeros_(m.bias)
 
     def forward(self, idx: torch.Tensor, targets: torch.Tensor | None = None):
         B, T = idx.shape
@@ -91,17 +106,38 @@ class SaplingCore(nn.Module):
         return logits, loss
 
     @torch.no_grad()
-    def generate(self, idx: torch.Tensor, max_new: int, eos_id: int) -> torch.Tensor:
-        """Greedy decoding: deterministic, reproducible (fly-school rule:
-        every trial reproducible from its seed)."""
+    def generate(self, idx: torch.Tensor, max_new: int, eos_id: int,
+                 temperature: float = 0.0, top_k: int = 40, seed: int | None = None) -> torch.Tensor:
+        """Greedy decoding by default: deterministic, reproducible (fly-school
+        rule: every trial reproducible from its seed). Exams and chat answers
+        use greedy. temperature > 0 = seeded top-k sampling, used only for free
+        writing (E8 / /write) - still reproducible from its seed."""
+        gen = None
+        if temperature > 0:
+            gen = torch.Generator(device=idx.device)
+            gen.manual_seed(int(seed if seed is not None else 0))
         for _ in range(max_new):
             idx_cond = idx[:, -self.block_size:]
             logits, _ = self(idx_cond)
-            next_id = logits[:, -1, :].argmax(dim=-1, keepdim=True)
+            logits = logits[:, -1, :].float()
+            if gen is None:
+                next_id = logits.argmax(dim=-1, keepdim=True)
+            else:
+                logits = logits / temperature
+                if top_k:
+                    v, _ = torch.topk(logits, min(top_k, logits.size(-1)))
+                    logits[logits < v[:, [-1]]] = float("-inf")
+                probs = F.softmax(logits, dim=-1)
+                next_id = torch.multinomial(probs, num_samples=1, generator=gen)
             idx = torch.cat([idx, next_id], dim=1)
             if (next_id == eos_id).all():
                 break
         return idx
+
+    def config(self) -> dict:
+        blk = self.blocks[0]
+        return dict(vocab_size=self.tok_emb.weight.shape[0], d_model=self.tok_emb.weight.shape[1],
+                    n_head=blk.attn.n_head, n_layer=len(self.blocks), block_size=self.block_size)
 
     @torch.no_grad()
     def grow_vocab(self, new_size: int) -> int:

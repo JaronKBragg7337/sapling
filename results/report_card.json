@@ -1,93 +1,83 @@
 {
-  "ts": "2026-10-14T14:20:25",
+  "ts": "2026-10-14T19:41:50",
   "seed": 7337,
-  "trigger": "consolidation gen 4",
-  "corpus_sha": "ec0e216705ca813e",
-  "generation": 4,
-  "vocab_size": 177,
+  "trigger": "consolidation gen 156",
+  "corpus_sha": "038429a5402a3013",
+  "generation": 156,
+  "vocab_size": 3097,
   "bars": {
     "E1_composition": 0.6,
     "E2_affix_recall": 0.9,
     "E3_recall_echo": 0.9,
-    "E4_deferral": 0.8
+    "E4_deferral": 0.8,
+    "E6_grammar": 0.6,
+    "E7_reading": 0.5
   },
   "exams": [
     {
       "exam": "E1_composition",
       "bar": 0.6,
-      "score": "67/86",
-      "accuracy": 0.779,
+      "score": "82/86",
+      "accuracy": 0.953,
       "verdict": "PASS",
       "detail": [
         {
-          "q": "inter phon",
-          "expected": "inter phon means sound between .",
-          "got": "inter cred means believe between .",
+          "q": "dis ject",
+          "expected": "dis ject means throw away .",
+          "got": "dis ject means bring away .",
           "ok": false
         },
         {
-          "q": "inter pend",
-          "expected": "inter pend means hang between .",
-          "got": "inter fer means bring between .",
+          "q": "re ject",
+          "expected": "re ject means throw again .",
+          "got": "re ject means bring again .",
           "ok": false
         },
         {
-          "q": "inter pos",
-          "expected": "inter pos means place between .",
-          "got": "inter cred means believe between .",
+          "q": "pro pend",
+          "expected": "pro pend means hang forward .",
+          "got": "pro pend means life forward .",
           "ok": false
         },
         {
-          "q": "inter port",
-          "expected": "inter port means carry between .",
-          "got": "the word carry .",
+          "q": "cred ive",
+          "expected": "cred ive means tending to believe .",
+          "got": "cred ive means tending to box .",
           "ok": false
         },
         {
-          "q": "pro pos",
-          "expected": "pro pos means place forward .",
-          "got": "pro cred means believe forward .",
-          "ok": false
+          "q": "co graph",
+          "expected": "co graph means write together .",
+          "got": "co graph means write together .",
+          "ok": true
         },
         {
-          "q": "ex luc",
-          "expected": "ex luc means light out .",
-          "got": "ex cred means believe out .",
-          "ok": false
+          "q": "trans cred",
+          "expected": "trans cred means believe across .",
+          "got": "trans cred means believe across .",
+          "ok": true
         },
         {
-          "q": "co fer",
-          "expected": "co fer means bring together .",
-          "got": "co bio means life together .",
-          "ok": false
+          "q": "trans luc",
+          "expected": "trans luc means light across .",
+          "got": "trans luc means light across .",
+          "ok": true
         },
         {
-          "q": "un pend",
-          "expected": "un pend means hang not .",
-          "got": "un bio means life not .",
-          "ok": false
+          "q": "un port",
+          "expected": "un port means carry not .",
+          "got": "un port means carry not .",
+          "ok": true
         }
       ]
     },
     {
       "exam": "E2_affix_recall",
       "bar": 0.9,
-      "score": "22/24",
-      "accuracy": 0.917,
+      "score": "24/24",
+      "accuracy": 1.0,
       "verdict": "PASS",
       "detail": [
-        {
-          "q": "er",
-          "expected": "one who",
-          "got": "the word glorp means happy .",
-          "ok": false
-        },
-        {
-          "q": "ive",
-          "expected": "tending to",
-          "got": "in yet .",
-          "ok": false
-        },
         {
           "q": "re",
           "expected": "again",
@@ -122,6 +112,18 @@
           "q": "sub",
           "expected": "under",
           "got": "under .",
+          "ok": true
+        },
+        {
+          "q": "super",
+          "expected": "above",
+          "got": "above .",
+          "ok": true
+        },
+        {
+          "q": "inter",
+          "expected": "between",
+          "got": "between .",
           "ok": true
         }
       ]
@@ -233,9 +235,157 @@
       ]
     },
     {
+      "exam": "E6_grammar",
+      "bar": 0.6,
+      "score": "16/48",
+      "accuracy": 0.333,
+      "verdict": "FAIL",
+      "detail": [
+        {
+          "kind": "present",
+          "q": "q : fill : today the bird ( build ) the ball . a :",
+          "expected": "today the bird builds the ball .",
+          "got": "today the bird eats the bird .",
+          "ok": false
+        },
+        {
+          "kind": "plural",
+          "q": "q : fill : the bag holds many ( house ) . a :",
+          "expected": "the bag holds many houses .",
+          "got": "the bag holds many bags .",
+          "ok": false
+        },
+        {
+          "kind": "question",
+          "q": "q : make a question : the child finds the frog . a :",
+          "expected": "does the child find the frog ?",
+          "got": "does the frog hold the child ?",
+          "ok": false
+        },
+        {
+          "kind": "yesno",
+          "q": "q : does the fish read the cat ? a :",
+          "expected": "yes , the fish reads the cat .",
+          "got": "yes , the fish reads the book .",
+          "ok": false
+        },
+        {
+          "kind": "past",
+          "q": "q : fill : yesterday the buses ( like ) the box . a :",
+          "expected": "yesterday the buses liked the box .",
+          "got": "yesterday the buses played with the box .",
+          "ok": false
+        },
+        {
+          "kind": "future",
+          "q": "q : fill : tomorrow the bird ( hold ) the box . a :",
+          "expected": "tomorrow the bird will hold the box .",
+          "got": "tomorrow the bird will hold the bird .",
+          "ok": false
+        },
+        {
+          "kind": "present",
+          "q": "q : fill : today the child ( want ) the hat . a :",
+          "expected": "today the child wants the hat .",
+          "got": "today the duck wants the foot .",
+          "ok": false
+        },
+        {
+          "kind": "yesno",
+          "q": "q : does jack like the bus ? a :",
+          "expected": "yes , jack likes the bus .",
+          "got": "yes , jack likes the bird .",
+          "ok": false
+        }
+      ]
+    },
+    {
+      "exam": "E7_reading",
+      "bar": 0.5,
+      "score": "26/40",
+      "accuracy": 0.65,
+      "verdict": "PASS",
+      "detail": [
+        {
+          "q": "passage : max is at the park . max has a red cake . tom has a brown foot . tom is soft . q : what color is max 's cake ? a :",
+          "expected": "red .",
+          "got": "brown .",
+          "ok": false
+        },
+        {
+          "q": "passage : sam is at the shop . sam likes to walk . q : where is sam ? a :",
+          "expected": "at the shop .",
+          "got": "at the park .",
+          "ok": false
+        },
+        {
+          "q": "passage : nina is at the house . nina has a green tree . nina is happy . q : who has the green tree ? a :",
+          "expected": "nina .",
+          "got": "yes , the tree reads the cake .",
+          "ok": false
+        },
+        {
+          "q": "passage : leo is at the park . leo likes to play . leo is warm . q : how is leo ? a :",
+          "expected": "warm .",
+          "got": "sad .",
+          "ok": false
+        },
+        {
+          "q": "passage : mia is soft . zoe is fast . zoe likes to sit . q : how is mia ? a :",
+          "expected": "soft .",
+          "got": "new .",
+          "ok": false
+        },
+        {
+          "q": "passage : tom is at the garden . tom likes to sing . q : where is tom ? a :",
+          "expected": "at the garden .",
+          "got": "at the park .",
+          "ok": false
+        },
+        {
+          "q": "passage : anna is warm . max is at the park . max is happy . q : how is anna ? a :",
+          "expected": "warm .",
+          "got": "happy .",
+          "ok": false
+        },
+        {
+          "q": "passage : ben is at the house . ben has a brown child . ben is small . q : where is ben ? a :",
+          "expected": "at the house .",
+          "got": "at the beach .",
+          "ok": false
+        }
+      ]
+    },
+    {
+      "exam": "E8_writing",
+      "bar": null,
+      "score": "4 samples",
+      "accuracy": null,
+      "verdict": "INFO",
+      "detail": [
+        {
+          "prompt": "once upon a time ,",
+          "text": "in a small house , there was a little girl named lucy . lucy was very helpful and always helped her mom and dad . one day , her family nodded , and they wanted to go wash the door . lucy was sad , but she was max knew having please with her mom and dad . lucy and her family worked together to help . they found their pastel and looked . they saw people games , flowers"
+        },
+        {
+          "prompt": "tom has a red ball .",
+          "text": "tom is new ."
+        },
+        {
+          "prompt": "the little dog",
+          "text": "was sad and angry . he wanted to find a book . then , a big friendly dog came . the dog saw the cat and the big dog . the dog wanted to help . the dog had a plan . the stair was is gone ! the dog said , thank you , cat ! the dog left the stair . it was a bad dog . the cat and dog learned how to work together . they"
+        },
+        {
+          "prompt": "q : what do you like to do ? a :",
+          "text": "sing ."
+        }
+      ],
+      "file": "2026-10-14T194150_gen156.txt"
+    },
+    {
       "exam": "E5_facts_in_weights",
       "bar": null,
-      "score": "5/5",
+      "score": "6/6",
       "accuracy": 1.0,
       "verdict": "INFO",
       "detail": [
@@ -267,6 +417,12 @@
           "q": "quimble",
           "expected": "the word quimble means a tiny lantern .",
           "got": "the word quimble means a tiny lantern .",
+          "ok": true
+        },
+        {
+          "q": "hello",
+          "expected": "the word hello means a greeting .",
+          "got": "the word hello means a greeting .",
           "ok": true
         }
       ]
@@ -1146,6 +1302,6216 @@
         {
           "exam": "E5_facts_in_weights",
           "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:20:25",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 4,
+      "trigger": "consolidation gen 4",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "67/86",
+          "accuracy": 0.779,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:22:19",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 5,
+      "trigger": "consolidation gen 5",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "70/86",
+          "accuracy": 0.814,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:23:58",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 6,
+      "trigger": "consolidation gen 6",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "65/86",
+          "accuracy": 0.756,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:25:32",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 7,
+      "trigger": "consolidation gen 7",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "70/86",
+          "accuracy": 0.814,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:27:22",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 8,
+      "trigger": "consolidation gen 8",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "73/86",
+          "accuracy": 0.849,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:29:12",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 9,
+      "trigger": "consolidation gen 9",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "73/86",
+          "accuracy": 0.849,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "19/24",
+          "accuracy": 0.792,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:31:08",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 10,
+      "trigger": "consolidation gen 10",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "72/86",
+          "accuracy": 0.837,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:32:43",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 11,
+      "trigger": "consolidation gen 11",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "70/86",
+          "accuracy": 0.814,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:34:25",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 12,
+      "trigger": "consolidation gen 12",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "68/86",
+          "accuracy": 0.791,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:35:59",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 13,
+      "trigger": "consolidation gen 13",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "74/86",
+          "accuracy": 0.86,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:37:42",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 14,
+      "trigger": "consolidation gen 14",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "71/86",
+          "accuracy": 0.826,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:39:16",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 15,
+      "trigger": "consolidation gen 15",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "67/86",
+          "accuracy": 0.779,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:40:51",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 16,
+      "trigger": "consolidation gen 16",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "70/86",
+          "accuracy": 0.814,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:42:27",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 17,
+      "trigger": "consolidation gen 17",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "72/86",
+          "accuracy": 0.837,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:44:08",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 18,
+      "trigger": "consolidation gen 18",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "57/86",
+          "accuracy": 0.663,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:46:26",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 19,
+      "trigger": "consolidation gen 19",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "72/86",
+          "accuracy": 0.837,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:48:03",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 20,
+      "trigger": "consolidation gen 20",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "72/86",
+          "accuracy": 0.837,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:49:47",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 21,
+      "trigger": "consolidation gen 21",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "71/86",
+          "accuracy": 0.826,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:51:22",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 22,
+      "trigger": "consolidation gen 22",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "74/86",
+          "accuracy": 0.86,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:53:30",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 23,
+      "trigger": "consolidation gen 23",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "69/86",
+          "accuracy": 0.802,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "18/24",
+          "accuracy": 0.75,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:55:14",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 24,
+      "trigger": "consolidation gen 24",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "79/86",
+          "accuracy": 0.919,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:57:02",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 25,
+      "trigger": "consolidation gen 25",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "76/86",
+          "accuracy": 0.884,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T14:58:39",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 26,
+      "trigger": "consolidation gen 26",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "69/86",
+          "accuracy": 0.802,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "11/12",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:00:15",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 27,
+      "trigger": "consolidation gen 27",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "72/86",
+          "accuracy": 0.837,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "11/12",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:01:50",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 28,
+      "trigger": "consolidation gen 28",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "76/86",
+          "accuracy": 0.884,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:11:00",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 29,
+      "trigger": "consolidation gen 29",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "79/86",
+          "accuracy": 0.919,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:12:46",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 30,
+      "trigger": "consolidation gen 30",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:15:19",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 31,
+      "trigger": "consolidation gen 31",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "71/86",
+          "accuracy": 0.826,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:17:01",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 32,
+      "trigger": "consolidation gen 32",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "78/86",
+          "accuracy": 0.907,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "20/24",
+          "accuracy": 0.833,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "4/5",
+          "accuracy": 0.8,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:18:41",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 33,
+      "trigger": "consolidation gen 33",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "75/86",
+          "accuracy": 0.872,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:20:15",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 34,
+      "trigger": "consolidation gen 34",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "71/86",
+          "accuracy": 0.826,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:37:08",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 35,
+      "trigger": "consolidation gen 35",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:40:00",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 36,
+      "trigger": "consolidation gen 36",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "73/86",
+          "accuracy": 0.849,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:41:45",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 37,
+      "trigger": "consolidation gen 37",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "79/86",
+          "accuracy": 0.919,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "19/24",
+          "accuracy": 0.792,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:43:22",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 38,
+      "trigger": "consolidation gen 38",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "80/86",
+          "accuracy": 0.93,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "17/24",
+          "accuracy": 0.708,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:45:00",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 39,
+      "trigger": "consolidation gen 39",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:46:37",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 40,
+      "trigger": "consolidation gen 40",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "78/86",
+          "accuracy": 0.907,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "20/24",
+          "accuracy": 0.833,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:48:14",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 41,
+      "trigger": "consolidation gen 41",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "78/86",
+          "accuracy": 0.907,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "19/24",
+          "accuracy": 0.792,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:49:56",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 42,
+      "trigger": "consolidation gen 42",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:52:23",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 43,
+      "trigger": "consolidation gen 43",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "76/86",
+          "accuracy": 0.884,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "20/24",
+          "accuracy": 0.833,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:54:00",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 44,
+      "trigger": "consolidation gen 44",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "71/86",
+          "accuracy": 0.826,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "19/24",
+          "accuracy": 0.792,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:55:40",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 45,
+      "trigger": "consolidation gen 45",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "74/86",
+          "accuracy": 0.86,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:57:36",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 46,
+      "trigger": "consolidation gen 46",
+      "vocab_size": 177,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "74/86",
+          "accuracy": 0.86,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/5",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T15:59:25",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 47,
+      "trigger": "consolidation gen 47",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "71/86",
+          "accuracy": 0.826,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:01:11",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 48,
+      "trigger": "consolidation gen 48",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "72/86",
+          "accuracy": 0.837,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:05:05",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 49,
+      "trigger": "consolidation gen 49",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "73/86",
+          "accuracy": 0.849,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:06:57",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 50,
+      "trigger": "consolidation gen 50",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "67/86",
+          "accuracy": 0.779,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:08:40",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 51,
+      "trigger": "consolidation gen 51",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "68/86",
+          "accuracy": 0.791,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:10:16",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 52,
+      "trigger": "consolidation gen 52",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "73/86",
+          "accuracy": 0.849,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:11:53",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 53,
+      "trigger": "consolidation gen 53",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "74/86",
+          "accuracy": 0.86,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:13:37",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 54,
+      "trigger": "consolidation gen 54",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "75/86",
+          "accuracy": 0.872,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:15:37",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 55,
+      "trigger": "consolidation gen 55",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "75/86",
+          "accuracy": 0.872,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:17:28",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 56,
+      "trigger": "consolidation gen 56",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "72/86",
+          "accuracy": 0.837,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:19:04",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 57,
+      "trigger": "consolidation gen 57",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "74/86",
+          "accuracy": 0.86,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:20:59",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 58,
+      "trigger": "consolidation gen 58",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "71/86",
+          "accuracy": 0.826,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:22:40",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 59,
+      "trigger": "consolidation gen 59",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "76/86",
+          "accuracy": 0.884,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:24:28",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 60,
+      "trigger": "consolidation gen 60",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "76/86",
+          "accuracy": 0.884,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:26:04",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 61,
+      "trigger": "consolidation gen 61",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "76/86",
+          "accuracy": 0.884,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:27:40",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 62,
+      "trigger": "consolidation gen 62",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "73/86",
+          "accuracy": 0.849,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:29:23",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 63,
+      "trigger": "consolidation gen 63",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "76/86",
+          "accuracy": 0.884,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:30:59",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 64,
+      "trigger": "consolidation gen 64",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "79/86",
+          "accuracy": 0.919,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:32:42",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 65,
+      "trigger": "consolidation gen 65",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "80/86",
+          "accuracy": 0.93,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:34:17",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 66,
+      "trigger": "consolidation gen 66",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "75/86",
+          "accuracy": 0.872,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:35:54",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 67,
+      "trigger": "consolidation gen 67",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "75/86",
+          "accuracy": 0.872,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:37:34",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 68,
+      "trigger": "consolidation gen 68",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "75/86",
+          "accuracy": 0.872,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:39:31",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 69,
+      "trigger": "consolidation gen 69",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "77/86",
+          "accuracy": 0.895,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:41:17",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 70,
+      "trigger": "consolidation gen 70",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "70/86",
+          "accuracy": 0.814,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:42:56",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 71,
+      "trigger": "consolidation gen 71",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "77/86",
+          "accuracy": 0.895,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:45:15",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 72,
+      "trigger": "consolidation gen 72",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "80/86",
+          "accuracy": 0.93,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:46:57",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 73,
+      "trigger": "consolidation gen 73",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "80/86",
+          "accuracy": 0.93,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:48:57",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 74,
+      "trigger": "consolidation gen 74",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "80/86",
+          "accuracy": 0.93,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:50:39",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 75,
+      "trigger": "consolidation gen 75",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "80/86",
+          "accuracy": 0.93,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:52:23",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 76,
+      "trigger": "consolidation gen 76",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "80/86",
+          "accuracy": 0.93,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:54:07",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 77,
+      "trigger": "consolidation gen 77",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "75/86",
+          "accuracy": 0.872,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:56:08",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 78,
+      "trigger": "consolidation gen 78",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "77/86",
+          "accuracy": 0.895,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:57:47",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 79,
+      "trigger": "consolidation gen 79",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "79/86",
+          "accuracy": 0.919,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:59:24",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 80,
+      "trigger": "consolidation gen 80",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:01:40",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 81,
+      "trigger": "consolidation gen 81",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "75/86",
+          "accuracy": 0.872,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:03:17",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 82,
+      "trigger": "consolidation gen 82",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "11/12",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:05:04",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 83,
+      "trigger": "consolidation gen 83",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:08:22",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 84,
+      "trigger": "consolidation gen 84",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:10:54",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 85,
+      "trigger": "consolidation gen 85",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "85/86",
+          "accuracy": 0.988,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:12:30",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 86,
+      "trigger": "consolidation gen 86",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "84/86",
+          "accuracy": 0.977,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:14:09",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 87,
+      "trigger": "consolidation gen 87",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "85/86",
+          "accuracy": 0.988,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:15:52",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 88,
+      "trigger": "consolidation gen 88",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:18:01",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 89,
+      "trigger": "consolidation gen 89",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "86/86",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:19:44",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 90,
+      "trigger": "consolidation gen 90",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:22:30",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 91,
+      "trigger": "consolidation gen 91",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:24:19",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 92,
+      "trigger": "consolidation gen 92",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "80/86",
+          "accuracy": 0.93,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:25:54",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 93,
+      "trigger": "consolidation gen 93",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "80/86",
+          "accuracy": 0.93,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:27:38",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 94,
+      "trigger": "consolidation gen 94",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "78/86",
+          "accuracy": 0.907,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:29:18",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 95,
+      "trigger": "consolidation gen 95",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:30:56",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 96,
+      "trigger": "consolidation gen 96",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:32:37",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 97,
+      "trigger": "consolidation gen 97",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "78/86",
+          "accuracy": 0.907,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:35:46",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 98,
+      "trigger": "consolidation gen 98",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "77/86",
+          "accuracy": 0.895,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:37:23",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 99,
+      "trigger": "consolidation gen 99",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "80/86",
+          "accuracy": 0.93,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:38:58",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 100,
+      "trigger": "consolidation gen 100",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "77/86",
+          "accuracy": 0.895,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:40:39",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 101,
+      "trigger": "consolidation gen 101",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "75/86",
+          "accuracy": 0.872,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:42:18",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 102,
+      "trigger": "consolidation gen 102",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:43:55",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 103,
+      "trigger": "consolidation gen 103",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "80/86",
+          "accuracy": 0.93,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:47:03",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 104,
+      "trigger": "consolidation gen 104",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "78/86",
+          "accuracy": 0.907,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "20/24",
+          "accuracy": 0.833,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:48:57",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 105,
+      "trigger": "consolidation gen 105",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:51:28",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 106,
+      "trigger": "consolidation gen 106",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:53:29",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 107,
+      "trigger": "consolidation gen 107",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "85/86",
+          "accuracy": 0.988,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:55:19",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 108,
+      "trigger": "consolidation gen 108",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:57:08",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 109,
+      "trigger": "consolidation gen 109",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "11/12",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T17:59:13",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 110,
+      "trigger": "consolidation gen 110",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:00:50",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 111,
+      "trigger": "consolidation gen 111",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "80/86",
+          "accuracy": 0.93,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:02:31",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 112,
+      "trigger": "consolidation gen 112",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:04:28",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 113,
+      "trigger": "consolidation gen 113",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:09:00",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 114,
+      "trigger": "consolidation gen 114",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "85/86",
+          "accuracy": 0.988,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:11:16",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 115,
+      "trigger": "consolidation gen 115",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "79/86",
+          "accuracy": 0.919,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:13:17",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 116,
+      "trigger": "consolidation gen 116",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:15:12",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 117,
+      "trigger": "consolidation gen 117",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:16:50",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 118,
+      "trigger": "consolidation gen 118",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "20/24",
+          "accuracy": 0.833,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:18:29",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 119,
+      "trigger": "consolidation gen 119",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "85/86",
+          "accuracy": 0.988,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "18/24",
+          "accuracy": 0.75,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/6",
+          "accuracy": 0.833,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:20:05",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 120,
+      "trigger": "consolidation gen 120",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "20/24",
+          "accuracy": 0.833,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:22:31",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 121,
+      "trigger": "consolidation gen 121",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "78/86",
+          "accuracy": 0.907,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "19/24",
+          "accuracy": 0.792,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:24:29",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 122,
+      "trigger": "consolidation gen 122",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "79/86",
+          "accuracy": 0.919,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:26:07",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 123,
+      "trigger": "consolidation gen 123",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:28:43",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 124,
+      "trigger": "consolidation gen 124",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:30:34",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 125,
+      "trigger": "consolidation gen 125",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:33:34",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 126,
+      "trigger": "consolidation gen 126",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "84/86",
+          "accuracy": 0.977,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:35:45",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 127,
+      "trigger": "consolidation gen 127",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "84/86",
+          "accuracy": 0.977,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:37:29",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 128,
+      "trigger": "consolidation gen 128",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:39:13",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 129,
+      "trigger": "consolidation gen 129",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:41:44",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 130,
+      "trigger": "consolidation gen 130",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "78/86",
+          "accuracy": 0.907,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:44:09",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 131,
+      "trigger": "consolidation gen 131",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:45:46",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 132,
+      "trigger": "consolidation gen 132",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "85/86",
+          "accuracy": 0.988,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:47:32",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 133,
+      "trigger": "consolidation gen 133",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "77/86",
+          "accuracy": 0.895,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:49:12",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 134,
+      "trigger": "consolidation gen 134",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:52:22",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 135,
+      "trigger": "consolidation gen 135",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:54:02",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 136,
+      "trigger": "consolidation gen 136",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:56:02",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 137,
+      "trigger": "consolidation gen 137",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T18:57:39",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 138,
+      "trigger": "consolidation gen 138",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "85/86",
+          "accuracy": 0.988,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:02:53",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 139,
+      "trigger": "consolidation gen 139",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "84/86",
+          "accuracy": 0.977,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:04:47",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 140,
+      "trigger": "consolidation gen 140",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:06:36",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 141,
+      "trigger": "consolidation gen 141",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:08:16",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 142,
+      "trigger": "consolidation gen 142",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "84/86",
+          "accuracy": 0.977,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:10:06",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 143,
+      "trigger": "consolidation gen 143",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "11/12",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:11:44",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 144,
+      "trigger": "consolidation gen 144",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:15:12",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 145,
+      "trigger": "consolidation gen 145",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "11/12",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:17:42",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 146,
+      "trigger": "consolidation gen 146",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:21:09",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 147,
+      "trigger": "consolidation gen 147",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "80/86",
+          "accuracy": 0.93,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:24:30",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 148,
+      "trigger": "consolidation gen 148",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "79/86",
+          "accuracy": 0.919,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:26:28",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 149,
+      "trigger": "consolidation gen 149",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "77/86",
+          "accuracy": 0.895,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:29:35",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 150,
+      "trigger": "consolidation gen 150",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:31:22",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 151,
+      "trigger": "consolidation gen 151",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "84/86",
+          "accuracy": 0.977,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:33:13",
+      "seed": 7337,
+      "corpus_sha": "ec0e216705ca813e",
+      "generation": 151,
+      "trigger": "before growth (core v2 gen 151)",
+      "vocab_size": 178,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "84/86",
+          "accuracy": 0.977,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "0/48",
+          "accuracy": 0.0,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "0/40",
+          "accuracy": 0.0,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:33:18",
+      "seed": 7337,
+      "corpus_sha": "038429a5402a3013",
+      "generation": 152,
+      "trigger": "growth: core v2 -> v3 (gen 152)",
+      "vocab_size": 3081,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "14/48",
+          "accuracy": 0.292,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "27/40",
+          "accuracy": 0.675,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:33:57",
+      "seed": 7337,
+      "corpus_sha": "038429a5402a3013",
+      "generation": 153,
+      "trigger": "consolidation gen 153",
+      "vocab_size": 3092,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "13/48",
+          "accuracy": 0.271,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "20/40",
+          "accuracy": 0.5,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:37:11",
+      "seed": 7337,
+      "corpus_sha": "038429a5402a3013",
+      "generation": 154,
+      "trigger": "consolidation gen 154",
+      "vocab_size": 3097,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "15/48",
+          "accuracy": 0.312,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "21/40",
+          "accuracy": 0.525,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-14T19:39:53",
+      "seed": 7337,
+      "corpus_sha": "038429a5402a3013",
+      "generation": 155,
+      "trigger": "consolidation gen 155",
+      "vocab_size": 3097,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "14/48",
+          "accuracy": 0.292,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "23/40",
+          "accuracy": 0.575,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/6",
           "accuracy": 1.0,
           "verdict": "INFO"
         }

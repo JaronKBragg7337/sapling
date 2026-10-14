@@ -164,13 +164,10 @@ def train(
 def save_checkpoint(model, tok: Tokenizer, meta: dict, path: str = CHECKPOINT) -> str:
     """Write the live model + its (possibly grown) vocabulary. The model config
     is taken from the model itself so a grown vocabulary reloads correctly."""
-    blk = model.blocks[0]
     payload = {
         "model_state": model.state_dict(),
-        "config": dict(vocab_size=model.tok_emb.weight.shape[0],
-                       d_model=model.tok_emb.weight.shape[1],
-                       n_head=blk.attn.n_head, n_layer=len(model.blocks),
-                       block_size=model.block_size),
+        "config": model.config(),
+        "params": model.n_params(),
         "vocab": {"stoi": dict(tok.stoi), "itos": list(tok.itos)},
         **meta,
     }
