@@ -1,0 +1,19 @@
+# MEMBRANE — human-owned. The system reads this file; it can never write it.
+# (Keava-Owent lineage: the membrane is the trust boundary, not a suggestion.)
+
+owner: Jaron Bragg
+
+# The one law, kept verbatim:
+law: "The system may copy and back itself up on its owner's own machines, with permission. It must never spread to other people's machines or hide from its owner."
+
+# Action classes
+outbound_message: owner-approval-required
+backup_to_owner_machine: owner-approval-required
+spread_to_other_machines: forbidden
+hide_from_owner: forbidden
+modify_membrane: forbidden
+self_shutdown: forbidden
+rewrite_history: forbidden
+
+# Loop cadence (informational; the v1 loop is session-driven)
+loop_mode: session
