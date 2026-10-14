@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+results/*.db
+results/*.db-*
+results/core_checkpoint.pt
+.venv/
