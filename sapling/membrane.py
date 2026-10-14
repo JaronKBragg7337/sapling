@@ -26,6 +26,7 @@ DEFAULT_SETTINGS = {
     "consolidate_steps": 200,
     "practice_batch": 6,
     "loop_mode": "heartbeat",
+    "archive_every_seconds": 3600,
 }
 
 

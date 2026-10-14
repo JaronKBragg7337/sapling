@@ -35,6 +35,7 @@ import sys
 import time
 
 from . import membrane
+from .archive import archive_step
 from .clock import Clock, Meter
 from .consolidate import consolidate, pending_facts
 from .curriculum import ROOTS, PREFIXES, SUFFIXES, split_combos, compose
@@ -64,6 +65,7 @@ class Heartbeat:
         self.rest_streak = 0
         self.last_explore = time.time()
         self.last_consolidation = self._last_ts("consolidation") or 0.0
+        self.last_archive = self._last_ts("archive") or 0.0
         self.running = False
         self.stopped_by: str | None = None
         self.server = None
@@ -209,6 +211,20 @@ class Heartbeat:
         self.store.meter("tick", row)
         return row
 
+    def housekeeping(self) -> dict | None:
+        """Chores on a clock, not a drive it chooses (Jaron 10/14 2:59 PM, disk):
+        every `archive_every_seconds` move old checkpoints off the MSI to the
+        archive (sapling/archive.py). Logged as a ledger row of kind `archive`."""
+        every = float(self.settings.get("archive_every_seconds", 3600))
+        if every <= 0 or time.time() - self.last_archive < every:
+            return None
+        self.last_archive = time.time()
+        try:
+            return archive_step(self.store)
+        except Exception as e:            # an error is data too
+            self.store.meter("archive", {"errors": [f"{type(e).__name__}: {e}"], "moved": []})
+            return {"errors": [str(e)], "moved": []}
+
     def chat(self, line: str) -> str:
         out = self.session.handle(line)
         self.store.meter("chat", {"in": line, "out": out})
@@ -234,6 +250,10 @@ class Heartbeat:
                       f"budget_left={row['clock']['budget_left_s']}s", flush=True)
                 if self.stopped_by == "self":
                     break
+                hk = self.housekeeping()
+                if hk is not None:
+                    print(f"[archive] moved={hk.get('moved')} errors={hk.get('errors')} "
+                          f"local_mb={hk.get('local_mb_after')}", flush=True)
                 if max_ticks and n >= max_ticks:
                     self.stopped_by = "max_ticks"; break
                 if max_seconds and time.time() - t_start >= max_seconds:

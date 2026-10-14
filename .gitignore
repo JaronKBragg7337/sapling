@@ -8,3 +8,7 @@ results/heartbeat.log
 results/heartbeat.pid
 results/heartbeat.stop
 .venv/
+results/archive_manifest.json
+results/owner_actions.jsonl
+results/relay.log
+results/relay.stdout.log

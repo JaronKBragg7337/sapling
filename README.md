@@ -13,6 +13,15 @@ decision line), the system shape in [ARCHITECTURE.md](ARCHITECTURE.md), the v1 r
 [WRITEUP.md](WRITEUP.md), what comes next in [NEXT.md](NEXT.md), and the things Claude would
 have added as rules but did not in [PROPOSALS.md](PROPOSALS.md).
 
+## Where to run it from
+
+- **Phone:** https://heartbeatobservatory.com/admin/sapling/ - sign in at /admin first (owner login).
+  Chat, rules (switches = the owner's edit, logged), heartbeat, exams, tick log, stop reports,
+  checkpoint archive with one-tap restore, and **Restart (parole)** after a self-stop.
+- **On the MSI:** http://127.0.0.1:7338/ (the owner's door, `tools/owner_relay.py`, Windows task
+  "Sapling Relay") or the AI's own page http://127.0.0.1:7337/ (served by the heartbeat).
+- Every design choice an AI made, with origin and what it touches: [DESIGN-CHOICES.md](DESIGN-CHOICES.md).
+
 ## The stance (Jaron, 10/14)
 
 Observe like a scientist. Behavior the code "says shouldn't happen" is data, not a flaw.

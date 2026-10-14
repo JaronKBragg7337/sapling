@@ -114,8 +114,14 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float = 5
                                path=os.path.join(CHECKPOINT_DIR, f"gen_{brain.generation:04d}.pt"))
         save_checkpoint(model, tok, meta, path=CHECKPOINT)
 
+    # Jaron 10/14 2:59 PM (P2): self-made memories DO train its brain - try it and
+    # observe. Record which of them went in, so exam/E5 drift with vs without
+    # self rows can be compared later (tools/self_memory_drift.py).
+    self_ids = sorted(f["id"] for f in facts if f.get("provenance") == "self")
     row = {
         "generation": brain.generation, "memory_ids": sorted(pending_ids),
+        "self_ids": self_ids, "self_new": sorted(pending_ids & set(self_ids)),
+        "facts_self": len(self_ids), "facts_user": len([f for f in facts if f.get("provenance") == "user"]),
         "facts_total": len(facts), "facts_new": len(pending), "sentences": len(mix), "fact_sentences": len(fact_mix) * rep,
         "tokens": int(data.numel()), "steps": steps, "lr": lr,
         "loss_first": round(losses[0], 4), "loss_last": round(sum(losses[-10:]) / min(10, len(losses)), 4),

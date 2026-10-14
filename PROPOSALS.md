@@ -3,6 +3,21 @@
 Jaron's stance (10/14): no limits pre-built out of worry; observe first. So nothing below
 is implemented as a gate or a cap. Each is a question for him; "answered = do it".
 
+**Answered 10/14 2:59 PM (all six) - what he chose is in `DESIGN-CHOICES.md` D1-D7 and built:**
+P1 -> (a) leave it, observe (b/c recorded as not chosen). P2 -> yes, self memories train it; logged per
+consolidation. P3 -> clicks change the file through the owner's hand (`tools/owner_rules.py`), plus the
+phone path. P4 -> archive policy (last 10 + 1/day local, rest in Supabase Storage). P5 -> owner's
+"Restart (parole)" button, no auto-restart. P6 -> keep the 20 s hold, documented.
+
+## Still open for him
+- Kimi's two pending rules (`outbound_message`, `backup_to_owner_machine`): keep or drop.
+- P7. The relay and the heartbeat both hold the Supabase service-role key (wider than archive +
+  state push need). Option: a storage/table-scoped key (his restraint 4). Not a rule - a key choice.
+- P8. A restored checkpoint goes back to the archive on the next hourly step (it is not in the keep
+  set). If he wants "pin this gen on the MSI", that is one more column, not a rule.
+
+## Answered history (kept so the reasoning stays visible)
+
 ## P1. What happens when the daily budget hits zero
 Now: nothing blocks. The budget is a pressure: rest gets cheap, and a self-stop becomes
 possible after ~20 rests in a row with no energy. It can also keep working at negative budget

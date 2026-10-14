@@ -1,5 +1,24 @@
 # Changelog
 
+## v2.1 (2026-10-14, 3 PM) — Jaron's answers to PROPOSALS P1-P6 applied
+
+Source: his calls at 2:59 PM (in `DESIGN-CHOICES.md`, D1-D7). Built by Claude (Fable 5.1).
+- **Phone control room** `https://heartbeatobservatory.com/admin/sapling/` behind the site's owner login
+  (Supabase session + `is_admin()`); the MSI is reached through a relay (`tools/owner_relay.py`, Windows
+  task "Sapling Relay", outbound only - no open port). Local owner page `http://127.0.0.1:7338/`.
+- **Rule switches on the page** write `membrane.yaml` through `tools/owner_rules.py` (outside the AI's
+  package; logged in `results/owner_actions.jsonl` + ledger `owner_action`). Test asserts `sapling/` still
+  has no write path.
+- **Checkpoint archive** (`sapling/archive.py`): keep last 10 + 1/day on the MSI, the rest in Supabase
+  Storage bucket `sapling-archive` with a manifest (table `sapling_archive`, `manifest.json`, local
+  copy); hourly housekeeping step in the heartbeat, logged as ledger `archive`; one-tap restore.
+  10/14: 18 checkpoints (59.5 MB) moved; 33 MB local.
+- **Restart (parole)** button after a self-stop (owner action `parole_start`); no auto-restart.
+- **Self-made memories** stay in the training mix; every consolidation row now logs `self_ids`,
+  `self_new`, `facts_self`, `facts_user`; `tools/self_memory_drift.py` prints the with/without table.
+- `DESIGN-CHOICES.md` is new: every AI-made design choice with origin and what it affects.
+- 26 tests (5 new).
+
 ## v2 (2026-10-14) — rebuilt to Jaron's decisions
 
 Source of every change: `AI-Shared/projects/fly-brain/SAPLING-DECISIONS-2026-10-14.md`

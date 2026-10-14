@@ -70,3 +70,5 @@ settings:
   consolidate_steps: 200      # fine-tune steps per consolidation
   practice_batch: 6           # questions per practice tick
   loop_mode: heartbeat
+  archive_every_seconds: 3600 # housekeeping: move old checkpoints to the cloud archive (keep last 10 + 1/day here)
+  relay_port: 7338            # the owner's door (tools/owner_relay.py), localhost only

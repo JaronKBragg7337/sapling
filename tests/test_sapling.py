@@ -271,3 +271,76 @@ def test_every_tick_is_logged_with_drives(tmp_path, monkeypatch):
     assert all(set(t["drives"]) == {"practice", "consolidate", "explore", "rest", "stop"} for t in ticks)
     assert all("budget_left_s" in t["clock"] for t in ticks)
     assert hb.store.last_ledger("birth") is not None
+
+
+# -- 10/14 2:59 PM decisions: owner's hand, archive, self-made memories on record ---
+def test_owner_rules_flips_one_switch_and_keeps_comments(tmp_path):
+    import shutil
+    sys_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tools")
+    import importlib, sys
+    sys.path.insert(0, sys_path)
+    owner_rules = importlib.import_module("owner_rules")
+    src = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "membrane.yaml")
+    p = tmp_path / "membrane.yaml"
+    shutil.copy(src, p)
+    before = p.read_text(encoding="utf-8")
+    s = MemoryStore(str(tmp_path / "m.db"))
+    row = owner_rules.set_enabled("outbound_message", False, by="test@owner", why="test",
+                                  path=str(p), log=str(tmp_path / "owner.jsonl"), store=s)
+    after = p.read_text(encoding="utf-8")
+    assert row["before"] is True and row["after"] is False
+    assert {r["id"]: r["enabled"] for r in rules(str(p))}["outbound_message"] is False
+    assert {r["id"]: r["enabled"] for r in rules(str(p))}["law"] is True          # only that one switch
+    assert after.count("#") == before.count("#")                                   # comments survive
+    assert s.last_ledger("owner_action")["rule"] == "outbound_message" and s.verify_chain()
+    assert (tmp_path / "owner.jsonl").read_text().count("\n") == 1
+    s.db.close()
+
+
+def test_ai_package_has_no_write_path_to_membrane():
+    """The owner's hand (tools/owner_rules.py, tools/owner_relay.py) lives OUTSIDE
+    the sapling package; nothing in sapling/ imports it or opens membrane.yaml for writing."""
+    pkg = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "sapling")
+    for name in os.listdir(pkg):
+        if name.endswith(".py"):
+            src = open(os.path.join(pkg, name), encoding="utf-8").read()
+            assert "owner_rules" not in src and "owner_relay" not in src, name
+            assert "MEMBRANE_PATH, \"w\"" not in src and "MEMBRANE_PATH,\"w\"" not in src, name
+
+
+def test_archive_plan_keeps_last_10_and_one_per_day():
+    from sapling.archive import plan
+    local = [{"gen": g, "path": f"gen_{g}.pt", "size": 10, "mtime": 0.0,
+              "day": "2026-10-13" if g <= 5 else "2026-10-14"} for g in range(1, 28)]
+    p = plan(local, keep_last=10)
+    assert p["keep"] == [5] + list(range(18, 28))             # gen 5 = last of 10-13; 18..27 = last 10
+    assert [m["gen"] for m in p["move"]] == [1, 2, 3, 4] + list(range(6, 18))
+    assert "not the last checkpoint of 2026-10-13" in p["why"][1]
+
+
+def test_archive_step_without_credentials_moves_nothing(store, monkeypatch, tmp_path):
+    from sapling import archive as A
+    ck = tmp_path / "ck"; ck.mkdir()
+    for g in range(1, 15):
+        (ck / f"gen_{g:04d}.pt").write_bytes(b"x" * 10)
+    monkeypatch.setattr(A, "CHECKPOINT_DIR", str(ck))
+    monkeypatch.setattr(A, "RESULTS_DIR", str(tmp_path))
+    monkeypatch.setattr(A, "creds", lambda: None)
+    row = A.archive_step(store)
+    assert row["moved"] == [] and row["errors"] and len(os.listdir(ck)) == 14   # never delete without a verified cloud copy
+    assert store.last_ledger("archive")["cloud"] is False and store.verify_chain()
+
+
+@pytest.mark.skipif(not _core_available(), reason="no trained core")
+def test_consolidation_records_self_made_memories(store, tmp_path, monkeypatch):
+    from sapling import consolidate as C, exams as E
+    from sapling.session import Brain
+    monkeypatch.setattr(C, "CHECKPOINT_DIR", str(tmp_path / "ck"))
+    monkeypatch.setattr(C, "CHECKPOINT", str(tmp_path / "latest.pt"))
+    monkeypatch.setattr(E, "REPORT_CARD", str(tmp_path / "card.json"))
+    b = Brain(store=store)
+    store.remember("the word glorp means happy", provenance="user")
+    sid = store.remember("the root zan zan ly", provenance="self", state="captured")
+    row = C.consolidate(b, store, goals=[], steps=10, verbose=False, rehearsal=30)
+    assert row["self_ids"] == [sid] and row["self_new"] == [sid] and row["facts_self"] == 1 and row["facts_user"] == 1
+    assert store.last_ledger("consolidation")["self_ids"] == [sid]
