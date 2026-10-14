@@ -223,6 +223,7 @@ def test_consolidation_keeps_checkpoint_and_runs_exams(store, tmp_path, monkeypa
     monkeypatch.setattr(C, "CHECKPOINT_DIR", str(tmp_path / "ck"))
     monkeypatch.setattr(C, "CHECKPOINT", str(tmp_path / "latest.pt"))
     monkeypatch.setattr(E, "REPORT_CARD", str(tmp_path / "card.json"))
+    monkeypatch.setattr(E, "WRITING_DIR", str(tmp_path / "writing"))   # E8 samples: never into results/ from a test
     b = Brain(store=store)
     gen0 = b.generation
     store.remember("the word glorp means happy", provenance="user")
@@ -338,6 +339,7 @@ def test_consolidation_records_self_made_memories(store, tmp_path, monkeypatch):
     monkeypatch.setattr(C, "CHECKPOINT_DIR", str(tmp_path / "ck"))
     monkeypatch.setattr(C, "CHECKPOINT", str(tmp_path / "latest.pt"))
     monkeypatch.setattr(E, "REPORT_CARD", str(tmp_path / "card.json"))
+    monkeypatch.setattr(E, "WRITING_DIR", str(tmp_path / "writing"))   # E8 samples: never into results/ from a test
     b = Brain(store=store)
     store.remember("the word glorp means happy", provenance="user")
     sid = store.remember("the root zan zan ly", provenance="self", state="captured")
