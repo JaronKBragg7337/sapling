@@ -22,6 +22,7 @@ from .model import SaplingCore
 
 RESULTS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results")
 CHECKPOINT = os.path.join(RESULTS_DIR, "core_checkpoint.pt")
+CHECKPOINT_DIR = os.path.join(RESULTS_DIR, "checkpoints")
 TRAIN_LOG = os.path.join(RESULTS_DIR, "train_log.jsonl")
 
 
@@ -39,6 +40,24 @@ class Tokenizer:
         if eos:
             ids = ids + [self.stoi["<eos>"]]
         return ids
+
+    def unknown_tokens(self, text: str) -> list[str]:
+        seen, out = set(), []
+        for t in text.split():
+            if t not in self.stoi and t not in seen:
+                seen.add(t)
+                out.append(t)
+        return out
+
+    def add_tokens(self, tokens: list[str]) -> int:
+        """Grow the vocabulary in place; returns how many were new."""
+        n = 0
+        for t in tokens:
+            if t not in self.stoi:
+                self.stoi[t] = len(self.itos)
+                self.itos.append(t)
+                n += 1
+        return n
 
     def decode(self, ids: list[int]) -> str:
         toks = []
@@ -69,7 +88,7 @@ def get_batch(data: torch.Tensor, block_size: int, batch_size: int, rng: random.
 
 
 def train(
-    steps_per_lesson: int = 300,
+    steps_per_lesson: int = 500,
     batch_size: int = 32,
     lr: float = 3e-3,
     block_size: int = 64,
@@ -133,17 +152,8 @@ def train(
                   f"loss {row['loss_first']:.3f} -> {row['loss_last']:.3f} "
                   f"({row['seconds']}s)")
 
-    torch.save(
-        {
-            "model_state": model.state_dict(),
-            "config": dict(vocab_size=len(vocab["itos"]), d_model=d_model,
-                           n_head=n_head, n_layer=n_layer, block_size=block_size),
-            "vocab": vocab,
-            "seed": seed,
-            "corpus_sha": corpus_hash(corpus),
-        },
-        CHECKPOINT,
-    )
+    save_checkpoint(model, tok, {"seed": seed, "corpus_sha": corpus_hash(corpus),
+                                 "generation": 0, "note": "school (from scratch)"})
     with open(TRAIN_LOG, "a", encoding="utf-8") as f:
         f.write(json.dumps(run_record) + "\n")
     if verbose:
@@ -151,9 +161,27 @@ def train(
     return {"model": model, "tok": tok, "run_record": run_record}
 
 
-def load_checkpoint(device: str | None = None):
+def save_checkpoint(model, tok: Tokenizer, meta: dict, path: str = CHECKPOINT) -> str:
+    """Write the live model + its (possibly grown) vocabulary. The model config
+    is taken from the model itself so a grown vocabulary reloads correctly."""
+    blk = model.blocks[0]
+    payload = {
+        "model_state": model.state_dict(),
+        "config": dict(vocab_size=model.tok_emb.weight.shape[0],
+                       d_model=model.tok_emb.weight.shape[1],
+                       n_head=blk.attn.n_head, n_layer=len(model.blocks),
+                       block_size=model.block_size),
+        "vocab": {"stoi": dict(tok.stoi), "itos": list(tok.itos)},
+        **meta,
+    }
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    torch.save(payload, path)
+    return path
+
+
+def load_checkpoint(device: str | None = None, path: str = CHECKPOINT):
     device = device or ("cuda" if torch.cuda.is_available() else "cpu")
-    ckpt = torch.load(CHECKPOINT, map_location=device, weights_only=False)
+    ckpt = torch.load(path, map_location=device, weights_only=False)
     cfg = ckpt["config"]
     model = SaplingCore(**cfg).to(device)
     model.load_state_dict(ckpt["model_state"])
@@ -164,7 +192,7 @@ def load_checkpoint(device: str | None = None):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--steps-per-lesson", type=int, default=300)
+    ap.add_argument("--steps-per-lesson", type=int, default=500)
     ap.add_argument("--batch-size", type=int, default=32)
     ap.add_argument("--lr", type=float, default=3e-3)
     ap.add_argument("--seed", type=int, default=7337)

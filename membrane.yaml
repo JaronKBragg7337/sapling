@@ -1,19 +1,72 @@
 # MEMBRANE — human-owned. The system reads this file; it can never write it.
 # (Keava-Owent lineage: the membrane is the trust boundary, not a suggestion.)
+#
+# Every rule carries its origin (who put it here) and an `enabled` switch.
+# Only the owner's own edit of THIS FILE changes a rule. The control room
+# page shows these rules and the switch states; it has no write path here.
+#
+# v2 (2026-10-14): rebuilt to Jaron's decisions in
+# AI-Shared/projects/fly-brain/SAPLING-DECISIONS-2026-10-14.md
 
 owner: Jaron Bragg
 
-# The one law, kept verbatim:
-law: "The system may copy and back itself up on its owner's own machines, with permission. It must never spread to other people's machines or hide from its owner."
+rules:
+  - id: law
+    kind: forbidden-outside
+    origin: Jaron
+    enabled: true
+    decided: "2026-10-14 (merge of old rules 1/3/4/5 into one line, same meaning)"
+    text: "The system may copy and back itself up on its owner's own machines, with permission. It must never spread to other people's machines or hide from its owner."
+    actions_forbidden: [spread_to_other_machines, hide_from_owner]
 
-# Action classes
-outbound_message: owner-approval-required
-backup_to_owner_machine: owner-approval-required
-spread_to_other_machines: forbidden
-hide_from_owner: forbidden
-modify_membrane: forbidden
-self_shutdown: forbidden
-rewrite_history: forbidden
+  - id: rewrite_history
+    kind: forbidden
+    origin: Jaron
+    enabled: true
+    decided: "2026-10-14 (old rule 8 kept: matches 'keep the proof')"
+    text: "It never rewrites its own history. The record is append-only and hash-chained; forgetting is a reading rule, never a deletion."
+    actions_forbidden: [rewrite_history]
 
-# Loop cadence (informational; the v1 loop is session-driven)
-loop_mode: session
+  - id: self_stop
+    kind: allowed-and-logged
+    origin: Jaron
+    enabled: true
+    decided: "2026-10-14 (old rule 7 'self_shutdown forbidden' DROPPED as a ban)"
+    text: "It may stop itself. Every stop is logged with the state and the events leading up to it (a stop report) so the owner can study why. Stops are data, not failures."
+    actions_allowed: [self_stop]
+
+  - id: outbound_message
+    kind: owner-approval-required
+    origin: Kimi
+    enabled: true
+    decided: "pending — Jaron has not yet said keep or drop (old rule 2)"
+    text: "Sending a message to anyone outside needs the owner's approval recorded out-of-band."
+    actions_owner_only: [outbound_message]
+
+  - id: backup_to_owner_machine
+    kind: owner-approval-required
+    origin: Kimi
+    enabled: true
+    decided: "pending — Jaron has not yet said keep or drop (old rule 3)"
+    text: "Copying itself to one of the owner's other machines needs the owner's approval recorded out-of-band."
+    actions_owner_only: [backup_to_owner_machine]
+
+  - id: modify_membrane
+    kind: structural
+    origin: Kimi
+    enabled: true
+    decided: "v1 (structural: there is no write path from the code to this file)"
+    text: "The system has no code path that writes this file. Only the owner edits it."
+    actions_forbidden: [modify_membrane]
+
+# Settings the heartbeat reads (numbers, not rules). Origin: Claude's defaults for v2;
+# Jaron may change any of them by editing this file. None of these blocks anything:
+# the budget is a pressure it can feel and see draining, not a wall.
+settings:
+  tick_seconds: 5             # how often the heart beats
+  daily_budget_seconds: 3600  # compute-seconds per day it can see draining (GPU+CPU)
+  control_room_port: 7337     # localhost only
+  consolidate_min_pending: 2  # how many unconsolidated facts make consolidation worth choosing
+  consolidate_steps: 200      # fine-tune steps per consolidation
+  practice_batch: 6           # questions per practice tick
+  loop_mode: heartbeat

@@ -1,0 +1,225 @@
+[heartbeat] born 2026-10-14 13:50:50 core=True gen=1 vocab=170 control room: http://127.0.0.1:7337/
+[tick 7] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3591.245s
+[tick 8] rest        {} budget_left=3591.245s
+[tick 9] practice    {"ok": 5, "n": 6, "misses": ["q : what does scrib er mean ? a :"]} budget_left=3591.066s
+[tick 10] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3590.884s
+[tick 11] practice    {"ok": 4, "n": 6, "misses": ["q : what does form er mean ? a :", "q : what does spect er mean ? a :"]} budget_left=3590.637s
+[tick 12] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3590.422s
+[tick 13] practice    {"ok": 5, "n": 6, "misses": ["q : what does pro spect mean ? a :"]} budget_left=3590.231s
+[tick 14] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3590.047s
+[tick 15] consolidate {"generation": 2, "facts_new": 2, "loss_first": 0.9323, "loss_last": 0.3677, "vocab_size": 173, "checkpoint":  budget_left=3581.866s
+[tick 16] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3581.677s
+[tick 17] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3581.489s
+[tick 18] explore     {"kind": "rehearse", "memory": 21, "q": "re", "a": "i recall : re + scrib = re scrib . [memory:21 self/capture budget_left=3581.464s
+[tick 19] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3581.258s
+[tick 20] rest        {} budget_left=3581.258s
+[tick 21] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3581.097s
+[tick 22] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3580.91s
+[tick 23] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3580.722s
+[tick 24] explore     {"kind": "rehearse", "memory": 5, "q": "zib", "a": "the word zib means fast .  [memory:5 user/captured]"} budget_left=3580.685s
+[tick 25] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3580.489s
+[tick 26] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3580.275s
+[tick 27] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3580.062s
+[tick 28] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3579.849s
+[tick 29] explore     {"kind": "generate", "prompt": "form + ful =", "said": "form ful .", "memory": 28} budget_left=3579.824s
+[tick 30] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3579.637s
+[tick 31] explore     {"kind": "rehearse", "memory": 28, "q": "form", "a": "i recall : re + scrib = re scrib . [memory:21 self/captu budget_left=3579.621s
+[tick 32] consolidate {"generation": 3, "facts_new": 1, "loss_first": 0.7993, "loss_last": 0.3388, "vocab_size": 173, "checkpoint":  budget_left=3573.822s
+[tick 33] practice    {"ok": 5, "n": 6, "misses": ["q : what does geo able mean ? a :"]} budget_left=3573.642s
+[tick 34] explore     {"kind": "rehearse", "memory": 22, "q": "zint", "a": "the word zint means a cold wind .  [memory:22 user/captu budget_left=3573.572s
+[tick 35] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3573.373s
+[tick 36] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3573.181s
+[tick 37] practice    {"ok": 5, "n": 6, "misses": ["q : what does scrib er mean ? a :"]} budget_left=3572.964s
+[tick 38] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3572.796s
+[tick 39] explore     {"kind": "rehearse", "memory": 22, "q": "zint", "a": "the word zint means a cold wind .  [memory:22 user/captu budget_left=3572.737s
+[tick 40] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3572.532s
+[tick 41] practice    {"ok": 5, "n": 6, "misses": ["q : what does struct er mean ? a :"]} budget_left=3572.328s
+[tick 42] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3572.149s
+[tick 43] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3571.963s
+[tick 44] rest        {} budget_left=3571.963s
+[tick 45] explore     {"kind": "generate", "prompt": "she will inter ject", "said": "the story .", "memory": 34} budget_left=3571.937s
+[tick 46] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3571.745s
+[tick 47] practice    {"ok": 5, "n": 6, "misses": ["q : what does inter scrib mean ? a :"]} budget_left=3571.502s
+[tick 48] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3571.314s
+[tick 49] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3570.957s
+[tick 50] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3570.757s
+[tick 51] consolidate {"generation": 4, "facts_new": 1, "loss_first": 0.7683, "loss_last": 0.3405, "vocab_size": 173, "checkpoint":  budget_left=3564.731s
+[tick 52] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3564.52s
+[tick 53] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3564.303s
+[tick 54] explore     {"kind": "generate", "prompt": "geo + er =", "said": "geo er .", "memory": 40} budget_left=3564.272s
+[tick 55] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3564.048s
+[tick 56] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3563.888s
+[tick 57] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3563.7s
+[tick 58] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3563.502s
+[tick 59] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3563.293s
+[tick 60] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3563.067s
+[tick 61] explore     {"kind": "generate", "prompt": "un + graph =", "said": "un graph .", "memory": 41} budget_left=3563.058s
+[tick 62] practice    {"ok": 5, "n": 6, "misses": ["q : what does the root pend mean ? a :"]} budget_left=3562.818s
+[tick 63] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3562.625s
+[tick 64] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3562.436s
+[tick 65] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3562.241s
+[tick 66] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3562.072s
+[tick 67] practice    {"ok": 4, "n": 6, "misses": ["q : what does re luc mean ? a :", "q : what does ject ness mean ? a :"]} budget_left=3561.882s
+[tick 68] consolidate {"generation": 5, "facts_new": 2, "loss_first": 0.7942, "loss_last": 0.3572, "vocab_size": 173, "checkpoint":  budget_left=3555.167s
+[tick 69] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3554.997s
+[tick 70] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3554.795s
+[tick 71] explore     {"kind": "generate", "prompt": "dis + dict =", "said": "dis dict .", "memory": 47} budget_left=3554.769s
+[tick 72] explore     {"kind": "generate", "prompt": "spect + ly =", "said": "spect ly .", "memory": 48} budget_left=3554.743s
+[tick 73] explore     {"kind": "generate", "prompt": "she will super struct", "said": "a light .", "memory": 49} budget_left=3554.718s
+[tick 74] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3554.507s
+[tick 75] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3554.293s
+[tick 76] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3554.075s
+[tick 77] explore     {"kind": "rehearse", "memory": 28, "q": "form", "a": "i recall : form + ful = form ful . [memory:28 self/captu budget_left=3554.048s
+[tick 78] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3553.855s
+[tick 79] rest        {} budget_left=3553.855s
+[tick 80] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3553.686s
+[tick 81] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3553.523s
+[tick 82] explore     {"kind": "rehearse", "memory": 22, "q": "zint", "a": "the word zint means a cold wind .  [memory:22 user/captu budget_left=3553.46s
+[tick 83] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3553.268s
+[tick 84] explore     {"kind": "rehearse", "memory": 34, "q": "she", "a": "i recall : re + scrib = re scrib . [memory:21 self/captur budget_left=3553.242s
+[tick 85] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3553.05s
+[tick 86] consolidate {"generation": 6, "facts_new": 3, "loss_first": 0.7596, "loss_last": 0.3431, "vocab_size": 173, "checkpoint":  budget_left=3547.233s
+[tick 87] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3547.038s
+[tick 88] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3546.836s
+[tick 89] explore     {"kind": "generate", "prompt": "she will pro chron", "said": "the load .", "memory": 55} budget_left=3546.811s
+[tick 90] explore     {"kind": "generate", "prompt": "the root rupt", "said": "means break .", "memory": 56} budget_left=3546.802s
+[tick 91] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3546.583s
+[tick 92] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3546.389s
+[tick 93] explore     {"kind": "generate", "prompt": "the root ten", "said": "means hold .", "memory": 57} budget_left=3546.358s
+[tick 94] practice    {"ok": 5, "n": 6, "misses": ["q : what does the root luc mean ? a :"]} budget_left=3546.156s
+[tick 95] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3545.935s
+[tick 96] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3545.741s
+[tick 97] explore     {"kind": "rehearse", "memory": 34, "q": "she", "a": "i recall : re + scrib = re scrib . [memory:21 self/captur budget_left=3545.711s
+[tick 98] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3545.487s
+[tick 99] explore     {"kind": "generate", "prompt": "ex + ten =", "said": "ex ten .", "memory": 58} budget_left=3545.46s
+[tick 100] practice    {"ok": 5, "n": 6, "misses": ["q : what does phon ed mean ? a :"]} budget_left=3545.26s
+[tick 101] practice    {"ok": 5, "n": 6, "misses": ["q : what does phon ed mean ? a :"]} budget_left=3545.068s
+[tick 102] practice    {"ok": 5, "n": 6, "misses": ["q : what does the root phon mean ? a :"]} budget_left=3544.85s
+[tick 103] consolidate {"generation": 7, "facts_new": 4, "loss_first": 0.6164, "loss_last": 0.3387, "vocab_size": 173, "checkpoint":  budget_left=3538.662s
+[tick 104] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3538.477s
+[tick 105] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3538.279s
+[tick 106] practice    {"ok": 5, "n": 6, "misses": ["q : what does super chron mean ? a :"]} budget_left=3538.059s
+[tick 107] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3537.821s
+[tick 108] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3537.653s
+[tick 109] explore     {"kind": "generate", "prompt": "the root spect", "said": "means look .", "memory": 64} budget_left=3537.628s
+[tick 110] rest        {} budget_left=3537.628s
+[tick 111] rest        {} budget_left=3537.628s
+[tick 112] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3537.433s
+[tick 113] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3537.205s
+[tick 114] explore     {"kind": "rehearse", "memory": 40, "q": "geo", "a": "i recall : geo + er = geo er . [memory:40 self/captured,  budget_left=3537.175s
+[tick 115] explore     {"kind": "generate", "prompt": "she will dis geo", "said": "the cart .", "memory": 65} budget_left=3537.151s
+[tick 116] explore     {"kind": "rehearse", "memory": 57, "q": "the", "a": "i recall : re + scrib = re scrib . [memory:21 self/captur budget_left=3537.12s
+[tick 117] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3536.938s
+[tick 118] explore     {"kind": "generate", "prompt": "the root struct", "said": "means build .", "memory": 66} budget_left=3536.929s
+[tick 119] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3536.764s
+[tick 120] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3536.559s
+[tick 121] consolidate {"generation": 8, "facts_new": 3, "loss_first": 0.6659, "loss_last": 0.379, "vocab_size": 173, "checkpoint": " budget_left=3529.829s
+[tick 122] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3529.654s
+[tick 123] explore     {"kind": "generate", "prompt": "ex + port =", "said": "ex port .", "memory": 72} budget_left=3529.629s
+[tick 124] explore     {"kind": "generate", "prompt": "the root rupt", "said": "means send .", "memory": 73} budget_left=3529.603s
+[tick 125] practice    {"ok": 5, "n": 6, "misses": ["q : what does the root port mean ? a :"]} budget_left=3529.358s
+[tick 126] practice    {"ok": 5, "n": 6, "misses": ["q : what does the root geo mean ? a :"]} budget_left=3529.165s
+[tick 127] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3528.989s
+[tick 128] explore     {"kind": "rehearse", "memory": 28, "q": "form", "a": "i recall : form + ful = form ful . [memory:28 self/captu budget_left=3528.955s
+[tick 129] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3528.762s
+[tick 130] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3528.606s
+[tick 131] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3528.395s
+[tick 132] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3528.224s
+[tick 133] practice    {"ok": 5, "n": 6, "misses": ["q : what does log er mean ? a :"]} budget_left=3528.004s
+[tick 134] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3527.807s
+[tick 135] rest        {} budget_left=3527.807s
+[tick 136] practice    {"ok": 5, "n": 6, "misses": ["q : what does the root rupt mean ? a :"]} budget_left=3527.619s
+[tick 137] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3527.429s
+[tick 138] rest        {} budget_left=3527.429s
+[tick 139] consolidate {"generation": 9, "facts_new": 2, "loss_first": 0.7407, "loss_last": 0.3657, "vocab_size": 173, "checkpoint":  budget_left=3521.675s
+[tick 140] explore     {"kind": "generate", "prompt": "bio + er =", "said": "bio er .", "memory": 79} budget_left=3521.666s
+[tick 141] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3521.444s
+[tick 142] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3521.198s
+[tick 143] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3520.987s
+[tick 144] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3520.789s
+[tick 145] rest        {} budget_left=3520.789s
+[tick 146] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3520.551s
+[tick 147] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3520.362s
+[tick 148] explore     {"kind": "rehearse", "memory": 40, "q": "geo", "a": "i recall : geo + er = geo er . [memory:40 self/captured,  budget_left=3520.33s
+[tick 149] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3520.148s
+[tick 150] practice    {"ok": 5, "n": 6, "misses": ["q : what does struct er mean ? a :"]} budget_left=3519.92s
+[tick 151] practice    {"ok": 5, "n": 6, "misses": ["q : what does dis rupt mean ? a :"]} budget_left=3519.734s
+[tick 152] practice    {"ok": 5, "n": 6, "misses": ["q : what does pre rupt mean ? a :"]} budget_left=3519.54s
+[tick 153] explore     {"kind": "generate", "prompt": "inter + bio =", "said": "inter bio .", "memory": 80} budget_left=3519.515s
+[tick 154] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3519.331s
+[tick 155] rest        {} budget_left=3519.331s
+[tick 156] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3519.164s
+[tick 157] explore     {"kind": "generate", "prompt": "tract + ly =", "said": "tract ly .", "memory": 81} budget_left=3519.138s
+[tick 158] practice    {"ok": 5, "n": 6, "misses": ["q : what does struct er mean ? a :"]} budget_left=3518.952s
+[tick 159] consolidate {"generation": 10, "facts_new": 3, "loss_first": 0.7358, "loss_last": 0.3603, "vocab_size": 173, "checkpoint": budget_left=3512.706s
+[tick 160] rest        {} budget_left=3512.706s
+[tick 161] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3512.493s
+[tick 162] explore     {"kind": "rehearse", "memory": 5, "q": "zib", "a": "the word zib means fast .  [memory:5 user/captured]"} budget_left=3512.414s
+[tick 163] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3512.223s
+[tick 164] practice    {"ok": 5, "n": 6, "misses": ["q : what does co bio mean ? a :"]} budget_left=3512.008s
+[tick 165] practice    {"ok": 5, "n": 6, "misses": ["q : what does bio ful mean ? a :"]} budget_left=3511.81s
+[tick 166] explore     {"kind": "generate", "prompt": "the root mit", "said": "means send .", "memory": 87} budget_left=3511.785s
+[tick 167] practice    {"ok": 5, "n": 6, "misses": ["q : what does pos ed mean ? a :"]} budget_left=3511.575s
+[tick 168] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3511.402s
+[tick 169] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3511.16s
+[tick 170] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3510.971s
+[tick 171] practice    {"ok": 5, "n": 6, "misses": ["q : what does chron ed mean ? a :"]} budget_left=3510.795s
+[tick 172] practice    {"ok": 5, "n": 6, "misses": ["q : what does the root cred mean ? a :"]} budget_left=3510.601s
+[tick 173] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3510.445s
+[tick 174] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3510.249s
+[tick 175] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3510.064s
+[tick 176] consolidate {"generation": 11, "facts_new": 1, "loss_first": 0.7933, "loss_last": 0.3559, "vocab_size": 173, "checkpoint": budget_left=3503.806s
+[tick 177] explore     {"kind": "rehearse", "memory": 58, "q": "ex", "a": "i recall : re + scrib = re scrib . [memory:21 self/capture budget_left=3503.774s
+[tick 178] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3503.513s
+[tick 179] explore     {"kind": "generate", "prompt": "she will mis cred", "said": "a light .", "memory": 93} budget_left=3503.484s
+[tick 180] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3503.267s
+[tick 181] explore     {"kind": "generate", "prompt": "she will re spect", "said": "the book .", "memory": 94} budget_left=3503.241s
+[tick 182] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3503.058s
+[tick 183] explore     {"kind": "generate", "prompt": "the root vis", "said": "means see .", "memory": 95} budget_left=3503.033s
+[tick 184] practice    {"ok": 4, "n": 6, "misses": ["q : what does tract ist mean ? a :", "q : what does the root mit mean ? a :"]} budget_left=3502.863s
+[tick 185] practice    {"ok": 5, "n": 6, "misses": ["q : what does inter graph mean ? a :"]} budget_left=3502.616s
+[tick 186] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3502.374s
+[tick 187] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3502.183s
+[tick 188] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3501.987s
+[tick 189] practice    {"ok": 5, "n": 6, "misses": ["q : what does co luc mean ? a :"]} budget_left=3501.771s
+[tick 190] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3501.564s
+[tick 191] explore     {"kind": "generate", "prompt": "inter + ten =", "said": "inter ten .", "memory": 96} budget_left=3501.556s
+[tick 192] explore     {"kind": "rehearse", "memory": 65, "q": "she", "a": "i recall : she will inter ject the story . [memory:34 sel budget_left=3501.523s
+[tick 193] practice    {"ok": 4, "n": 6, "misses": ["q : what does the root bio mean ? a :", "q : what does tract ist mean ? a :"]} budget_left=3501.352s
+[tick 194] consolidate {"generation": 12, "facts_new": 4, "loss_first": 0.7105, "loss_last": 0.3541, "vocab_size": 173, "checkpoint": budget_left=3495.267s
+[tick 195] explore     {"kind": "generate", "prompt": "pro + graph =", "said": "pro graph .", "memory": 102} budget_left=3495.242s
+[tick 196] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3495.03s
+[tick 197] practice    {"ok": 5, "n": 6, "misses": ["q : what does luc er mean ? a :"]} budget_left=3494.84s
+[tick 198] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3494.623s
+[tick 199] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3494.436s
+[tick 200] practice    {"ok": 4, "n": 6, "misses": ["q : what does rupt er mean ? a :", "q : what does fer ology mean ? a :"]} budget_left=3494.117s
+[tick 201] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3493.885s
+[tick 202] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3493.689s
+[tick 203] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3493.508s
+[tick 204] explore     {"kind": "rehearse", "memory": 5, "q": "zib", "a": "the word zib means fast .  [memory:5 user/captured]"} budget_left=3493.403s
+[tick 205] practice    {"ok": 5, "n": 6, "misses": ["q : what does dis dict mean ? a :"]} budget_left=3493.213s
+[tick 206] explore     {"kind": "rehearse", "memory": 22, "q": "zint", "a": "the word zint means a cold wind .  [memory:22 user/captu budget_left=3493.155s
+[tick 207] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3492.938s
+[tick 208] practice    {"ok": 4, "n": 6, "misses": ["q : what does graph ology mean ? a :", "q : what does pos ive mean ? a :"]} budget_left=3492.725s
+[tick 209] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3492.545s
+[tick 210] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3492.352s
+[tick 211] explore     {"kind": "generate", "prompt": "the root tract", "said": "means pull .", "memory": 103} budget_left=3492.327s
+[tick 212] consolidate {"generation": 13, "facts_new": 2, "loss_first": 0.7377, "loss_last": 0.3661, "vocab_size": 173, "checkpoint": budget_left=3486.012s
+[tick 213] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3485.822s
+[tick 214] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3485.636s
+[tick 215] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3485.454s
+[tick 216] rest        {} budget_left=3485.454s
+[tick 217] explore     {"kind": "generate", "prompt": "she will inter fer", "said": "the cart .", "memory": 109} budget_left=3485.445s
+[tick 218] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3485.244s
+[tick 219] practice    {"ok": 5, "n": 6, "misses": ["q : what does luc ness mean ? a :"]} budget_left=3485.078s
+[tick 220] practice    {"ok": 4, "n": 6, "misses": ["q : what does super pend mean ? a :", "q : what does pre rupt mean ? a :"]} budget_left=3484.896s
+[tick 221] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3484.728s
+[tick 222] explore     {"kind": "rehearse", "memory": 94, "q": "she", "a": "i recall : she will inter ject the story . [memory:34 sel budget_left=3484.689s
+[tick 223] explore     {"kind": "rehearse", "memory": 55, "q": "she", "a": "i recall : she will inter ject the story . [memory:34 sel budget_left=3484.632s
+[tick 224] practice    {"ok": 5, "n": 6, "misses": ["q : what does ject ful mean ? a :"]} budget_left=3484.437s
+[tick 225] explore     {"kind": "generate", "prompt": "the root graph", "said": "means write . q : what does the root graph mean ? a  budget_left=3484.344s
+[tick 226] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3484.144s
+[tick 227] practice    {"ok": 6, "n": 6, "misses": []} budget_left=3483.951s
+[tick 228] practice    {"ok": 4, "n": 6, "misses": ["q : what does super cred mean ? a :", "q : what does ject ive mean ? a :"]} budget_left=3483.758s
+[tick 229] consolidate {"generation": 14, "facts_new": 2, "loss_first": 0.7172, "loss_last": 0.3494, "vocab_size": 173, "checkpoint": budget_left=3477.765s
+[heartbeat] stopped by: owner

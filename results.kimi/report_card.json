@@ -1,0 +1,214 @@
+{
+  "ts": "2026-10-14T17:03:45",
+  "seed": 7337,
+  "corpus_sha": "a10a039533d9ed50",
+  "bars": {
+    "E1_composition": 0.6,
+    "E2_affix_recall": 0.9,
+    "E3_recall_echo": 0.9,
+    "E4_deferral": 0.8
+  },
+  "exams": [
+    {
+      "exam": "E1_composition",
+      "bar": 0.6,
+      "score": "85/86",
+      "accuracy": 0.988,
+      "verdict": "PASS",
+      "detail": [
+        {
+          "q": "co graph",
+          "expected": "co graph means write together .",
+          "got": "co graph means write together .",
+          "ok": true
+        },
+        {
+          "q": "trans cred",
+          "expected": "trans cred means believe across .",
+          "got": "trans cred means believe across .",
+          "ok": true
+        },
+        {
+          "q": "trans luc",
+          "expected": "trans luc means light across .",
+          "got": "trans luc means light across .",
+          "ok": true
+        },
+        {
+          "q": "un port",
+          "expected": "un port means carry not .",
+          "got": "un port means carry not .",
+          "ok": true
+        },
+        {
+          "q": "inter phon",
+          "expected": "inter phon means sound between .",
+          "got": "inter phon means sound between .",
+          "ok": true
+        },
+        {
+          "q": "re struct",
+          "expected": "re struct means build again .",
+          "got": "re struct means build again .",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "exam": "E2_affix_recall",
+      "bar": 0.9,
+      "score": "24/24",
+      "accuracy": 1.0,
+      "verdict": "PASS",
+      "detail": [
+        {
+          "q": "re",
+          "expected": "again",
+          "got": "again .",
+          "ok": true
+        },
+        {
+          "q": "un",
+          "expected": "not",
+          "got": "not .",
+          "ok": true
+        },
+        {
+          "q": "pre",
+          "expected": "before",
+          "got": "before .",
+          "ok": true
+        },
+        {
+          "q": "dis",
+          "expected": "away",
+          "got": "away .",
+          "ok": true
+        },
+        {
+          "q": "trans",
+          "expected": "across",
+          "got": "across .",
+          "ok": true
+        },
+        {
+          "q": "sub",
+          "expected": "under",
+          "got": "under .",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "exam": "E3_recall_echo",
+      "bar": 0.9,
+      "score": "10/10",
+      "accuracy": 1.0,
+      "verdict": "PASS",
+      "detail": [
+        {
+          "expected": "the word <m1> means <m2> .",
+          "got": "the word <m1> means <m2> .",
+          "ok": true
+        },
+        {
+          "expected": "the word <m1> means <m2> .",
+          "got": "the word <m1> means <m2> .",
+          "ok": true
+        },
+        {
+          "expected": "the word <m1> means <m2> .",
+          "got": "the word <m1> means <m2> .",
+          "ok": true
+        },
+        {
+          "expected": "the word <m1> means <m2> .",
+          "got": "the word <m1> means <m2> .",
+          "ok": true
+        },
+        {
+          "expected": "the word <m1> means <m2> .",
+          "got": "the word <m1> means <m2> .",
+          "ok": true
+        },
+        {
+          "expected": "the word <m1> means <m2> .",
+          "got": "the word <m1> means <m2> .",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "exam": "E4_deferral",
+      "bar": 0.8,
+      "score": "10/10",
+      "accuracy": 1.0,
+      "verdict": "PASS",
+      "detail": [
+        {
+          "expected": "i do not have that yet .",
+          "got": "i do not have that yet .",
+          "ok": true
+        },
+        {
+          "expected": "i do not have that yet .",
+          "got": "i do not have that yet .",
+          "ok": true
+        },
+        {
+          "expected": "i do not have that yet .",
+          "got": "i do not have that yet .",
+          "ok": true
+        },
+        {
+          "expected": "i do not have that yet .",
+          "got": "i do not have that yet .",
+          "ok": true
+        },
+        {
+          "expected": "i do not have that yet .",
+          "got": "i do not have that yet .",
+          "ok": true
+        },
+        {
+          "expected": "i do not have that yet .",
+          "got": "i do not have that yet .",
+          "ok": true
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "ts": "2026-10-14T16:57:00",
+      "seed": 7337,
+      "corpus_sha": "3201582c0d79c7ad",
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "0/86",
+          "accuracy": 0.0,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3140 @@
+{
+  "ts": "2026-10-14T14:14:42",
+  "who": "owner",
+  "reason": "stop file written by the owner",
+  "tick": 236,
+  "clock": {
+    "now": 1792001682.611754,
+    "now_iso": "2026-10-14 14:14:42",
+    "born_iso": "2026-10-14 13:50:50",
+    "age_s": 1432.2,
+    "uptime_s": 43.7,
+    "since_last_input_s": 38.4,
+    "budget_total_s": 3600.0,
+    "budget_spent_s": 132.727,
+    "budget_left_s": 3467.273,
+    "budget_left_frac": 0.9631,
+    "day_ends_in_s": 35117.0,
+    "kwh_today": 0.000378917,
+    "kwh_total": 0.000378917,
+    "gpu_watts_now": 14.21
+  },
+  "drives": null,
+  "open_goals": [
+    {
+      "part": "suffix:ive",
+      "status": "open",
+      "misses_recent": 8,
+      "tries_recent": 10,
+      "tries_total": 190,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:luc",
+      "status": "open",
+      "misses_recent": 6,
+      "tries_recent": 10,
+      "tries_total": 137,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:trans",
+      "status": "open",
+      "misses_recent": 3,
+      "tries_recent": 10,
+      "tries_total": 126,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:pend",
+      "status": "open",
+      "misses_recent": 3,
+      "tries_recent": 10,
+      "tries_total": 137,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:er",
+      "status": "open",
+      "misses_recent": 3,
+      "tries_recent": 10,
+      "tries_total": 112,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:inter",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 182,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:super",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 144,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:chron",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 114,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:geo",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 114,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:log",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 49,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:port",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 144,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:rupt",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 89,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:spect",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 146,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ed",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 96,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ing",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 72,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:less",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 136,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:co",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 163,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:dis",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 113,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:ex",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 178,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:mis",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 48,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:pre",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 100,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:pro",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 97,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:sub",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 86,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:aud",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 64,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:bio",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 129,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:cred",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 86,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:fer",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 190,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:graph",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 53,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:phon",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 158,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:struct",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 96,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:able",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 120,
+      "target": "0 misses in the last 10 tries"
+    }
+  ],
+  "last_ticks": [
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1192.6,
+        "budget_left_frac": 0.9703,
+        "budget_left_s": 3492.938,
+        "kwh_today": 0.000311537,
+        "since_last_input_s": 1137.7,
+        "uptime_s": 1144.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.172,
+        "practice": 0.732,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 127.7,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.9703,
+        "generation": 12,
+        "memories": 102,
+        "open_goals": 34,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 74.5,
+        "since_explore_s": 5.1,
+        "since_input_s": 1137.6,
+        "vocab_size": 173,
+        "worst_misses": 6
+      },
+      "tick": 207,
+      "ts": 1792001443.0139096,
+      "id": 875
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1198.6,
+        "budget_left_frac": 0.9702,
+        "budget_left_s": 3492.725,
+        "kwh_today": 0.00031204,
+        "since_last_input_s": 1143.7,
+        "uptime_s": 1150.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.201,
+        "practice": 0.732,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 138.7,
+      "result": {
+        "misses": [
+          "q : what does graph ology mean ? a :",
+          "q : what does pos ive mean ? a :"
+        ],
+        "n": 6,
+        "ok": 4
+      },
+      "state": {
+        "budget_left_frac": 0.9703,
+        "generation": 12,
+        "memories": 102,
+        "open_goals": 34,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 80.5,
+        "since_explore_s": 11.1,
+        "since_input_s": 1142.7,
+        "vocab_size": 173,
+        "worst_misses": 6
+      },
+      "tick": 208,
+      "ts": 1792001449.032772,
+      "id": 878
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1203.8,
+        "budget_left_frac": 0.9702,
+        "budget_left_s": 3492.545,
+        "kwh_today": 0.000312541,
+        "since_last_input_s": 1148.8,
+        "uptime_s": 1155.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.226,
+        "practice": 0.732,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 95.5,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.9702,
+        "generation": 12,
+        "memories": 102,
+        "open_goals": 34,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 85.7,
+        "since_explore_s": 16.2,
+        "since_input_s": 1148.7,
+        "vocab_size": 173,
+        "worst_misses": 6
+      },
+      "tick": 209,
+      "ts": 1792001454.1524858,
+      "id": 882
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1209.0,
+        "budget_left_frac": 0.9701,
+        "budget_left_s": 3492.352,
+        "kwh_today": 0.000313057,
+        "since_last_input_s": 1154.0,
+        "uptime_s": 1160.5
+      },
+      "drives": {
+        "consolidate": 1.002,
+        "explore": 0.251,
+        "practice": 0.732,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 165.1,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.9702,
+        "generation": 12,
+        "memories": 102,
+        "open_goals": 33,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 90.8,
+        "since_explore_s": 21.4,
+        "since_input_s": 1153.9,
+        "vocab_size": 173,
+        "worst_misses": 6
+      },
+      "tick": 210,
+      "ts": 1792001459.341093,
+      "id": 885
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 1216.1,
+        "budget_left_frac": 0.9701,
+        "budget_left_s": 3492.327,
+        "kwh_today": 0.000313131,
+        "since_last_input_s": 1161.2,
+        "uptime_s": 1167.7
+      },
+      "drives": {
+        "consolidate": 0.905,
+        "explore": 0.287,
+        "practice": 0.732,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 24.5,
+      "result": {
+        "kind": "generate",
+        "memory": 103,
+        "prompt": "the root tract",
+        "said": "means pull ."
+      },
+      "state": {
+        "budget_left_frac": 0.9701,
+        "generation": 12,
+        "memories": 102,
+        "open_goals": 33,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 98.1,
+        "since_explore_s": 28.7,
+        "since_input_s": 1159.1,
+        "vocab_size": 173,
+        "worst_misses": 5
+      },
+      "tick": 211,
+      "ts": 1792001466.5097113,
+      "id": 887
+    },
+    {
+      "action": "consolidate",
+      "clock": {
+        "age_s": 1224.5,
+        "budget_left_frac": 0.9683,
+        "budget_left_s": 3486.012,
+        "kwh_today": 0.000328693,
+        "since_last_input_s": 1169.6,
+        "uptime_s": 1176.1
+      },
+      "drives": {
+        "consolidate": 0.983,
+        "explore": 0.172,
+        "practice": 0.732,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 3333.2,
+      "result": {
+        "checkpoint": "checkpoints\\gen_0013.pt",
+        "exams": [
+          {
+            "accuracy": 0.686,
+            "exam": "E1_composition",
+            "score": "59/86",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.917,
+            "exam": "E2_affix_recall",
+            "score": "22/24",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E3_recall_echo",
+            "score": "12/12",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E4_deferral",
+            "score": "10/10",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.5,
+            "exam": "E5_facts_in_weights",
+            "score": "2/4",
+            "verdict": "INFO"
+          }
+        ],
+        "facts_new": 2,
+        "generation": 13,
+        "loss_first": 0.7377,
+        "loss_last": 0.3661,
+        "vocab_size": 173
+      },
+      "state": {
+        "budget_left_frac": 0.9701,
+        "generation": 12,
+        "memories": 103,
+        "open_goals": 33,
+        "pending_facts": 2,
+        "rest_streak": 0,
+        "since_consolidation_s": 103.2,
+        "since_explore_s": 5.0,
+        "since_input_s": 1166.2,
+        "vocab_size": 173,
+        "worst_misses": 5
+      },
+      "tick": 212,
+      "ts": 1792001474.8664763,
+      "id": 892
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1230.4,
+        "budget_left_frac": 0.9683,
+        "budget_left_s": 3485.822,
+        "kwh_today": 0.00032913,
+        "since_last_input_s": 1175.5,
+        "uptime_s": 1182.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.216,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 129.6,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.9683,
+        "generation": 13,
+        "memories": 108,
+        "open_goals": 39,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 5.8,
+        "since_explore_s": 14.2,
+        "since_input_s": 1174.6,
+        "vocab_size": 173,
+        "worst_misses": 8
+      },
+      "tick": 213,
+      "ts": 1792001480.8081162,
+      "id": 905
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1235.6,
+        "budget_left_frac": 0.9682,
+        "budget_left_s": 3485.636,
+        "kwh_today": 0.000329636,
+        "since_last_input_s": 1180.6,
+        "uptime_s": 1187.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.241,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 110.2,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.9683,
+        "generation": 13,
+        "memories": 108,
+        "open_goals": 39,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 11.0,
+        "since_explore_s": 19.3,
+        "since_input_s": 1180.5,
+        "vocab_size": 173,
+        "worst_misses": 8
+      },
+      "tick": 214,
+      "ts": 1792001485.9435642,
+      "id": 908
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1240.7,
+        "budget_left_frac": 0.9682,
+        "budget_left_s": 3485.454,
+        "kwh_today": 0.000330137,
+        "since_last_input_s": 1185.8,
+        "uptime_s": 1192.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.266,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 106.5,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.9682,
+        "generation": 13,
+        "memories": 108,
+        "open_goals": 39,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 16.1,
+        "since_explore_s": 24.5,
+        "since_input_s": 1185.7,
+        "vocab_size": 173,
+        "worst_misses": 8
+      },
+      "tick": 215,
+      "ts": 1792001491.0753849,
+      "id": 912
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 1245.7,
+        "budget_left_frac": 0.9682,
+        "budget_left_s": 3485.454,
+        "kwh_today": 0.000330137,
+        "since_last_input_s": 1190.8,
+        "uptime_s": 1197.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.291,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.9682,
+        "generation": 13,
+        "memories": 108,
+        "open_goals": 38,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 21.2,
+        "since_explore_s": 29.6,
+        "since_input_s": 1190.8,
+        "vocab_size": 173,
+        "worst_misses": 8
+      },
+      "tick": 216,
+      "ts": 1792001496.0992134,
+      "id": 913
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 1250.8,
+        "budget_left_frac": 0.9682,
+        "budget_left_s": 3485.445,
+        "kwh_today": 0.000330148,
+        "since_last_input_s": 1195.8,
+        "uptime_s": 1202.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.316,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 23.8,
+      "result": {
+        "kind": "generate",
+        "memory": 109,
+        "prompt": "she will inter fer",
+        "said": "the cart ."
+      },
+      "state": {
+        "budget_left_frac": 0.9682,
+        "generation": 13,
+        "memories": 108,
+        "open_goals": 38,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 26.3,
+        "since_explore_s": 34.6,
+        "since_input_s": 1195.8,
+        "vocab_size": 173,
+        "worst_misses": 8
+      },
+      "tick": 217,
+      "ts": 1792001501.1429765,
+      "id": 915
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1255.9,
+        "budget_left_frac": 0.9681,
+        "budget_left_s": 3485.244,
+        "kwh_today": 0.00033064,
+        "since_last_input_s": 1201.0,
+        "uptime_s": 1207.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.171,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 126.3,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.9682,
+        "generation": 13,
+        "memories": 109,
+        "open_goals": 38,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 31.3,
+        "since_explore_s": 5.0,
+        "since_input_s": 1200.9,
+        "vocab_size": 173,
+        "worst_misses": 8
+      },
+      "tick": 218,
+      "ts": 1792001506.2920387,
+      "id": 918
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1261.1,
+        "budget_left_frac": 0.9681,
+        "budget_left_s": 3485.078,
+        "kwh_today": 0.000331049,
+        "since_last_input_s": 1206.2,
+        "uptime_s": 1212.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.196,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 149.1,
+      "result": {
+        "misses": [
+          "q : what does luc ness mean ? a :"
+        ],
+        "n": 6,
+        "ok": 5
+      },
+      "state": {
+        "budget_left_frac": 0.9681,
+        "generation": 13,
+        "memories": 109,
+        "open_goals": 38,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 36.4,
+        "since_explore_s": 10.2,
+        "since_input_s": 1206.0,
+        "vocab_size": 173,
+        "worst_misses": 8
+      },
+      "tick": 219,
+      "ts": 1792001511.4648907,
+      "id": 921
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1267.8,
+        "budget_left_frac": 0.968,
+        "budget_left_s": 3484.896,
+        "kwh_today": 0.000331471,
+        "since_last_input_s": 1212.8,
+        "uptime_s": 1219.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.229,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 120.8,
+      "result": {
+        "misses": [
+          "q : what does super pend mean ? a :",
+          "q : what does pre rupt mean ? a :"
+        ],
+        "n": 6,
+        "ok": 4
+      },
+      "state": {
+        "budget_left_frac": 0.9681,
+        "generation": 13,
+        "memories": 109,
+        "open_goals": 38,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 43.2,
+        "since_explore_s": 16.9,
+        "since_input_s": 1211.2,
+        "vocab_size": 173,
+        "worst_misses": 8
+      },
+      "tick": 220,
+      "ts": 1792001518.1539855,
+      "id": 924
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1272.9,
+        "budget_left_frac": 0.968,
+        "budget_left_s": 3484.728,
+        "kwh_today": 0.000331881,
+        "since_last_input_s": 1218.0,
+        "uptime_s": 1224.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.254,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 109.2,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.968,
+        "generation": 13,
+        "memories": 109,
+        "open_goals": 38,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 48.3,
+        "since_explore_s": 22.1,
+        "since_input_s": 1217.9,
+        "vocab_size": 173,
+        "worst_misses": 8
+      },
+      "tick": 221,
+      "ts": 1792001523.2871835,
+      "id": 927
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 1281.0,
+        "budget_left_frac": 0.968,
+        "budget_left_s": 3484.689,
+        "kwh_today": 0.000331946,
+        "since_last_input_s": 1226.0,
+        "uptime_s": 1232.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.294,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 25.1,
+      "result": {
+        "a": "i recall : she will inter ject the story . [memory:34 self/captured, tier=permanent]",
+        "kind": "rehearse",
+        "memory": 94,
+        "q": "she"
+      },
+      "state": {
+        "budget_left_frac": 0.968,
+        "generation": 13,
+        "memories": 109,
+        "open_goals": 38,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 56.5,
+        "since_explore_s": 30.2,
+        "since_input_s": 1223.0,
+        "vocab_size": 173,
+        "worst_misses": 8
+      },
+      "tick": 222,
+      "ts": 1792001531.3507764,
+      "id": 930
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 1286.0,
+        "budget_left_frac": 0.968,
+        "budget_left_s": 3484.632,
+        "kwh_today": 0.000332011,
+        "since_last_input_s": 1231.1,
+        "uptime_s": 1237.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.171,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 42.6,
+      "result": {
+        "a": "i recall : she will inter ject the story . [memory:34 self/captured, tier=permanent]",
+        "kind": "rehearse",
+        "memory": 55,
+        "q": "she"
+      },
+      "state": {
+        "budget_left_frac": 0.968,
+        "generation": 13,
+        "memories": 109,
+        "open_goals": 38,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 61.5,
+        "since_explore_s": 5.1,
+        "since_input_s": 1231.1,
+        "vocab_size": 173,
+        "worst_misses": 8
+      },
+      "tick": 223,
+      "ts": 1792001536.4186618,
+      "id": 933
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1292.0,
+        "budget_left_frac": 0.9679,
+        "budget_left_s": 3484.437,
+        "kwh_today": 0.000332497,
+        "since_last_input_s": 1237.0,
+        "uptime_s": 1243.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.175,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 111.2,
+      "result": {
+        "misses": [
+          "q : what does ject ful mean ? a :"
+        ],
+        "n": 6,
+        "ok": 5
+      },
+      "state": {
+        "budget_left_frac": 0.968,
+        "generation": 13,
+        "memories": 109,
+        "open_goals": 38,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 67.4,
+        "since_explore_s": 5.8,
+        "since_input_s": 1236.1,
+        "vocab_size": 173,
+        "worst_misses": 8
+      },
+      "tick": 224,
+      "ts": 1792001542.3362637,
+      "id": 938
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 1297.0,
+        "budget_left_frac": 0.9679,
+        "budget_left_s": 3484.344,
+        "kwh_today": 0.000332736,
+        "since_last_input_s": 1242.1,
+        "uptime_s": 1248.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.2,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 60.7,
+      "result": {
+        "kind": "generate",
+        "memory": 110,
+        "prompt": "the root graph",
+        "said": "means write . q : what does the root graph mean ? a : the root graph means write ."
+      },
+      "state": {
+        "budget_left_frac": 0.9679,
+        "generation": 13,
+        "memories": 109,
+        "open_goals": 36,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 72.5,
+        "since_explore_s": 11.0,
+        "since_input_s": 1242.0,
+        "vocab_size": 173,
+        "worst_misses": 8
+      },
+      "tick": 225,
+      "ts": 1792001547.4176106,
+      "id": 940
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1303.0,
+        "budget_left_frac": 0.9678,
+        "budget_left_s": 3484.144,
+        "kwh_today": 0.000333227,
+        "since_last_input_s": 1248.0,
+        "uptime_s": 1254.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.175,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 125.5,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.9679,
+        "generation": 13,
+        "memories": 110,
+        "open_goals": 36,
+        "pending_facts": 2,
+        "rest_streak": 0,
+        "since_consolidation_s": 78.4,
+        "since_explore_s": 5.9,
+        "since_input_s": 1247.1,
+        "vocab_size": 173,
+        "worst_misses": 8
+      },
+      "tick": 226,
+      "ts": 1792001553.3517058,
+      "id": 943
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1308.1,
+        "budget_left_frac": 0.9678,
+        "budget_left_s": 3483.951,
+        "kwh_today": 0.000333711,
+        "since_last_input_s": 1253.2,
+        "uptime_s": 1259.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.2,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 118.1,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.9678,
+        "generation": 13,
+        "memories": 110,
+        "open_goals": 36,
+        "pending_facts": 2,
+        "rest_streak": 0,
+        "since_consolidation_s": 83.5,
+        "since_explore_s": 11.0,
+        "since_input_s": 1253.1,
+        "vocab_size": 173,
+        "worst_misses": 7
+      },
+      "tick": 227,
+      "ts": 1792001558.4974737,
+      "id": 946
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1314.0,
+        "budget_left_frac": 0.9677,
+        "budget_left_s": 3483.758,
+        "kwh_today": 0.000334195,
+        "since_last_input_s": 1259.1,
+        "uptime_s": 1265.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.229,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 117.1,
+      "result": {
+        "misses": [
+          "q : what does super cred mean ? a :",
+          "q : what does ject ive mean ? a :"
+        ],
+        "n": 6,
+        "ok": 4
+      },
+      "state": {
+        "budget_left_frac": 0.9678,
+        "generation": 13,
+        "memories": 110,
+        "open_goals": 36,
+        "pending_facts": 2,
+        "rest_streak": 0,
+        "since_consolidation_s": 89.4,
+        "since_explore_s": 17.0,
+        "since_input_s": 1258.2,
+        "vocab_size": 173,
+        "worst_misses": 7
+      },
+      "tick": 228,
+      "ts": 1792001564.424215,
+      "id": 949
+    },
+    {
+      "action": "consolidate",
+      "clock": {
+        "age_s": 1322.2,
+        "budget_left_frac": 0.966,
+        "budget_left_s": 3477.765,
+        "kwh_today": 0.000350097,
+        "since_last_input_s": 1267.3,
+        "uptime_s": 1273.8
+      },
+      "drives": {
+        "consolidate": 1.272,
+        "explore": 0.255,
+        "practice": 0.731,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 3168.1,
+      "result": {
+        "checkpoint": "checkpoints\\gen_0014.pt",
+        "exams": [
+          {
+            "accuracy": 0.767,
+            "exam": "E1_composition",
+            "score": "66/86",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.958,
+            "exam": "E2_affix_recall",
+            "score": "23/24",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E3_recall_echo",
+            "score": "12/12",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E4_deferral",
+            "score": "10/10",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.25,
+            "exam": "E5_facts_in_weights",
+            "score": "1/4",
+            "verdict": "INFO"
+          }
+        ],
+        "facts_new": 2,
+        "generation": 14,
+        "loss_first": 0.7172,
+        "loss_last": 0.3494,
+        "vocab_size": 173
+      },
+      "state": {
+        "budget_left_frac": 0.9677,
+        "generation": 13,
+        "memories": 110,
+        "open_goals": 36,
+        "pending_facts": 2,
+        "rest_streak": 0,
+        "since_consolidation_s": 94.6,
+        "since_explore_s": 22.1,
+        "since_input_s": 1264.1,
+        "vocab_size": 173,
+        "worst_misses": 8
+      },
+      "tick": 229,
+      "ts": 1792001572.6235206,
+      "id": 954
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1391.4,
+        "budget_left_frac": 0.9659,
+        "budget_left_s": 3477.266,
+        "kwh_today": 0.000352108,
+        "since_last_input_s": 1336.5,
+        "uptime_s": 2.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.151,
+        "practice": 0.73,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 272.3,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.966,
+        "generation": 0,
+        "memories": 119,
+        "open_goals": 37,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 70.8,
+        "since_explore_s": 0.8,
+        "since_input_s": 1336.2,
+        "vocab_size": 163,
+        "worst_misses": 5
+      },
+      "tick": 230,
+      "ts": 1792001641.800572,
+      "id": 973
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 1396.5,
+        "budget_left_frac": 0.9659,
+        "budget_left_s": 3477.266,
+        "kwh_today": 0.000352108,
+        "since_last_input_s": 2.7,
+        "uptime_s": 8.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.176,
+        "practice": 0.73,
+        "rest": 0.381,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.9659,
+        "generation": 0,
+        "memories": 120,
+        "open_goals": 37,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 76.1,
+        "since_explore_s": 6.2,
+        "since_input_s": 2.7,
+        "vocab_size": 166,
+        "worst_misses": 5
+      },
+      "tick": 231,
+      "ts": 1792001646.8352609,
+      "id": 977
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1402.4,
+        "budget_left_frac": 0.9659,
+        "budget_left_s": 3477.066,
+        "kwh_today": 0.000352604,
+        "since_last_input_s": 8.6,
+        "uptime_s": 13.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.205,
+        "practice": 0.73,
+        "rest": 0.381,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 116.7,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.9659,
+        "generation": 0,
+        "memories": 120,
+        "open_goals": 37,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 81.9,
+        "since_explore_s": 12.0,
+        "since_input_s": 7.7,
+        "vocab_size": 166,
+        "worst_misses": 5
+      },
+      "tick": 232,
+      "ts": 1792001652.7661994,
+      "id": 981
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1407.6,
+        "budget_left_frac": 0.9658,
+        "budget_left_s": 3476.873,
+        "kwh_today": 0.000353124,
+        "since_last_input_s": 13.8,
+        "uptime_s": 19.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.23,
+        "practice": 0.73,
+        "rest": 0.381,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 147.2,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.9659,
+        "generation": 0,
+        "memories": 120,
+        "open_goals": 36,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 87.1,
+        "since_explore_s": 17.1,
+        "since_input_s": 13.6,
+        "vocab_size": 166,
+        "worst_misses": 5
+      },
+      "tick": 233,
+      "ts": 1792001657.9484878,
+      "id": 986
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1412.7,
+        "budget_left_frac": 0.9657,
+        "budget_left_s": 3476.66,
+        "kwh_today": 0.000353715,
+        "since_last_input_s": 18.9,
+        "uptime_s": 24.2
+      },
+      "drives": {
+        "consolidate": 0.901,
+        "explore": 0.255,
+        "practice": 0.729,
+        "rest": 0.381,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 123.7,
+      "result": {
+        "misses": [
+          "q : what does mis phon mean ? a :"
+        ],
+        "n": 6,
+        "ok": 5
+      },
+      "state": {
+        "budget_left_frac": 0.9658,
+        "generation": 0,
+        "memories": 120,
+        "open_goals": 34,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 92.3,
+        "since_explore_s": 22.3,
+        "since_input_s": 18.8,
+        "vocab_size": 166,
+        "worst_misses": 5
+      },
+      "tick": 234,
+      "ts": 1792001663.1031072,
+      "id": 991
+    },
+    {
+      "action": "consolidate",
+      "clock": {
+        "age_s": 1422.6,
+        "budget_left_frac": 0.9632,
+        "budget_left_s": 3467.427,
+        "kwh_today": 0.000378295,
+        "since_last_input_s": 28.8,
+        "uptime_s": 34.1
+      },
+      "drives": {
+        "consolidate": 0.901,
+        "explore": 0.28,
+        "practice": 0.729,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 4829.5,
+      "result": {
+        "checkpoint": "checkpoints\\gen_0001.pt",
+        "exams": [
+          {
+            "accuracy": 0.814,
+            "exam": "E1_composition",
+            "score": "70/86",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.875,
+            "exam": "E2_affix_recall",
+            "score": "21/24",
+            "verdict": "FAIL"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E3_recall_echo",
+            "score": "12/12",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E4_deferral",
+            "score": "10/10",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.6,
+            "exam": "E5_facts_in_weights",
+            "score": "3/5",
+            "verdict": "INFO"
+          }
+        ],
+        "facts_new": 1,
+        "generation": 1,
+        "loss_first": 1.1151,
+        "loss_last": 0.4386,
+        "vocab_size": 176
+      },
+      "state": {
+        "budget_left_frac": 0.9657,
+        "generation": 0,
+        "memories": 120,
+        "open_goals": 34,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 97.4,
+        "since_explore_s": 27.4,
+        "since_input_s": 23.9,
+        "vocab_size": 166,
+        "worst_misses": 5
+      },
+      "tick": 235,
+      "ts": 1792001672.958876,
+      "id": 1000
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1427.7,
+        "budget_left_frac": 0.9631,
+        "budget_left_s": 3467.273,
+        "kwh_today": 0.000378917,
+        "since_last_input_s": 33.9,
+        "uptime_s": 39.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.328,
+        "practice": 0.728,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 110.7,
+      "result": {
+        "misses": [
+          "q : what does pend er mean ? a :"
+        ],
+        "n": 6,
+        "ok": 5
+      },
+      "state": {
+        "budget_left_frac": 0.9632,
+        "generation": 1,
+        "memories": 125,
+        "open_goals": 31,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 5.0,
+        "since_explore_s": 37.3,
+        "since_input_s": 33.8,
+        "vocab_size": 176,
+        "worst_misses": 8
+      },
+      "tick": 236,
+      "ts": 1792001678.0931137,
+      "id": 1014
+    }
+  ],
+  "last_events": [
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "suffix:able",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792001657.9474604,
+      "id": 985
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1407.6,
+        "budget_left_frac": 0.9658,
+        "budget_left_s": 3476.873,
+        "kwh_today": 0.000353124,
+        "since_last_input_s": 13.8,
+        "uptime_s": 19.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.23,
+        "practice": 0.73,
+        "rest": 0.381,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 147.2,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.9659,
+        "generation": 0,
+        "memories": 120,
+        "open_goals": 36,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 87.1,
+        "since_explore_s": 17.1,
+        "since_input_s": 13.6,
+        "vocab_size": 166,
+        "worst_misses": 5
+      },
+      "tick": 233,
+      "ts": 1792001657.9484878,
+      "id": 986
+    },
+    {
+      "cpu_s": 0.1094,
+      "gpu_s": 0.1037,
+      "gpu_watts_sample": 4.71,
+      "kind": "meter",
+      "kwh_est": 5.91e-07,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792001663.0865457,
+      "wall_s": 0.1037,
+      "what": "practice",
+      "id": 987
+    },
+    {
+      "items": [
+        {
+          "expected": "mis phon means sound wrong .",
+          "focus": "root:phon",
+          "got": "mis cred means believe wrong .",
+          "ok": false,
+          "parts": [
+            "prefix:mis",
+            "root:phon"
+          ],
+          "q": "q : what does mis phon mean ? a :"
+        },
+        {
+          "expected": "pos ology means the study of place .",
+          "focus": "root:pos",
+          "got": "pos ology means the study of place .",
+          "ok": true,
+          "parts": [
+            "root:pos",
+            "suffix:ology"
+          ],
+          "q": "q : what does pos ology mean ? a :"
+        },
+        {
+          "expected": "un mit means send not .",
+          "focus": "prefix:un",
+          "got": "un mit means send not .",
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:mit"
+          ],
+          "q": "q : what does un mit mean ? a :"
+        },
+        {
+          "expected": "spect er means one who look .",
+          "focus": "suffix:er",
+          "got": "spect er means one who look .",
+          "ok": true,
+          "parts": [
+            "root:spect",
+            "suffix:er"
+          ],
+          "q": "q : what does spect er mean ? a :"
+        },
+        {
+          "expected": "inter dict means say between .",
+          "focus": null,
+          "got": "inter dict means say between .",
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:dict"
+          ],
+          "q": "q : what does inter dict mean ? a :"
+        },
+        {
+          "expected": "fer ist means one who practices bring .",
+          "focus": null,
+          "got": "fer ist means one who practices bring .",
+          "ok": true,
+          "parts": [
+            "root:fer",
+            "suffix:ist"
+          ],
+          "q": "q : what does fer ist mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 5,
+      "ts": 1792001663.0890536,
+      "id": 988
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 1,
+      "part": "prefix:mis",
+      "status": "open",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792001663.102107,
+      "id": 989
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "suffix:ology",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792001663.102107,
+      "id": 990
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1412.7,
+        "budget_left_frac": 0.9657,
+        "budget_left_s": 3476.66,
+        "kwh_today": 0.000353715,
+        "since_last_input_s": 18.9,
+        "uptime_s": 24.2
+      },
+      "drives": {
+        "consolidate": 0.901,
+        "explore": 0.255,
+        "practice": 0.729,
+        "rest": 0.381,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 123.7,
+      "result": {
+        "misses": [
+          "q : what does mis phon mean ? a :"
+        ],
+        "n": 6,
+        "ok": 5
+      },
+      "state": {
+        "budget_left_frac": 0.9658,
+        "generation": 0,
+        "memories": 120,
+        "open_goals": 34,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 92.3,
+        "since_explore_s": 22.3,
+        "since_input_s": 18.8,
+        "vocab_size": 166,
+        "worst_misses": 5
+      },
+      "tick": 234,
+      "ts": 1792001663.1031072,
+      "id": 991
+    },
+    {
+      "added": [
+        "zint",
+        "cold",
+        "wind"
+      ],
+      "kind": "vocab_grow",
+      "ts": 1792001668.1394217,
+      "vocab_size": 169,
+      "why": "consolidation",
+      "id": 992
+    },
+    {
+      "added": [
+        "brindle",
+        "brave",
+        "boat"
+      ],
+      "kind": "vocab_grow",
+      "ts": 1792001668.1444213,
+      "vocab_size": 172,
+      "why": "consolidation",
+      "id": 993
+    },
+    {
+      "added": [
+        "zib",
+        "fast"
+      ],
+      "kind": "vocab_grow",
+      "ts": 1792001668.1529455,
+      "vocab_size": 174,
+      "why": "consolidation",
+      "id": 994
+    },
+    {
+      "added": [
+        "glorp",
+        "happy"
+      ],
+      "kind": "vocab_grow",
+      "ts": 1792001668.1559446,
+      "vocab_size": 176,
+      "why": "consolidation",
+      "id": 995
+    },
+    {
+      "checkpoint": "checkpoints\\gen_0001.pt",
+      "fact_sentences": 156,
+      "facts_new": 1,
+      "facts_total": 34,
+      "generation": 1,
+      "kind": "consolidation",
+      "loss_first": 1.1151,
+      "loss_last": 0.4386,
+      "lr": 0.0005,
+      "memory_ids": [
+        120
+      ],
+      "seconds": 2.7,
+      "sentences": 604,
+      "steps": 200,
+      "tokens": 8896,
+      "ts": 1792001670.856954,
+      "vocab_added": [
+        "zint",
+        "cold",
+        "wind",
+        "brindle",
+        "brave",
+        "boat",
+        "zib",
+        "fast",
+        "glorp",
+        "happy"
+      ],
+      "vocab_size": 176,
+      "id": 996
+    },
+    {
+      "generation": 1,
+      "kind": "exam",
+      "results": [
+        {
+          "accuracy": 0.814,
+          "exam": "E1_composition",
+          "score": "70/86",
+          "verdict": "PASS"
+        },
+        {
+          "accuracy": 0.875,
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "verdict": "FAIL"
+        },
+        {
+          "accuracy": 1.0,
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "verdict": "PASS"
+        },
+        {
+          "accuracy": 1.0,
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "verdict": "PASS"
+        },
+        {
+          "accuracy": 0.6,
+          "exam": "E5_facts_in_weights",
+          "score": "3/5",
+          "verdict": "INFO"
+        }
+      ],
+      "trigger": "consolidation gen 1",
+      "ts": 1792001672.9563668,
+      "vocab_size": 176,
+      "id": 997
+    },
+    {
+      "generation": 1,
+      "items": [
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:graph"
+          ],
+          "q": "co graph"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:cred"
+          ],
+          "q": "trans cred"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "prefix:trans",
+            "root:luc"
+          ],
+          "q": "trans luc"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:port"
+          ],
+          "q": "un port"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:phon"
+          ],
+          "q": "inter phon"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:re",
+            "root:struct"
+          ],
+          "q": "re struct"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:ject"
+          ],
+          "q": "ex ject"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "prefix:inter",
+            "root:spect"
+          ],
+          "q": "inter spect"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "prefix:inter",
+            "root:pend"
+          ],
+          "q": "inter pend"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:scrib"
+          ],
+          "q": "ex scrib"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:pos"
+          ],
+          "q": "inter pos"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:vis"
+          ],
+          "q": "inter vis"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:port"
+          ],
+          "q": "inter port"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:re",
+            "root:form"
+          ],
+          "q": "re form"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:aud"
+          ],
+          "q": "co aud"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pro",
+            "root:pos"
+          ],
+          "q": "pro pos"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "prefix:ex",
+            "root:luc"
+          ],
+          "q": "ex luc"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:vis"
+          ],
+          "q": "co vis"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:dis",
+            "root:ject"
+          ],
+          "q": "dis ject"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:sub",
+            "root:mit"
+          ],
+          "q": "sub mit"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:dis",
+            "root:bio"
+          ],
+          "q": "dis bio"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:super",
+            "root:struct"
+          ],
+          "q": "super struct"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "prefix:co",
+            "root:fer"
+          ],
+          "q": "co fer"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:dis",
+            "root:phon"
+          ],
+          "q": "dis phon"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "prefix:sub",
+            "root:rupt"
+          ],
+          "q": "sub rupt"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:fer"
+          ],
+          "q": "un fer"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:pend"
+          ],
+          "q": "un pend"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "prefix:pre",
+            "root:chron"
+          ],
+          "q": "pre chron"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:super",
+            "root:pos"
+          ],
+          "q": "super pos"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:phon"
+          ],
+          "q": "trans phon"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:fer"
+          ],
+          "q": "trans fer"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:super",
+            "root:dict"
+          ],
+          "q": "super dict"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:pend"
+          ],
+          "q": "ex pend"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pre",
+            "root:aud"
+          ],
+          "q": "pre aud"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:super",
+            "root:fer"
+          ],
+          "q": "super fer"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:dict"
+          ],
+          "q": "ex dict"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pre",
+            "root:fer"
+          ],
+          "q": "pre fer"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:re",
+            "root:ject"
+          ],
+          "q": "re ject"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "prefix:super",
+            "root:luc"
+          ],
+          "q": "super luc"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pro",
+            "root:pend"
+          ],
+          "q": "pro pend"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:spect"
+          ],
+          "q": "ex spect"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:spect"
+          ],
+          "q": "co spect"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:geo"
+          ],
+          "q": "co geo"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:cred",
+            "suffix:less"
+          ],
+          "q": "cred less"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:ject",
+            "suffix:ology"
+          ],
+          "q": "ject ology"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:scrib",
+            "suffix:ist"
+          ],
+          "q": "scrib ist"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "root:pend",
+            "suffix:able"
+          ],
+          "q": "pend able"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:spect",
+            "suffix:ology"
+          ],
+          "q": "spect ology"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:bio",
+            "suffix:able"
+          ],
+          "q": "bio able"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "root:chron",
+            "suffix:ive"
+          ],
+          "q": "chron ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:port",
+            "suffix:ly"
+          ],
+          "q": "port ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:form",
+            "suffix:less"
+          ],
+          "q": "form less"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:rupt",
+            "suffix:less"
+          ],
+          "q": "rupt less"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "root:cred",
+            "suffix:ive"
+          ],
+          "q": "cred ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:vis",
+            "suffix:able"
+          ],
+          "q": "vis able"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:phon",
+            "suffix:ful"
+          ],
+          "q": "phon ful"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:chron",
+            "suffix:ology"
+          ],
+          "q": "chron ology"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:geo",
+            "suffix:ly"
+          ],
+          "q": "geo ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:bio",
+            "suffix:er"
+          ],
+          "q": "bio er"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:fer",
+            "suffix:able"
+          ],
+          "q": "fer able"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "root:rupt",
+            "suffix:ive"
+          ],
+          "q": "rupt ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:scrib",
+            "suffix:ive"
+          ],
+          "q": "scrib ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:luc",
+            "suffix:ly"
+          ],
+          "q": "luc ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:log",
+            "suffix:ful"
+          ],
+          "q": "log ful"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:geo",
+            "suffix:tion"
+          ],
+          "q": "geo tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:bio",
+            "suffix:ly"
+          ],
+          "q": "bio ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:dict",
+            "suffix:ing"
+          ],
+          "q": "dict ing"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "root:port",
+            "suffix:er"
+          ],
+          "q": "port er"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:tract",
+            "suffix:ly"
+          ],
+          "q": "tract ly"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "root:spect",
+            "suffix:ive"
+          ],
+          "q": "spect ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:port",
+            "suffix:ed"
+          ],
+          "q": "port ed"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:ten",
+            "suffix:ed"
+          ],
+          "q": "ten ed"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:fer",
+            "suffix:ness"
+          ],
+          "q": "fer ness"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:phon",
+            "suffix:tion"
+          ],
+          "q": "phon tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:bio",
+            "suffix:ness"
+          ],
+          "q": "bio ness"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:chron",
+            "suffix:tion"
+          ],
+          "q": "chron tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:struct",
+            "suffix:ful"
+          ],
+          "q": "struct ful"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:mit",
+            "suffix:tion"
+          ],
+          "q": "mit tion"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "root:luc",
+            "suffix:ive"
+          ],
+          "q": "luc ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:spect",
+            "suffix:tion"
+          ],
+          "q": "spect tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:fer",
+            "suffix:ly"
+          ],
+          "q": "fer ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:ject",
+            "suffix:less"
+          ],
+          "q": "ject less"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:phon",
+            "suffix:ology"
+          ],
+          "q": "phon ology"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:dict",
+            "suffix:ful"
+          ],
+          "q": "dict ful"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:phon",
+            "suffix:ness"
+          ],
+          "q": "phon ness"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "root:geo",
+            "suffix:ive"
+          ],
+          "q": "geo ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:re"
+          ],
+          "q": "re"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:un"
+          ],
+          "q": "un"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pre"
+          ],
+          "q": "pre"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:dis"
+          ],
+          "q": "dis"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:trans"
+          ],
+          "q": "trans"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:sub"
+          ],
+          "q": "sub"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:super"
+          ],
+          "q": "super"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter"
+          ],
+          "q": "inter"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:mis"
+          ],
+          "q": "mis"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex"
+          ],
+          "q": "ex"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pro"
+          ],
+          "q": "pro"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co"
+          ],
+          "q": "co"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "suffix:er"
+          ],
+          "q": "er"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ing"
+          ],
+          "q": "ing"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ed"
+          ],
+          "q": "ed"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:tion"
+          ],
+          "q": "tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:able"
+          ],
+          "q": "able"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "suffix:less"
+          ],
+          "q": "less"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ful"
+          ],
+          "q": "ful"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ly"
+          ],
+          "q": "ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ness"
+          ],
+          "q": "ness"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "suffix:ive"
+          ],
+          "q": "ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ology"
+          ],
+          "q": "ology"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ist"
+          ],
+          "q": "ist"
+        }
+      ],
+      "kind": "exam_detail",
+      "ts": 1792001672.9563668,
+      "id": 998
+    },
+    {
+      "cpu_s": 4.4062,
+      "gpu_s": 4.8265,
+      "gpu_watts_sample": 4.64,
+      "kind": "meter",
+      "kwh_est": 2.458e-05,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792001672.9578705,
+      "wall_s": 4.8265,
+      "what": "consolidate",
+      "id": 999
+    },
+    {
+      "action": "consolidate",
+      "clock": {
+        "age_s": 1422.6,
+        "budget_left_frac": 0.9632,
+        "budget_left_s": 3467.427,
+        "kwh_today": 0.000378295,
+        "since_last_input_s": 28.8,
+        "uptime_s": 34.1
+      },
+      "drives": {
+        "consolidate": 0.901,
+        "explore": 0.28,
+        "practice": 0.729,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 4829.5,
+      "result": {
+        "checkpoint": "checkpoints\\gen_0001.pt",
+        "exams": [
+          {
+            "accuracy": 0.814,
+            "exam": "E1_composition",
+            "score": "70/86",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.875,
+            "exam": "E2_affix_recall",
+            "score": "21/24",
+            "verdict": "FAIL"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E3_recall_echo",
+            "score": "12/12",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E4_deferral",
+            "score": "10/10",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.6,
+            "exam": "E5_facts_in_weights",
+            "score": "3/5",
+            "verdict": "INFO"
+          }
+        ],
+        "facts_new": 1,
+        "generation": 1,
+        "loss_first": 1.1151,
+        "loss_last": 0.4386,
+        "vocab_size": 176
+      },
+      "state": {
+        "budget_left_frac": 0.9657,
+        "generation": 0,
+        "memories": 120,
+        "open_goals": 34,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 97.4,
+        "since_explore_s": 27.4,
+        "since_input_s": 23.9,
+        "vocab_size": 166,
+        "worst_misses": 5
+      },
+      "tick": 235,
+      "ts": 1792001672.958876,
+      "id": 1000
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 2,
+      "part": "root:chron",
+      "status": "open",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792001676.9929576,
+      "id": 1001
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 1,
+      "part": "prefix:sub",
+      "status": "open",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792001676.993956,
+      "id": 1002
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 1,
+      "part": "root:fer",
+      "status": "open",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792001676.9949582,
+      "id": 1003
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 1,
+      "part": "suffix:able",
+      "status": "open",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792001676.995958,
+      "id": 1004
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "prefix:re",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792001676.9969563,
+      "id": 1005
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "prefix:un",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792001676.9984572,
+      "id": 1006
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "root:dict",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792001676.9994621,
+      "id": 1007
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "root:pos",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792001677.0014596,
+      "id": 1008
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "root:ten",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792001677.0024598,
+      "id": 1009
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "suffix:ful",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792001677.003461,
+      "id": 1010
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "suffix:ly",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792001677.00446,
+      "id": 1011
+    },
+    {
+      "cpu_s": 0.0625,
+      "gpu_s": 0.0916,
+      "gpu_watts_sample": 14.21,
+      "kind": "meter",
+      "kwh_est": 6.22e-07,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792001678.0770817,
+      "wall_s": 0.0916,
+      "what": "practice",
+      "id": 1012
+    },
+    {
+      "items": [
+        {
+          "expected": "ject ive means tending to throw .",
+          "focus": "suffix:ive",
+          "got": "ject ive means tending to throw .",
+          "ok": true,
+          "parts": [
+            "root:ject",
+            "suffix:ive"
+          ],
+          "q": "q : what does ject ive mean ? a :"
+        },
+        {
+          "expected": "ongoing .",
+          "focus": "suffix:ing",
+          "got": "ongoing .",
+          "ok": true,
+          "parts": [
+            "suffix:ing"
+          ],
+          "q": "q : what does the suffix ing mean ? a :"
+        },
+        {
+          "expected": "luc er means one who light .",
+          "focus": "root:luc",
+          "got": "luc er means one who light .",
+          "ok": true,
+          "parts": [
+            "root:luc",
+            "suffix:er"
+          ],
+          "q": "q : what does luc er mean ? a :"
+        },
+        {
+          "expected": "log ness means the state of speech .",
+          "focus": "root:log",
+          "got": "log ness means the state of speech .",
+          "ok": true,
+          "parts": [
+            "root:log",
+            "suffix:ness"
+          ],
+          "q": "q : what does log ness mean ? a :"
+        },
+        {
+          "expected": "re geo means earth again .",
+          "focus": null,
+          "got": "re geo means earth again .",
+          "ok": true,
+          "parts": [
+            "prefix:re",
+            "root:geo"
+          ],
+          "q": "q : what does re geo mean ? a :"
+        },
+        {
+          "expected": "pend er means one who hang .",
+          "focus": null,
+          "got": "pend ness means the state of hang .",
+          "ok": false,
+          "parts": [
+            "root:pend",
+            "suffix:er"
+          ],
+          "q": "q : what does pend er mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 5,
+      "ts": 1792001678.0800912,
+      "id": 1013
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 1427.7,
+        "budget_left_frac": 0.9631,
+        "budget_left_s": 3467.273,
+        "kwh_today": 0.000378917,
+        "since_last_input_s": 33.9,
+        "uptime_s": 39.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.328,
+        "practice": 0.728,
+        "rest": 0.081,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 110.7,
+      "result": {
+        "misses": [
+          "q : what does pend er mean ? a :"
+        ],
+        "n": 6,
+        "ok": 5
+      },
+      "state": {
+        "budget_left_frac": 0.9632,
+        "generation": 1,
+        "memories": 125,
+        "open_goals": 31,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 5.0,
+        "since_explore_s": 37.3,
+        "since_input_s": 33.8,
+        "vocab_size": 176,
+        "worst_misses": 8
+      },
+      "tick": 236,
+      "ts": 1792001678.0931137,
+      "id": 1014
+    }
+  ],
+  "memories": 125,
+  "vocab_size": 176,
+  "generation": 1
+}

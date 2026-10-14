@@ -47,8 +47,12 @@ SUFFIXES = {
     "ive": "tending to", "ology": "the study of", "ist": "one who practices",
 }
 
-# Special tokens for the memory-recall interface.
-SLOTS = ["<m1>", "<m2>", "<m3>", "<m4>"]
+# Special tokens for the memory-recall interface. v2: 8 slots = up to 4
+# recalled facts per prompt (Jaron 10/14: "4 recall slots -> increase and let
+# it grow"). The memory store's top-k grows with its size; the core's context
+# window (block_size) is what bounds how many facts ride in one prompt.
+SLOTS = [f"<m{i}>" for i in range(1, 9)]
+MAX_RECALLS = len(SLOTS) // 2
 
 FUNCTION_WORDS = (
     "i you she he we they the a an is was will can do does did today now "
@@ -185,35 +189,25 @@ def lesson_recall(rng: random.Random) -> list[str]:
     """The memory-interface lesson.
 
     Teaches the core to (a) echo a recalled fact through slot tokens,
-    (b) pick the right slot among several recalls, and (c) defer when
-    no recall exists. This is the trained half of the Live-Reference
+    (b) pick the right slot among 1..4 recalls in any order, and (c) defer
+    when no recall exists. This is the trained half of the Live-Reference
     architecture: the core never memorises the fact, it learns the
     *pattern* of answering from recall.
     """
     out = []
     filler_roots = list(ROOTS.keys())
     filler_glosses = list(set(ROOTS.values()))
-    for _ in range(220):
-        # single recall, echo it
-        out.append(
-            "recall [ user ] : the word <m1> means <m2> . "
-            "q : what does <m1> mean ? a : the word <m1> means <m2> ."
-        )
-        # two recalls, pick the one asked about (order varies)
-        if rng.random() < 0.5:
-            out.append(
-                "recall [ user ] : the word <m1> means <m2> . "
-                "recall [ user ] : the word <m3> means <m4> . "
-                "q : what does <m3> mean ? a : the word <m3> means <m4> ."
-            )
-        else:
-            out.append(
-                "recall [ user ] : the word <m3> means <m4> . "
-                "recall [ user ] : the word <m1> means <m2> . "
-                "q : what does <m3> mean ? a : the word <m3> means <m4> ."
-            )
+    pairs = [(SLOTS[i], SLOTS[i + 1]) for i in range(0, len(SLOTS), 2)]
+    for _ in range(320):
+        n = rng.choice([1, 1, 2, 2, 3, 4])
+        chosen = pairs[:n]
+        order = list(chosen)
+        rng.shuffle(order)
+        asked = rng.choice(chosen)
+        ctx = " ".join(f"recall [ user ] : the word {w} means {g} ." for w, g in order)
+        out.append(f"{ctx} q : what does {asked[0]} mean ? a : the word {asked[0]} means {asked[1]} .")
         # no recall -> defer (judgment: cite or defer)
-        out.append("q : what does <m1> mean ? a : i do not have that yet .")
+        out.append(f"q : what does {asked[0]} mean ? a : i do not have that yet .")
     # a few grounded variants with real morphemes in slot position
     for _ in range(80):
         r = rng.choice(filler_roots)

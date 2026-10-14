@@ -1,44 +1,35 @@
-# Sapling — the next three steps
+# Sapling — next steps (after v2)
 
-Ordered by dependency. Each is the smallest version that still counts.
+v1's three steps: (1) runs-without-you is DONE (the heartbeat); (2) record -> consolidation
+is DONE (no gate; `/confirm` and `/invalidate` verdicts are the selection events); (3) a world
+to practice in is still open. Ordered by dependency.
 
-## 1. Go live: one real reference per day (the "runs without you" step)
+## 1. Let it run for days, then read the record (no build)
 
-A scheduled `python -m sapling.loop --once` (Windows Task Scheduler on the
-RTX 4060 machine) that: pulls ONE live source (a Wikipedia "on this day"
-summary or one RSS feed), stores it as `retrieval/captured`, meters itself,
-answers one queued question using it, appends a heartbeat block, and stops.
-This turns Sapling from session-driven into accumulating under
-accumulation-sort's own criterion, and gives fed-not-filled's "today layer"
-its first real feed. Success looks like: a week of dated heartbeats in the
-ledger and at least one answer that cites a fact newer than the training
-corpus — the Live-Reference test, passed in the small.
+The 20-minute run proved the loop; what Jaron asked for is behavior over time. Start it
+(`python -m sapling.heartbeat start`), leave it, and read: how it spends a full day's budget,
+whether it ever self-stops and why (stop reports), whether consolidations drift the exams,
+what its explore ticks produce. `PROPOSALS.md` holds the questions the first run raised.
+Smallest extra: a Windows scheduled task that starts it at boot (owner's hand = parole).
 
-## 2. Close the selection loop: resolution → consolidation
+## 2. One real reference per day (the Live-Reference feed)
 
-Add `resolved` events (a later confirmed source or a human verdict marks a
-memory resolved/unresolved), then the consolidation loop: a nightly,
-owner-gated fine-tune of the core on `confirmed + resolved` rows only, with
-the exam suite re-run after every consolidation and the delta kept on the
-report card. This is fed-not-filled's third term — selection — made of code,
-and prediction-research-system's "freeze the forecast, score it later"
-applied to the system's own memory. Success looks like: consolidation run 1
-does not regress any predeclared exam, and at least one taught fact survives
-in weights after its memory row is (hypothetically) unreachable.
+One live source (Wikipedia summary or one RSS feed) pulled by an `explore` tick, stored as
+`retrieval/captured`, so consolidation has something newer than the school corpus. Success:
+an answer that cites a fact newer than training - the Live-Reference test, passed in the small.
 
 ## 3. A world to practice in (the third leg)
 
-Give the loop a tiny deterministic world instead of only text: the simplest
-version is a grid foraging sim (unfinished-island's Island Language lineage,
-or a 10×10 nutrient grid à la livi-organism) where the core proposes one
-action per tick, a deterministic simulator validates and applies it, and the
-outcome — success or failure — is recorded and becomes training signal.
-This is the ECIH move: real constraint (a survival budget), real feedback,
-labels free by construction. Success looks like: the core's action choices
-improve across epochs *measured by the sim*, with the predeclared-metric
-discipline from fly-school (bar written before the run; FAIL kept).
+A tiny deterministic grid world (10x10, a survival budget of its own) where the core proposes
+one action per tick, the simulator validates it, and the outcome becomes a `self` memory and
+a practice goal. The ECIH move: real constraint, real feedback, labels free by construction.
+This is where the budget pressure (clock.py) and the goals (goals.py) meet a body.
 
-After these three: the packing-geometry memory slot gets its first honest
-attempt (arrangement strategy plug-in behind the existing interface), and
-the GitHub/Supabase export adapters turn the local record into the
-multi-service organ layout.
+## 4. The organ layout
+
+Supabase (pgvector) as working memory behind the same `MemoryStore` interface; GitHub export of
+the ledger (hash chain as commits); Arweave only for `keep` verdicts. Adapters, not foundations.
+
+## Open with Jaron (not built on purpose)
+- outbound_message and backup approval rules: keep or drop (membrane.yaml marks them pending).
+- the six items in `PROPOSALS.md`.

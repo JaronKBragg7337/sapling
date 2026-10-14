@@ -3,4 +3,8 @@ __pycache__/
 results/*.db
 results/*.db-*
 results/core_checkpoint.pt
+results/checkpoints/
+results/heartbeat.log
+results/heartbeat.pid
+results/heartbeat.stop
 .venv/

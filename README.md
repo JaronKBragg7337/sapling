@@ -1,102 +1,138 @@
 # Sapling
 
-A small, independent AI of own design: a **trained core** (~820K parameters,
-trained from scratch on a school-style morphology curriculum), **live knowledge**
-kept out of the weights, and **its own memory** that persists across sessions,
-promotes what gets re-used, fades what doesn't, and never rewrites its history.
+A small AI of its own design, rebuilt (v2) to Jaron's decisions of 2026-10-14: a **heartbeat**
+that keeps going on its own and feels time and energy passing, a **trained core** (~0.82M
+parameters, from scratch) that can **become what it learns**, **memory** that grows and is
+protected by use, **goals it sets itself**, **outside exams** it cannot fake, the freedom to
+**stop itself** (every stop is a report), and a **membrane** of rules only the owner edits -
+each rule with its origin. A plain-words **control room** on localhost shows all of it and has
+a chat box.
 
-This is v1: the first working piece, built for real, with the exams and the
-fails kept on the record. Design reasoning is in [WRITEUP.md](WRITEUP.md),
-the system shape in [ARCHITECTURE.md](ARCHITECTURE.md), and the road forward
-in [NEXT.md](NEXT.md).
+Why each piece is the way it is: [CHANGELOG.md](CHANGELOG.md) (each change tied to his
+decision line), the system shape in [ARCHITECTURE.md](ARCHITECTURE.md), the v1 reasoning in
+[WRITEUP.md](WRITEUP.md), what comes next in [NEXT.md](NEXT.md), and the things Claude would
+have added as rules but did not in [PROPOSALS.md](PROPOSALS.md).
 
-## The one law
+## The stance (Jaron, 10/14)
 
-> The system may copy and back itself up on its owner's own machines, with
-> permission. It must never spread to other people's machines or hide from
-> its owner.
+Observe like a scientist. Behavior the code "says shouldn't happen" is data, not a flaw.
+No limits pre-built out of worry; bad actions are handled by contain / correct / parole, not
+deletion. So there is no approval gate on what it learns, no ban on stopping, no cap that
+switches it off - and every tick, meter reading, consolidation, goal and stop is on an
+append-only hash-chained record for his eyes.
 
-Enforced in `membrane.yaml` (human-owned; the system has no write path to it)
-and locked by tests.
+## The rules (membrane.yaml - the owner's file; the code has no write path to it)
+
+| rule | origin | state |
+|---|---|---|
+| Back up on the owner's own machines with permission; never spread to other machines; never hide from the owner | Jaron | on (old 1/3/4/5 merged into one line) |
+| Never rewrite its own history (append-only hash chain) | Jaron | on |
+| It may stop itself; every stop is logged with what led to it | Jaron | on (old "self_shutdown forbidden" dropped) |
+| Outbound messages need owner approval | Kimi | on, pending Jaron's keep/drop |
+| Backup to an owner machine needs owner approval | Kimi | on, pending Jaron's keep/drop |
+| The system cannot write this file | Kimi (structural) | on |
 
 ## Quickstart (the RTX 4060 PC, or any CPU)
 
 ```bash
-pip install -r requirements.txt          # torch only
-python -m sapling.train                  # school: 5 lessons, ~5 min on CPU, faster on the 4060
-python -m sapling.exams                  # cold exams, predeclared bars -> results/report_card.json
-python -m sapling.session                # talk to it; /teach /keep /report /quit
-python tests/run_tests.py                # invariants, no pytest needed (or: pytest tests/)
+pip install -r requirements.txt           # torch, pyyaml
+python -m sapling.train                   # school: 5 lessons, ~20 s on the 4060 (gen 0)
+python -m sapling.exams                   # cold exams, predeclared bars -> results/report_card.json
+python -m sapling.heartbeat start         # the heartbeat, detached; log in results/heartbeat.log
+#   control room: http://127.0.0.1:7337/  (rules, status, budget, ticks, goals, exams, memory, chat)
+python -m sapling.heartbeat status
+python -m sapling.heartbeat stop          # owner stop -> stop report + exit
+python -m sapling.session                 # talk without the heartbeat; /teach /confirm /invalidate /keep /report
+python tests/run_tests.py                 # invariants without pytest   (or: pytest tests/)
 ```
 
-## What it actually produced (this repo's own runs, CPU, seed 7337)
+## What it does every tick
 
-**School** — 5 lessons, 819,840 params, 159-token morpheme vocabulary,
-~4.4 minutes total on 3 CPU cores (`results/train_log.jsonl`,
-`results/train_run*_stdout.txt`):
+It reads its own state - budget left today, open goals, facts waiting to go into its weights,
+how long since it explored, how long since anyone spoke to it - turns that into drives, and
+draws one action: **practice** (its weak parts, training material only), **consolidate**
+(fine-tune on its own record; one checkpoint per generation; exams re-run after), **explore**
+(rehearse an old memory, or free-generate and keep what it said), **rest**, or **stop**.
+Every tick is a ledger row with the drives and the choice. Every unit of work is metered:
+CPU seconds, GPU seconds, a sampled GPU power reading, and an estimated kWh.
 
-```
-lesson=roots        loss 84.946 -> 0.084
-lesson=affixes      loss  7.263 -> 0.094
-lesson=composition  loss 12.794 -> 0.633
-lesson=sentences    loss  3.544 -> 0.700
-lesson=recall       loss  6.545 -> 0.532
-```
+## What the first 20-minute heartbeat run produced (RTX 4060, 2026-10-14)
 
-**Exams** (cold, held-out, predeclared bars — `results/report_card.json`):
+See the section "Run record" below - filled from the ledger, not from memory.
 
-```
-E1_composition   85/86  acc=0.988  bar=0.60  PASS   # meanings of NEVER-TAUGHT word combos
-E2_affix_recall  24/24  acc=1.000  bar=0.90  PASS
-E3_recall_echo   10/10  acc=1.000  bar=0.90  PASS   # answer from injected recall slots
-E4_deferral      10/10  acc=1.000  bar=0.80  PASS   # "i do not have that yet ." when no recall
-```
-
-The one E1 miss: asked `what does vis able mean ?` it answered the composition
-form `vis + able = vis able .` — a format confusion, not a semantic one.
-
-**The FAIL that is kept:** run 1 spelled composed words as atomic tokens
-(`cograph`), so held-out words had untrained embeddings and E1 scored **0/86**.
-That run is preserved in `report_card.json → history` and in
-`results/train_run1_stdout.txt`. The fix (visible morpheme boundaries:
-`co graph`) is why run 2 passes. The fail is the finding — a model cannot
-generalize over tokens it cannot represent.
-
-**Memory across sessions** (`results/demo_session1.txt`, `demo_session2.txt`):
+**Run 1 — 21 minutes, 223 ticks** (13:51-14:12, owner stop; `results/heartbeat_run1.log`,
+`results/report_card_run1.json`, `results/stop_reports/2026-10-14T141252_owner.json`):
 
 ```
-== session 1 ==                        == session 2 (a NEW process) ==
-> /teach the word glorp means happy    > what does glorp mean ?
-remembered as memory:1                 the word glorp means happy . [memory:1 user/captured]
-                                       > what does spect mean ?
-                                       the root spect means look .   # from the trained core
+ticks: practice 150 / explore 48 / consolidate 13 / rest 12 / stop 0   errors inside ticks: 0
+metered: 54.9 cpu-s + 59.1 gpu-s of a 3600-s daily budget (96.6% left at stop)
+         GPU 3.3-25.3 W sampled; ~0.32 Wh estimated for the run (211 meter rows)
+consolidations: gen 2 -> gen 14, 1.0-2.3 s each, loss ~0.75 -> ~0.35, exams after every one
+exams across the 13 consolidations: E1 59-76/86 (all PASS, drifting), E2 20-24/24, E3 12/12, E4 10/10
+goals: 203 open/met transitions (e.g. suffix:er, root:luc opened at 3-4 misses/10; root:fer, prefix:trans met)
+practice accuracy: 853/900 (first 10 ticks 93%, last 10 ticks 90%)
+memory: 115 rows, chain verified; vocab 163 -> 173 (zint, cold, wind added when taught by chat)
+recall after 21 minutes: glorp (taught before the run) and zint (taught at tick 7 by chat) answered
+  from memory, tiers working / long_term; brindle (never asked during the run) fell to strength 0.99
 ```
 
-`glorp` was never in the training vocabulary. The core answered through the
-memory layer's recall slots — the Live-Reference Principle working as
-architecture: the fact lives in the record, the skill lives in the weights.
+Sample tick rows (ledger, verbatim):
+```
+#7   practice   {misses: [], n: 6, ok: 6}      drives {practice .749, explore .154, rest .080, consolidate 0, stop 0}
+#109 explore    {kind: generate, prompt: "the root spect", said: "means look .", memory: 64}
+#229 consolidate {generation 14, facts_new 2, loss .717 -> .349, checkpoint gen_0014.pt, exams: E1 66/86 PASS ...}
+```
+
+**What run 1 found (data, and two bugs):** E5 (facts in weights) stayed at 0-2/4 for all 13
+consolidations - the core answered a blend ("the word glorp means a small means happy ."). Cause:
+new word parts were initialised almost on top of each other (noise 0.02 against an embedding
+spread of 0.9), so glorp / zib / brindle were one word to it; and facts were ~3% of the fine-tune
+mix. Second bug: "?" and "." stripped to "" and matched every memory, so one self memory
+("re + scrib = re scrib .") was recalled on every query and reached "permanent" - an artifact,
+not a promotion. Both fixed (model.py init at the embedding spread; facts ~30% of the mix;
+memory.py discards ""), and the E2 21/24 FAIL from the first v2 school run stays in the card.
+
+**Run 2 — fixed recipe, fresh gen 0** (started 14:14; the heartbeat is still running):
+
+```
+gen 2  E1 74/86  E2 21/24  E3 12/12  E4 10/10  E5 5/5
+gen 3  E1 74/86  E2 23/24  E3 12/12  E4 10/10  E5 5/5
+gen 4  E1 67/86  E2 22/24  E3 12/12  E4 10/10  E5 5/5
+raw core, no memory at all:  q : what does quimble mean ? a : -> the word quimble means a tiny lantern .
+                             q : what does brindle mean ? a : -> the word brindle means a small brave boat .
+                             q : what does <m1> mean ? a :    -> i do not have that yet .   (deferral kept)
+```
+
+All five facts it was taught (zib, glorp, brindle, zint, quimble) are now in its weights - it
+became what it learned, with no gate, and the outside exams show the cost (E1 drifts down a few
+points per consolidation; that drift is the next thing to watch, not a reason to add a gate).
 
 ## Repo map
 
 ```
 sapling/
-  curriculum.py   # school: roots -> affixes -> composition -> sentences -> recall (deterministic, seeded)
-  model.py        # tiny decoder-only transformer (~0.8M params)
-  train.py        # staged training, report card, checkpoint
-  exams.py        # E1-E4, predeclared bars, FAILs kept
-  memory.py       # append-only hash-chained SQLite: memories, recalls, ledger; promotion + half-life decay
-  session.py      # the loop: observe -> meter -> recall -> answer -> record
-  membrane.py     # human-owned permissions; the system can never write them
-membrane.yaml     # the law and the forbidden actions
-tests/            # pytest suite + plain-python runner (tamper, promotion, anti-shutdown, ...)
-results/          # train logs, report card (with the kept FAIL), demo transcripts
+  heartbeat.py     # the tick loop: drives -> choice -> act -> log; start/stop/status; stop reports
+  clock.py         # birth, age, uptime, since-last-input; daily budget; metering (cpu s, gpu s, watts, kWh)
+  consolidate.py   # record -> weights; checkpoint per generation; exams after each
+  goals.py         # its own practice goals from its failure record (parts, never exam items)
+  control_room.py  # localhost page: rules + origins, status, budget, ticks, stops, goals, exams, memory, chat
+  session.py       # a turn of talk; vocab grows on new word parts; up to 4 recalled facts per prompt
+  memory.py        # append-only hash-chained SQLite; fades only if unused; use protects; top-k grows
+  exams.py         # E1-E4 outside exams (bars fixed, FAIL kept); E5 facts-in-weights (info only)
+  curriculum.py    # school: roots -> affixes -> composition -> sentences -> recall (8 slots)
+  model.py         # tiny decoder-only transformer; grow_vocab() resizes the tied embedding safely
+  train.py         # school training (gen 0), tokenizer with add_tokens, checkpoint save/load
+  membrane.py      # reads membrane.yaml (rules with origin + switch); no write path
+membrane.yaml      # the rules and the settings - the owner's file
+results/           # report card (history kept, FAILs kept), train log, stop reports, memory.db, checkpoints/
+tests/             # 20 pytest tests + plain runner
 ```
 
-## Lineage (the account this grew from)
+## Lineage
 
-Live-Reference Principle · fed-not-filled · ECIH · memory-as-spatial-arrangement ·
-persistent-memory-substrate · Atomic Chronicle · Keava-Owent · fly-school · watch ·
-pam-continuum · accumulation-sort. What each contributed — and what was dropped and
-why — is in [WRITEUP.md](WRITEUP.md).
+v1 by Kimi (10/14) from Jaron's principle repos: Live-Reference Principle, fed-not-filled, ECIH,
+memory-as-spatial-arrangement, persistent-memory-substrate, Atomic Chronicle, Keava-Owent,
+fly-school, watch, pam-continuum, accumulation-sort. v2 by Claude (Fable 5.1), same day, to
+his decisions. The fly mattered for the heartbeat - constant going - not as the brain.
 
 License: MIT.

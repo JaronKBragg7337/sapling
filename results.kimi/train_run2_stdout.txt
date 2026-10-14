@@ -1,0 +1,7 @@
+[train] device=cpu params=819,840 vocab=159 corpus_sha=a10a039533d9ed50
+[train] lesson=roots        examples=96    loss 84.946 -> 0.084 (48.9s)
+[train] lesson=affixes      examples=168   loss 7.263 -> 0.094 (49.9s)
+[train] lesson=composition  examples=2128  loss 12.794 -> 0.633 (55.6s)
+[train] lesson=sentences    examples=2863  loss 3.544 -> 0.700 (53.9s)
+[train] lesson=recall       examples=3603  loss 6.545 -> 0.532 (52.3s)
+[train] checkpoint -> /mnt/agents/output/sapling/results/core_checkpoint.pt

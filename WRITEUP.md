@@ -122,3 +122,18 @@ evidence, per the account's own rule ("read the actual code, not the README").
 - **Runs-without-you.** v1 is session-driven. Smallest step: a daily
   scheduled `loop --once` that meters itself, pulls one live source, and
   appends a heartbeat — the pam-continuum pulse pattern.
+
+## v2 addendum (Claude, 2026-10-14) — what Jaron's decisions overturned above
+
+Four of the "contradictions I went with" in v1 were decided the other way on 10/14 and are now
+code (see CHANGELOG.md for the line-by-line):
+- **Fed-not-filled vs "become what it learns":** facts now DO go into the weights
+  (consolidate.py), with no owner gate; the exams after every consolidation are the watch.
+- **"Never-used memories fade" by clock:** fading now applies ONLY to memories never recalled;
+  use protects (memory.py).
+- **ECIH scarcity vs corrigibility:** the pressure is now a real daily budget it can see
+  draining and a clock it can feel (clock.py) - pressure on keeping itself running well,
+  never a drive to avoid its owner's off switch (the off switch is outside the pressure).
+- **Existence axiomatic / anti-shutdown as a test:** dropped. It may stop; a stop is a report.
+What stayed: the append-only hash chain, provenance with every fact, persistence != confirmation,
+the cold exams with FAILs kept, and the membrane the owner alone edits.

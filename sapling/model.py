@@ -103,5 +103,27 @@ class SaplingCore(nn.Module):
                 break
         return idx
 
+    @torch.no_grad()
+    def grow_vocab(self, new_size: int) -> int:
+        """Add rows to the (tied) token embedding so the vocabulary can grow
+        as it meets new word parts (Jaron 10/14: "it should be able to grow
+        its vocabulary as it learns"). New rows start at the mean of the
+        existing rows plus small noise, so an unseen token behaves like a
+        generic word until training moves it. Returns rows added."""
+        old = self.tok_emb.weight
+        if new_size <= old.shape[0]:
+            return 0
+        added = new_size - old.shape[0]
+        new_emb = nn.Embedding(new_size, old.shape[1]).to(old.device)
+        new_emb.weight[: old.shape[0]] = old
+        mean = old.mean(dim=0, keepdim=True)
+        # noise at the spread of the existing rows: new tokens must be TELLABLE APART
+        # from each other from the start (at 0.02 they all collapsed into one word)
+        new_emb.weight[old.shape[0]:] = mean + old.std(dim=0, keepdim=True) * torch.randn(added, old.shape[1], device=old.device)
+        self.tok_emb = new_emb
+        self.head = nn.Linear(old.shape[1], new_size, bias=False).to(old.device)
+        self.head.weight = self.tok_emb.weight
+        return added
+
     def n_params(self) -> int:
         return sum(p.numel() for p in self.parameters())

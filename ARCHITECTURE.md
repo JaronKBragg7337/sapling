@@ -1,73 +1,90 @@
-# Sapling — Architecture
+# Sapling — Architecture (v2)
 
-One trained core, knowledge pulled live, memory that accumulates, judgment by
-exam, and a membrane the owner holds. v1 implements the left column end-to-end;
-the right column is the growth path.
+One trained core that can become what it learns, a heartbeat that keeps going on its own,
+memory that grows and is protected by use, goals it sets itself, outside exams it cannot
+fake, and a membrane the owner holds. v2 implements every box below.
 
 ```
-                 ┌──────────────────── MEMBRANE (human-owned, read-only to system) ──┐
-                 │  law: backup on owner's machines with permission; never spread;  │
-                 │  never hide. forbidden: self_shutdown, rewrite_history, ...       │
-                 └───────────────────────────────────────────────────────────────────┘
- senses                    ┌─────────────┐                 ┌────────────────────────┐
- user text ─────────────► │  THE LOOP   │  observe/meter  │  LEDGER (append-only,  │
- live fetch (later) ─────► │  session.py ├────────────────►│  hash-chained SQLite)  │
-                           └─────┬───────┘                 └────────────────────────┘
-                                 │ recall
-                                 ▼
-                    ┌─────────────────────────┐   provenance + state travel
-                    │  MEMORY (append-only,   │   with every fact; promotion
-                    │  hash-chained, promoted │   moves retrieval priority,
-                    │  by recall, decays on   │   never truth status.
-                    │  wall-clock half-life)  │
-                    └───────────┬─────────────┘
-                                │ recall [ provenance ] : context
-                                ▼
-                    ┌─────────────────────────┐    cold exams, predeclared bars,
-                    │  CORE (tiny transformer,│───►│  JUDGMENT: exams.py      │
-                    │  ~0.9M params, trained  │    │  E1 composition (held-   │
-                    │  school-style on a      │    │  out), E2 affix recall,  │
-                    │  morphology curriculum) │    │  E3 recall echo,         │
-                    └─────────────────────────┘    │  E4 deferral. FAIL kept. │
-                                                   └──────────────────────────┘
+ ┌──────────── MEMBRANE (membrane.yaml, human-owned; the code has no write path) ────────────┐
+ │ rules, each with origin (Jaron / Claude / Kimi) + on/off switch:                           │
+ │   law (back up on owner's machines with permission; never spread; never hide)   [Jaron]    │
+ │   rewrite_history forbidden                                                     [Jaron]    │
+ │   self_stop allowed-and-logged                                                  [Jaron]    │
+ │   outbound_message / backup need owner approval                       [Kimi, pending]      │
+ │ settings (numbers, not gates): tick_seconds, daily_budget_seconds, port, ...               │
+ └────────────────────────────────────────────────────────────────────────────────────────────┘
+                                   │ read every request
+                                   ▼
+ ┌──────────── HEARTBEAT (heartbeat.py, one long-running process) ────────────────────────────┐
+ │  CLOCK (clock.py): born, age, uptime, since-last-input, daily compute budget draining,     │
+ │  metered per unit of work: cpu s, gpu s, sampled GPU watts, est. kWh  -> ledger            │
+ │                                                                                            │
+ │  every tick: drives = f(budget left, open goals, pending facts, since explore, since input) │
+ │              choice = weighted draw over { practice, consolidate, explore, rest, stop }     │
+ │              -> ledger row "tick" {drives, choice, result, clock}                           │
+ │                                                                                            │
+ │  practice ──► GOALS (goals.py): failure record -> weak parts -> open/met goals             │
+ │  consolidate ► CONSOLIDATE (consolidate.py): record -> weights, checkpoint gen_N, exams    │
+ │  explore ───► rehearse an old memory (a recall protects it) | free-generate, keep as self  │
+ │  rest ──────► nothing (budget untouched)                                                   │
+ │  stop ──────► STOP REPORT (results/stop_reports/, ledger "stop"), process exits            │
+ │                                                                                            │
+ │  CONTROL ROOM (control_room.py): http://127.0.0.1:7337/  rules, status, budget, ticks,     │
+ │  stops, goals, exams, memory, vocab, CHAT  (phone-width; localhost only)                   │
+ └──────────────┬────────────────────────────────────────────────────────┬────────────────────┘
+                │ chat / teach                                           │ exams after every
+                ▼                                                        ▼ consolidation
+ ┌──────────── SESSION (session.py) ─────────────┐   ┌──────────── JUDGMENT (exams.py) ───────┐
+ │ observe -> meter -> recall -> answer -> record │   │ E1 composition (held-out, never taught │
+ │ vocab grows on every new word part it meets   │   │    AND never practiced)                │
+ │ up to 4 recalled facts ride in one prompt     │   │ E2 affix recall, E3 recall echo (1-4   │
+ │ /teach /confirm /invalidate /keep             │   │    recalls), E4 deferral — bars fixed  │
+ └──────────────┬────────────────────────────────┘   │ E5 facts-in-weights (info, no bar)     │
+                │                                    │ FAIL stays on the card.                │
+                ▼                                    └────────────────────────────────────────┘
+ ┌──────────── MEMORY (memory.py, append-only, hash-chained SQLite) ─────────────────────────┐
+ │ memories (content, provenance, state)  recalls (one row per use)  ledger (everything)      │
+ │ state: captured / confirmed / invalidated — changed ONLY by a later verdict event          │
+ │ strength: never used -> fades on the clock; used -> floor + half-life doubles per use;     │
+ │           confirmed x1.5; keep = permanent.  tier by use count, never demoted by time.     │
+ │ search: top-k = max(4, sqrt(n)); the core's own embeddings re-rank lexical hits            │
+ │ verify_chain() re-derives every hash; a silent edit breaks it (tested)                     │
+ └────────────────────────────────────────────────────────────────────────────────────────────┘
+                │ recall [ provenance ] : the word <m1> means <m2> . ... q : ... a :
+                ▼
+ ┌──────────── CORE (model.py, tiny decoder-only transformer, ~0.82M params) ────────────────┐
+ │ trained from scratch school-style (curriculum.py: roots -> affixes -> composition ->       │
+ │ sentences -> recall with 8 slots), then grown by consolidation; vocabulary resizes in     │
+ │ place (tied embedding, new rows at the mean). One checkpoint per generation.              │
+ └────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-## The three loops (two built, one stubbed)
+## The loops (all built)
 
-1. **Session loop** (built): observe → meter → recall → answer → record.
-   Every turn is metered (tokens in/out, ms) into the ledger; every answer
-   records its path (memory id, provenance, state) in its text.
-2. **School loop** (built): curriculum lessons in order → per-lesson loss on
-   the report card → cold exams → results hash-chained into memory.
-3. **Consolidation loop** (stubbed, honestly): record rows marked
-   `confirmed` would fine-tune the core, owner-gated, on a schedule.
-   `NEXT.md` carries the smallest version.
+1. **Heartbeat** — the constant tick. Chooses, acts, logs. Runs without anyone.
+2. **Session** — a turn of talk (chat box or `python -m sapling.session`). Also resets
+   "since last input" on the clock.
+3. **School** — `python -m sapling.train`: the from-scratch curriculum, generation 0.
+4. **Consolidation** — record -> weights, chosen by the heartbeat. Not gated. Each one leaves a
+   checkpoint and an exam run so the change is observable.
+5. **Goals** — its own practice goals from its failures; the outside exams stay cold.
+
+## What is a pressure and what is a wall
+
+Pressure (it feels it, nothing stops): the daily budget, open goals, pending facts, time since
+it explored. Walls (membrane, owner's): never spread, never hide, never rewrite history, no
+write path to the rule file. Everything else is observed, logged and left alone
+(`PROPOSALS.md` lists what Claude would have added and did not).
 
 ## Answer layering (fed-not-filled, implemented)
 
-1. **Deterministic** — parseable memory hit that the core can echo via slots;
-   unparseable hits are cited verbatim with provenance (never paraphrased
-   silently).
-2. **Retrieval** — memory search by morpheme overlap × decayed strength.
-3. **Core generation** — the tiny model composes over the recall context.
-4. **Deferral** — "i do not have that yet ." is a trained, exam-tested
-   behavior (E4), not a failure mode.
-5. **Frontier model** — not in v1; when added, it sits *above* this stack as
-   a rented tool the loop calls rarely, with the call recorded.
-
-## Memory semantics
-
-- `captured / confirmed / invalidated` — truth status, set only by events.
-- `short_term → working → long_term → permanent` — retrieval tier, derived
-  from decayed recall evidence (half-lives: 6h / 1d / 7d / ∞), or a human
-  `keep` verdict for permanent. Derived, not stored — history is never
-  rewritten, only re-read.
-- Hash chain over `memories`, `recalls`, `ledger`; `verify_chain()` re-derives
-  every hash. The tamper test proves a silent edit breaks the chain.
+1. Memory hits with parseable facts -> the core answers through recall slots (up to 4 facts).
+2. Memory hit, unparseable -> cited verbatim with provenance.
+3. No memory -> the core generates from what it has become (incl. consolidated facts).
+4. Deferral -> "i do not have that yet ." is trained and exam-tested (E4).
 
 ## What runs where
 
-Everything v1 runs on the RTX 4060 PC (or any CPU): Python 3.10+, torch.
-Training the full curriculum is minutes on the 4060, ~10 minutes on CPU.
-No external service is required; Supabase/GitHub/Arweave adapters are growth
-path, not foundation.
+Everything runs on the RTX 4060 PC (or CPU): Python 3.10+, torch, pyyaml. School ~20 s on
+the 4060; a consolidation (120 steps + exams) a few seconds. No external service.
+Supabase/GitHub/Arweave adapters remain growth path (NEXT.md).
