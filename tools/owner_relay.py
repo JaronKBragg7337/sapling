@@ -105,10 +105,11 @@ def down_state() -> dict:
         for name in sorted(os.listdir(STOP_DIR), reverse=True)[:10]:
             try:
                 r = json.load(open(os.path.join(STOP_DIR, name), encoding="utf-8"))
-                stops.append({k: r.get(k) for k in ("ts", "who", "reason", "tick")})
+                stops.append({k: r.get(k) for k in ("ts", "who", "reason", "tick", "kind")})
             except Exception:
                 pass
-    ticks, cons, memories, last_arch = [], [], 0, None
+    ticks, cons, memories, last_arch, last_vocab = [], [], 0, None, None
+    birth_ts = last_input_ts = None
     try:
         store = MemoryStore()
         ticks = store.ledger_rows("tick", limit=30)
@@ -116,13 +117,33 @@ def down_state() -> dict:
                 for r in store.ledger_rows("consolidation", limit=12)]
         memories = store.count()
         last_arch = store.last_ledger("archive")
+        r1 = store.db.execute("SELECT ts FROM ledger WHERE kind='birth' ORDER BY id LIMIT 1").fetchone()
+        r2 = store.db.execute("SELECT ts FROM ledger WHERE kind='input' ORDER BY id DESC LIMIT 1").fetchone()
+        birth_ts = float(r1[0]) if r1 else None
+        last_input_ts = float(r2[0]) if r2 else None
+        last_vocab = (store.last_ledger("consolidation") or {}).get("vocab_size")
         store.db.close()
     except Exception:
         pass
     local = list_local()
     rows = manifest_local()
+    # the record the heartbeat left: last tick has the budget; birth / last input come from the ledger
+    clock, generation = {}, None
+    try:
+        if ticks:
+            clock = dict(ticks[0].get("clock") or {})
+        if birth_ts is not None:
+            clock["born_iso"] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(birth_ts))
+            clock["age_s"] = round(time.time() - birth_ts, 1)
+        clock["since_last_input_s"] = None if last_input_ts is None else round(time.time() - last_input_ts, 1)
+        clock["uptime_s"] = 0
+        if cons:
+            generation = cons[0].get("generation")
+    except Exception:
+        pass
     return {"running": False, "down": True, "tick": ticks[0]["tick"] if ticks else None,
-            "last_action": ticks[0]["action"] if ticks else None, "clock": {}, "memories": memories,
+            "generation": generation, "vocab_size": last_vocab,
+            "last_action": ticks[0]["action"] if ticks else None, "clock": clock, "memories": memories,
             "rules": cfg["rules"], "settings": cfg["settings"], "goals": [], "exams": [], "ticks": ticks,
             "stops": stops, "last_stop": stops[0] if stops else None, "memory": [], "consolidations": cons,
             "archive": {"rows": rows, "local_gens": [c["gen"] for c in local],
@@ -196,7 +217,22 @@ def do_chat(text: str) -> dict:
     try:
         return hb_post("/api/chat", {"text": text})
     except Exception as e:
-        return {"out": "", "error": f"the heartbeat is not answering ({type(e).__name__}); press Restart (parole) if it stopped"}
+        err = f"{type(e).__name__}"
+    # heartbeat is down: answer from a plain session (same memory + weights, no ticking), if that works
+    try:
+        from sapling.session import Session
+        sess = Session()
+        try:
+            out = sess.handle(text)
+        finally:
+            try:
+                sess.store.db.close()
+            except Exception:
+                pass
+        return {"out": out, "via": "relay session (the heartbeat is down, so this answer did not come from a ticking sapling)"}
+    except Exception as e2:
+        return {"out": "", "down": True,
+                "error": f"heartbeat is down ({err}) and the relay could not answer either ({type(e2).__name__}: {e2}). Press Restart (parole)."}
 
 
 # -- local server (127.0.0.1:7338) -----------------------------------------------------
@@ -263,6 +299,7 @@ class Handler(BaseHTTPRequestHandler):
 def cloud_loop(c: dict):
     log("cloud loop: on (state push + command poll)")
     last_push = 0.0
+    retry_at: dict = {}
     while True:
         try:
             now = time.time()
@@ -282,7 +319,14 @@ def cloud_loop(c: dict):
                     by = str(cmd.get("created_by") or "owner@site")
                     kind, payload = cmd["kind"], cmd.get("payload") or {}
                     if kind == "chat":
+                        if time.time() < retry_at.get(cmd["id"], 0):
+                            continue
                         result = do_chat(str(payload.get("text", "")))
+                        if result.get("down"):
+                            # heartbeat down and no session answer: leave it pending; the page says so; retried in 60 s
+                            retry_at[cmd["id"]] = time.time() + 60
+                            log(f"cloud cmd #{cmd['id']} chat held (heartbeat down)")
+                            continue
                     else:
                         result = do_owner(kind, payload, by)
                     log(f"cloud cmd #{cmd['id']} {kind} by {by} -> {json.dumps(result, default=str)[:160]}")

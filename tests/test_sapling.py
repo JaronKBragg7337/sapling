@@ -344,3 +344,52 @@ def test_consolidation_records_self_made_memories(store, tmp_path, monkeypatch):
     row = C.consolidate(b, store, goals=[], steps=10, verbose=False, rehearsal=30)
     assert row["self_ids"] == [sid] and row["self_new"] == [sid] and row["facts_self"] == 1 and row["facts_user"] == 1
     assert store.last_ledger("consolidation")["self_ids"] == [sid]
+
+
+def test_recall_count_handles_missing_row(store, monkeypatch):
+    """10/14 crash: fetchone() came back None -> TypeError in recall_count. Now 0."""
+    mid = store.remember("a fact", provenance="user")
+    class _NoRow:
+        def fetchone(self): return None
+    real = store.db
+    class _DB:
+        def execute(self, *a, **k): return _NoRow()
+        def __getattr__(self, n): return getattr(real, n)
+    monkeypatch.setattr(store, "db", _DB())
+    assert store.recall_count(mid) == 0
+
+
+def test_store_is_safe_across_threads(store):
+    import threading
+    ids = [store.remember(f"fact {i}", provenance="user") for i in range(5)]
+    errs = []
+    def reader():
+        try:
+            for _ in range(300):
+                store.facts()
+        except Exception as e:      # noqa: BLE001
+            errs.append(repr(e))
+    ts = [threading.Thread(target=reader) for _ in range(6)]
+    [t.start() for t in ts]
+    for i in range(100):
+        store.record_recall(ids[i % 5], "q")
+    [t.join() for t in ts]
+    assert not errs, errs[:2]
+
+
+@pytest.mark.skipif(not _core_available(), reason="no trained core")
+def test_crash_writes_a_crash_report(tmp_path, monkeypatch):
+    from sapling import heartbeat as H
+    monkeypatch.setattr(H, "STOP_DIR", str(tmp_path / "stops"))
+    monkeypatch.setattr(H, "PID_FILE", str(tmp_path / "pid"))
+    monkeypatch.setattr(H, "STOP_FILE", str(tmp_path / "stop"))
+    hb = H.Heartbeat(memory_path=str(tmp_path / "m.db"), serve=False,
+                     settings={**settings(), "tick_seconds": 0.01})
+    def boom(): raise TypeError("boom")
+    hb.choose = boom
+    with pytest.raises(TypeError):
+        hb.run(max_ticks=2)
+    names = os.listdir(tmp_path / "stops")
+    assert len(names) == 1 and names[0].endswith("_crash.json")
+    r = json.load(open(tmp_path / "stops" / names[0]))
+    assert r["kind"] == "crash" and "boom" in r["drives"]["traceback"] and "last_ticks" in r

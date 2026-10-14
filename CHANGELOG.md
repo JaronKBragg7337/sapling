@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.1.1 (2026-10-14, 3:45 PM) - two phone-found bugs
+- **Heartbeat crash (15:16):** the one sqlite connection is shared by the heartbeat thread and the control-room
+  HTTP threads; reads were not locked, so two threads used one cursor (`InterfaceError`, then `fetchone()` -> None).
+  Fixed at the root: every statement runs and is fully fetched under one lock (`memory.py _LockedDB`);
+  `recall_count` also treats a missing row as 0. An unhandled crash now writes `results/stop_reports/<ts>_crash.json`
+  (kind "crash", traceback, last ticks) + a ledger row `crash`, shown in the Stop reports card. Logging only.
+- **Phone chat:** relay answers via a plain session when the heartbeat is down (labelled); if it cannot, the command
+  stays pending and the page says "heartbeat is down - reply will come when it restarts". Down-state now carries
+  born / age / since-last-input / generation / vocab so the status panel is not blank. 29 tests (3 new).
+
 ## v2.1 (2026-10-14, 3 PM) — Jaron's answers to PROPOSALS P1-P6 applied
 
 Source: his calls at 2:59 PM (in `DESIGN-CHOICES.md`, D1-D7). Built by Claude (Fable 5.1).

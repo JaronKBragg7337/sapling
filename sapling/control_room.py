@@ -53,7 +53,7 @@ def state_of(hb) -> dict:
         for name in sorted(os.listdir(STOP_DIR), reverse=True)[:10]:
             try:
                 r = json.load(open(os.path.join(STOP_DIR, name), encoding="utf-8"))
-                stops.append({k: r.get(k) for k in ("ts", "who", "reason", "tick")})
+                stops.append({k: r.get(k) for k in ("ts", "who", "reason", "tick", "kind")})
             except Exception:
                 pass
     ticks = hb.store.ledger_rows("tick", limit=30)

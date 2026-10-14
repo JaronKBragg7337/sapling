@@ -28,6 +28,7 @@ Usage:
 from __future__ import annotations
 
 import json
+import traceback
 import os
 import random
 import subprocess
@@ -166,10 +167,10 @@ class Heartbeat:
         return {"kind": "generate", "prompt": prompt, "said": out, "memory": mid}
 
     # -- stop -------------------------------------------------------------------------
-    def stop_report(self, who: str, reason: str, info: dict | None = None) -> str:
+    def stop_report(self, who: str, reason: str, info: dict | None = None, kind: str = "stop") -> str:
         os.makedirs(STOP_DIR, exist_ok=True)
         report = {
-            "ts": time.strftime("%Y-%m-%dT%H:%M:%S"), "who": who, "reason": reason,
+            "kind": kind, "ts": time.strftime("%Y-%m-%dT%H:%M:%S"), "who": who, "reason": reason,
             "tick": self.tick_no, "clock": self.clock.snapshot(), "drives": info,
             "open_goals": self.goals.open_goals(),
             "last_ticks": list(reversed(self.store.ledger_rows("tick", limit=30))),
@@ -180,7 +181,7 @@ class Heartbeat:
         path = os.path.join(STOP_DIR, f"{report['ts'].replace(':', '')}_{who}.json")
         with open(path, "w", encoding="utf-8") as f:
             json.dump(report, f, indent=2)
-        self.store.meter("stop", {"who": who, "reason": reason, "tick": self.tick_no, "report": os.path.basename(path)})
+        self.store.meter("crash" if kind == "crash" else "stop", {"who": who, "reason": reason, "tick": self.tick_no, "report": os.path.basename(path)})
         return path
 
     # -- the loop ---------------------------------------------------------------------
@@ -268,6 +269,14 @@ class Heartbeat:
         except KeyboardInterrupt:
             self.stopped_by = "external"
             self.stop_report("external", "KeyboardInterrupt / SIGINT")
+        except Exception:
+            # An unhandled crash is logged as a report (logging only - no rule) so it shows on the control room.
+            self.stopped_by = "crash"
+            try:
+                self.stop_report("crash", "crash: " + traceback.format_exc().strip().splitlines()[-1], {"traceback": traceback.format_exc()}, kind="crash")
+            except Exception:
+                pass
+            raise
         finally:
             self.running = False
             self.store.meter("heartbeat", {"event": "process_end", "stopped_by": self.stopped_by,

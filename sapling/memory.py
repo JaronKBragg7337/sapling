@@ -62,13 +62,52 @@ def _now() -> float:
     return time.time()
 
 
+class _Rows:
+    """Rows already fetched under the lock, so no thread ever reads a half-used cursor."""
+    def __init__(self, rows, lastrowid, rowcount):
+        self._rows, self.lastrowid, self.rowcount = list(rows), lastrowid, rowcount
+
+    def fetchall(self):
+        return list(self._rows)
+
+    def fetchone(self):
+        return self._rows[0] if self._rows else None
+
+    def __iter__(self):
+        return iter(self._rows)
+
+
+class _LockedDB:
+    """One sqlite connection shared by the heartbeat thread and the control-room HTTP threads.
+    Every statement runs and is fully fetched inside one lock (10/14 crash: a shared cursor was
+    read by two threads at once -> InterfaceError / fetchone() returned None)."""
+    def __init__(self, conn, lock):
+        self._c, self._lock = conn, lock
+
+    def execute(self, *a, **k):
+        with self._lock:
+            cur = self._c.execute(*a, **k)
+            return _Rows(cur.fetchall() if cur.description else [], cur.lastrowid, cur.rowcount)
+
+    def executescript(self, *a, **k):
+        with self._lock:
+            return self._c.executescript(*a, **k)
+
+    def commit(self):
+        with self._lock:
+            return self._c.commit()
+
+    def __getattr__(self, name):
+        return getattr(self._c, name)
+
+
 class MemoryStore:
     def __init__(self, path: str = DEFAULT_DB):
         self.path = path
         os.makedirs(os.path.dirname(path), exist_ok=True)
-        self.db = sqlite3.connect(path, check_same_thread=False)
-        self.db.execute("PRAGMA journal_mode=WAL")
         self.lock = threading.RLock()
+        self.db = _LockedDB(sqlite3.connect(path, check_same_thread=False), self.lock)
+        self.db.execute("PRAGMA journal_mode=WAL")
         self._init_schema()
 
     def _init_schema(self):
@@ -208,8 +247,9 @@ class MemoryStore:
         return row[0] if row else "unknown"
 
     def recall_count(self, memory_id: int) -> int:
-        return int(self.db.execute(
-            "SELECT COUNT(*) FROM recalls WHERE memory_id=?", (memory_id,)).fetchone()[0])
+        row = self.db.execute(
+            "SELECT COUNT(*) FROM recalls WHERE memory_id=?", (memory_id,)).fetchone()
+        return int(row[0]) if row and row[0] is not None else 0
 
     def tier(self, memory_id: int) -> str:
         if self._verdict(memory_id, "keep"):
