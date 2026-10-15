@@ -208,7 +208,7 @@ swap (results/grow_swap_v32_stdout.txt, ledger row `growth: core v3.1 -> v3.2 (m
   E3 echo     12/12          12/12          .90 PASS
   E4 defer     8/10          10/10          .80 PASS
   E5 facts     7/7            0/7          info   <- the taught words washed out of the weights (still in memory.db)
-  E6 grammar  28/48 FAIL     46/48 PASS     .60        <- first PASS ever; climbed 39 (20M) -> 46 (160M) on plain reading
+  E6 grammar  28/48 FAIL     46/48 PASS     .60        <- first PASS ever; climbed 39 (20M) -> 46 (160M) on reading + the 3-in-32 school rehearsal (cause not isolated; Vex #41)
   E7 reading  30/40          33/40          .50 PASS   (peak 36/40 at 100-160M)
   E7L long     0/40           0/40         info   <- 0/40 at ALL 21 probes: the switch did not come in 400M tokens
   E1b bridge  61/86          65/86         info   (peak 72)
