@@ -16,7 +16,7 @@ from owner_relay import down_state, heartbeat_alive  # noqa: E402
 import owner_rules  # noqa: E402
 from sapling.memory import MemoryStore  # noqa: E402
 
-BY = "Jaron (asked in chat 10/15 7:31 AM; scheduled by Claude)"
+BY_DEFAULT = "Jaron (asked in chat 10/15 7:31 AM; re-armed by Claude 12:52 PM after the news render ran past the first wait)"
 
 
 def unreal_running() -> bool:
@@ -25,8 +25,9 @@ def unreal_running() -> bool:
 
 
 def main():
+    by = sys.argv[sys.argv.index("--by") + 1] if "--by" in sys.argv else BY_DEFAULT
     waited = 0
-    while unreal_running() and waited < 2 * 3600:
+    while unreal_running() and waited < 6 * 3600:
         time.sleep(60)
         waited += 60
     if heartbeat_alive():
@@ -35,7 +36,7 @@ def main():
     last_stop = (down_state().get("last_stop") or {})
     p = subprocess.run([sys.executable, "-m", "sapling.heartbeat", "start"], cwd=ROOT,
                        capture_output=True, text=True, timeout=120)
-    row = owner_rules.log_owner_action({"action": "parole_start", "by": BY, "after_stop": last_stop,
+    row = owner_rules.log_owner_action({"action": "parole_start", "by": by, "after_stop": last_stop,
                                         "waited_for_render_s": waited,
                                         "start_output": (p.stdout + p.stderr).strip()[:300]}, store=MemoryStore())
     print(row)
