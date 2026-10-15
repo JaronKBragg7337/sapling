@@ -19,12 +19,21 @@ After it, in order:
    lesson (0a item 2) on the v4 core.
 4. Communication next: multi-turn lessons built from its own memories and taught facts (questions about what it was
    taught, asked in several wordings), and a bigger conversation set if oasst1 + dolly are not enough.
-5. **Archive size (ops, decide soon):** a v4 checkpoint is ~242 MB (60.5M params, fp32) vs ~71 MB before. At the
+5. **Sapling's own words (Jaron):** the ten answers about itself are his to write on the control room card "Sapling's own
+   words". Tonight's Stage B trains none (none written yet). When he has written them, a short top-up on just those
+   (~300 steps, a few minutes; reading + school replay inside, heartbeat stopped for it):
+   ```bash
+   python tools/gpu_yield.py stop "self-lesson top-up" && python -m sapling.talk train --self-only --core results/core_checkpoint.pt
+   python -c "from sapling.grow import swap; swap(staged='results/core_self_topup_staged.pt')"
+   python tools/gpu_yield.py start "self-lesson top-up"
+   ```
+   (then `python -m sapling.talk build` so the heartbeat's consolidations replay his answers too).
+6. **Archive size (ops, decide soon):** a v4 checkpoint is ~242 MB (60.5M params, fp32) vs ~71 MB before. At the
    10/15 pace (~4 consolidations an hour while the heartbeat runs) the cloud archive (D5: everything but the last 10 +
    one a day goes to Supabase) would grow ~20-25 GB a day against the 100 GB Pro plan. Options: save generations as bf16
    (half the size, tiny precision loss), keep one generation per hour in the cloud plus every growth/swap, or pay the
    overage. Nothing is changed yet; "nothing deleted forever" means this needs a deliberate choice, not a quiet one.
-6. Items 0a.3-0a.5 below still apply to v4 (E5 refresh, rehearsal share; the reader-route fix is done for talking
+7. Items 0a.3-0a.5 below still apply to v4 (E5 refresh, rehearsal share; the reader-route fix is done for talking
    cores - coverage 0.6, D27).
 
 ## 0a. After v3.2 (10/15): the reading stage did not switch copying on - what to try next (lab order holds)

@@ -15,8 +15,9 @@ Every step also replays reading windows and its school, so the reading and the s
 Text (licences checked live 10/15, recorded in data/reading/manifest.json by tools/fetch_reading.py):
 - OpenAssistant oasst1 (Apache-2.0): English conversation trees; each path through the best-ranked answers
 - databricks-dolly-15k (CC BY-SA 3.0): instructions with answers, some with a passage
-- its own lessons: who it is and what it is, from its real state (name, age, size, what it read) - several
-  wordings of each question, one true answer
+- its own lessons about who it is: the question wordings are prompts; the ANSWERS are Jaron's own words only
+  (data/talk/owner_self_lessons.json, written on the control room card "Sapling's own words"). A missing answer
+  = no lesson; the builder's example answers are shown there for reference and never trained on
 
 Cleaning (DESIGN-CHOICES D26): code blocks and non-English trees are left out (the tokenizer has no symbols for
 code); an answer that refuses, or that calls itself another assistant ("as an ai language model", "open assistant"),
@@ -131,40 +132,113 @@ def dolly_conversations(path: str = os.path.join(RAW, "databricks-dolly-15k.json
     return out
 
 
-def self_lessons(facts: dict, rng: random.Random, copies: int = 6) -> list[dict]:
-    """Who it is, from its real state. Several wordings of each question (the same knowledge met more than one way),
-    one true answer each. `facts` comes from its own record at build time."""
-    qa = [
-        (["what is your name ?", "who are you ?", "what are you called ?", "tell me your name .", "hello ! who are you ?",
-          "hi , who am i talking to ?"],
-         f"i am sapling , a small ai that grows as it learns . {facts['maker']} built me ."),
-        (["who made you ?", "who built you ?", "who created you ?", "where do you come from ?"],
-         f"{facts['maker']} built me , from scratch . my brain , my memory and my heartbeat are my own , not borrowed from another ai ."),
-        (["what are you ?", "are you an ai ?", "what kind of thing are you ?", "are you a person ?"],
-         "i am an ai , a young one . i read , i remember what people teach me , and i practise while my heartbeat runs ."),
-        (["how big is your brain ?", "how many parameters do you have ?", "how large is your core ?"],
-         f"my core has about {facts['params_m']} million parameters . it can hold {facts['context']} tokens in mind at once ."),
-        (["what have you read ?", "what did you learn from ?", "what do you read ?", "what books have you read ?"],
-         f"i have read {facts['read']} . that was {facts['tokens']} tokens of text ."),
-        (["how old are you ?", "when were you born ?", "when did you start ?"],
-         f"my clock started on {facts['born']} . my heartbeat keeps counting from there ."),
-        (["what can you do ?", "how can you help me ?", "what are you good at ?"],
-         "i can talk with you , answer questions , tell short stories , and remember what you teach me . "
-         "teach me a word with / teach and i will keep it ."),
-        (["do you remember things ?", "can you remember what i tell you ?", "do you have a memory ?"],
-         "yes . what you teach me goes into my memory first , and my heartbeat trains it into my brain later ."),
-        (["what is a heartbeat for you ?", "what does your heartbeat do ?", "are you always running ?"],
-         "my heartbeat is a loop that keeps going on its own . on each beat i rest , practise , explore or train what i learned ."),
-        (["what would you like to learn next ?", "what do you want to learn ?"],
-         "more about the world , and how to talk well with people . i would like to read more and to be taught ."),
-    ]
+# The questions are prompts (several wordings each); the ANSWERS are the owner's words only (Jaron 10/15 5:26 PM: a clean
+# partnership with AI companies - no AI-written words in Sapling's training data). AI_EXAMPLES are shown on the control
+# room next to his text box as reference and are NEVER trained on (DESIGN-CHOICES D26, amended).
+SELF_KEYS = ["name", "maker", "what", "size", "read", "age", "can_do", "memory", "heartbeat", "learn_next"]
+SELF_QUESTIONS = {
+    "name": ["what is your name ?", "who are you ?", "what are you called ?", "tell me your name .", "hello ! who are you ?",
+             "hi , who am i talking to ?"],
+    "maker": ["who made you ?", "who built you ?", "who created you ?", "where do you come from ?"],
+    "what": ["what are you ?", "are you an ai ?", "what kind of thing are you ?", "are you a person ?"],
+    "size": ["how big is your brain ?", "how many parameters do you have ?", "how large is your core ?"],
+    "read": ["what have you read ?", "what did you learn from ?", "what do you read ?", "what books have you read ?"],
+    "age": ["how old are you ?", "when were you born ?", "when did you start ?"],
+    "can_do": ["what can you do ?", "how can you help me ?", "what are you good at ?"],
+    "memory": ["do you remember things ?", "can you remember what i tell you ?", "do you have a memory ?"],
+    "heartbeat": ["what is a heartbeat for you ?", "what does your heartbeat do ?", "are you always running ?"],
+    "learn_next": ["what would you like to learn next ?", "what do you want to learn ?"],
+}
+OWNER_SELF = os.path.join(TALK_DIR, "owner_self_lessons.json")
+SELF_ONLY = os.path.join(TALK_DIR, "self_only.jsonl")
+
+
+def ai_examples(facts: dict) -> dict:
+    """The builder's (Claude's) example answers - reference for the owner, never training data."""
+    return {
+        "name": f"I am Sapling, a small AI that grows as it learns. {facts['maker'].capitalize()} built me.",
+        "maker": f"{facts['maker'].capitalize()} built me, from scratch. My brain, my memory and my heartbeat are my own, not borrowed from another AI.",
+        "what": "I am an AI, a young one. I read, I remember what people teach me, and I practise while my heartbeat runs.",
+        "size": f"My core has about {facts['params_m']} million parameters. It can hold {facts['context']} tokens in mind at once.",
+        "read": f"I have read {facts['read']}. That was {facts['tokens']} tokens of text.",
+        "age": f"My clock started on {facts['born']}. My heartbeat keeps counting from there.",
+        "can_do": "I can talk with you, answer questions, tell short stories, and remember what you teach me. Teach me a word with /teach and I will keep it.",
+        "memory": "Yes. What you teach me goes into my memory first, and my heartbeat trains it into my brain later.",
+        "heartbeat": "My heartbeat is a loop that keeps going on its own. On each beat I rest, practise, explore or train what I learned.",
+        "learn_next": "More about the world, and how to talk well with people. I would like to read more and to be taught.",
+    }
+
+
+def owner_answers(path: str | None = None) -> dict:
+    """The owner's own answers, read fresh (his saves through the control room are the only writes)."""
+    try:
+        d = json.load(open(path or OWNER_SELF, encoding="utf-8"))
+        return {k: str(v) for k, v in (d.get("answers") or {}).items() if k in SELF_KEYS and str(v).strip()}
+    except (OSError, ValueError):
+        return {}
+
+
+def save_owner_answer(key: str, text: str, by: str, path: str | None = None) -> dict:
+    """One answer in the owner's words -> owner_self_lessons.json (empty text = that lesson is skipped)."""
+    if key not in SELF_KEYS:
+        raise ValueError(f"unknown self-lesson key '{key}'")
+    path = path or OWNER_SELF
+    try:
+        d = json.load(open(path, encoding="utf-8"))
+    except (OSError, ValueError):
+        d = {"answers": {}}
+    d.setdefault("answers", {})[key] = str(text).strip()
+    d["updated"] = time.strftime("%Y-%m-%dT%H:%M:%S")
+    d["updated_by"] = by
+    d["note"] = ("Sapling's answers about itself, in Jaron's own words - the only self-lesson answers it trains on. "
+                 "Written through the control room card \"Sapling's own words\".")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    tmp = path + ".tmp"
+    json.dump(d, open(tmp, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    os.replace(tmp, path)
+    return {"key": key, "chars": len(d["answers"][key]), "updated": d["updated"]}
+
+
+def self_lessons(rng: random.Random, copies: int = 6, owner: dict | None = None) -> list[dict]:
+    """Who it is: every question wording x the OWNER's answer for that group. No owner answer = no lesson (no AI
+    fallback). His text is normalised like every other lesson (lower case, spaced punctuation)."""
+    owner = owner_answers() if owner is None else owner
     out = []
-    for qs, a in qa:
+    for key in SELF_KEYS:
+        a = normalize(owner.get(key, ""))
+        if not a:
+            continue
         for _ in range(copies):
-            for q in qs:
-                out.append({"passage": None, "turns": [[q, a]], "src": "self"})
+            for q in SELF_QUESTIONS[key]:
+                out.append({"passage": None, "turns": [[q, a]], "src": "self (owner's words)", "key": key})
     rng.shuffle(out)
     return out
+
+
+_FACTS_CACHE: dict = {}
+
+
+def self_words_info() -> dict:
+    """For the control room card: per key the questions, the AI example (reference only), his answer, and the live facts."""
+    from .train import CHECKPOINT
+    core = CHECKPOINT
+    for c in (os.path.join(RESULTS_DIR, "core_v4_talk_staged.pt"), os.path.join(RESULTS_DIR, "core_v4_staged.pt"),
+              os.path.join(RESULTS_DIR, "reading_v4", "latest.pt")):
+        if os.path.exists(c) and os.path.getmtime(c) > os.path.getmtime(CHECKPOINT):
+            core = c
+            break
+    key = (core, os.path.getmtime(core) if os.path.exists(core) else 0)
+    if key not in _FACTS_CACHE:
+        _FACTS_CACHE.clear()
+        _FACTS_CACHE[key] = self_facts(core)
+    facts = _FACTS_CACHE[key]
+    ex, own = ai_examples(facts), owner_answers()
+    try:
+        upd = json.load(open(OWNER_SELF, encoding="utf-8")).get("updated")
+    except (OSError, ValueError):
+        upd = None
+    return {"facts": facts | {"core": os.path.basename(core)}, "updated": upd,
+            "items": [{"key": k, "questions": SELF_QUESTIONS[k], "ai_example": ex[k], "owner": own.get(k, "")} for k in SELF_KEYS]}
 
 
 def self_facts(core_path: str | None = None) -> dict:
@@ -187,8 +261,10 @@ def self_facts(core_path: str | None = None) -> dict:
         facts["params_m"] = round(n / 1e6)
         facts["context"] = ck["config"]["block_size"]
         r = ck.get("reading") or {}
-        if r.get("tokens_new"):
-            n = r["tokens_new"]
+        facts["params_exact"] = n
+        if r.get("tokens_new") or ck.get("reading_tokens"):
+            n = r.get("tokens_new") or ck["reading_tokens"]
+            facts["tokens_read_exact"] = n
             facts["tokens"] = "more than a billion" if n >= 1e9 else f"about {round(n / 1e6)} million"
     return facts
 
@@ -197,7 +273,12 @@ def build(seed: int = 7337, core_path: str | None = None, verbose: bool = True) 
     rng = random.Random(seed)
     convs = oasst_conversations() + dolly_conversations()
     facts = self_facts(core_path)
-    convs += self_lessons(facts, rng)
+    own = self_lessons(rng)
+    convs += own
+    os.makedirs(TALK_DIR, exist_ok=True)
+    with open(SELF_ONLY, "w", encoding="utf-8") as f:          # for the short "self lessons only" top-up
+        for c in own:
+            f.write(json.dumps(c) + "\n")
     rng.shuffle(convs)
     os.makedirs(TALK_DIR, exist_ok=True)
     with open(LESSONS, "w", encoding="utf-8") as f:
@@ -206,7 +287,8 @@ def build(seed: int = 7337, core_path: str | None = None, verbose: bool = True) 
     by = {}
     for c in convs:
         by[c["src"]] = by.get(c["src"], 0) + 1
-    info = {"conversations": len(convs), "by_source": by, "facts": facts, "file": os.path.relpath(LESSONS, ROOT)}
+    info = {"conversations": len(convs), "by_source": by, "owner_self_keys": sorted({c["key"] for c in own}),
+            "facts": facts, "file": os.path.relpath(LESSONS, ROOT)}
     if verbose:
         print(json.dumps(info, indent=1))
     return info
@@ -284,7 +366,7 @@ def batch_examples(examples, idx: list[int], pad: int, block: int):
 def train(core: str, staged: str = STAGED, epochs: float = 2.0, conv_per_step: int = 16, read_per_step: int = 12,
           school_per_step: int = 4, micro: int = 16, lr: float = 1e-4, min_lr: float = 1e-5, warmup: int = 200,
           seed: int = 7337, device: str | None = None, out_dir: str = OUT_DIR, store=None, wait_for_gpu: bool = True,
-          verbose: bool = True, max_steps: int | None = None) -> dict:
+          verbose: bool = True, max_steps: int | None = None, lessons: str = LESSONS, label: str = "conversation lessons") -> dict:
     from .consolidate import reading_replay
     from .reading import eval_windows, gpu_busy, rehearsal_sentences, window_losses, SHARD_DIR
     from .train import get_batch, sentences_to_tensor
@@ -301,7 +383,9 @@ def train(core: str, staged: str = STAGED, epochs: float = 2.0, conv_per_step: i
     torch.manual_seed(seed + 5)
     model, tok, ck = load_checkpoint(device=device, path=core)
     block = model.block_size
-    examples = load_examples(tok, block)
+    examples = load_examples(tok, block, lessons)
+    if not examples:
+        raise RuntimeError(f"no lessons in {lessons}")
     replay = reading_replay(block, rng)
     reh = sentences_to_tensor(rehearsal_sentences(seed, store, verbose=verbose), tok, block)
     windows = eval_windows(SHARD_DIR, block)
@@ -364,13 +448,14 @@ def train(core: str, staged: str = STAGED, epochs: float = 2.0, conv_per_step: i
                 print(f"[talk] step {step + 1}/{total} loss {sum(losses[-100:]) / 100:.3f} lr {cur:.2e}", flush=True)
     model.eval()
     wl = window_losses(model, windows)
-    run = {"kind": "conversation lessons", "examples": len(examples), "steps": total, "batch": batch, "lr": lr,
+    run = {"kind": label, "examples": len(examples), "steps": total, "batch": batch, "lr": lr,
            "epochs": epochs, "seconds": round(time.time() - t0, 1), "loss_last": round(sum(losses[-100:]) / max(1, len(losses[-100:])), 4),
-           "window_loss_after": wl, "lessons": os.path.relpath(LESSONS, ROOT)}
+           "window_loss_after": wl, "lessons": os.path.relpath(lessons, ROOT)}
     meta = {k: ck.get(k) for k in ("seed", "corpus_sha", "generation", "core_version", "grown_from", "story_stats",
                                     "docs_stats", "school", "reading")}
-    meta.update({"staged": True, "label": (ck.get("label") or "v4") + " + conversation lessons", "talk": run,
-                 "note": f"growth: core -> v{float(ck.get('core_version', 4)):g} + conversation lessons"})
+    talk_runs = (ck.get("talk") or {}).get("runs") or ([ck["talk"]] if ck.get("talk") else [])
+    meta.update({"staged": True, "label": (ck.get("label") or "v4") + " + " + label, "talk": run | {"runs": talk_runs + [run]},
+                 "note": f"growth: core -> v{float(ck.get('core_version', 4)):g} + {label}"})
     save_checkpoint(model, tok, meta, path=staged)
     _log({"kind": "done", **run, "staged": staged})
     if verbose:
@@ -415,11 +500,26 @@ def main(argv=None):
     ap.add_argument("--core", default=os.path.join(RESULTS_DIR, "core_v4_staged.pt"))
     ap.add_argument("--epochs", type=float, default=2.0)
     ap.add_argument("--max-steps", type=int, default=None)
+    ap.add_argument("--self-only", action="store_true",
+                    help="train: a short top-up on the owner-written self lessons only (data/talk/self_only.jsonl, from `build`)")
+    ap.add_argument("--staged", default=None)
     a = ap.parse_args(argv)
     if a.cmd == "build":
         build(core_path=a.core)
+    elif a.self_only:
+        rng = random.Random(7337)
+        own = self_lessons(rng)
+        if not own:
+            raise SystemExit("no owner-written self lessons yet (data/talk/owner_self_lessons.json) - nothing to train")
+        os.makedirs(TALK_DIR, exist_ok=True)
+        with open(SELF_ONLY, "w", encoding="utf-8") as f:
+            for c in own:
+                f.write(json.dumps(c) + "\n")
+        train(a.core, staged=a.staged or os.path.join(RESULTS_DIR, "core_self_topup_staged.pt"), epochs=a.epochs,
+              max_steps=a.max_steps or 300, lessons=SELF_ONLY, label="self lessons (owner's words)", conv_per_step=8,
+              read_per_step=16, school_per_step=8, lr=5e-5)
     else:
-        train(a.core, epochs=a.epochs, max_steps=a.max_steps)
+        train(a.core, staged=a.staged or STAGED, epochs=a.epochs, max_steps=a.max_steps)
 
 
 if __name__ == "__main__":

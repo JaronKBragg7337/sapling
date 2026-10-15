@@ -14,7 +14,10 @@ results/relay.log
 results/relay.stdout.log
 results/core_v3_staged.pt
 results/core_staged.pt
-data/
+data/*
+!data/talk/
+data/talk/*
+!data/talk/owner_self_lessons.json
 results/reading/*.pt
 results/reading/*.opt
 results/reading/pause

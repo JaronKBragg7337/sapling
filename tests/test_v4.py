@@ -83,3 +83,37 @@ def test_refusals_and_other_names_are_left_out():
 
 def test_pretty_is_display_only_casing():
     assert pretty("i'm sapling . jaron built me , i think .") == "I'm Sapling. Jaron built me, I think."
+
+
+def test_no_self_lesson_without_an_owner_file(tmp_path):
+    import random
+    from sapling.talk import owner_answers, self_lessons
+    missing = str(tmp_path / "none.json")
+    assert owner_answers(missing) == {}
+    assert self_lessons(random.Random(1), owner=owner_answers(missing)) == []
+
+
+def test_self_lessons_are_the_owners_words_only(tmp_path):
+    import random
+    from sapling.talk import SELF_QUESTIONS, owner_answers, save_owner_answer, self_lessons
+    path = str(tmp_path / "own.json")
+    save_owner_answer("name", "I'm Sapling, Jaron's AI!", "test", path=path)
+    save_owner_answer("size", "   ", "test", path=path)          # empty = skipped
+    own = owner_answers(path)
+    assert set(own) == {"name"}
+    ls = self_lessons(random.Random(1), copies=1, owner=own)
+    assert len(ls) == len(SELF_QUESTIONS["name"])
+    assert {c["turns"][0][1] for c in ls} == {"i'm sapling , jaron's ai !"}      # normalised like every lesson
+
+
+def test_relay_saves_self_words_as_an_owner_action(monkeypatch):
+    import sys, os
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tools"))
+    import owner_relay
+    import sapling.talk as talk
+    seen = {}
+    monkeypatch.setattr(talk, "save_owner_answer", lambda k, t, by: seen.update(k=k, t=t, by=by) or {"key": k, "chars": len(t)})
+    monkeypatch.setattr(owner_relay.owner_rules, "log_owner_action", lambda row, store=None: row)
+    monkeypatch.setattr(owner_relay, "MemoryStore", lambda: type("S", (), {"db": type("D", (), {"close": lambda self: None})()})())
+    r = owner_relay.do_owner("self_words", {"key": "maker", "text": "Jaron made me."}, by="owner@test")
+    assert r["ok"] and r["row"]["action"] == "self_words" and seen == {"k": "maker", "t": "Jaron made me.", "by": "owner@test"}

@@ -91,7 +91,13 @@ def state_of(hb) -> dict:
         teacher = teacher_summary()
     except Exception:
         teacher = None
+    from .talk import self_words_info
+    try:
+        self_words = self_words_info()
+    except Exception:
+        self_words = None
     return {
+        "self_words": self_words,
         "teacher": teacher,
         "documents": docs,
         "reading": reading,

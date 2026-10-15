@@ -56,7 +56,9 @@ any other AI first." The plan and why each choice was made: CHANGELOG "v4", DESI
   the first - a working copy circuit drives that near 0), grow.py cannot widen a core, and rotary positions are the
   shape a copy circuit needs.
 - **Stage B - conversation lessons** (`sapling/talk.py`): OpenAssistant oasst1 (Apache-2.0), databricks-dolly-15k
-  (CC BY-SA 3.0) and its own lessons about who it is, in the chat box's own format with history
+  (CC BY-SA 3.0) and lessons about who it is **in Jaron's own words only** (control room card "Sapling's own words";
+  the builder's example answers are shown there for reference and never trained on - no AI-written words in its
+  training data), in the chat box's own format with history
   (`q : ... a : ... <eos> q : ... a :`), loss on its answers only, with reading + school replay in every batch.
 - **The check that counts:** the same measurements and the same ten chat prompts (`tools/measure_core.py`,
   `tools/chat_samples.py`) before, after Stage A, after Stage B, and after 5 of its own heartbeat consolidations - an
@@ -373,7 +375,7 @@ DESIGN-CHOICES.md  # every design choice an AI made, who made it, what it affect
 PROPOSALS.md       # open questions for the owner; nothing in here is built
 CHANGELOG.md       # v1 -> v2 -> v2.1 -> v3 -> v3.1 -> v3.2 -> v3.2.1 -> v4, each change tied to Jaron's decision
 results/           # report card (history kept, FAILs kept), train log, stop reports, memory.db, checkpoints/, reading/ (v3.2 probe log + state), reading_v4/ (v4 probe log), teacher/ (measurements + run log), chat_samples/
-tests/             # 52 pytest tests + plain runner
+tests/             # 55 pytest tests + plain runner
 ```
 
 ## Lineage

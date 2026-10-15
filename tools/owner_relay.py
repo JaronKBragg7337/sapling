@@ -151,7 +151,12 @@ def down_state() -> dict:
         teacher = teacher_summary()
     except Exception:
         teacher = None
-    return {"running": False, "down": True, "tick": ticks[0]["tick"] if ticks else None, "reading": reading, "teacher": teacher,
+    try:
+        from sapling.talk import self_words_info
+        self_words = self_words_info()
+    except Exception:
+        self_words = None
+    return {"running": False, "down": True, "tick": ticks[0]["tick"] if ticks else None, "reading": reading, "teacher": teacher, "self_words": self_words,
             "generation": generation, "vocab_size": last_vocab,
             "last_action": ticks[0]["action"] if ticks else None, "clock": clock, "memories": memories,
             "rules": cfg["rules"], "settings": cfg["settings"], "goals": [], "exams": [], "ticks": ticks,
@@ -209,6 +214,14 @@ def do_owner(kind: str, payload: dict, by: str) -> dict:
             row = owner_rules.log_owner_action({"action": "archive_now", "by": by, "moved": r.get("moved"),
                                                 "errors": r.get("errors")}, store=store)
             return {"ok": not r.get("errors"), "row": row, "archive": r, "error": "; ".join(r.get("errors") or []) or None}
+        if kind == "self_words":
+            # Sapling's answers about itself in the owner's own words (talk.py; the only self lessons it trains on)
+            from sapling.talk import save_owner_answer
+            text = str(payload.get("text", ""))[:2000]
+            r = save_owner_answer(str(payload.get("key", "")), text, by)
+            row = owner_rules.log_owner_action({"action": "self_words", "by": by, "key": r["key"], "chars": r["chars"],
+                                                "text": text}, store=store)
+            return {"ok": True, "row": row}
         return {"ok": False, "error": f"unknown owner action '{kind}'"}
     except Exception as e:
         log(f"owner {kind} failed: {type(e).__name__}: {e}")

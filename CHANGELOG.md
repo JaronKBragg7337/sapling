@@ -1,5 +1,19 @@
 # Changelog
 
+## v4.0.1 (2026-10-15 ~5:30 PM) - Sapling's answers about itself are Jaron's words only
+- Jaron (via the coordinator, 5:26 PM): a clean partnership with AI companies - **no AI-written words in Sapling's training
+  data.** The ten self-lesson answers the builder had written (name, maker, what, size, read, age, can_do, memory,
+  heartbeat, learn_next) are **no longer trained on**. `talk.self_lessons()` now uses only `data/talk/owner_self_lessons.json`
+  (his text, normalised like every lesson); a missing or empty answer = that lesson is skipped, no AI fallback. The question
+  wordings stay (they are prompts, not answers). `data/talk/lessons.jsonl` was rebuilt without them (22,891 conversations).
+- New control room card **"Sapling's own words (Jaron writes these)"**: per group the questions, the AI example (labelled
+  "AI example - for reference only, not trained"), the live true numbers (parameters, tokens read so far, birthday) and a
+  box + Save. Save = owner action `self_words` through the relay (owner log + ledger row, like rule switches); works on
+  the phone page (relay command).
+- Expected tonight: with no answers written yet, Stage B teaches no self lessons, so "what is your name?" in tomorrow's
+  chat samples will likely not say "Sapling". When he has written them: the short top-up in NEXT.md.
+- 3 new tests (no self lesson without an owner file; his words only, normalised; the relay saves as an owner action).
+
 ## v4 (2026-10-15 afternoon -> night) - a bigger core, conversation lessons (Claude as teacher)
 Jaron 10/15 1:53 PM: "take control, be a teacher, advance sapling ... better communication ... build it as an AI like any
 other AI first." His own ideas are paused; nothing here adds a rule, gate or limit (PROPOSALS.md unchanged).
@@ -12,7 +26,8 @@ other AI first." His own ideas are paused; nothing here adds a rule, gate or lim
 - **Stage A (running, started 14:16):** 1.2B new tokens, adult-weighted (14 web / 4 Wikipedia+books / 11 stories / 3 school
   per 32), probes every 120M tokens incl. loss on fixed text windows (D25). ~36k tokens/s on the 4060 -> ends about midnight.
 - **Stage B (queued, automatic):** conversation lessons (`sapling/talk.py`, D26): oasst1 (Apache-2.0) + dolly-15k
-  (CC BY-SA 3.0) + 210 lessons about itself = 23,101 conversations; refusals and other assistants' names left out.
+  (CC BY-SA 3.0) = 22,891 conversations (the 210 AI-written self lessons first planned here were removed in v4.0.1);
+  refusals and other assistants' names left out.
 - **Chat box** holds a conversation in a talking core (D27): history, seeded sampling + repeat penalty, normal capitals on
   display, `/new`; the recall/document routes no longer hijack normal talk. Older cores behave exactly as before.
 - **Consolidation** replays conversation lessons (25%) beside the reading (50%) so talking survives the heartbeat (D28);
@@ -27,7 +42,7 @@ other AI first." His own ideas are paused; nothing here adds a rule, gate or lim
 - `tools/teach_v4.py` runs the rest unattended: measure Stage A -> Stage B -> measure -> swap -> heartbeat restart ->
   after 5 of its own consolidations, measure again.
 - Bug found on the way: the core's loss used `.view()` on targets, which fails on a non-contiguous slice; now `.reshape()`.
-- Tests: 52 (8 new in tests/test_v4.py).
+- Tests: 52 (8 new in tests/test_v4.py); 55 with v4.0.1.
 
 ## v3.2.1 (2026-10-15 ~2 PM) - consolidations no longer erase the reading (Claude as teacher, 10/15)
 - **Finding:** every heartbeat consolidation since gen 241 trained 200 steps on school sentences only, and that wiped the
