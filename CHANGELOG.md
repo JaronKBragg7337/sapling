@@ -1,6 +1,11 @@
 # Changelog
 
 
+## 2026-10-15 ~1 PM - the news render now pauses the heartbeat (tools/gpu_yield.py)
+- The news render now pauses the heartbeat via `tools/gpu_yield.py` before Unreal starts and restarts it after (heartbeat and Unreal on one 8 GB card froze both).
+- The 10:30 scheduled parole waited 2 h, ran beside the render at 12:32, was paused at 12:50 and re-armed.
+- The news pipeline moved to 3-6 AM (render task "HB Rendered News" now 3:50 AM, ready about 7 AM), so the render and the heartbeat no longer overlap in the day.
+
 ## 2026-10-15 7:31 AM - budget 1 h -> 4 h, scheduled parole (Jaron's calls)
 - Sapling self-stopped 06:46 (report results/stop_reports/2026-10-15T064635_self.json): 2.9 h spent of a 1 h budget, 3.7 h
   since input, 21 rests in a row. Jaron: "4 hours is fine. I was going to say 6 but let's try 4 first." -> membrane

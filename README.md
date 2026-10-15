@@ -320,6 +320,8 @@ tools/             # OWNER side, outside the AI's package:
   fetch_reading.py # v3.2: fetches the reading-stage text, checks each source's licence live, writes data/reading/manifest.json
   owner_relay.py   # phone/remote door: pushes state to Supabase, runs owner commands (chat, rule switch, restore, parole)
   owner_rules.py   # flips a rule's enabled line when the owner clicks; logged
+  gpu_yield.py     # 10/15: the news render calls it to pause the heartbeat before Unreal and restart it after (`stop` / `start`)
+  scheduled_parole.py # waits for UnrealEditor to leave the GPU, then paroles and logs it (used by gpu_yield.py start)
   self_memory_drift.py # compares exams with vs without self-made memories in training
 DESIGN-CHOICES.md  # every design choice an AI made, who made it, what it affects, options not chosen
 PROPOSALS.md       # open questions for the owner; nothing in here is built

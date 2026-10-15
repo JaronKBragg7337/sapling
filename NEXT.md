@@ -1,5 +1,7 @@
 # Sapling — next steps (after v2)
 
+Tool note (10/15): `tools/gpu_yield.py stop|start` pauses the heartbeat for the news render (now 3:50 AM) and restarts it after; it uses `tools/scheduled_parole.py`.
+
 v1's three steps: (1) runs-without-you is DONE (the heartbeat); (2) record -> consolidation
 is DONE (no gate; `/confirm` and `/invalidate` verdicts are the selection events); (3) a world
 to practice in is still open. Ordered by dependency.
