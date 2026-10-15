@@ -42,6 +42,16 @@ append-only hash-chained record for his eyes.
 | Backup to an owner machine needs owner approval | Kimi | on, pending Jaron's keep/drop |
 | The system cannot write this file | Kimi (structural) | on |
 
+## Where old checkpoints live (10/15, Jaron's call)
+
+Every generation except the newest 10 (plus the last one of each day) is uploaded to a **GitHub release** on this repo -
+one per day, `ckpt-YYYY-MM-DD` (then `-b`, `-c` at 1,000 files) - with the `gh` CLI signed in on the MSI. The local file
+is removed only after `gh release view --json assets` reports the same size. Generation files are saved in **bfloat16**
+(half the size: ~121 MB for the 60.5M v4 core, ~36 MB for 17.6M); the live core file stays full precision. Restore
+from the control room or `python -m sapling.archive restore <gen>`. The manifest is `results/archive_manifest.json`
+(and the Supabase table `sapling_archive`). Later homes, when they exist: a Heartbeat Observatory GitHub organisation,
+then Hugging Face (Jaron sets that one up).
+
 ## v4 (10/15, Claude as teacher): a bigger core that reads 1.2B tokens, then conversation lessons
 
 Jaron (10/15 1:53 PM): "take control, be a teacher, advance sapling ... better communication ... build it as an AI like
@@ -357,7 +367,7 @@ sapling/
   model.py         # decoder-only transformer (V3/V31/V4_CONFIG; v4 = rotary positions); grow_vocab() / grow_context() resize in place; generate() with optional repeat penalty
   train.py         # level-1 school (v2 recipe), tokenizer (pieces fallback, splits), checkpoint save/load
   membrane.py      # reads membrane.yaml (rules with origin + switch); no write path
-  archive.py       # hourly: keep last 10 + 1/day local, move the rest to cloud (Supabase 'sapling-archive'), restore any gen
+  archive.py       # hourly: keep last 10 + 1/day local, move the rest to GitHub Releases (ckpt-YYYY-MM-DD, verified by size before the local copy goes), restore any gen (from a release, or Supabase for the older ones)
 membrane.yaml      # the rules and the settings - the owner's file
 owner_exam.json    # E9: the exam the owner writes about his own documents (q / a / match / bar); empty until he does
 data/              # gitignored: tinystories/ (CDLA-Sharing-1.0), gutenberg/ (public domain), reading/ (raw text incl. FineWeb-Edu + oasst1 + dolly, shards, manifest.json with every licence check), talk/ (v4 conversation lessons)
@@ -375,7 +385,7 @@ DESIGN-CHOICES.md  # every design choice an AI made, who made it, what it affect
 PROPOSALS.md       # open questions for the owner; nothing in here is built
 CHANGELOG.md       # v1 -> v2 -> v2.1 -> v3 -> v3.1 -> v3.2 -> v3.2.1 -> v4, each change tied to Jaron's decision
 results/           # report card (history kept, FAILs kept), train log, stop reports, memory.db, checkpoints/, reading/ (v3.2 probe log + state), reading_v4/ (v4 probe log), teacher/ (measurements + run log), chat_samples/
-tests/             # 55 pytest tests + plain runner
+tests/             # 56 pytest tests + plain runner (conftest.py: the real archive never runs inside a test)
 ```
 
 ## Lineage

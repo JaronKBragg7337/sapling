@@ -319,17 +319,44 @@ def test_archive_plan_keeps_last_10_and_one_per_day():
     assert "not the last checkpoint of 2026-10-13" in p["why"][1]
 
 
-def test_archive_step_without_credentials_moves_nothing(store, monkeypatch, tmp_path):
+def test_archive_step_never_deletes_without_a_verified_release_copy(store, monkeypatch, tmp_path):
     from sapling import archive as A
     ck = tmp_path / "ck"; ck.mkdir()
     for g in range(1, 15):
         (ck / f"gen_{g:04d}.pt").write_bytes(b"x" * 10)
     monkeypatch.setattr(A, "CHECKPOINT_DIR", str(ck))
     monkeypatch.setattr(A, "RESULTS_DIR", str(tmp_path))
+    monkeypatch.setattr(A, "MANIFEST_LOCAL", str(tmp_path / "manifest.json"))
     monkeypatch.setattr(A, "creds", lambda: None)
+
+    def fail(path, day):
+        raise RuntimeError("release says None, local 10")
+    monkeypatch.setattr(A, "gh_upload", fail)
     row = A.archive_step(store)
-    assert row["moved"] == [] and row["errors"] and len(os.listdir(ck)) == 14   # never delete without a verified cloud copy
-    assert store.last_ledger("archive")["cloud"] is False and store.verify_chain()
+    assert row["moved"] == [] and row["errors"] and len(os.listdir(ck)) == 14   # never delete without a verified copy
+    assert store.last_ledger("archive")["target"].startswith("github") and store.verify_chain()
+    # a verified upload: the local copy goes, the manifest says where it lives
+    monkeypatch.setattr(A, "gh_upload", lambda path, day: f"gh:ckpt-{day}/{os.path.basename(path)}")
+    row = A.archive_step(store)
+    assert len(row["moved"]) == 4 and len(os.listdir(ck)) == 10
+    man = {r["gen"]: r for r in A.manifest_local()}
+    assert man[1]["path"].startswith("gh:ckpt-") and man[1]["local_present"] is False
+
+
+def test_generation_checkpoints_save_in_bf16_and_load(tmp_path):
+    import torch
+    from sapling.model import SaplingCore
+    from sapling.train import Tokenizer, load_checkpoint, save_checkpoint
+    itos = ["<pad>", "<bos>", "<eos>", "<unk>", "a", "b"]
+    tok = Tokenizer({t: i for i, t in enumerate(itos)}, itos)
+    m = SaplingCore(len(itos), d_model=32, n_head=4, n_layer=2, block_size=16, rope=True)
+    full, half = str(tmp_path / "full.pt"), str(tmp_path / "half.pt")
+    save_checkpoint(m, tok, {"generation": 1}, path=full)
+    save_checkpoint(m, tok, {"generation": 1}, path=half, half=True)
+    assert os.path.getsize(half) < 0.7 * os.path.getsize(full)
+    m2, _, ck = load_checkpoint(device="cpu", path=half)
+    assert ck["weights_dtype"] == "bfloat16" and next(m2.parameters()).dtype == torch.float32
+    assert torch.allclose(m2.tok_emb.weight, m.tok_emb.weight, atol=1e-2)
 
 
 @pytest.mark.skipif(not _core_available(), reason="no trained core")

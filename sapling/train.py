@@ -190,11 +190,17 @@ def train(
     return {"model": model, "tok": tok, "run_record": run_record}
 
 
-def save_checkpoint(model, tok: Tokenizer, meta: dict, path: str = CHECKPOINT) -> str:
+def save_checkpoint(model, tok: Tokenizer, meta: dict, path: str = CHECKPOINT, half: bool = False) -> str:
     """Write the live model + its (possibly grown) vocabulary. The model config
-    is taken from the model itself so a grown vocabulary reloads correctly."""
+    is taken from the model itself so a grown vocabulary reloads correctly.
+    half=True (generation files, 10/15, Jaron's archive call): float weights stored as bfloat16 - half the size;
+    loading casts them back to float32 (the live core file stays full precision, DESIGN-CHOICES D5)."""
+    state = model.state_dict()
+    if half:
+        state = {k: (v.to(torch.bfloat16) if v.is_floating_point() else v) for k, v in state.items()}
     payload = {
-        "model_state": model.state_dict(),
+        "model_state": state,
+        "weights_dtype": "bfloat16" if half else "float32",
         "config": model.config(),
         "params": model.n_params(),
         "vocab": {"stoi": dict(tok.stoi), "itos": list(tok.itos), "splits": dict(tok.splits)},

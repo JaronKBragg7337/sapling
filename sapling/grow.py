@@ -337,7 +337,7 @@ def swap(store: MemoryStore | None = None, seed: int = 7337, device: str | None 
     meta["generation"] = gen
     meta["staged"] = False
     os.makedirs(checkpoint_dir, exist_ok=True)
-    kept = save_checkpoint(new_model, new_tok, meta, path=os.path.join(checkpoint_dir, f"gen_{gen:04d}.pt"))
+    kept = save_checkpoint(new_model, new_tok, meta, path=os.path.join(checkpoint_dir, f"gen_{gen:04d}.pt"), half=True)
     save_checkpoint(new_model, new_tok, meta, path=checkpoint)
 
     event = {"event": event_name,

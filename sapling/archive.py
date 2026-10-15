@@ -4,12 +4,14 @@ Jaron 10/14 (2:59 PM, disk): "never delete history forever. Keep the last 10
 checkpoints + 1 per day on the MSI; move every other checkpoint OFF the MSI
 to cloud storage where it can still be listed, viewed and restored."
 
-Where: Supabase Storage, private bucket `sapling-archive` (project
-ygjpnvrwhkrowkrskftk, PRO plan). A manifest row per checkpoint lives in the
-`sapling_archive` table (gen, checkpoint time, exams at that generation,
-size, why) so the control room can list it; a copy of the manifest is also
-written next to the files as `manifest.json` and cached locally in
-`results/archive_manifest.json`.
+Where (Jaron 10/15 6:06 PM): **GitHub Releases on JaronKBragg7337/sapling**, one release per day
+(`ckpt-YYYY-MM-DD`, rolling to `-b`, `-c` ... at 1,000 assets), uploaded with the gh CLI that is already
+signed in on the MSI. "Nothing deleted forever" = a VERIFIED copy in a release (asset size read back with
+`gh release view --json assets` must match) before the local file goes. Before 10/15 the target was Supabase
+Storage (`sapling-archive`); its 50 MB per-object limit rejected every checkpoint from v3.1 on (17.6M params
+= 71 MB), which is why 100+ generations had piled up on the MSI. Gens already in Supabase stay there and still
+restore. The manifest (one row per checkpoint: gen, where, size, exams, why) still lives in the Supabase table
+`sapling_archive` (when the key is there) and always in `results/archive_manifest.json`.
 
 This is a housekeeping step the heartbeat runs on a schedule (not a drive it
 chooses - it is chores, like breathing). Every run is a ledger row of kind
@@ -33,6 +35,9 @@ from datetime import datetime
 from .train import CHECKPOINT_DIR, RESULTS_DIR
 
 KEEP_LAST = 10          # Jaron: last 10 checkpoints stay on the MSI
+GH_REPO = "JaronKBragg7337/sapling"
+GH_MAX_ASSETS = 1000    # GitHub's per-release asset limit
+GH_MAX_BYTES = 2 * 1024 ** 3
 BUCKET = "sapling-archive"
 MANIFEST_LOCAL = os.path.join(RESULTS_DIR, "archive_manifest.json")
 KEYS_ENV = os.path.join(os.path.expanduser("~"), ".secrets", "keys.env")
@@ -104,7 +109,83 @@ def exams_for(store, gen: int) -> list | None:
     return None
 
 
-# -- cloud side ------------------------------------------------------------------------
+# -- GitHub Releases (the archive from 10/15) ------------------------------------------------
+def _gh(args: list[str], timeout: int = 1800) -> tuple[int, str]:
+    import subprocess
+    p = subprocess.run(["gh"] + args + ["-R", GH_REPO], capture_output=True, text=True, timeout=timeout)
+    return p.returncode, (p.stdout or "") + (p.stderr or "")
+
+
+def gh_assets(tag: str) -> dict | None:
+    """name -> size of a release's assets, or None if the release does not exist."""
+    code, out = _gh(["release", "view", tag, "--json", "assets"], timeout=120)
+    if code != 0:
+        return None
+    try:
+        return {a["name"]: int(a["size"]) for a in json.loads(out[out.index("{"):]).get("assets", [])}
+    except Exception:
+        return None
+
+
+def gh_release_for(day: str, create: bool = True) -> tuple[str, dict]:
+    """The day's release with room left (ckpt-DAY, then ckpt-DAY-b, -c, ...); created if missing."""
+    for suffix in [""] + [f"-{chr(c)}" for c in range(ord("b"), ord("z") + 1)]:
+        tag = f"ckpt-{day}{suffix}"
+        assets = gh_assets(tag)
+        if assets is None:
+            if not create:
+                return tag, {}
+            code, out = _gh(["release", "create", tag, "--title", f"Sapling checkpoints {day}{suffix}", "--latest=false",
+                             "--notes", f"Sapling's generation checkpoints from {day} (archive: nothing deleted forever - "
+                                        f"each file here was verified by size before the MSI's copy was removed). "
+                                        f"Restore one from the control room or `python -m sapling.archive restore <gen>`."],
+                            timeout=120)
+            if code != 0:
+                raise RuntimeError(f"release create {tag} failed: {out[-300:]}")
+            return tag, {}
+        if len(assets) < GH_MAX_ASSETS:
+            return tag, assets
+    raise RuntimeError(f"no room in any release for {day}")
+
+
+def gh_upload(local_path: str, day: str) -> str:
+    """Upload one checkpoint to the day's release and verify its size there. -> 'gh:<tag>/<name>'."""
+    name, size = os.path.basename(local_path), os.path.getsize(local_path)
+    if size >= GH_MAX_BYTES:
+        raise RuntimeError(f"{name} is {size} bytes - over GitHub's 2 GB asset limit")
+    tag, assets = gh_release_for(day)
+    if assets.get(name) != size:
+        code, out = _gh(["release", "upload", tag, local_path, "--clobber"])
+        if code != 0:
+            raise RuntimeError(f"upload {name} -> {tag} failed: {out[-300:]}")
+        got = (gh_assets(tag) or {}).get(name)
+        if got != size:
+            raise RuntimeError(f"upload {name} -> {tag} not verified (release says {got}, local {size})")
+    return f"gh:{tag}/{name}"
+
+
+def gh_download(path: str, dest_dir: str = CHECKPOINT_DIR) -> str:
+    tag, name = path[3:].split("/", 1)
+    os.makedirs(dest_dir, exist_ok=True)
+    code, out = _gh(["release", "download", tag, "-p", name, "-D", dest_dir, "--clobber"])
+    if code != 0:
+        raise RuntimeError(f"download {path} failed: {out[-300:]}")
+    return os.path.join(dest_dir, name)
+
+
+def _manifest_merge(rows: list[dict]) -> list[dict]:
+    """Local manifest = the source of truth for where each gen lives (cloud table mirrors it when reachable)."""
+    by = {r["gen"]: r for r in manifest_local()}
+    for r in rows:
+        by[r["gen"]] = {**by.get(r["gen"], {}), **r}
+    out = [by[g] for g in sorted(by)]
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    with open(MANIFEST_LOCAL, "w", encoding="utf-8") as f:
+        json.dump(out, f, indent=1, default=str)
+    return out
+
+
+# -- cloud side (Supabase: manifest table; the pre-10/15 storage bucket) ----------------------
 def upload(c: dict, local_path: str, gen: int) -> str:
     key = f"checkpoints/gen_{gen:04d}.pt"
     with open(local_path, "rb") as f:
@@ -181,50 +262,49 @@ def big_files() -> list[dict]:
 
 # -- the step ----------------------------------------------------------------------------
 def archive_step(store, keep_last: int = KEEP_LAST, dry: bool = False, verbose: bool = False) -> dict:
-    """Move every checkpoint the policy says to move. Local file is removed ONLY after
-    the cloud copy is verified. Logged as one `archive` ledger row."""
+    """Move every checkpoint the policy says to move to the day's GitHub release. The local file is removed ONLY
+    after the release reports the same size. The manifest row goes to results/archive_manifest.json and, when the
+    Supabase key is there, to the sapling_archive table. Logged as one `archive` ledger row."""
     t0 = time.time()
     c = creds()
     local = list_local()
     p = plan(local, keep_last)
     row = {"keep": p["keep"], "planned": [m["gen"] for m in p["move"]], "moved": [], "errors": [],
-           "dry": dry, "cloud": bool(c), "local_mb_before": round(sum(x["size"] for x in local) / 1e6, 1)}
-    if not c:
-        row["errors"].append("no SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY in ~/.secrets/keys.env (names only)")
-    elif not dry:
-        existing = {}
-        try:
-            existing = {r["gen"]: r for r in manifest_cloud(c)}
-        except Exception as e:
-            row["errors"].append(f"manifest read: {e}")
+           "dry": dry, "target": f"github releases {GH_REPO}", "cloud_manifest": bool(c),
+           "local_mb_before": round(sum(x["size"] for x in local) / 1e6, 1), "releases": []}
+    if not dry:
         for m in p["move"]:
             try:
-                key = upload(c, m["path"], m["gen"])
-                manifest_upsert(c, {"gen": m["gen"], "path": key, "size_bytes": m["size"],
-                                    "checkpoint_time": datetime.fromtimestamp(m["mtime"]).isoformat(),
-                                    "exams": exams_for(store, m["gen"]) if store else None,
-                                    "why": p["why"][m["gen"]], "local_present": False,
-                                    "archived_at": datetime.now().astimezone().isoformat()})
-                os.remove(m["path"])            # the cloud copy was verified above
+                where = gh_upload(m["path"], m["day"])
+                mrow = {"gen": m["gen"], "path": where, "size_bytes": m["size"],
+                        "checkpoint_time": datetime.fromtimestamp(m["mtime"]).isoformat(),
+                        "exams": exams_for(store, m["gen"]) if store else None,
+                        "why": p["why"][m["gen"]], "local_present": False,
+                        "archived_at": datetime.now().astimezone().isoformat()}
+                _manifest_merge([mrow])
+                if c:
+                    try:
+                        manifest_upsert(c, mrow)
+                    except Exception as e:
+                        row["errors"].append(f"gen {m['gen']} cloud manifest (file is safe in the release): {e}")
+                os.remove(m["path"])            # the release copy was verified above
                 row["moved"].append(m["gen"])
+                tag = where[3:].split("/")[0]
+                if tag not in row["releases"]:
+                    row["releases"].append(tag)
                 if verbose:
-                    print(f"[archive] gen {m['gen']} -> {BUCKET}/{key} ({m['size']/1e6:.1f} MB)")
+                    print(f"[archive] gen {m['gen']} -> {where} ({m['size'] / 1e6:.1f} MB)", flush=True)
             except Exception as e:
                 row["errors"].append(f"gen {m['gen']}: {e}")
-        try:
-            rows = manifest_cloud(c)
-            # mark which archived gens are also present locally (after a restore)
-            local_gens = {x["gen"] for x in list_local()}
-            for r in rows:
-                want = r["gen"] in local_gens
-                if bool(r.get("local_present")) != want:
-                    manifest_upsert(c, {"gen": r["gen"], "path": r["path"], "local_present": want})
-                    r["local_present"] = want
-            _write_manifest_copies(c, rows)
-            row["archived_total"] = len(rows)
-            row["archived_mb"] = round(sum(int(r.get("size_bytes") or 0) for r in rows) / 1e6, 1)
-        except Exception as e:
-            row["errors"].append(f"manifest write: {e}")
+        local_gens = {x["gen"] for x in list_local()}
+        rows = _manifest_merge([{"gen": r["gen"], "local_present": r["gen"] in local_gens} for r in manifest_local()])
+        if c:
+            try:
+                _write_manifest_copies(c, rows)
+            except Exception as e:
+                row["errors"].append(f"cloud manifest copy: {e}")
+        row["archived_total"] = len(rows)
+        row["archived_mb"] = round(sum(int(r.get("size_bytes") or 0) for r in rows) / 1e6, 1)
     row["local_mb_after"] = round(sum(x["size"] for x in list_local()) / 1e6, 1)
     row["other_files"] = [f for f in big_files() if f["big"]]
     row["seconds"] = round(time.time() - t0, 1)
@@ -234,16 +314,28 @@ def archive_step(store, keep_last: int = KEEP_LAST, dry: bool = False, verbose: 
 
 
 def restore(gen: int, store=None, who: str = "owner") -> dict:
+    """Bring an archived gen back into results/checkpoints/ - from its GitHub release (10/15 on) or Supabase (before)."""
     c = creds()
-    if not c:
-        raise RuntimeError("no Supabase credentials (names: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)")
-    dest = download(c, gen)
-    try:
-        manifest_upsert(c, {"gen": gen, "path": f"checkpoints/gen_{gen:04d}.pt", "local_present": True})
-        _write_manifest_copies(c, manifest_cloud(c))
-    except Exception:
-        pass
-    row = {"gen": gen, "dest": dest, "size": os.path.getsize(dest), "who": who}
+    rows = {r["gen"]: r for r in manifest_local()}
+    if gen not in rows and c:
+        try:
+            rows.update({r["gen"]: r for r in manifest_cloud(c)})
+        except Exception:
+            pass
+    path = (rows.get(gen) or {}).get("path") or f"checkpoints/gen_{gen:04d}.pt"
+    if path.startswith("gh:"):
+        dest = gh_download(path)
+    else:
+        if not c:
+            raise RuntimeError("no Supabase credentials (names: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)")
+        dest = download(c, gen)
+    _manifest_merge([{"gen": gen, "path": path, "local_present": True}])
+    if c:
+        try:
+            manifest_upsert(c, {"gen": gen, "path": path, "local_present": True})
+        except Exception:
+            pass
+    row = {"gen": gen, "dest": dest, "size": os.path.getsize(dest), "who": who, "from": path}
     if store is not None:
         store.meter("archive_restore", row)
     return row

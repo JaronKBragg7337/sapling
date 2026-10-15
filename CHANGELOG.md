@@ -1,5 +1,23 @@
 # Changelog
 
+## v4.0.2 (2026-10-15 ~6:10 PM) - archive to GitHub Releases, generations in bf16 (Jaron's call, 6:06 PM)
+- **Found:** the hourly archive had been failing since v3.1 - Supabase Storage rejects objects over 50 MB (413) and the
+  17.6M checkpoints are 71 MB; with SSL drops on the rest, 99 generations had piled up on the MSI (7.5 GB).
+- **Archive target = GitHub Releases** on JaronKBragg7337/sapling via the signed-in gh CLI: one release per day
+  (`ckpt-YYYY-MM-DD`, rolling to `-b` at 1,000 assets), local copy removed only after the release reports the same size.
+  Restore (control room button, `python -m sapling.archive restore <gen>`) pulls from the release, or from Supabase for
+  gens archived there before. Manifest: `results/archive_manifest.json` + the Supabase table.
+- **Generation files save in bfloat16** (~121 MB for the 60.5M core instead of ~242 MB); the live core and optimizer stay
+  full precision (D5 updated).
+- **Migrated 10/15 18:08-19:00:** 99 old generations (v3.1/v3.2, ~71 MB each) -> releases `ckpt-2026-10-14` (31 files) and
+  `ckpt-2026-10-15` (68 files); every one audited afterwards (manifest size == release asset size, 99/99); local
+  checkpoints 7.8 GB -> 0.78 GB; restore tested (gen 179 pulled back from its release, loaded, re-archived).
+  Logs: `results/archive_migration_1015*.txt`.
+- **Found during the migration:** the heartbeat tests built a Heartbeat whose hourly housekeeping ran the REAL archive
+  step (before 10/15 it only failed against Supabase; now it would really upload/remove). `tests/conftest.py` switches
+  the heartbeat's archive step off in every test; the archive's own tests patch every path.
+- Tests: the archive test now checks "never delete without a verified release copy" and the manifest; a bf16 save/load test.
+
 ## v4.0.1 (2026-10-15 ~5:30 PM) - Sapling's answers about itself are Jaron's words only
 - Jaron (via the coordinator, 5:26 PM): a clean partnership with AI companies - **no AI-written words in Sapling's training
   data.** The ten self-lesson answers the builder had written (name, maker, what, size, read, age, can_do, memory,
@@ -45,7 +63,7 @@ other AI first." His own ideas are paused; nothing here adds a rule, gate or lim
 - `tools/teach_v4.py` runs the rest unattended: measure Stage A -> Stage B -> measure -> swap -> heartbeat restart ->
   after 5 of its own consolidations, measure again.
 - Bug found on the way: the core's loss used `.view()` on targets, which fails on a non-contiguous slice; now `.reshape()`.
-- Tests: 52 (8 new in tests/test_v4.py); 55 with v4.0.1.
+- Tests: 52 (8 new in tests/test_v4.py); 55 with v4.0.1; 56 with v4.0.2.
 
 ## v3.2.1 (2026-10-15 ~2 PM) - consolidations no longer erase the reading (Claude as teacher, 10/15)
 - **Finding:** every heartbeat consolidation since gen 241 trained 200 steps on school sentences only, and that wiped the

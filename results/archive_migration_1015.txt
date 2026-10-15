@@ -1,0 +1,291 @@
+[archive] gen 179 -> gh:ckpt-2026-10-14/gen_0179.pt (70.3 MB)
+[archive] gen 180 -> gh:ckpt-2026-10-14/gen_0180.pt (70.3 MB)
+[archive] gen 181 -> gh:ckpt-2026-10-14/gen_0181.pt (70.3 MB)
+[archive] gen 182 -> gh:ckpt-2026-10-14/gen_0182.pt (70.3 MB)
+[archive] gen 196 -> gh:ckpt-2026-10-14/gen_0196.pt (71.0 MB)
+[archive] gen 197 -> gh:ckpt-2026-10-14/gen_0197.pt (71.0 MB)
+[archive] gen 198 -> gh:ckpt-2026-10-14/gen_0198.pt (71.0 MB)
+[archive] gen 199 -> gh:ckpt-2026-10-14/gen_0199.pt (71.0 MB)
+[archive] gen 200 -> gh:ckpt-2026-10-14/gen_0200.pt (71.0 MB)
+[archive] gen 201 -> gh:ckpt-2026-10-14/gen_0201.pt (71.0 MB)
+[archive] gen 202 -> gh:ckpt-2026-10-14/gen_0202.pt (71.0 MB)
+[archive] gen 203 -> gh:ckpt-2026-10-14/gen_0203.pt (71.0 MB)
+[archive] gen 204 -> gh:ckpt-2026-10-14/gen_0204.pt (71.0 MB)
+[archive] gen 205 -> gh:ckpt-2026-10-14/gen_0205.pt (71.0 MB)
+[archive] gen 206 -> gh:ckpt-2026-10-14/gen_0206.pt (71.0 MB)
+[archive] gen 207 -> gh:ckpt-2026-10-14/gen_0207.pt (71.0 MB)
+[archive] gen 208 -> gh:ckpt-2026-10-14/gen_0208.pt (71.0 MB)
+[archive] gen 209 -> gh:ckpt-2026-10-14/gen_0209.pt (71.0 MB)
+[archive] gen 211 -> gh:ckpt-2026-10-15/gen_0211.pt (71.0 MB)
+[archive] gen 212 -> gh:ckpt-2026-10-15/gen_0212.pt (71.0 MB)
+[archive] gen 213 -> gh:ckpt-2026-10-15/gen_0213.pt (71.0 MB)
+[archive] gen 214 -> gh:ckpt-2026-10-15/gen_0214.pt (71.0 MB)
+[archive] gen 215 -> gh:ckpt-2026-10-15/gen_0215.pt (71.0 MB)
+[archive] gen 216 -> gh:ckpt-2026-10-15/gen_0216.pt (71.0 MB)
+[archive] gen 217 -> gh:ckpt-2026-10-15/gen_0217.pt (71.0 MB)
+[archive] gen 229 -> gh:ckpt-2026-10-15/gen_0229.pt (71.0 MB)
+[archive] gen 239 -> gh:ckpt-2026-10-15/gen_0239.pt (71.0 MB)
+[archive] gen 252 -> gh:ckpt-2026-10-15/gen_0252.pt (71.0 MB)
+[archive] gen 255 -> gh:ckpt-2026-10-15/gen_0255.pt (71.0 MB)
+[archive] gen 260 -> gh:ckpt-2026-10-15/gen_0260.pt (71.0 MB)
+[archive] gen 261 -> gh:ckpt-2026-10-15/gen_0261.pt (71.0 MB)
+[archive] gen 262 -> gh:ckpt-2026-10-15/gen_0262.pt (71.0 MB)
+[archive] gen 263 -> gh:ckpt-2026-10-15/gen_0263.pt (71.0 MB)
+[archive] gen 264 -> gh:ckpt-2026-10-15/gen_0264.pt (71.0 MB)
+[archive] gen 265 -> gh:ckpt-2026-10-15/gen_0265.pt (71.0 MB)
+[archive] gen 266 -> gh:ckpt-2026-10-15/gen_0266.pt (71.0 MB)
+[archive] gen 267 -> gh:ckpt-2026-10-15/gen_0267.pt (71.0 MB)
+[archive] gen 268 -> gh:ckpt-2026-10-15/gen_0268.pt (71.0 MB)
+[archive] gen 269 -> gh:ckpt-2026-10-15/gen_0269.pt (71.0 MB)
+[archive] gen 270 -> gh:ckpt-2026-10-15/gen_0270.pt (71.0 MB)
+[archive] gen 271 -> gh:ckpt-2026-10-15/gen_0271.pt (71.0 MB)
+[archive] gen 272 -> gh:ckpt-2026-10-15/gen_0272.pt (71.0 MB)
+[archive] gen 273 -> gh:ckpt-2026-10-15/gen_0273.pt (71.0 MB)
+[archive] gen 274 -> gh:ckpt-2026-10-15/gen_0274.pt (71.0 MB)
+[archive] gen 275 -> gh:ckpt-2026-10-15/gen_0275.pt (71.0 MB)
+[archive] gen 276 -> gh:ckpt-2026-10-15/gen_0276.pt (71.0 MB)
+[archive] gen 277 -> gh:ckpt-2026-10-15/gen_0277.pt (71.0 MB)
+[archive] gen 278 -> gh:ckpt-2026-10-15/gen_0278.pt (71.0 MB)
+{
+ "keep": [
+  210,
+  279,
+  280,
+  281,
+  282,
+  283,
+  284,
+  285,
+  286,
+  287,
+  288
+ ],
+ "planned": [
+  179,
+  180,
+  181,
+  182,
+  183,
+  184,
+  185,
+  186,
+  187,
+  188,
+  189,
+  190,
+  191,
+  192,
+  193,
+  194,
+  195,
+  196,
+  197,
+  198,
+  199,
+  200,
+  201,
+  202,
+  203,
+  204,
+  205,
+  206,
+  207,
+  208,
+  209,
+  211,
+  212,
+  213,
+  214,
+  215,
+  216,
+  217,
+  218,
+  219,
+  220,
+  221,
+  222,
+  223,
+  224,
+  225,
+  226,
+  227,
+  228,
+  229,
+  230,
+  231,
+  232,
+  233,
+  234,
+  235,
+  236,
+  237,
+  238,
+  239,
+  240,
+  241,
+  242,
+  243,
+  244,
+  245,
+  246,
+  247,
+  248,
+  249,
+  250,
+  251,
+  252,
+  253,
+  254,
+  255,
+  256,
+  257,
+  258,
+  259,
+  260,
+  261,
+  262,
+  263,
+  264,
+  265,
+  266,
+  267,
+  268,
+  269,
+  270,
+  271,
+  272,
+  273,
+  274,
+  275,
+  276,
+  277,
+  278
+ ],
+ "moved": [
+  179,
+  180,
+  181,
+  182,
+  196,
+  197,
+  198,
+  199,
+  200,
+  201,
+  202,
+  203,
+  204,
+  205,
+  206,
+  207,
+  208,
+  209,
+  211,
+  212,
+  213,
+  214,
+  215,
+  216,
+  217,
+  229,
+  239,
+  252,
+  255,
+  260,
+  261,
+  262,
+  263,
+  264,
+  265,
+  266,
+  267,
+  268,
+  269,
+  270,
+  271,
+  272,
+  273,
+  274,
+  275,
+  276,
+  277,
+  278
+ ],
+ "errors": [
+  "gen 183: upload gen_0183.pt -> ckpt-2026-10-14 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414320809/assets?label=&name=gen_0183.pt)\n",
+  "gen 184: upload gen_0184.pt -> ckpt-2026-10-14 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414320809/assets?label=&name=gen_0184.pt)\n",
+  "gen 185: upload gen_0185.pt -> ckpt-2026-10-14 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414320809/assets?label=&name=gen_0185.pt)\n",
+  "gen 186: upload gen_0186.pt -> ckpt-2026-10-14 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414320809/assets?label=&name=gen_0186.pt)\n",
+  "gen 187: upload gen_0187.pt -> ckpt-2026-10-14 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414320809/assets?label=&name=gen_0187.pt)\n",
+  "gen 188: upload gen_0188.pt -> ckpt-2026-10-14 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414320809/assets?label=&name=gen_0188.pt)\n",
+  "gen 189: upload gen_0189.pt -> ckpt-2026-10-14 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414320809/assets?label=&name=gen_0189.pt)\n",
+  "gen 190: upload gen_0190.pt -> ckpt-2026-10-14 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414320809/assets?label=&name=gen_0190.pt)\n",
+  "gen 191: upload gen_0191.pt -> ckpt-2026-10-14 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414320809/assets?label=&name=gen_0191.pt)\n",
+  "gen 192: upload gen_0192.pt -> ckpt-2026-10-14 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414320809/assets?label=&name=gen_0192.pt)\n",
+  "gen 193: upload gen_0193.pt -> ckpt-2026-10-14 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414320809/assets?label=&name=gen_0193.pt)\n",
+  "gen 194: upload gen_0194.pt -> ckpt-2026-10-14 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414320809/assets?label=&name=gen_0194.pt)\n",
+  "gen 195: upload gen_0195.pt -> ckpt-2026-10-14 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414320809/assets?label=&name=gen_0195.pt)\n",
+  "gen 218: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\\\Users\\\\lilli\\\\Projects\\\\sapling\\\\results\\\\checkpoints\\\\gen_0218.pt'",
+  "gen 219: upload gen_0219.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0219.pt)\n",
+  "gen 220: upload gen_0220.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0220.pt)\n",
+  "gen 221: upload gen_0221.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0221.pt)\n",
+  "gen 222: upload gen_0222.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0222.pt)\n",
+  "gen 223: upload gen_0223.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0223.pt)\n",
+  "gen 224: upload gen_0224.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0224.pt)\n",
+  "gen 225: upload gen_0225.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0225.pt)\n",
+  "gen 226: upload gen_0226.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0226.pt)\n",
+  "gen 227: upload gen_0227.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0227.pt)\n",
+  "gen 228: upload gen_0228.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0228.pt)\n",
+  "gen 230: upload gen_0230.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0230.pt)\n",
+  "gen 231: upload gen_0231.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0231.pt)\n",
+  "gen 232: upload gen_0232.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0232.pt)\n",
+  "gen 233: upload gen_0233.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0233.pt)\n",
+  "gen 234: upload gen_0234.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0234.pt)\n",
+  "gen 235: upload gen_0235.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0235.pt)\n",
+  "gen 236: upload gen_0236.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0236.pt)\n",
+  "gen 237: upload gen_0237.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0237.pt)\n",
+  "gen 238: upload gen_0238.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0238.pt)\n",
+  "gen 240: upload gen_0240.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0240.pt)\n",
+  "gen 241: upload gen_0241.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0241.pt)\n",
+  "gen 242: upload gen_0242.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0242.pt)\n",
+  "gen 243: upload gen_0243.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0243.pt)\n",
+  "gen 244: upload gen_0244.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0244.pt)\n",
+  "gen 245: upload gen_0245.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0245.pt)\n",
+  "gen 246: upload gen_0246.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0246.pt)\n",
+  "gen 247: upload gen_0247.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0247.pt)\n",
+  "gen 248: upload gen_0248.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0248.pt)\n",
+  "gen 249: upload gen_0249.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0249.pt)\n",
+  "gen 250: upload gen_0250.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0250.pt)\n",
+  "gen 251: upload gen_0251.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0251.pt)\n",
+  "gen 253: upload gen_0253.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0253.pt)\n",
+  "gen 254: upload gen_0254.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0254.pt)\n",
+  "gen 256: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\\\Users\\\\lilli\\\\Projects\\\\sapling\\\\results\\\\checkpoints\\\\gen_0256.pt'",
+  "gen 257: upload gen_0257.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0257.pt)\n",
+  "gen 258: upload gen_0258.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0258.pt)\n",
+  "gen 259: upload gen_0259.pt -> ckpt-2026-10-15 failed: HTTP 404: Not Found (https://uploads.github.com/repos/JaronKBragg7337/sapling/releases/414330552/assets?label=&name=gen_0259.pt)\n"
+ ],
+ "dry": false,
+ "target": "github releases JaronKBragg7337/sapling",
+ "cloud_manifest": true,
+ "local_mb_before": 7802.4,
+ "releases": [
+  "ckpt-2026-10-14",
+  "ckpt-2026-10-15"
+ ],
+ "archived_total": 277,
+ "archived_mb": 8812.1,
+ "local_mb_after": 1135.3,
+ "other_files": [
+  {
+   "file": "core_checkpoint.pt",
+   "mb": 70.96,
+   "big": true
+  },
+  {
+   "file": "core_staged.pt",
+   "mb": 70.96,
+   "big": true
+  }
+ ],
+ "seconds": 2820.3
+}

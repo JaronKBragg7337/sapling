@@ -28,11 +28,9 @@ After it, in order:
    python tools/gpu_yield.py start "self-lesson top-up"
    ```
    (then `python -m sapling.talk build` so the heartbeat's consolidations replay his answers too).
-6. **Archive size (ops, decide soon):** a v4 checkpoint is ~242 MB (60.5M params, fp32) vs ~71 MB before. At the
-   10/15 pace (~4 consolidations an hour while the heartbeat runs) the cloud archive (D5: everything but the last 10 +
-   one a day goes to Supabase) would grow ~20-25 GB a day against the 100 GB Pro plan. Options: save generations as bf16
-   (half the size, tiny precision loss), keep one generation per hour in the cloud plus every growth/swap, or pay the
-   overage. Nothing is changed yet; "nothing deleted forever" means this needs a deliberate choice, not a quiet one.
+6. **Archive (decided 10/15 6:06 PM, built):** generation files in bf16, archived to GitHub Releases (D5). Later moves:
+   a Heartbeat Observatory GitHub organisation (transfer the repo or point `archive.GH_REPO` at the org's repo), then
+   Hugging Face (Jaron sets it up himself; then an `hf upload` target beside `gh_upload`).
 7. Items 0a.3-0a.5 below still apply to v4 (E5 refresh, rehearsal share; the reader-route fix is done for talking
    cores - coverage 0.6, D27).
 

@@ -1,0 +1,59 @@
+[archive] gen 195 -> gh:ckpt-2026-10-14/gen_0195.pt (71.0 MB)
+[archive] gen 218 -> gh:ckpt-2026-10-15/gen_0218.pt (71.0 MB)
+[archive] gen 254 -> gh:ckpt-2026-10-15/gen_0254.pt (71.0 MB)
+[archive] gen 256 -> gh:ckpt-2026-10-15/gen_0256.pt (71.0 MB)
+[archive] gen 259 -> gh:ckpt-2026-10-15/gen_0259.pt (71.0 MB)
+{
+ "keep": [
+  210,
+  279,
+  280,
+  281,
+  282,
+  283,
+  284,
+  285,
+  286,
+  287,
+  288
+ ],
+ "planned": [
+  195,
+  218,
+  254,
+  256,
+  259
+ ],
+ "moved": [
+  195,
+  218,
+  254,
+  256,
+  259
+ ],
+ "errors": [],
+ "dry": false,
+ "target": "github releases JaronKBragg7337/sapling",
+ "cloud_manifest": true,
+ "local_mb_before": 1135.3,
+ "releases": [
+  "ckpt-2026-10-14",
+  "ckpt-2026-10-15"
+ ],
+ "archived_total": 277,
+ "archived_mb": 8812.1,
+ "local_mb_after": 780.5,
+ "other_files": [
+  {
+   "file": "core_checkpoint.pt",
+   "mb": 70.96,
+   "big": true
+  },
+  {
+   "file": "core_staged.pt",
+   "mb": 70.96,
+   "big": true
+  }
+ ],
+ "seconds": 3.5
+}

@@ -269,7 +269,7 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
                 "note": f"consolidation {brain.generation}: {len(pending)} new facts, {len(facts)} total"}
         brain.meta = {**(brain.meta or {}), **meta}
         kept = save_checkpoint(model, tok, meta,
-                               path=os.path.join(CHECKPOINT_DIR, f"gen_{brain.generation:04d}.pt"))
+                               path=os.path.join(CHECKPOINT_DIR, f"gen_{brain.generation:04d}.pt"), half=True)
         save_checkpoint(model, tok, meta, path=CHECKPOINT)
 
     # Jaron 10/14 2:59 PM (P2): self-made memories DO train its brain - try it and
