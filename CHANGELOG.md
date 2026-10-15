@@ -12,6 +12,9 @@
   the phone page (relay command).
 - Expected tonight: with no answers written yet, Stage B teaches no self lessons, so "what is your name?" in tomorrow's
   chat samples will likely not say "Sapling". When he has written them: the short top-up in NEXT.md.
+- **Decided (Jaron, 5:51 PM):** published, licensed datasets are fine even if AI-generated (TinyStories, GPT-3.5/4-written, stays;
+  tonight's run unchanged). The line is legality and provider terms: no outputs we generate from other AIs become training
+  data. Self lessons stay his own words (D29).
 - 3 new tests (no self lesson without an owner file; his words only, normalised; the relay saves as an owner action).
 
 ## v4 (2026-10-15 afternoon -> night) - a bigger core, conversation lessons (Claude as teacher)
