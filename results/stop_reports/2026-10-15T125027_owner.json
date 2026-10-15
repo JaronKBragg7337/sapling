@@ -1,0 +1,2388 @@
+{
+  "kind": "stop",
+  "ts": "2026-10-15T12:50:27",
+  "who": "owner",
+  "reason": "stop file written by the owner",
+  "tick": 7116,
+  "clock": {
+    "now": 1792083027.8259315,
+    "now_iso": "2026-10-15 12:50:27",
+    "born_iso": "2026-10-14 13:50:50",
+    "age_s": 82777.4,
+    "uptime_s": 1065.2,
+    "since_last_input_s": 35113.8,
+    "budget_total_s": 14400.0,
+    "budget_spent_s": 10516.366,
+    "budget_left_s": 3883.634,
+    "budget_left_frac": 0.2697,
+    "day_ends_in_s": 40172.0,
+    "kwh_today": 0.058904537,
+    "kwh_total": 0.098196619,
+    "gpu_watts_now": null
+  },
+  "drives": null,
+  "open_goals": [
+    {
+      "part": "root:geo",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 1353,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:inter",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2219,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:trans",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1582,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:phon",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2187,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:pos",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 997,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:able",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1588,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ful",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1607,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ive",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2519,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:less",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1583,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ness",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1272,
+      "target": "0 misses in the last 10 tries"
+    }
+  ],
+  "last_ticks": [
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 82544.5,
+        "budget_left_frac": 0.2705,
+        "budget_left_s": 3895.906,
+        "kwh_today": 0.058879992,
+        "since_last_input_s": 34880.9,
+        "uptime_s": 832.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.367,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 2766.2,
+      "result": {
+        "a": "ex graph means write out .  [memory:814 self/captured: she will ex vis the cart .]",
+        "kind": "rehearse",
+        "memory": 2330,
+        "q": "ex"
+      },
+      "state": {
+        "budget_left_frac": 0.2708,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 21823.2,
+        "since_explore_s": 826.3,
+        "since_input_s": 34877.2,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7087,
+      "ts": 1792082794.8545873,
+      "id": 19018
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82553.5,
+        "budget_left_frac": 0.2705,
+        "budget_left_s": 3895.906,
+        "kwh_today": 0.058879992,
+        "since_last_input_s": 34889.9,
+        "uptime_s": 841.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.102,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.2705,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 21835.0,
+        "since_explore_s": 11.8,
+        "since_input_s": 34885.9,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7088,
+      "ts": 1792082803.8402739,
+      "id": 19019
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82559.6,
+        "budget_left_frac": 0.2705,
+        "budget_left_s": 3895.906,
+        "kwh_today": 0.058879992,
+        "since_last_input_s": 34896.0,
+        "uptime_s": 847.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.117,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.2705,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 21841.1,
+        "since_explore_s": 17.9,
+        "since_input_s": 34895.1,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7089,
+      "ts": 1792082809.9798865,
+      "id": 19020
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82570.3,
+        "budget_left_frac": 0.2705,
+        "budget_left_s": 3895.024,
+        "kwh_today": 0.05888175,
+        "since_last_input_s": 34906.7,
+        "uptime_s": 858.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.141,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 951.6,
+      "result": {
+        "misses": [
+          "q : what does trans geo mean ? a :"
+        ],
+        "n": 6,
+        "ok": 5
+      },
+      "state": {
+        "budget_left_frac": 0.2705,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 21850.8,
+        "since_explore_s": 27.6,
+        "since_input_s": 34901.2,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7090,
+      "ts": 1792082820.6455908,
+      "id": 19024
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82576.4,
+        "budget_left_frac": 0.2705,
+        "budget_left_s": 3895.024,
+        "kwh_today": 0.05888175,
+        "since_last_input_s": 34912.8,
+        "uptime_s": 864.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.158,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.2705,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 12,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 21857.9,
+        "since_explore_s": 34.7,
+        "since_input_s": 34911.8,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7091,
+      "ts": 1792082826.813552,
+      "id": 19025
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82586.3,
+        "budget_left_frac": 0.2704,
+        "budget_left_s": 3894.096,
+        "kwh_today": 0.058883508,
+        "since_last_input_s": 34922.7,
+        "uptime_s": 874.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.18,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 894.8,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.2705,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 12,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 21866.9,
+        "since_explore_s": 43.7,
+        "since_input_s": 34917.9,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7092,
+      "ts": 1792082836.7012737,
+      "id": 19028
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82593.4,
+        "budget_left_frac": 0.2704,
+        "budget_left_s": 3893.299,
+        "kwh_today": 0.058885005,
+        "since_last_input_s": 34929.8,
+        "uptime_s": 881.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.198,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 798.7,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.2704,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 12,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 21874.1,
+        "since_explore_s": 50.9,
+        "since_input_s": 34927.9,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7093,
+      "ts": 1792082843.8187559,
+      "id": 19032
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82599.7,
+        "budget_left_frac": 0.2704,
+        "budget_left_s": 3893.299,
+        "kwh_today": 0.058885005,
+        "since_last_input_s": 34936.1,
+        "uptime_s": 887.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.215,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.2704,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 21881.2,
+        "since_explore_s": 58.0,
+        "since_input_s": 34934.9,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7094,
+      "ts": 1792082850.1188357,
+      "id": 19033
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82605.7,
+        "budget_left_frac": 0.2704,
+        "budget_left_s": 3893.299,
+        "kwh_today": 0.058885005,
+        "since_last_input_s": 34942.1,
+        "uptime_s": 893.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.23,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.2704,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 21887.2,
+        "since_explore_s": 64.0,
+        "since_input_s": 34941.3,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7095,
+      "ts": 1792082856.127147,
+      "id": 19034
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82615.8,
+        "budget_left_frac": 0.2703,
+        "budget_left_s": 3892.16,
+        "kwh_today": 0.058887479,
+        "since_last_input_s": 34952.2,
+        "uptime_s": 903.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.252,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 1069.7,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.2704,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 21896.2,
+        "since_explore_s": 73.0,
+        "since_input_s": 34947.2,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7096,
+      "ts": 1792082866.1795387,
+      "id": 19037
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 82623.1,
+        "budget_left_frac": 0.2702,
+        "budget_left_s": 3891.457,
+        "kwh_today": 0.058888716,
+        "since_last_input_s": 34959.5,
+        "uptime_s": 910.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.27,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 1029.1,
+      "result": {
+        "a": "re + bio .  [memory:94 self/captured: she will re spect the book .]",
+        "kind": "rehearse",
+        "memory": 367,
+        "q": "re"
+      },
+      "state": {
+        "budget_left_frac": 0.2703,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 21903.5,
+        "since_explore_s": 80.3,
+        "since_input_s": 34957.5,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7097,
+      "ts": 1792082873.4407296,
+      "id": 19040
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 82633.9,
+        "budget_left_frac": 0.2702,
+        "budget_left_s": 3891.191,
+        "kwh_today": 0.058889237,
+        "since_last_input_s": 34970.3,
+        "uptime_s": 921.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.1,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 772.7,
+      "result": {
+        "a": "the word supervis means see above .",
+        "kind": "rehearse",
+        "memory": 426,
+        "q": "the"
+      },
+      "state": {
+        "budget_left_frac": 0.2702,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 21914.6,
+        "since_explore_s": 11.1,
+        "since_input_s": 34964.6,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7098,
+      "ts": 1792082884.2517352,
+      "id": 19043
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 82641.2,
+        "budget_left_frac": 0.2702,
+        "budget_left_s": 3891.08,
+        "kwh_today": 0.058889497,
+        "since_last_input_s": 34977.6,
+        "uptime_s": 929.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.091,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 780.6,
+      "result": {
+        "kind": "generate",
+        "memory": 2902,
+        "prompt": "inter + tract =",
+        "said": "inter tract ."
+      },
+      "state": {
+        "budget_left_frac": 0.2702,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 21922.0,
+        "since_explore_s": 7.4,
+        "since_input_s": 34975.3,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7099,
+      "ts": 1792082891.6278896,
+      "id": 19045
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82651.0,
+        "budget_left_frac": 0.2702,
+        "budget_left_s": 3890.19,
+        "kwh_today": 0.058891255,
+        "since_last_input_s": 34987.4,
+        "uptime_s": 938.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.097,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 854.4,
+      "result": {
+        "misses": [
+          "q : what does the suffix able mean ? a :"
+        ],
+        "n": 6,
+        "ok": 5
+      },
+      "state": {
+        "budget_left_frac": 0.2702,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 11,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 21931.7,
+        "since_explore_s": 9.7,
+        "since_input_s": 34982.7,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7100,
+      "ts": 1792082901.4142342,
+      "id": 19048
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82657.4,
+        "budget_left_frac": 0.2702,
+        "budget_left_s": 3890.19,
+        "kwh_today": 0.058891255,
+        "since_last_input_s": 34993.8,
+        "uptime_s": 945.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.115,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.2702,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 11,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 21938.9,
+        "since_explore_s": 16.9,
+        "since_input_s": 34992.6,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7101,
+      "ts": 1792082907.7442448,
+      "id": 19049
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82666.3,
+        "budget_left_frac": 0.2702,
+        "budget_left_s": 3890.19,
+        "kwh_today": 0.058891255,
+        "since_last_input_s": 35002.7,
+        "uptime_s": 954.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.136,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.2702,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 11,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 21947.8,
+        "since_explore_s": 25.8,
+        "since_input_s": 34998.8,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7102,
+      "ts": 1792082916.640717,
+      "id": 19050
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82672.6,
+        "budget_left_frac": 0.2702,
+        "budget_left_s": 3890.19,
+        "kwh_today": 0.058891255,
+        "since_last_input_s": 35009.0,
+        "uptime_s": 960.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.152,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.2702,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 11,
+        "pending_facts": 1,
+        "rest_streak": 2,
+        "since_consolidation_s": 21954.1,
+        "since_explore_s": 32.1,
+        "since_input_s": 35007.8,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7103,
+      "ts": 1792082922.9395566,
+      "id": 19051
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82682.3,
+        "budget_left_frac": 0.2701,
+        "budget_left_s": 3889.301,
+        "kwh_today": 0.058893078,
+        "since_last_input_s": 35018.7,
+        "uptime_s": 970.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.174,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 845.7,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.2702,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 11,
+        "pending_facts": 1,
+        "rest_streak": 3,
+        "since_consolidation_s": 21962.9,
+        "since_explore_s": 41.0,
+        "since_input_s": 35014.0,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7104,
+      "ts": 1792082932.6495934,
+      "id": 19054
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82688.6,
+        "budget_left_frac": 0.2701,
+        "budget_left_s": 3889.301,
+        "kwh_today": 0.058893078,
+        "since_last_input_s": 35025.0,
+        "uptime_s": 976.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.191,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.2701,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 11,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 21970.1,
+        "since_explore_s": 48.1,
+        "since_input_s": 35023.9,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7105,
+      "ts": 1792082938.9428258,
+      "id": 19055
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82698.4,
+        "budget_left_frac": 0.27,
+        "budget_left_s": 3888.43,
+        "kwh_today": 0.058894836,
+        "since_last_input_s": 35034.8,
+        "uptime_s": 986.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.213,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 833.5,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.2701,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 11,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 21979.0,
+        "since_explore_s": 57.1,
+        "since_input_s": 35030.0,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7106,
+      "ts": 1792082948.7413054,
+      "id": 19059
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82705.7,
+        "budget_left_frac": 0.27,
+        "budget_left_s": 3887.54,
+        "kwh_today": 0.058896594,
+        "since_last_input_s": 35042.1,
+        "uptime_s": 993.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.23,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 1006.8,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.27,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 21986.2,
+        "since_explore_s": 64.2,
+        "since_input_s": 35039.9,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7107,
+      "ts": 1792082956.0875878,
+      "id": 19062
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82714.7,
+        "budget_left_frac": 0.27,
+        "budget_left_s": 3887.54,
+        "kwh_today": 0.058896594,
+        "since_last_input_s": 35051.1,
+        "uptime_s": 1002.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.255,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.27,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 21996.2,
+        "since_explore_s": 74.3,
+        "since_input_s": 35047.2,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7108,
+      "ts": 1792082965.1267478,
+      "id": 19063
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82720.9,
+        "budget_left_frac": 0.27,
+        "budget_left_s": 3887.54,
+        "kwh_today": 0.058896594,
+        "since_last_input_s": 35057.3,
+        "uptime_s": 1008.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.27,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.27,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 22002.4,
+        "since_explore_s": 80.4,
+        "since_input_s": 35056.3,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7109,
+      "ts": 1792082971.26113,
+      "id": 19064
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 82730.8,
+        "budget_left_frac": 0.2699,
+        "budget_left_s": 3887.264,
+        "kwh_today": 0.058897115,
+        "since_last_input_s": 35067.2,
+        "uptime_s": 1018.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.292,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 817.2,
+      "result": {
+        "a": "the word supervis means see above .",
+        "kind": "rehearse",
+        "memory": 1662,
+        "q": "the"
+      },
+      "state": {
+        "budget_left_frac": 0.27,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 2,
+        "since_consolidation_s": 22011.5,
+        "since_explore_s": 89.6,
+        "since_input_s": 35062.4,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7110,
+      "ts": 1792082981.2218304,
+      "id": 19067
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 82738.2,
+        "budget_left_frac": 0.2699,
+        "budget_left_s": 3886.652,
+        "kwh_today": 0.058898222,
+        "since_last_input_s": 35074.6,
+        "uptime_s": 1025.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.091,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 854.9,
+      "result": {
+        "a": "the word bioless means without life .  [memory:110 self/captured: the root graph means write . q : what does the root graph mean ? a : the root gr]",
+        "kind": "rehearse",
+        "memory": 1440,
+        "q": "q"
+      },
+      "state": {
+        "budget_left_frac": 0.2699,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 22018.8,
+        "since_explore_s": 7.3,
+        "since_input_s": 35072.4,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7111,
+      "ts": 1792082988.5473075,
+      "id": 19070
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82745.4,
+        "budget_left_frac": 0.2698,
+        "budget_left_s": 3885.618,
+        "kwh_today": 0.058900501,
+        "since_last_input_s": 35081.8,
+        "uptime_s": 1033.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.091,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 836.8,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.2699,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 22026.1,
+        "since_explore_s": 7.3,
+        "since_input_s": 35079.6,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7112,
+      "ts": 1792082995.789264,
+      "id": 19073
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82751.3,
+        "budget_left_frac": 0.2698,
+        "budget_left_s": 3885.618,
+        "kwh_today": 0.058900501,
+        "since_last_input_s": 35087.7,
+        "uptime_s": 1039.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.108,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.2698,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 22032.8,
+        "since_explore_s": 14.0,
+        "since_input_s": 35087.0,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7113,
+      "ts": 1792083001.7183168,
+      "id": 19074
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82761.6,
+        "budget_left_frac": 0.2698,
+        "budget_left_s": 3884.41,
+        "kwh_today": 0.058903105,
+        "since_last_input_s": 35098.0,
+        "uptime_s": 1049.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.13,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 1060.7,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.2698,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 22042.0,
+        "since_explore_s": 23.2,
+        "since_input_s": 35092.8,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7114,
+      "ts": 1792083011.965337,
+      "id": 19077
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82767.5,
+        "budget_left_frac": 0.2698,
+        "budget_left_s": 3884.41,
+        "kwh_today": 0.058903105,
+        "since_last_input_s": 35103.9,
+        "uptime_s": 1055.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.147,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.2698,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 22049.0,
+        "since_explore_s": 30.2,
+        "since_input_s": 35103.2,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7115,
+      "ts": 1792083017.9058468,
+      "id": 19078
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82777.4,
+        "budget_left_frac": 0.2697,
+        "budget_left_s": 3883.634,
+        "kwh_today": 0.058904537,
+        "since_last_input_s": 35113.8,
+        "uptime_s": 1065.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.169,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 793.6,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.2698,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 22058.1,
+        "since_explore_s": 39.3,
+        "since_input_s": 35109.0,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7116,
+      "ts": 1792083027.8101285,
+      "id": 19082
+    }
+  ],
+  "last_events": [
+    {
+      "items": [
+        {
+          "expected": "mit ive means tending to send .",
+          "focus": "suffix:ive",
+          "got": "mit ive means tending to send .",
+          "ok": true,
+          "parts": [
+            "root:mit",
+            "suffix:ive"
+          ],
+          "q": "q : what does mit ive mean ? a :"
+        },
+        {
+          "expected": "tract able means can be pull .",
+          "focus": "suffix:able",
+          "got": "tract able means can be pull .",
+          "ok": true,
+          "parts": [
+            "root:tract",
+            "suffix:able"
+          ],
+          "q": "q : what does tract able mean ? a :"
+        },
+        {
+          "expected": "rupt ful means full of break .",
+          "focus": "suffix:ful",
+          "got": "rupt ful means full of break .",
+          "ok": true,
+          "parts": [
+            "root:rupt",
+            "suffix:ful"
+          ],
+          "q": "q : what does rupt ful mean ? a :"
+        },
+        {
+          "expected": "inter aud means hear between .",
+          "focus": "prefix:inter",
+          "got": "inter aud means hear between .",
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:aud"
+          ],
+          "q": "q : what does inter aud mean ? a :"
+        },
+        {
+          "expected": "ex tract means pull out .",
+          "focus": null,
+          "got": "ex tract means pull out .",
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:tract"
+          ],
+          "q": "q : what does ex tract mean ? a :"
+        },
+        {
+          "expected": "un graph means write not .",
+          "focus": null,
+          "got": "un graph means write not .",
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:graph"
+          ],
+          "q": "q : what does un graph mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792082932.5108318,
+      "id": 19053
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82682.3,
+        "budget_left_frac": 0.2701,
+        "budget_left_s": 3889.301,
+        "kwh_today": 0.058893078,
+        "since_last_input_s": 35018.7,
+        "uptime_s": 970.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.174,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 845.7,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.2702,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 11,
+        "pending_facts": 1,
+        "rest_streak": 3,
+        "since_consolidation_s": 21962.9,
+        "since_explore_s": 41.0,
+        "since_input_s": 35014.0,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7104,
+      "ts": 1792082932.6495934,
+      "id": 19054
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82688.6,
+        "budget_left_frac": 0.2701,
+        "budget_left_s": 3889.301,
+        "kwh_today": 0.058893078,
+        "since_last_input_s": 35025.0,
+        "uptime_s": 976.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.191,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.2701,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 11,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 21970.1,
+        "since_explore_s": 48.1,
+        "since_input_s": 35023.9,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7105,
+      "ts": 1792082938.9428258,
+      "id": 19055
+    },
+    {
+      "cpu_s": 0.4219,
+      "gpu_s": 0.4488,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 1.758e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792082948.4896514,
+      "wall_s": 0.4488,
+      "what": "practice",
+      "id": 19056
+    },
+    {
+      "items": [
+        {
+          "expected": "un ject means throw not .",
+          "focus": "prefix:un",
+          "got": "un ject means throw not .",
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:ject"
+          ],
+          "q": "q : what does un ject mean ? a :"
+        },
+        {
+          "expected": "pre geo means earth before .",
+          "focus": "root:geo",
+          "got": "pre geo means earth before .",
+          "ok": true,
+          "parts": [
+            "prefix:pre",
+            "root:geo"
+          ],
+          "q": "q : what does pre geo mean ? a :"
+        },
+        {
+          "expected": "log less means without speech .",
+          "focus": "suffix:less",
+          "got": "log less means without speech .",
+          "ok": true,
+          "parts": [
+            "root:log",
+            "suffix:less"
+          ],
+          "q": "q : what does log less mean ? a :"
+        },
+        {
+          "expected": "pos ness means the state of place .",
+          "focus": "root:pos",
+          "got": "pos ness means the state of place .",
+          "ok": true,
+          "parts": [
+            "root:pos",
+            "suffix:ness"
+          ],
+          "q": "q : what does pos ness mean ? a :"
+        },
+        {
+          "expected": "un rupt means break not .",
+          "focus": null,
+          "got": "un rupt means break not .",
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:rupt"
+          ],
+          "q": "q : what does un rupt mean ? a :"
+        },
+        {
+          "expected": "inter luc means light between .",
+          "focus": null,
+          "got": "inter luc means light between .",
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:luc"
+          ],
+          "q": "q : what does inter luc mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792082948.5036964,
+      "id": 19057
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "prefix:un",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792082948.7292767,
+      "id": 19058
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82698.4,
+        "budget_left_frac": 0.27,
+        "budget_left_s": 3888.43,
+        "kwh_today": 0.058894836,
+        "since_last_input_s": 35034.8,
+        "uptime_s": 986.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.213,
+        "practice": 0.312,
+        "rest": 0.559,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 833.5,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.2701,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 11,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 21979.0,
+        "since_explore_s": 57.1,
+        "since_input_s": 35030.0,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7106,
+      "ts": 1792082948.7413054,
+      "id": 19059
+    },
+    {
+      "cpu_s": 0.4219,
+      "gpu_s": 0.4682,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 1.758e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792082955.7776904,
+      "wall_s": 0.4682,
+      "what": "practice",
+      "id": 19060
+    },
+    {
+      "items": [
+        {
+          "expected": "inter graph means write between .",
+          "focus": "prefix:inter",
+          "got": "inter graph means write between .",
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:graph"
+          ],
+          "q": "q : what does inter graph mean ? a :"
+        },
+        {
+          "expected": "luc able means can be light .",
+          "focus": "suffix:able",
+          "got": "luc able means can be light .",
+          "ok": true,
+          "parts": [
+            "root:luc",
+            "suffix:able"
+          ],
+          "q": "q : what does luc able mean ? a :"
+        },
+        {
+          "expected": "geo able means can be earth .",
+          "focus": "root:geo",
+          "got": "geo able means can be earth .",
+          "ok": true,
+          "parts": [
+            "root:geo",
+            "suffix:able"
+          ],
+          "q": "q : what does geo able mean ? a :"
+        },
+        {
+          "expected": "trans ten means hold across .",
+          "focus": "prefix:trans",
+          "got": "trans ten means hold across .",
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:ten"
+          ],
+          "q": "q : what does trans ten mean ? a :"
+        },
+        {
+          "expected": "luc ed means in the past light .",
+          "focus": null,
+          "got": "luc ed means in the past light .",
+          "ok": true,
+          "parts": [
+            "root:luc",
+            "suffix:ed"
+          ],
+          "q": "q : what does luc ed mean ? a :"
+        },
+        {
+          "expected": "spect ness means the state of look .",
+          "focus": null,
+          "got": "spect ness means the state of look .",
+          "ok": true,
+          "parts": [
+            "root:spect",
+            "suffix:ness"
+          ],
+          "q": "q : what does spect ness mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792082955.824885,
+      "id": 19061
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82705.7,
+        "budget_left_frac": 0.27,
+        "budget_left_s": 3887.54,
+        "kwh_today": 0.058896594,
+        "since_last_input_s": 35042.1,
+        "uptime_s": 993.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.23,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 1006.8,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.27,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 21986.2,
+        "since_explore_s": 64.2,
+        "since_input_s": 35039.9,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7107,
+      "ts": 1792082956.0875878,
+      "id": 19062
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82714.7,
+        "budget_left_frac": 0.27,
+        "budget_left_s": 3887.54,
+        "kwh_today": 0.058896594,
+        "since_last_input_s": 35051.1,
+        "uptime_s": 1002.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.255,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.27,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 21996.2,
+        "since_explore_s": 74.3,
+        "since_input_s": 35047.2,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7108,
+      "ts": 1792082965.1267478,
+      "id": 19063
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82720.9,
+        "budget_left_frac": 0.27,
+        "budget_left_s": 3887.54,
+        "kwh_today": 0.058896594,
+        "since_last_input_s": 35057.3,
+        "uptime_s": 1008.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.27,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.27,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 22002.4,
+        "since_explore_s": 80.4,
+        "since_input_s": 35056.3,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7109,
+      "ts": 1792082971.26113,
+      "id": 19064
+    },
+    {
+      "kind": "consumption",
+      "ms": 133.5,
+      "recalls": 0,
+      "tokens_in": 5,
+      "tokens_out": 7,
+      "ts": 1792082981.2030742,
+      "turn": 4,
+      "id": 19065
+    },
+    {
+      "cpu_s": 0.125,
+      "gpu_s": 0.1508,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 5.21e-07,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792082981.2198253,
+      "wall_s": 0.1508,
+      "what": "explore_rehearse",
+      "id": 19066
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 82730.8,
+        "budget_left_frac": 0.2699,
+        "budget_left_s": 3887.264,
+        "kwh_today": 0.058897115,
+        "since_last_input_s": 35067.2,
+        "uptime_s": 1018.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.292,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 817.2,
+      "result": {
+        "a": "the word supervis means see above .",
+        "kind": "rehearse",
+        "memory": 1662,
+        "q": "the"
+      },
+      "state": {
+        "budget_left_frac": 0.27,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 2,
+        "since_consolidation_s": 22011.5,
+        "since_explore_s": 89.6,
+        "since_input_s": 35062.4,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7110,
+      "ts": 1792082981.2218304,
+      "id": 19067
+    },
+    {
+      "kind": "consumption",
+      "ms": 344.2,
+      "recalls": 39,
+      "tokens_in": 5,
+      "tokens_out": 29,
+      "ts": 1792082988.5428026,
+      "turn": 5,
+      "id": 19068
+    },
+    {
+      "cpu_s": 0.2656,
+      "gpu_s": 0.3468,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 1.107e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792082988.544797,
+      "wall_s": 0.3468,
+      "what": "explore_rehearse",
+      "id": 19069
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 82738.2,
+        "budget_left_frac": 0.2699,
+        "budget_left_s": 3886.652,
+        "kwh_today": 0.058898222,
+        "since_last_input_s": 35074.6,
+        "uptime_s": 1025.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.091,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 854.9,
+      "result": {
+        "a": "the word bioless means without life .  [memory:110 self/captured: the root graph means write . q : what does the root graph mean ? a : the root gr]",
+        "kind": "rehearse",
+        "memory": 1440,
+        "q": "q"
+      },
+      "state": {
+        "budget_left_frac": 0.2699,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 22018.8,
+        "since_explore_s": 7.3,
+        "since_input_s": 35072.4,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7111,
+      "ts": 1792082988.5473075,
+      "id": 19070
+    },
+    {
+      "cpu_s": 0.5469,
+      "gpu_s": 0.4868,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 2.279e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792082995.5607367,
+      "wall_s": 0.4868,
+      "what": "practice",
+      "id": 19071
+    },
+    {
+      "items": [
+        {
+          "expected": "fer ive means tending to bring .",
+          "focus": "suffix:ive",
+          "got": "fer ive means tending to bring .",
+          "ok": true,
+          "parts": [
+            "root:fer",
+            "suffix:ive"
+          ],
+          "q": "q : what does fer ive mean ? a :"
+        },
+        {
+          "expected": "vis ness means the state of see .",
+          "focus": "suffix:ness",
+          "got": "vis ness means the state of see .",
+          "ok": true,
+          "parts": [
+            "root:vis",
+            "suffix:ness"
+          ],
+          "q": "q : what does vis ness mean ? a :"
+        },
+        {
+          "expected": "mit ness means the state of send .",
+          "focus": "suffix:ness",
+          "got": "mit ness means the state of send .",
+          "ok": true,
+          "parts": [
+            "root:mit",
+            "suffix:ness"
+          ],
+          "q": "q : what does mit ness mean ? a :"
+        },
+        {
+          "expected": "ject able means can be throw .",
+          "focus": "suffix:able",
+          "got": "ject able means can be throw .",
+          "ok": true,
+          "parts": [
+            "root:ject",
+            "suffix:able"
+          ],
+          "q": "q : what does ject able mean ? a :"
+        },
+        {
+          "expected": "sub geo means earth under .",
+          "focus": null,
+          "got": "sub geo means earth under .",
+          "ok": true,
+          "parts": [
+            "prefix:sub",
+            "root:geo"
+          ],
+          "q": "q : what does sub geo mean ? a :"
+        },
+        {
+          "expected": "vis ful means full of see .",
+          "focus": null,
+          "got": "vis ful means full of see .",
+          "ok": true,
+          "parts": [
+            "root:vis",
+            "suffix:ful"
+          ],
+          "q": "q : what does vis ful mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792082995.561737,
+      "id": 19072
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82745.4,
+        "budget_left_frac": 0.2698,
+        "budget_left_s": 3885.618,
+        "kwh_today": 0.058900501,
+        "since_last_input_s": 35081.8,
+        "uptime_s": 1033.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.091,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 836.8,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.2699,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 22026.1,
+        "since_explore_s": 7.3,
+        "since_input_s": 35079.6,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7112,
+      "ts": 1792082995.789264,
+      "id": 19073
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82751.3,
+        "budget_left_frac": 0.2698,
+        "budget_left_s": 3885.618,
+        "kwh_today": 0.058900501,
+        "since_last_input_s": 35087.7,
+        "uptime_s": 1039.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.108,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.2698,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 22032.8,
+        "since_explore_s": 14.0,
+        "since_input_s": 35087.0,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7113,
+      "ts": 1792083001.7183168,
+      "id": 19074
+    },
+    {
+      "cpu_s": 0.625,
+      "gpu_s": 0.5833,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 2.604e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792083011.7386906,
+      "wall_s": 0.5833,
+      "what": "practice",
+      "id": 19075
+    },
+    {
+      "items": [
+        {
+          "expected": "pos ive means tending to place .",
+          "focus": "suffix:ive",
+          "got": "pos ive means tending to place .",
+          "ok": true,
+          "parts": [
+            "root:pos",
+            "suffix:ive"
+          ],
+          "q": "q : what does pos ive mean ? a :"
+        },
+        {
+          "expected": "pos ive means tending to place .",
+          "focus": "suffix:ive",
+          "got": "pos ive means tending to place .",
+          "ok": true,
+          "parts": [
+            "root:pos",
+            "suffix:ive"
+          ],
+          "q": "q : what does pos ive mean ? a :"
+        },
+        {
+          "expected": "trans scrib means write across .",
+          "focus": "prefix:trans",
+          "got": "trans scrib means write across .",
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:scrib"
+          ],
+          "q": "q : what does trans scrib mean ? a :"
+        },
+        {
+          "expected": "dict able means can be say .",
+          "focus": "suffix:able",
+          "got": "dict able means can be say .",
+          "ok": true,
+          "parts": [
+            "root:dict",
+            "suffix:able"
+          ],
+          "q": "q : what does dict able mean ? a :"
+        },
+        {
+          "expected": "struct able means can be build .",
+          "focus": null,
+          "got": "struct able means can be build .",
+          "ok": true,
+          "parts": [
+            "root:struct",
+            "suffix:able"
+          ],
+          "q": "q : what does struct able mean ? a :"
+        },
+        {
+          "expected": "trans port means carry across .",
+          "focus": null,
+          "got": "trans port means carry across .",
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:port"
+          ],
+          "q": "q : what does trans port mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792083011.7396955,
+      "id": 19076
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82761.6,
+        "budget_left_frac": 0.2698,
+        "budget_left_s": 3884.41,
+        "kwh_today": 0.058903105,
+        "since_last_input_s": 35098.0,
+        "uptime_s": 1049.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.13,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 1060.7,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.2698,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 22042.0,
+        "since_explore_s": 23.2,
+        "since_input_s": 35092.8,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7114,
+      "ts": 1792083011.965337,
+      "id": 19077
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 82767.5,
+        "budget_left_frac": 0.2698,
+        "budget_left_s": 3884.41,
+        "kwh_today": 0.058903105,
+        "since_last_input_s": 35103.9,
+        "uptime_s": 1055.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.147,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.2698,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 22049.0,
+        "since_explore_s": 30.2,
+        "since_input_s": 35103.2,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7115,
+      "ts": 1792083017.9058468,
+      "id": 19078
+    },
+    {
+      "action": "owner_stop",
+      "by": "Claude, 12:52 PM, under Jaron's 'pause it if memory requires; log it'",
+      "kind": "owner_action",
+      "ts": "2026-10-15T12:50:27",
+      "via": "tools/owner_relay.py",
+      "why": "news render (UnrealEditor) still on the GPU at 12:30; scheduled parole's 2 h wait ran out and started the heartbeat beside it (6.2 GB used, ticks ~36 s). Re-armed to start when Unreal exits.",
+      "id": 19079
+    },
+    {
+      "cpu_s": 0.3438,
+      "gpu_s": 0.4324,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 1.432e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792083027.6715448,
+      "wall_s": 0.4324,
+      "what": "practice",
+      "id": 19080
+    },
+    {
+      "items": [
+        {
+          "expected": "pos tion means the act of place .",
+          "focus": "root:pos",
+          "got": "pos tion means the act of place .",
+          "ok": true,
+          "parts": [
+            "root:pos",
+            "suffix:tion"
+          ],
+          "q": "q : what does pos tion mean ? a :"
+        },
+        {
+          "expected": "mis geo means earth wrong .",
+          "focus": "root:geo",
+          "got": "mis geo means earth wrong .",
+          "ok": true,
+          "parts": [
+            "prefix:mis",
+            "root:geo"
+          ],
+          "q": "q : what does mis geo mean ? a :"
+        },
+        {
+          "expected": "luc ful means full of light .",
+          "focus": "suffix:ful",
+          "got": "luc ful means full of light .",
+          "ok": true,
+          "parts": [
+            "root:luc",
+            "suffix:ful"
+          ],
+          "q": "q : what does luc ful mean ? a :"
+        },
+        {
+          "expected": "luc able means can be light .",
+          "focus": "suffix:able",
+          "got": "luc able means can be light .",
+          "ok": true,
+          "parts": [
+            "root:luc",
+            "suffix:able"
+          ],
+          "q": "q : what does luc able mean ? a :"
+        },
+        {
+          "expected": "the root graph means write .",
+          "focus": null,
+          "got": "the root graph means write .",
+          "ok": true,
+          "parts": [
+            "root:graph"
+          ],
+          "q": "q : what does the root graph mean ? a :"
+        },
+        {
+          "expected": "sub dict means say under .",
+          "focus": null,
+          "got": "sub dict means say under .",
+          "ok": true,
+          "parts": [
+            "prefix:sub",
+            "root:dict"
+          ],
+          "q": "q : what does sub dict mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792083027.6759388,
+      "id": 19081
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 82777.4,
+        "budget_left_frac": 0.2697,
+        "budget_left_s": 3883.634,
+        "kwh_today": 0.058904537,
+        "since_last_input_s": 35113.8,
+        "uptime_s": 1065.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.169,
+        "practice": 0.312,
+        "rest": 0.56,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 793.6,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.2698,
+        "generation": 278,
+        "memories": 2902,
+        "open_goals": 10,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 22058.1,
+        "since_explore_s": 39.3,
+        "since_input_s": 35109.0,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 7116,
+      "ts": 1792083027.8101285,
+      "id": 19082
+    }
+  ],
+  "memories": 2902,
+  "vocab_size": 17661,
+  "generation": 278
+}

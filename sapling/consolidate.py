@@ -102,6 +102,43 @@ def _corpus3(seed: int, tok=None):
     return _CORPUS3[seed]
 
 
+# v3.2.1 (10/15, Claude as teacher): every consolidation also rehearses the v3.2 reading. Without it, 200 steps on
+# school sentences alone wiped the 400M-token reading in ~9 generations (adult text loss 3.82 -> 8.12 by gen 250,
+# 9.60 by gen 286; stories 1.47 -> 4.13). Same idea as the reading stage's own rehearsal, the other way round.
+READ_REPLAY_SHARE = 0.75          # share of each consolidation batch that is reading windows
+READ_REPLAY_SPLIT = {"stories": 0.75, "adult": 0.25}
+
+
+def reading_replay(block: int, rng: random.Random):
+    """-> fn(n) giving (x, y) of n random windows from the v3.2 reading shards, or None if none exist."""
+    import json
+    import numpy as np
+    from .reading import SHARD_DIR
+    try:
+        idx = json.load(open(os.path.join(SHARD_DIR, "index.json"), encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    arrs = {}
+    for name in READ_REPLAY_SPLIT:
+        files = [s["file"] for s in idx.get("sources", {}).get(name, {}).get("shards", [])]
+        if files:
+            arrs[name] = [np.load(os.path.join(SHARD_DIR, f), mmap_mode="r") for f in files]
+    if not arrs:
+        return None
+
+    def fn(n: int):
+        xs = []
+        names = list(arrs)
+        weights = [READ_REPLAY_SPLIT[k] for k in names]
+        for _ in range(n):
+            a = rng.choice(arrs[rng.choices(names, weights)[0]])
+            off = rng.randrange(0, len(a) - block - 1)
+            xs.append(torch.from_numpy(np.asarray(a[off:off + block + 1]).astype("int64")))
+        t = torch.stack(xs)
+        return t[:, :-1], t[:, 1:]
+    return fn
+
+
 def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | None = None,
                 batch_size: int = 32, seed: int = 7337, verbose: bool = True,
                 rehearsal: int = 400) -> dict:
@@ -168,8 +205,13 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
         opt = torch.optim.AdamW(model.parameters(), lr=lr)
         losses = []
         ctx = autocast_ctx(str(brain.device))
+        replay = reading_replay(model.block_size, rng)
+        n_read = int(batch_size * READ_REPLAY_SHARE) if replay else 0
         for _ in range(steps):
-            x, y = get_batch(data, model.block_size, batch_size, rng)
+            x, y = get_batch(data, model.block_size, batch_size - n_read, rng)
+            if n_read:
+                rx, ry = replay(n_read)
+                x, y = torch.cat([x, rx.to(x.device)]), torch.cat([y, ry.to(y.device)])
             with ctx:
                 _, loss = model(x, y)
             opt.zero_grad(set_to_none=True)

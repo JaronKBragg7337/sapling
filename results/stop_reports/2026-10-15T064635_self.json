@@ -1,0 +1,2341 @@
+{
+  "kind": "stop",
+  "ts": "2026-10-15T06:46:35",
+  "who": "self",
+  "reason": "chose stop: {\"practice\": 0.15, \"consolidate\": 0.0, \"explore\": 0.225, \"rest\": 0.98, \"stop\": 0.32}",
+  "tick": 7083,
+  "clock": {
+    "now": 1792061195.1441164,
+    "now_iso": "2026-10-15 06:46:35",
+    "born_iso": "2026-10-14 13:50:50",
+    "age_s": 60944.8,
+    "uptime_s": 13320.1,
+    "since_last_input_s": 13281.2,
+    "budget_total_s": 3600.0,
+    "budget_spent_s": 10500.415,
+    "budget_left_s": -6900.415,
+    "budget_left_frac": 0.0,
+    "day_ends_in_s": 62005.0,
+    "kwh_today": 0.058873482,
+    "kwh_total": 0.098165564,
+    "gpu_watts_now": null
+  },
+  "drives": {
+    "drives": {
+      "practice": 0.15,
+      "consolidate": 0.0,
+      "explore": 0.225,
+      "rest": 0.98,
+      "stop": 0.32
+    },
+    "state": {
+      "budget_left_frac": 0.0,
+      "open_goals": 11,
+      "worst_misses": 1,
+      "pending_facts": 0,
+      "since_explore_s": 140.5,
+      "since_consolidation_s": 219.3,
+      "since_input_s": 13280.9,
+      "rest_streak": 21,
+      "memories": 2901,
+      "vocab_size": 17661,
+      "generation": 278
+    }
+  },
+  "open_goals": [
+    {
+      "part": "prefix:inter",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2215,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:un",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1365,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:fer",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2504,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:geo",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1345,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:phon",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2187,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:pos",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 993,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:able",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1581,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ful",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1605,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ive",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2512,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:less",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1581,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ness",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1268,
+      "target": "0 misses in the last 10 tries"
+    }
+  ],
+  "last_ticks": [
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60752.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6899.388,
+        "kwh_today": 0.058871464,
+        "since_last_input_s": 13088.9,
+        "uptime_s": 13127.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.189,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 27.1,
+        "since_explore_s": 96.3,
+        "since_input_s": 13088.7,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7053,
+      "ts": 1792061002.9261587,
+      "id": 18972
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60760.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6899.388,
+        "kwh_today": 0.058871464,
+        "since_last_input_s": 13097.2,
+        "uptime_s": 13136.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.202,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 4,
+        "since_consolidation_s": 35.3,
+        "since_explore_s": 104.6,
+        "since_input_s": 13094.0,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7054,
+      "ts": 1792061011.1839643,
+      "id": 18973
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60766.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6899.388,
+        "kwh_today": 0.058871464,
+        "since_last_input_s": 13102.5,
+        "uptime_s": 13141.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.21,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 5,
+        "since_consolidation_s": 40.6,
+        "since_explore_s": 109.9,
+        "since_input_s": 13102.3,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7055,
+      "ts": 1792061016.4748526,
+      "id": 18974
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60771.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6899.388,
+        "kwh_today": 0.058871464,
+        "since_last_input_s": 13107.8,
+        "uptime_s": 13146.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.218,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 6,
+        "since_consolidation_s": 45.9,
+        "since_explore_s": 115.2,
+        "since_input_s": 13107.6,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7056,
+      "ts": 1792061021.7626345,
+      "id": 18975
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60779.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6899.388,
+        "kwh_today": 0.058871464,
+        "since_last_input_s": 13116.0,
+        "uptime_s": 13155.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 7,
+        "since_consolidation_s": 54.2,
+        "since_explore_s": 123.4,
+        "since_input_s": 13112.8,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7057,
+      "ts": 1792061030.0233011,
+      "id": 18976
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60785.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6899.388,
+        "kwh_today": 0.058871464,
+        "since_last_input_s": 13121.4,
+        "uptime_s": 13160.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 8,
+        "since_consolidation_s": 59.5,
+        "since_explore_s": 128.8,
+        "since_input_s": 13121.1,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7058,
+      "ts": 1792061035.3679163,
+      "id": 18977
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 60793.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.101,
+        "kwh_today": 0.058872896,
+        "since_last_input_s": 13130.1,
+        "uptime_s": 13169.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 3504.6,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 9,
+        "since_consolidation_s": 64.8,
+        "since_explore_s": 134.0,
+        "since_input_s": 13126.4,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7059,
+      "ts": 1792061044.1263156,
+      "id": 18980
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60799.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.101,
+        "kwh_today": 0.058872896,
+        "since_last_input_s": 13135.4,
+        "uptime_s": 13174.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 73.5,
+        "since_explore_s": 142.7,
+        "since_input_s": 13135.2,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7060,
+      "ts": 1792061049.342608,
+      "id": 18981
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 60804.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13141.0,
+        "uptime_s": 13180.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 327.1,
+      "result": {
+        "a": "co luc means light together .  [memory:397 self/captured: she will co struct the story .]",
+        "kind": "rehearse",
+        "memory": 1389,
+        "q": "co"
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 78.8,
+        "since_explore_s": 148.0,
+        "since_input_s": 13140.4,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7061,
+      "ts": 1792061054.972676,
+      "id": 18984
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60812.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13149.3,
+        "uptime_s": 13188.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.058,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 87.4,
+        "since_explore_s": 8.6,
+        "since_input_s": 13146.0,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7062,
+      "ts": 1792061063.257067,
+      "id": 18985
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60818.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13154.5,
+        "uptime_s": 13193.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.066,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 92.6,
+        "since_explore_s": 13.9,
+        "since_input_s": 13154.3,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7063,
+      "ts": 1792061068.5064723,
+      "id": 18986
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60826.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13162.8,
+        "uptime_s": 13201.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.078,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 100.9,
+        "since_explore_s": 22.2,
+        "since_input_s": 13159.6,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7064,
+      "ts": 1792061076.800687,
+      "id": 18987
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60831.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13168.1,
+        "uptime_s": 13207.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.086,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 106.2,
+        "since_explore_s": 27.4,
+        "since_input_s": 13167.9,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7065,
+      "ts": 1792061082.0640364,
+      "id": 18988
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60837.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13173.4,
+        "uptime_s": 13212.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.094,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 4,
+        "since_consolidation_s": 111.5,
+        "since_explore_s": 32.7,
+        "since_input_s": 13173.2,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7066,
+      "ts": 1792061087.3748903,
+      "id": 18989
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60845.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13181.7,
+        "uptime_s": 13220.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.106,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 5,
+        "since_consolidation_s": 119.8,
+        "since_explore_s": 41.0,
+        "since_input_s": 13178.4,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7067,
+      "ts": 1792061095.6379807,
+      "id": 18990
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60850.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13186.9,
+        "uptime_s": 13225.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.114,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 6,
+        "since_consolidation_s": 125.0,
+        "since_explore_s": 46.2,
+        "since_input_s": 13186.7,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7068,
+      "ts": 1792061100.8420749,
+      "id": 18991
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60858.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13195.1,
+        "uptime_s": 13234.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.127,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 7,
+        "since_consolidation_s": 133.2,
+        "since_explore_s": 54.4,
+        "since_input_s": 13191.9,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7069,
+      "ts": 1792061109.0650077,
+      "id": 18992
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60864.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13200.4,
+        "uptime_s": 13239.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.135,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 8,
+        "since_consolidation_s": 138.5,
+        "since_explore_s": 59.7,
+        "since_input_s": 13200.2,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7070,
+      "ts": 1792061114.3591883,
+      "id": 18993
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60869.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13208.7,
+        "uptime_s": 13247.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.143,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 9,
+        "since_consolidation_s": 143.8,
+        "since_explore_s": 65.0,
+        "since_input_s": 13205.4,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7071,
+      "ts": 1792061122.6625733,
+      "id": 18994
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60877.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13214.0,
+        "uptime_s": 13253.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.155,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 10,
+        "since_consolidation_s": 152.1,
+        "since_explore_s": 73.3,
+        "since_input_s": 13213.8,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7072,
+      "ts": 1792061127.960701,
+      "id": 18995
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60882.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13219.3,
+        "uptime_s": 13258.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.163,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 11,
+        "since_consolidation_s": 157.4,
+        "since_explore_s": 78.6,
+        "since_input_s": 13219.1,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7073,
+      "ts": 1792061133.2553418,
+      "id": 18996
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60891.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13227.7,
+        "uptime_s": 13266.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.176,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 12,
+        "since_consolidation_s": 165.8,
+        "since_explore_s": 87.0,
+        "since_input_s": 13224.4,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7074,
+      "ts": 1792061141.6647587,
+      "id": 18997
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60896.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13232.9,
+        "uptime_s": 13271.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.183,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 13,
+        "since_consolidation_s": 171.0,
+        "since_explore_s": 92.3,
+        "since_input_s": 13232.8,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7075,
+      "ts": 1792061146.9127152,
+      "id": 18998
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60904.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13241.1,
+        "uptime_s": 13280.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.196,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 14,
+        "since_consolidation_s": 179.2,
+        "since_explore_s": 100.5,
+        "since_input_s": 13238.0,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7076,
+      "ts": 1792061155.120549,
+      "id": 18999
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60910.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13246.4,
+        "uptime_s": 13285.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.204,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 15,
+        "since_consolidation_s": 184.5,
+        "since_explore_s": 105.8,
+        "since_input_s": 13246.2,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7077,
+      "ts": 1792061160.415207,
+      "id": 19000
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60915.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13251.8,
+        "uptime_s": 13290.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.212,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 16,
+        "since_consolidation_s": 189.9,
+        "since_explore_s": 111.1,
+        "since_input_s": 13251.5,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7078,
+      "ts": 1792061165.773536,
+      "id": 19001
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60923.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13260.0,
+        "uptime_s": 13299.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.224,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 17,
+        "since_consolidation_s": 198.2,
+        "since_explore_s": 119.4,
+        "since_input_s": 13256.8,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7079,
+      "ts": 1792061174.0273447,
+      "id": 19002
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60928.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13265.2,
+        "uptime_s": 13304.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 18,
+        "since_consolidation_s": 203.4,
+        "since_explore_s": 124.6,
+        "since_input_s": 13265.1,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7080,
+      "ts": 1792061179.2226205,
+      "id": 19003
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60934.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13270.5,
+        "uptime_s": 13309.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 19,
+        "since_consolidation_s": 208.6,
+        "since_explore_s": 129.8,
+        "since_input_s": 13270.3,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7081,
+      "ts": 1792061184.461622,
+      "id": 19004
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60939.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13275.8,
+        "uptime_s": 13314.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.3
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 20,
+        "since_consolidation_s": 214.0,
+        "since_explore_s": 135.2,
+        "since_input_s": 13275.6,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7082,
+      "ts": 1792061189.8269775,
+      "id": 19005
+    }
+  ],
+  "last_events": [
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60779.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6899.388,
+        "kwh_today": 0.058871464,
+        "since_last_input_s": 13116.0,
+        "uptime_s": 13155.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 7,
+        "since_consolidation_s": 54.2,
+        "since_explore_s": 123.4,
+        "since_input_s": 13112.8,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7057,
+      "ts": 1792061030.0233011,
+      "id": 18976
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60785.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6899.388,
+        "kwh_today": 0.058871464,
+        "since_last_input_s": 13121.4,
+        "uptime_s": 13160.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 8,
+        "since_consolidation_s": 59.5,
+        "since_explore_s": 128.8,
+        "since_input_s": 13121.1,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7058,
+      "ts": 1792061035.3679163,
+      "id": 18977
+    },
+    {
+      "cpu_s": 0.3438,
+      "gpu_s": 0.369,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 1.432e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792061044.0875134,
+      "wall_s": 0.369,
+      "what": "practice",
+      "id": 18978
+    },
+    {
+      "items": [
+        {
+          "expected": "port ful means full of carry .",
+          "focus": "suffix:ful",
+          "got": "port ful means full of carry .",
+          "ok": true,
+          "parts": [
+            "root:port",
+            "suffix:ful"
+          ],
+          "q": "q : what does port ful mean ? a :"
+        },
+        {
+          "expected": "struct ness means the state of build .",
+          "focus": "suffix:ness",
+          "got": "struct ness means the state of build .",
+          "ok": true,
+          "parts": [
+            "root:struct",
+            "suffix:ness"
+          ],
+          "q": "q : what does struct ness mean ? a :"
+        },
+        {
+          "expected": "un graph means write not .",
+          "focus": "prefix:un",
+          "got": "un graph means write not .",
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:graph"
+          ],
+          "q": "q : what does un graph mean ? a :"
+        },
+        {
+          "expected": "un struct means build not .",
+          "focus": "prefix:un",
+          "got": "un struct means build not .",
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:struct"
+          ],
+          "q": "q : what does un struct mean ? a :"
+        },
+        {
+          "expected": "un phon means sound not .",
+          "focus": null,
+          "got": "un phon means sound not .",
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:phon"
+          ],
+          "q": "q : what does un phon mean ? a :"
+        },
+        {
+          "expected": "sub phon means sound under .",
+          "focus": null,
+          "got": "sub phon means sound under .",
+          "ok": true,
+          "parts": [
+            "prefix:sub",
+            "root:phon"
+          ],
+          "q": "q : what does sub phon mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792061044.0905254,
+      "id": 18979
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 60793.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.101,
+        "kwh_today": 0.058872896,
+        "since_last_input_s": 13130.1,
+        "uptime_s": 13169.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 3504.6,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 9,
+        "since_consolidation_s": 64.8,
+        "since_explore_s": 134.0,
+        "since_input_s": 13126.4,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7059,
+      "ts": 1792061044.1263156,
+      "id": 18980
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60799.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.101,
+        "kwh_today": 0.058872896,
+        "since_last_input_s": 13135.4,
+        "uptime_s": 13174.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 73.5,
+        "since_explore_s": 142.7,
+        "since_input_s": 13135.2,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7060,
+      "ts": 1792061049.342608,
+      "id": 18981
+    },
+    {
+      "kind": "consumption",
+      "ms": 159.5,
+      "recalls": 23,
+      "tokens_in": 5,
+      "tokens_out": 15,
+      "ts": 1792061054.9581633,
+      "turn": 78,
+      "id": 18982
+    },
+    {
+      "cpu_s": 0.1406,
+      "gpu_s": 0.1732,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 5.86e-07,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792061054.9716845,
+      "wall_s": 0.1732,
+      "what": "explore_rehearse",
+      "id": 18983
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 60804.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13141.0,
+        "uptime_s": 13180.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 327.1,
+      "result": {
+        "a": "co luc means light together .  [memory:397 self/captured: she will co struct the story .]",
+        "kind": "rehearse",
+        "memory": 1389,
+        "q": "co"
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 78.8,
+        "since_explore_s": 148.0,
+        "since_input_s": 13140.4,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7061,
+      "ts": 1792061054.972676,
+      "id": 18984
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60812.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13149.3,
+        "uptime_s": 13188.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.058,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 87.4,
+        "since_explore_s": 8.6,
+        "since_input_s": 13146.0,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7062,
+      "ts": 1792061063.257067,
+      "id": 18985
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60818.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13154.5,
+        "uptime_s": 13193.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.066,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 92.6,
+        "since_explore_s": 13.9,
+        "since_input_s": 13154.3,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7063,
+      "ts": 1792061068.5064723,
+      "id": 18986
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60826.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13162.8,
+        "uptime_s": 13201.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.078,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 100.9,
+        "since_explore_s": 22.2,
+        "since_input_s": 13159.6,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7064,
+      "ts": 1792061076.800687,
+      "id": 18987
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60831.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13168.1,
+        "uptime_s": 13207.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.086,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 106.2,
+        "since_explore_s": 27.4,
+        "since_input_s": 13167.9,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7065,
+      "ts": 1792061082.0640364,
+      "id": 18988
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60837.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13173.4,
+        "uptime_s": 13212.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.094,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 4,
+        "since_consolidation_s": 111.5,
+        "since_explore_s": 32.7,
+        "since_input_s": 13173.2,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7066,
+      "ts": 1792061087.3748903,
+      "id": 18989
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60845.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13181.7,
+        "uptime_s": 13220.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.106,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 5,
+        "since_consolidation_s": 119.8,
+        "since_explore_s": 41.0,
+        "since_input_s": 13178.4,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7067,
+      "ts": 1792061095.6379807,
+      "id": 18990
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60850.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13186.9,
+        "uptime_s": 13225.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.114,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 6,
+        "since_consolidation_s": 125.0,
+        "since_explore_s": 46.2,
+        "since_input_s": 13186.7,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7068,
+      "ts": 1792061100.8420749,
+      "id": 18991
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60858.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13195.1,
+        "uptime_s": 13234.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.127,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 7,
+        "since_consolidation_s": 133.2,
+        "since_explore_s": 54.4,
+        "since_input_s": 13191.9,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7069,
+      "ts": 1792061109.0650077,
+      "id": 18992
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60864.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13200.4,
+        "uptime_s": 13239.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.135,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 8,
+        "since_consolidation_s": 138.5,
+        "since_explore_s": 59.7,
+        "since_input_s": 13200.2,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7070,
+      "ts": 1792061114.3591883,
+      "id": 18993
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60869.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13208.7,
+        "uptime_s": 13247.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.143,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 9,
+        "since_consolidation_s": 143.8,
+        "since_explore_s": 65.0,
+        "since_input_s": 13205.4,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7071,
+      "ts": 1792061122.6625733,
+      "id": 18994
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60877.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13214.0,
+        "uptime_s": 13253.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.155,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 10,
+        "since_consolidation_s": 152.1,
+        "since_explore_s": 73.3,
+        "since_input_s": 13213.8,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7072,
+      "ts": 1792061127.960701,
+      "id": 18995
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60882.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13219.3,
+        "uptime_s": 13258.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.163,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 11,
+        "since_consolidation_s": 157.4,
+        "since_explore_s": 78.6,
+        "since_input_s": 13219.1,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7073,
+      "ts": 1792061133.2553418,
+      "id": 18996
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60891.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13227.7,
+        "uptime_s": 13266.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.176,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 12,
+        "since_consolidation_s": 165.8,
+        "since_explore_s": 87.0,
+        "since_input_s": 13224.4,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7074,
+      "ts": 1792061141.6647587,
+      "id": 18997
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60896.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13232.9,
+        "uptime_s": 13271.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.183,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 13,
+        "since_consolidation_s": 171.0,
+        "since_explore_s": 92.3,
+        "since_input_s": 13232.8,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7075,
+      "ts": 1792061146.9127152,
+      "id": 18998
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60904.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13241.1,
+        "uptime_s": 13280.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.196,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 14,
+        "since_consolidation_s": 179.2,
+        "since_explore_s": 100.5,
+        "since_input_s": 13238.0,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7076,
+      "ts": 1792061155.120549,
+      "id": 18999
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60910.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13246.4,
+        "uptime_s": 13285.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.204,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 15,
+        "since_consolidation_s": 184.5,
+        "since_explore_s": 105.8,
+        "since_input_s": 13246.2,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7077,
+      "ts": 1792061160.415207,
+      "id": 19000
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60915.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13251.8,
+        "uptime_s": 13290.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.212,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 16,
+        "since_consolidation_s": 189.9,
+        "since_explore_s": 111.1,
+        "since_input_s": 13251.5,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7078,
+      "ts": 1792061165.773536,
+      "id": 19001
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60923.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13260.0,
+        "uptime_s": 13299.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.224,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 17,
+        "since_consolidation_s": 198.2,
+        "since_explore_s": 119.4,
+        "since_input_s": 13256.8,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7079,
+      "ts": 1792061174.0273447,
+      "id": 19002
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60928.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13265.2,
+        "uptime_s": 13304.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 18,
+        "since_consolidation_s": 203.4,
+        "since_explore_s": 124.6,
+        "since_input_s": 13265.1,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7080,
+      "ts": 1792061179.2226205,
+      "id": 19003
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60934.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13270.5,
+        "uptime_s": 13309.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 19,
+        "since_consolidation_s": 208.6,
+        "since_explore_s": 129.8,
+        "since_input_s": 13270.3,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7081,
+      "ts": 1792061184.461622,
+      "id": 19004
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 60939.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -6900.415,
+        "kwh_today": 0.058873482,
+        "since_last_input_s": 13275.8,
+        "uptime_s": 13314.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.3
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "generation": 278,
+        "memories": 2901,
+        "open_goals": 11,
+        "pending_facts": 0,
+        "rest_streak": 20,
+        "since_consolidation_s": 214.0,
+        "since_explore_s": 135.2,
+        "since_input_s": 13275.6,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 7082,
+      "ts": 1792061189.8269775,
+      "id": 19005
+    }
+  ],
+  "memories": 2901,
+  "vocab_size": 17661,
+  "generation": 278
+}

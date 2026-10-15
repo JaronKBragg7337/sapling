@@ -1,5 +1,14 @@
 # Changelog
 
+## v3.2.1 (2026-10-15 ~2 PM) - consolidations no longer erase the reading (Claude as teacher, 10/15)
+- **Finding:** every heartbeat consolidation since gen 241 trained 200 steps on school sentences only, and that wiped the
+  400M-token reading out of the weights: loss on fixed held-in adult-text windows 3.82 (gen 241) -> 8.12 (gen 250) ->
+  9.60 (gen 286); stories 1.47 -> 4.13. The exams (school-shaped) barely showed it; the loss windows did.
+- **Fix (`consolidate.py`):** 75% of every consolidation batch is now random windows from the reading shards
+  (stories 3 : adult 1), the rest is the old school/fact mix. Tested: 5 consolidations in a row hold adult 3.85 / stories 1.52.
+- Weights rolled forward: gen 287 = gen 241's weights (gens 242-286 kept in `results/checkpoints/` + the archive).
+  Heartbeat running again on the fixed code.
+
 
 ## 2026-10-15 ~1 PM - the news render now pauses the heartbeat (tools/gpu_yield.py)
 - The news render now pauses the heartbeat via `tools/gpu_yield.py` before Unreal starts and restarts it after (heartbeat and Unreal on one 8 GB card froze both).
