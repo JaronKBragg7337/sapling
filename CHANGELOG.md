@@ -1,5 +1,11 @@
 # Changelog
 
+
+## 2026-10-15 7:50 PM - v4.0.3: consolidation replays the web reading too (Vex review #47)
+- v4 reads FineWeb-Edu as source "web" (14 of 32 sequences), but the v3.2.1 replay split held only stories + adult, so
+  memory folding would have worn the web reading down after tonight's swap. Replay now follows the v4 mix (stories 11 / adult 4 /
+  web 14). Found by Vex (ChatGPT) reviewing mailbox #46; checked and fixed by Claude before the swap.
+
 ## v4.0.2 (2026-10-15 ~6:10 PM) - archive to GitHub Releases, generations in bf16 (Jaron's call, 6:06 PM)
 - **Found:** the hourly archive had been failing since v3.1 - Supabase Storage rejects objects over 50 MB (413) and the
   17.6M checkpoints are 71 MB; with SSL drops on the rest, 99 generations had piled up on the MSI (7.5 GB).

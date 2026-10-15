@@ -106,7 +106,10 @@ def _corpus3(seed: int, tok=None):
 # school sentences alone wiped the 400M-token reading in ~9 generations (adult text loss 3.82 -> 8.12 by gen 250,
 # 9.60 by gen 286; stories 1.47 -> 4.13). Same idea as the reading stage's own rehearsal, the other way round.
 READ_REPLAY_SHARE = 0.75          # share of each consolidation batch that is reading windows
-READ_REPLAY_SPLIT = {"stories": 0.75, "adult": 0.25}
+# v4.0.3 (10/15 7:50 PM, found by Vex review #47): v4 reads FineWeb-Edu as source "web" (14 of every 32 sequences); the
+# replay left it out, so folding would have worn the web reading down. Replay now follows the v4 reading mix (11/4/14).
+# A source with no shards (pre-v4 index) is skipped, so the v3 split still works.
+READ_REPLAY_SPLIT = {"stories": 11 / 29, "adult": 4 / 29, "web": 14 / 29}
 
 
 def reading_replay(block: int, rng: random.Random):
