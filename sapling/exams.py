@@ -58,6 +58,39 @@ def answer(model, tok, prompt: str, max_new: int = 24, temperature: float = 0.0,
     return tok.decode(out[0, ids.shape[1]:].tolist())
 
 
+@torch.no_grad()
+def induction_probe(model, tok, seed: int = 7337, n_seq: int = 16, lengths: tuple = (32, 96)) -> dict:
+    """E10 (INFO, v3.2): the standard induction-head test. A random token sequence is shown twice in one
+    prompt; score = how many tokens of the SECOND copy it predicts right (argmax), skipping the first
+    token of the copy (nothing to copy from yet). Random tokens from the whole vocabulary, so nothing it
+    learned helps except the circuit that says "I have seen this token before - what came after it?".
+    Chance is ~1/vocab. Reported per length (short / long span) and in total."""
+    rng = random.Random(seed + 10)
+    special = {"<pad>", "<bos>", "<eos>", "<unk>"}
+    pool = [i for i, t in enumerate(tok.itos) if t not in special]
+    bos = tok.stoi["<bos>"]
+    dev = next(model.parameters()).device
+    was_training = model.training
+    model.eval()
+    rows, passed, total = [], 0, 0
+    for L in lengths:
+        L = min(L, (model.block_size - 1) // 2)
+        xs = []
+        for _ in range(n_seq):
+            seq = rng.sample(pool, L)
+            xs.append([bos] + seq + seq)
+        x = torch.tensor(xs, device=dev)
+        logits, _ = model(x)
+        pred = logits[:, L + 1: 2 * L, :].argmax(-1)       # predicts x[L+2 .. 2L]
+        tgt = x[:, L + 2: 2 * L + 1]
+        ok = int((pred == tgt).sum().item()); n = int(tgt.numel())
+        rows.append({"length": L, "score": f"{ok}/{n}", "accuracy": round(ok / max(1, n), 3)})
+        passed += ok; total += n
+    if was_training:
+        model.train()
+    return {"passed": passed, "total": total, "accuracy": round(passed / max(1, total), 3), "by_length": rows}
+
+
 def owner_exam(path: str | None = None) -> dict:
     """The owner's E9 file, read fresh every time (his edit is the only write)."""
     path = path or OWNER_EXAM
@@ -70,7 +103,9 @@ def owner_exam(path: str | None = None) -> dict:
 
 def run_exams(seed: int = 7337, verbose: bool = True, model=None, tok=None,
               meta: dict | None = None, store: MemoryStore | None = None,
-              consolidated_facts: list[str] | None = None, trigger: str = "manual") -> dict:
+              consolidated_facts: list[str] | None = None, trigger: str = "manual", write: bool = True) -> dict:
+    """write=False (v3.2 reading probes): score only - no report card, no writing-sample file, no ledger
+    rows (the reading stage runs beside the heartbeat; two processes appending to one chain could break it)."""
     if model is None:
         model, tok, ckpt = load_checkpoint()
         meta = {k: ckpt.get(k) for k in ("corpus_sha", "generation", "note")}
@@ -195,6 +230,10 @@ def run_exams(seed: int = 7337, verbose: bool = True, model=None, tok=None,
     rows.sort(key=lambda r: r["ok"])
     record("E1b_bridge", None, passed, total, rows)
 
+    # E10 (INFO, v3.2): the induction probe - can it copy a random sequence it has just seen? (reading.py)
+    ip = induction_probe(model, tok, seed)
+    record("E10_induction", None, ip["passed"], ip["total"], ip["by_length"])
+
     # E9: the owner's exam about his own documents (owner_exam.json); runs when it has items.
     owner = owner_exam()
     if owner["items"] and store is not None:
@@ -222,15 +261,17 @@ def run_exams(seed: int = 7337, verbose: bool = True, model=None, tok=None,
     for i, p in enumerate(WRITING_PROMPTS):
         got = answer(model, tok, p, max_new=80, temperature=0.8, seed=seed + i)
         samples.append({"prompt": p, "text": got})
-    try:
-        os.makedirs(WRITING_DIR, exist_ok=True)
-        fn = os.path.join(WRITING_DIR, f"{card['ts'].replace(':', '')}_gen{card['generation']}.txt")
-        with open(fn, "w", encoding="utf-8") as f:
-            f.write(f"# writing sample - gen {card['generation']} - {card['ts']} - {trigger}\n\n")
-            for s in samples:
-                f.write(f"> {s['prompt']}\n{s['text']}\n\n")
-    except Exception:
-        fn = None
+    fn = None
+    if write:
+        try:
+            os.makedirs(WRITING_DIR, exist_ok=True)
+            fn = os.path.join(WRITING_DIR, f"{card['ts'].replace(':', '')}_gen{card['generation']}.txt")
+            with open(fn, "w", encoding="utf-8") as f:
+                f.write(f"# writing sample - gen {card['generation']} - {card['ts']} - {trigger}\n\n")
+                for s in samples:
+                    f.write(f"> {s['prompt']}\n{s['text']}\n\n")
+        except Exception:
+            fn = None
     card["exams"].append({"exam": "E8_writing", "bar": None, "score": f"{len(samples)} samples", "accuracy": None,
                           "verdict": "INFO", "detail": samples, "file": os.path.basename(fn) if fn else None})
     if verbose:
@@ -250,6 +291,11 @@ def run_exams(seed: int = 7337, verbose: bool = True, model=None, tok=None,
             passed += ok; total += 1; rows.append({"q": word, "expected": exp, "got": got, "ok": ok})
         if total:
             record("E5_facts_in_weights", None, passed, total, rows)
+
+    if not write:
+        if was_training:
+            model.train()
+        return card
 
     history = []
     if os.path.exists(REPORT_CARD):

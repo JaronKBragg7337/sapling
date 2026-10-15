@@ -333,7 +333,7 @@ def swap(store: MemoryStore | None = None, seed: int = 7337, device: str | None 
 
     # the generation keeps counting from where the old core left off (it may have consolidated since school)
     gen = (old["generation"] + 1) if old else int(new_ck.get("generation", 0))
-    meta = {k: new_ck.get(k) for k in ("seed", "corpus_sha", "core_version", "note", "grown_from", "story_stats", "docs_stats", "school", "label")}
+    meta = {k: new_ck.get(k) for k in ("seed", "corpus_sha", "core_version", "note", "grown_from", "story_stats", "docs_stats", "school", "label", "reading")}
     meta["generation"] = gen
     meta["staged"] = False
     os.makedirs(checkpoint_dir, exist_ok=True)
@@ -349,6 +349,9 @@ def swap(store: MemoryStore | None = None, seed: int = 7337, device: str | None 
              "vocab_stats": (new_ck.get("school") or {}).get("vocab_stats"),
              "story_stats": new_ck.get("story_stats"), "docs_stats": new_ck.get("docs_stats"),
              "record_sentences": (new_ck.get("school") or {}).get("record_sentences"),
+             # v3.2: a reading stage (reading.py) instead of / beside school - tokens read, probes, pauses
+             "reading": {k: v for k, v in (new_ck.get("reading") or {}).items() if k != "probes"} | (
+                 {"probes": (new_ck.get("reading") or {}).get("probes")} if new_ck.get("reading") else {}),
              "device": device, "seed": seed}
     if exams:
         card = run_exams(seed=seed, verbose=verbose, model=new_model, tok=new_tok, meta=meta, store=store,

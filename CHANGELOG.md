@@ -1,5 +1,88 @@
 # Changelog
 
+## v3.2 (2026-10-15, small hours) - much more reading
+
+Jaron (10/14 9:40 PM) agreed to the lab-style order: **more reading first, watch for the copying ability to switch on,
+then tutor lessons, then his documents.** Built by Claude (Fable 5.1); the prepare stall was found and fixed by the
+coordinator (see "two fixes"). Rules freeze holds (no new rule, limit or gate); AI choices in `DESIGN-CHOICES.md` D20-D23.
+No document of Jaron's was read.
+
+**Why.** A rough compute-optimal guide is ~20 tokens read per parameter: 17.6M parameters -> ~350M tokens. It had read a
+few million. The E7L miss (copying a sentence out of a cold passage, 0/40) looks like the missing "induction head" circuit,
+which in the research literature appears suddenly once enough text has been read. **That is the hypothesis this stage
+tests, not a promise**: E10 (the induction probe) and E7L are logged every ~20M tokens so the switch - if it comes - is a
+visible point on a chart, next to E6 and E1b (does what it knew hold?).
+
+| what | before (v3.1) | after (v3.2) |
+|---|---|---|
+| text read | a few million tokens (school levels 1-3) | + **400M tokens** of new text in one in-place pass (`reading.py`): TinyStories GPT-4 **train** split (2,717,495 stories, 516.9M tokens, CDLA-Sharing-1.0), Simple English Wikipedia 2023-11-01 (CC BY-SA 3.0 + GFDL) + 116 Project Gutenberg books (public domain, each header checked) = 93.6M adult tokens; every batch 25 story / 4 adult / 3 rehearsal sequences (the whole school + its record, so it keeps what it knew) |
+| core | 17.6M params, ctx 512, gen 183 -> 237 (heartbeat) | **the same weights, same vocabulary (17,660 + 1 the heartbeat added), same context**; one `growth` ledger row, gen 240 -> 241 |
+| exams | E1-E9 | + **E10 induction probe** (info; random sequence shown twice, second copy scored; spans 32 and 96) in every exam run from now on |
+| control room | - | **"Reading stage" card**: status, tokens read, the E10 / E7L / E6 / E1b line chart against tokens read, probe table, pauses (local + phone page) |
+| GPU sharing | - | the stage saves, frees the card and waits while `blender.exe` runs or `results/reading/pause` exists; resumes from `latest.pt` |
+| tools | - | `tools/fetch_reading.py` (license-checked fetch -> `data/reading/manifest.json`), `python -m sapling.reading prepare / stage / summary` |
+
+**Two fixes found by the run (coordinator, 10/15 ~01:00, confirmed with py-spy):** the first `prepare` sat three hours
+inside `curriculum3.doc_text` - the regex `(?:\s*[.,;:]\s*)+(?=\.)` backtracked exponentially on Wikipedia comma runs
+(", , , , ,"). Replaced with a linear token pass that keeps the same output. And `pieces.split_word` now bounds its
+candidate search to the longest piece in the vocabulary, so a 100k-character "word" (a table or URL with no spaces) is
+no longer n^2 lookups. After both, the adult source tokenized in 56 s.
+
+**Doc accuracy (Vex review #36):** README's "ready to read documents" heading and NEXT's "prerequisites are DONE" now say
+what is true - the document machinery (ingestion, retrieval, citations, the E9 slot) exists; faithful long reading was
+still failing (E7L 0/40), so Jaron's documents wait. Sizes are given in tokens, never words. The E10 jump is reported as
+a hypothesis.
+
+**The run (10/15 01:57-03:04, RTX 4060, heartbeat stopped for it - see D23):** 400.0M new tokens in 26,940 steps, 65 min
+of training at ~103k tokens/s, 0 pauses (no render ran), loss 4.40 -> 1.64. The stories stream reached shard 6 of 11
+(~345M of 516.9M story tokens read, one pass, nothing repeated); the adult stream read ~55M of 93.6M. Attempt 1 (01:17)
+is on record as `results/reading/log_attempt1_thrash.jsonl`: beside the running heartbeat the card hit 7,750 MiB and WDDM
+paging froze both processes for 27 min at step 700 - the heartbeat was then stopped for the stage (owner stop, logged).
+
+**Result - the hypothesis did not land in 400M tokens.** E10 went 0 -> 9/2016 (peak 12/2016 at 360-380M; chance is ~0.1/2016)
+and **E7L stayed 0/40 at every one of the 21 probes**. Nothing switched on; the E10 creep is above chance but a long way
+from a circuit. What plain reading DID do (data, bars untouched): **E6 grammar 28/48 -> 46/48, its first PASS ever**
+(bar .60; it climbed through the probes: 39 at 20M, 46 at 160M); E7 reading 30 -> 33/40 (peak 36/40 at 100-160M);
+E4 deferral 8 -> 10/10; E1b bridge 61 -> 65/86 (peak 72); E1 84 -> 73/86 (PASS, oscillated 68-81 through the run - the
+3-of-32 rehearsal holds level 1 but does not keep it sharp); **E5 facts in weights 7/7 -> 0/7**: the five taught words
+washed out of the weights (they are still in memory.db; the recall path answers "hello" fine; the heartbeat's next
+consolidations re-train them - watch E5 on the card).
+
+Exams before (v3.1 gen 240) -> after (v3.2 gen 241), same seed, from the swap row:
+
+| exam | v3.1 gen 240 | v3.2 gen 241 | bar |
+|---|---|---|---|
+| E1 composition | 84/86 | 73/86 | .60 PASS |
+| E2 affix recall | 24/24 | 24/24 | .90 PASS |
+| E3 recall echo | 12/12 | 12/12 | .90 PASS |
+| E4 deferral | 8/10 | 10/10 | .80 PASS |
+| E5 facts in weights (info) | 7/7 | **0/7** | - |
+| E6 grammar | 28/48 FAIL | **46/48 PASS** | .60 |
+| E7 reading | 30/40 | 33/40 | .50 PASS |
+| E7L long reading (info) | 0/40 | 0/40 | - |
+| E1b bridge (info) | 61/86 | 65/86 | - |
+| **E10 induction probe (info)** | 0/2016 | 9/2016 | - |
+| E9 owner exam | 0 items | 0 items | his |
+
+Probes during the run (`results/reading/log.jsonl`; the chart on the control room):
+
+| tokens | loss | E10 | E7L | E7 | E1 | E6 | E1b |
+|---|---|---|---|---|---|---|---|
+| 0M | - | 0/2016 | 0/40 | 30/40 | 84/86 | 28/48 | 61/86 |
+| 20M | 2.34 | 0 | 0 | 31 | 80 | 39 | 72 |
+| 60M | 2.12 | 0 | 0 | 35 | 81 | 38 | 72 |
+| 100M | 1.99 | 1 | 0 | 36 | 77 | 43 | 69 |
+| 160M | 1.76 | 1 | 0 | 36 | 73 | 46 | 69 |
+| 200M | 1.84 | 2 | 0 | 35 | 80 | 46 | 72 |
+| 280M | 1.76 | 7 | 0 | 35 | 76 | 44 | 64 |
+| 340M | 1.70 | 11 | 0 | 31 | 76 | 44 | 65 |
+| 380M | 1.70 | 12 | 0 | 32 | 74 | 43 | 63 |
+| 400M | 1.64 | 9 | 0 | 33 | 73 | 46 | 65 |
+
+Tests: 44 (4 new: the induction probe is seeded and at chance on an untrained core; shards round-trip and the stream
+walks in order; the stage smoke test on CPU - probes, pause file, resume, staged core with the reading record; exams
+with `write=False` leave no card, no sample file, no ledger row).
+
 ## v3.1 (2026-10-14, night) - ready to read documents (the prerequisites for Jaron's step 2)
 
 Jaron (10/14 8 PM): "your call boss" on NEXT.md section 0 - everything his documents need before they are read.

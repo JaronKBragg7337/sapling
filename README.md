@@ -42,7 +42,35 @@ append-only hash-chained record for his eyes.
 | Backup to an owner machine needs owner approval | Kimi | on, pending Jaron's keep/drop |
 | The system cannot write this file | Kimi (structural) | on |
 
-## Level 3 (v3.1, 10/14 night): ready to read documents
+## Much more reading (v3.2, 10/15 small hours): 400M tokens in one pass, the copying switch watched
+
+Jaron (10/14 9:40 PM) agreed to the lab order: **more reading first, watch for the copying ability to switch on, then
+tutor lessons, then his documents.** The guide: ~20 tokens read per parameter (17.6M -> ~350M tokens); it had read a few
+million. The hypothesis under test: E7L's 0/40 (copying a sentence out of a cold passage) is the missing "induction head"
+circuit, which in the literature switches on suddenly once enough text has been read. So the **same weights** read
+400M tokens of new text (`sapling/reading.py`, DESIGN-CHOICES D20-D23) - vocabulary, context, memory and chain
+unchanged, one `growth` ledger row - and every ~20M tokens a probe logged **E10** (the induction probe: a random sequence
+shown twice, the second copy scored) next to **E7L, E6 and E1b**. The chart is on the control room ("Reading stage"); the
+numbers are in "Run record - v3.2" below. **Result: in 400M tokens the switch did not come** - E10 0 -> 9/2016, E7L 0/40 at all 21 probes - while E6 grammar went 28/48 -> 46/48 (its first PASS), E7 30 -> 33/40, and the five taught facts washed out of the weights (E5 7/7 -> 0/7; still in memory). The hypothesis stays a hypothesis; what to try next is in NEXT.md.
+
+What it read (every licence checked live at fetch, `tools/fetch_reading.py` -> `data/reading/manifest.json`):
+- **TinyStories**, the full GPT-4 train split - 2,717,495 stories, 516.9M tokens (Ronen Eldan & Yuanzhi Li, 2023;
+  `roneneldan/TinyStories` on Hugging Face, CDLA-Sharing-1.0).
+- **Simple English Wikipedia**, dump 2023-11-01 (`wikimedia/wikipedia`, config `20231101.simple`, 241,787 articles) -
+  text by Wikipedia contributors, licensed **CC BY-SA 3.0** (and GFDL). This notice is the attribution; the weights that
+  read it are published here under the same spirit of sharing.
+- **116 Project Gutenberg books**, public domain in the US (each file's own header carries the no-restrictions line;
+  copyrighted translations were rejected by that check; the Gutenberg header/footer/licence text is stripped and not read).
+  With Wikipedia: 93.6M adult tokens. The held-out essay (pg1022, E7L) is never read.
+
+```bash
+python tools/fetch_reading.py                     # the text (~2.5 GB), licence checks -> data/reading/manifest.json
+python -m sapling.reading prepare                 # tokenize once -> data/reading/shards/ (CPU, ~5 min)
+python -m sapling.reading stage --tokens 400e6    # GPU; probes every 20M tokens; resumable; pauses while blender.exe runs
+python -m sapling.heartbeat stop && python -m sapling.grow swap && python -m sapling.heartbeat start
+```
+
+## Level 3 (v3.1, 10/14 night): the document machinery - ingestion, retrieval, citations, the E9 slot (faithful long reading still failing: E7L 0/40, so Jaron's documents wait)
 
 Jaron: "your call boss" on the list in NEXT.md section 0 - what his own documents need before they are read.
 The **same weights grew in place** (DESIGN-CHOICES D17): new vocabulary rows, context **256 -> 512**, then
@@ -163,6 +191,45 @@ All five facts it was taught (zib, glorp, brindle, zint, quimble) are now in its
 became what it learned, with no gate, and the outside exams show the cost (E1 drifts down a few
 points per consolidation; that drift is the next thing to watch, not a reason to add a gate).
 
+## Run record - v3.2 reading (10/15 01:57-03:04, RTX 4060, heartbeat stopped for it)
+
+```
+stage (results/reading/stage_stdout.txt, log.jsonl, state.json): 400.0M new tokens, 26,940 steps, batch 32 x 512
+  (25 story / 4 adult / 3 rehearsal), lr 3e-4 warm-up 300 -> cosine 3e-5, ~103k tokens/s, 65 min training, 0 pauses
+  loss 4.40 -> 1.64;  stories: shard 6 of 11 (~345M of 516.9M read, one pass);  adult: ~55M of 93.6M
+  attempt 1 (01:17, heartbeat running beside it): card at 7,750 MiB, WDDM paging, 27 min with no step -> stopped;
+  kept as results/reading/log_attempt1_thrash.jsonl (DESIGN-CHOICES D23)
+swap (results/grow_swap_v32_stdout.txt, ledger row `growth: core v3.1 -> v3.2 (much more reading)`): gen 240 -> 241
+  params 17,616,768  vocab 17,661 (unchanged)  context 512 (unchanged)  chain verified (2,391 memories)
+
+             v3.1 gen 240   v3.2 gen 241   bar
+  E1 comp     84/86          73/86          .60 PASS   (oscillated 68-81 through the run)
+  E2 affix    24/24          24/24          .90 PASS
+  E3 echo     12/12          12/12          .90 PASS
+  E4 defer     8/10          10/10          .80 PASS
+  E5 facts     7/7            0/7          info   <- the taught words washed out of the weights (still in memory.db)
+  E6 grammar  28/48 FAIL     46/48 PASS     .60        <- first PASS ever; climbed 39 (20M) -> 46 (160M) on plain reading
+  E7 reading  30/40          33/40          .50 PASS   (peak 36/40 at 100-160M)
+  E7L long     0/40           0/40         info   <- 0/40 at ALL 21 probes: the switch did not come in 400M tokens
+  E1b bridge  61/86          65/86         info   (peak 72)
+  E10 induct   0/2016         9/2016       info   (by span: 1/496 at 32, 8/1520 at 96; peak 12/2016 at 360-380M; chance ~0.1)
+  E9 owner    0 items        0 items       his
+probes every 20M tokens: the table in CHANGELOG v3.2; the chart on the control room ("Reading stage")
+E7L miss, typical (gen 241): asked to copy the first sentence of a cold Thoreau passage it wrote fluent Thoreau-ish prose
+  ("we should impart our way , and not our despair , and become a new england ...") - the same failure shape as v3.1
+E6 misses now (2): "yes , leo looks at a kite ." -> "leo looks at a kite ." (dropped the "yes ,"); "the bags read the box" -> "the cup"
+chat (live heartbeat, gen 241, 03:06):
+  > what does hello mean ?                       -> the word hello means a greeting .  [memory:447 user/captured]   (memory path; the weights alone lost it = E5)
+  > what does report mean ?                      -> the word report means carry again .   (the bridge held)
+  > tom has a green boat . anna has a red kite . what color is tom 's boat ?   -> tom .   (still wrong, as in v3.1)
+  > q : fill : yesterday tom ( throw ) the old lantern . a :   -> does tom throw the old lantern ? a : yes , tom throws it ?   (wrong task; v3.1 gave "pushed the old cake")
+  > what is a volcano ?                          -> the root ten means hold .   (school reflex on an unknown question)
+  > who was charles darwin ?                     -> natural selection .   (two words from the books it read - the first answer that could only come from the reading)
+  > once upon a time there was a little girl who -> she wanted to reach the top of the mountain , so she grabbed a rope ... [doc:1 "The Declaration of Independenc" passage 1 ...]
+    (a story, fine - but cited the Declaration: reader.retrieve's coverage threshold matched function words; bug noted in NEXT)
+writing (E8, gen 241): "there was an adorable little dog named max . max loved to play and run all day . one day , max found a big box ..."
+```
+
 ## Run record - v3.1 growth (10/14 20:25-21:05, RTX 4060, heartbeat kept running)
 
 ```
@@ -234,10 +301,11 @@ sapling/
   session.py       # a turn of talk; /read a document; questions a document covers go through reader.py
   memory.py        # append-only hash-chained SQLite; fades only if unused; use protects; top-k grows; documents + doc/passage provenance (v3.1)
   reader.py        # v3.1: read_document (passages with provenance) / retrieve (coverage) / ask (passages-first prompt, cited answer)
-  exams.py         # E1-E4 outside exams (bars fixed, FAIL kept); E6 grammar, E7 reading; E7L, E1b, E5, E8 info; E9 = owner_exam.json
+  exams.py         # E1-E4 outside exams (bars fixed, FAIL kept); E6 grammar, E7 reading; E7L, E1b, E10 (induction probe), E5, E8 info; E9 = owner_exam.json
   curriculum.py    # school level 1: roots -> affixes -> composition -> sentences -> recall (8 slots)
   curriculum2.py   # school level 2: simple -> grammar -> paragraphs -> comprehension -> stories (cold E6/E7 splits)
   curriculum3.py   # school level 3: copy -> bridge -> prose / docs / longread (Gutenberg; one essay held out for E7L)
+  reading.py       # v3.2: the reading stage - prepare (text -> uint16 shards) / stage (one in-place pass, probes every ~20M tokens, pauses for blender) / summary (the chart)
   pieces.py        # v3.1: word pieces (BPE, "##" continuation) + forced splits of the school's composed words
   text.py          # normalize(): story text / phone typing -> the school's spacing
   grow.py          # growth: school (staged; --base live grows in place, --base fresh re-schools) + swap (one `growth` row); --smoke
@@ -247,16 +315,17 @@ sapling/
   archive.py       # hourly: keep last 10 + 1/day local, move the rest to cloud (Supabase 'sapling-archive'), restore any gen
 membrane.yaml      # the rules and the settings - the owner's file
 owner_exam.json    # E9: the exam the owner writes about his own documents (q / a / match / bar); empty until he does
-data/              # gitignored: tinystories/ (CDLA-Sharing-1.0) and gutenberg/ (public domain) - see curriculum2/3 notes
+data/              # gitignored: tinystories/ (CDLA-Sharing-1.0), gutenberg/ (public domain), reading/ (v3.2: raw text + shards + manifest.json with every licence check)
 tools/             # OWNER side, outside the AI's package:
+  fetch_reading.py # v3.2: fetches the reading-stage text, checks each source's licence live, writes data/reading/manifest.json
   owner_relay.py   # phone/remote door: pushes state to Supabase, runs owner commands (chat, rule switch, restore, parole)
   owner_rules.py   # flips a rule's enabled line when the owner clicks; logged
   self_memory_drift.py # compares exams with vs without self-made memories in training
 DESIGN-CHOICES.md  # every design choice an AI made, who made it, what it affects, options not chosen
 PROPOSALS.md       # open questions for the owner; nothing in here is built
-CHANGELOG.md       # v1 -> v2 -> v2.1 -> v3 -> v3.1, each change tied to Jaron's decision
-results/           # report card (history kept, FAILs kept), train log, stop reports, memory.db, checkpoints/
-tests/             # 40 pytest tests + plain runner
+CHANGELOG.md       # v1 -> v2 -> v2.1 -> v3 -> v3.1 -> v3.2, each change tied to Jaron's decision
+results/           # report card (history kept, FAILs kept), train log, stop reports, memory.db, checkpoints/, reading/ (v3.2 probe log + state)
+tests/             # 44 pytest tests + plain runner
 ```
 
 ## Lineage

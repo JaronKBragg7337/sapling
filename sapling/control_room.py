@@ -81,8 +81,14 @@ def state_of(hb) -> dict:
                 for d in documents_summary(hb.store)][-20:]
     except Exception:
         docs = []
+    from .reading import summary as reading_summary
+    try:
+        reading = reading_summary()
+    except Exception:
+        reading = None
     return {
         "documents": docs,
+        "reading": reading,
         "core": hb.brain.core_info(),
         "growth": {k: growth.get(k) for k in ("event", "ts", "seconds")} | {
             "from": {k: (growth.get("from") or {}).get(k) for k in ("generation", "params", "vocab_size")},

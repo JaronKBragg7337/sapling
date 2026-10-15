@@ -80,6 +80,17 @@ def learn_pieces(word_counts: dict[str, int], n_merges: int = 1500, min_count: i
     return learned
 
 
+_LONGEST: dict[int, tuple[int, int]] = {}
+
+
+def _longest_key(stoi: dict) -> int:
+    k = id(stoi)
+    v = _LONGEST.get(k)
+    if v is None or v[1] != len(stoi):
+        v = _LONGEST[k] = (max((len(t) for t in stoi), default=1), len(stoi))
+    return v[0]
+
+
 def split_word(word: str, stoi: dict, splits: dict | None = None) -> list[str] | None:
     """Spell one unknown word from pieces: greedy longest match from the left,
     first piece plain, the rest "##"-marked. A forced split wins. None if the
@@ -87,9 +98,12 @@ def split_word(word: str, stoi: dict, splits: dict | None = None) -> list[str] |
     if splits and word in splits:
         return list(splits[word])
     out, i, n = [], 0, len(word)
+    # No piece is longer than the longest key, so longer candidates can't match: same split, and
+    # a 100k-character "word" (a table or URL with no spaces) no longer costs n^2 lookups.
+    longest = _longest_key(stoi)
     while i < n:
         found = None
-        for j in range(n, i, -1):
+        for j in range(min(n, i + longest + len(MARK)), i, -1):
             cand = word[i:j] if i == 0 else MARK + word[i:j]
             if cand in stoi:
                 found = cand; i = j

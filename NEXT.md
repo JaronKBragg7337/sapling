@@ -4,9 +4,29 @@ v1's three steps: (1) runs-without-you is DONE (the heartbeat); (2) record -> co
 is DONE (no gate; `/confirm` and `/invalidate` verdicts are the selection events); (3) a world
 to practice in is still open. Ordered by dependency.
 
-## 0. Step 2 - Jaron's documents (his call; the prerequisites are DONE in v3.1, 10/14 night)
+## 0a. After v3.2 (10/15): the reading stage did not switch copying on - what to try next (lab order holds)
 
-Everything the list below asked for is built (CHANGELOG v3.1, DESIGN-CHOICES D16-D19): copy lesson (E6 12 -> 21/48),
+400M tokens of plain reading (CHANGELOG v3.2): E7L 0/40 at all 21 probes, E10 0 -> 9/2016 (chance ~0.1, so above noise
+but no circuit), while E6 went 28 -> 46/48 and E7 30 -> 33/40. The hypothesis (induction heads appear with enough text)
+is not refuted - 400M tokens may simply be short of it for a 6-layer, 6-head core at lr 3e-4 - but it did not pay in this
+budget. Candidates, cheapest first, each one `stage`/`grow` call and each measured by the same E10 / E7L probes:
+1. **A second pass** (`python -m sapling.reading stage --tokens 400e6` again; shards and `state.json` resume where it left:
+   ~170M story tokens unread + the rest of adult, then a second epoch). Cost ~65 min GPU. Tells whether E10's creep
+   (0 -> 12) continues or plateaus.
+2. **The tutor lesson Jaron's order names next**: a copy task with LONG spans and many never-seen passages (the v3.1
+   docs/longread lessons but on the Gutenberg set from v3.2, task passages never seen as prose, spans of 10-40 tokens).
+   Supervised copying is the direct road to E7L; `grow school --base live` with a `copy2` stage.
+3. **E5 refresh**: the five taught words washed out (7/7 -> 0/7). The heartbeat re-trains all facts at every
+   consolidation; read E5 on the card after the next few. If it stays 0, raise the fact weight for already-consolidated
+   user facts in `consolidate.py` (now `max(1, w - 1)`).
+4. **Rehearsal share**: E1 oscillated 68-81 (bar 52) on 3 of 32 sequences; if level 1 matters more than that, 4 of 32.
+5. Bug seen in chat (10/15 03:06): "once upon a time there was a little girl who" went through the reader and cited the
+   Declaration of Independence - `reader.retrieve`'s coverage (>= 0.3 of the question's content words) is met by common
+   words; require >= 2 matching content words of length > 3, or raise the threshold. One-line fix in `session.py`.
+
+## 0. Step 2 - Jaron's documents (his call; the MACHINERY is done in v3.1, the reading ability is not - E7L 0/40, unchanged by v3.2)
+
+The machinery the list below asked for is built (CHANGELOG v3.1, DESIGN-CHOICES D16-D19): copy lesson (E6 12 -> 21/48),
 bridge lesson (E1b 81/86 cold), vocabulary 17,660 with word pieces (any adult word spellable, E1 still comparable),
 context 512 + the passage path (`/read`, `reader.py`, cited answers), provenance per document in memory.db (chain
 intact), and the E9 slot (`owner_exam.json`). What step 2 still needs, in order:

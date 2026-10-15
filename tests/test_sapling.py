@@ -592,3 +592,99 @@ def test_owner_exam_file_is_read_fresh(tmp_path):
     assert e["bar"] == 0.7 and e["items"][0]["q"] == "who made the lantern ?"
     p.write_text('{"items": []}', encoding="utf-8")
     assert owner_exam(str(p))["items"] == [] and owner_exam(str(tmp_path / "missing.json"))["items"] == []
+
+
+# -- v3.2 (10/14 night, "much more reading") ---------------------------------------------------
+def _tiny_core(block: int = 64):
+    from sapling.curriculum import build_corpus, build_vocab
+    from sapling.model import SaplingCore
+    from sapling.train import Tokenizer
+    import torch
+    torch.manual_seed(1)
+    corpus = build_corpus(7337)
+    v = build_vocab(corpus)
+    tok = Tokenizer(v["stoi"], v["itos"])
+    return SaplingCore(len(tok.itos), d_model=32, n_head=4, n_layer=2, block_size=block), tok
+
+
+def test_induction_probe_is_seeded_and_an_untrained_core_is_at_chance():
+    from sapling.exams import induction_probe
+    m, tok = _tiny_core(64)
+    a = induction_probe(m, tok, seed=7337, n_seq=4, lengths=(8, 24))
+    b = induction_probe(m, tok, seed=7337, n_seq=4, lengths=(8, 24))
+    assert a == b                                                      # reproducible from its seed
+    assert a["total"] == 4 * (8 - 1) + 4 * (24 - 1) and [r["length"] for r in a["by_length"]] == [8, 24]
+    assert a["accuracy"] < 0.1                                         # no circuit yet: chance is ~1/vocab
+    assert m.training                                                  # the mode it found is the mode it leaves
+
+
+def test_reading_shards_roundtrip_and_stream_walks_in_order(tmp_path):
+    import numpy as np
+    from sapling.reading import FastEncoder, Stream, prepare, vocab_sha
+    m, tok = _tiny_core(16)
+    docs = ["re + spect = re spect .", "the word spect means look .", "she will re spect the bright lantern ."]
+    idx = prepare(tok, shard_dir=str(tmp_path), shard_tokens=12, sources={"stories": iter(docs)}, verbose=False)
+    src = idx["sources"]["stories"]
+    assert idx["vocab_sha"] == vocab_sha(tok) and src["docs"] == 3 and len(src["shards"]) >= 2
+    ids = np.concatenate([np.load(tmp_path / s["file"]) for s in src["shards"]]).tolist()
+    assert ids == sum((FastEncoder(tok).ids(d) for d in docs), [])    # the same ids, in order, nothing lost
+    assert tok.decode(ids[:8]).startswith("re + spect")
+    st = Stream(str(tmp_path), src["shards"], block=4)
+    x, y = st.next(2)
+    assert x.shape == (2, 4) and y[0, 0].item() == x[0, 1].item()      # y is x shifted by one
+    assert st.state()["offset"] == 8 and st.state()["epoch"] == 0
+    for _ in range(20):
+        st.next(2)
+    assert st.state()["epoch"] >= 1                                    # wraps, counting epochs
+
+
+def test_reading_stage_smoke_probes_pauses_and_stages_the_core(tmp_path):
+    """CPU, seconds: tiny core, tiny shards; probes (E1-E10, no ledger writes) at every N tokens, a pause file
+    is honoured, resume continues from latest.pt, and the staged core carries the reading record (v3.2)."""
+    import json
+    import os
+    import threading
+    import time
+    from sapling.reading import prepare, stage, summary
+    from sapling.train import load_checkpoint, save_checkpoint
+    m, tok = _tiny_core(16)
+    old = tmp_path / "core.pt"
+    save_checkpoint(m, tok, {"seed": 7337, "generation": 5, "core_version": 3.1, "corpus_sha": "x"}, path=str(old))
+    docs = [f"the word w{i} means thing {i} ." for i in range(80)]
+    sh = tmp_path / "shards"
+    prepare(tok, shard_dir=str(sh), shard_tokens=200, sources={"stories": iter(docs), "adult": iter(docs[:20])}, verbose=False)
+    out = tmp_path / "reading"
+    reh = ["re + spect = re spect ."] * 40
+    kw = dict(batch=4, shares={"stories": 2, "adult": 1, "rehearsal": 1}, probe_every=16 * 3 * 4, warmup=2, device="cpu",
+              old_path=str(old), staged=str(tmp_path / "staged.pt"), out_dir=str(out), shard_dir=str(sh), rehearsal=reh,
+              poll_s=0.2, step_log_every=2, verbose=False, keep_probe_checkpoints=False,
+              busy_fn=lambda: "pause file" if (out / "pause").exists() else None)   # never the real blender
+    r = stage(target_tokens=16 * 3 * 8, **kw)                          # 8 steps, probes at 0 / 4 / 8
+    rows = [json.loads(l) for l in open(out / "log.jsonl", encoding="utf-8")]
+    probes = [x for x in rows if x["kind"] == "probe"]
+    assert [p["step"] for p in probes] == [0, 4, 8] and probes[0]["why"] == "before"   # no duplicate "end" probe
+    assert "E10_induction" in probes[-1]["exams"] and "E7_reading" in probes[-1]["exams"] and probes[-1]["writing"]
+    assert not (tmp_path / "report_card.json").exists()               # probes never write the card or the ledger
+    assert r["meta"]["core_version"] == 3.2 and r["meta"]["generation"] == 6 and r["meta"]["reading"]["steps"] == 8
+    _, _, ck = load_checkpoint(device="cpu", path=str(tmp_path / "staged.pt"))
+    assert ck["reading"]["tokens_new"] == 16 * 3 * 8 and ck["grown_from"]["generation"] == 5
+    s = summary(str(out))
+    assert len(s["probes"]) == 3 and s["done"]["steps"] == 8 and s["probes"][-1]["E10"] is not None
+    # the pause file: training holds (saved, GPU released), then goes on when the file is gone
+    (out / "pause").write_text("owner")
+    threading.Timer(1.0, lambda: os.remove(out / "pause")).start()
+    t0 = time.time()
+    r2 = stage(target_tokens=16 * 3 * 12, **kw)                        # resumes at step 8, pauses, ends at 12
+    assert time.time() - t0 >= 1.0 and r2["run"]["steps"] == 12 and r2["run"]["pauses"] and r2["run"]["pauses"][0]["why"] == "pause file"
+    assert summary(str(out))["pauses"][0]["why"] == "pause file"
+
+
+def test_exams_write_false_leaves_no_trace(tmp_path, monkeypatch):
+    from sapling import exams as E
+    m, tok = _tiny_core(64)
+    monkeypatch.setattr(E, "REPORT_CARD", str(tmp_path / "card.json"))
+    monkeypatch.setattr(E, "WRITING_DIR", str(tmp_path / "writing"))
+    card = E.run_exams(seed=7337, verbose=False, model=m, tok=tok, meta={"generation": 1}, store=None, write=False, trigger="probe")
+    names = {e["exam"] for e in card["exams"]}
+    assert {"E1_composition", "E7L_longread", "E10_induction", "E8_writing"} <= names
+    assert not (tmp_path / "card.json").exists() and not (tmp_path / "writing").exists()

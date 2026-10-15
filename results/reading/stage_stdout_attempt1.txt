@@ -1,0 +1,9 @@
+[reading] rehearsal: 39,638 sentences from 15 lessons + record
+[reading] probe @ 0M tokens: E10 1/2016 E7L 0/40 E7 28/40 E1 78/86 E6 32/48 (6.1s)
+[reading] step 100 1.5M/400M loss 4.379 lr 1.00e-04
+[reading] step 200 3.0M/400M loss 3.102 lr 2.00e-04 15k tok/s
+[reading] step 300 4.5M/400M loss 2.903 lr 3.00e-04 15k tok/s
+[reading] step 400 5.9M/400M loss 2.784 lr 3.00e-04 103k tok/s
+[reading] step 500 7.4M/400M loss 2.689 lr 3.00e-04 102k tok/s
+[reading] step 600 8.9M/400M loss 2.625 lr 3.00e-04 103k tok/s
+[reading] step 700 10.4M/400M loss 2.590 lr 3.00e-04 103k tok/s

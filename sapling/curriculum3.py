@@ -79,17 +79,45 @@ def chunk_passages(norm_text: str, max_tokens: int = PASSAGE_MAX, min_tokens: in
     return [p for p in out if len(p.split()) >= min_tokens]
 
 
+_PUNCT = frozenset({".", ",", ";", ":"})
+
+
+def doc_text(body: str) -> str:
+    """A document body -> one normalised, spaced line (blank lines become sentence ends;
+    ". . ." / ", ." runs from blank lines collapse to one ".")."""
+    toks = normalize(body.replace("\n\n", " . ").replace("\n", " ")).split()
+    # In each run of punctuation tokens, drop everything before the run's last "." (what the old
+    # regex did). Token by token because that regex backtracked exponentially on long runs like
+    # ", , , , ," in Wikipedia tables and stalled the reading prepare for hours (10/14 night).
+    out, i, n = [], 0, len(toks)
+    while i < n:
+        if toks[i] in _PUNCT:
+            j = i
+            while j < n and toks[j] in _PUNCT:
+                j += 1
+            run = toks[i:j]
+            last = max((k for k, t in enumerate(run) if t == "."), default=-1)
+            out.extend(run[last:] if last >= 0 else run)
+            i = j
+        else:
+            out.append(toks[i])
+            i += 1
+    return " ".join(out)
+
+
+def gutenberg_title(raw: str, default: str) -> str:
+    for line in raw.splitlines()[:5]:
+        if line.lower().startswith("the project gutenberg ebook of"):
+            return line.split(" of ", 1)[1].strip().rstrip(".,")
+    return default
+
+
 def load_document(path: str) -> dict:
     """{title, passages, words} for one text file (Gutenberg or any plain text)."""
     raw = open(path, encoding="utf-8", errors="replace").read()
     body = strip_gutenberg(raw) if "Project Gutenberg" in raw[:2000] else raw
-    title = os.path.splitext(os.path.basename(path))[0]
-    for line in raw.splitlines()[:5]:
-        if line.lower().startswith("the project gutenberg ebook of"):
-            title = line.split(" of ", 1)[1].strip().rstrip(".,")
-    norm = normalize(body.replace("\n\n", " . ").replace("\n", " "))
-    norm = re.sub(r"(?:\s*[.,;:]\s*)+(?=\.)", " ", " ".join(norm.split()))    # ". . ." / ", ." from blank lines -> one "."
-    norm = " ".join(norm.split())
+    title = gutenberg_title(raw, os.path.splitext(os.path.basename(path))[0])
+    norm = doc_text(body)
     passages = chunk_passages(norm)
     return {"title": title, "path": path, "passages": passages,
             "words": Counter(t for p in passages for t in p.split())}

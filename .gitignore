@@ -15,3 +15,6 @@ results/relay.stdout.log
 results/core_v3_staged.pt
 results/core_staged.pt
 data/
+results/reading/*.pt
+results/reading/*.opt
+results/reading/pause

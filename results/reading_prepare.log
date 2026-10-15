@@ -1,0 +1,25 @@
+[reading] stories_000.npy: 50,000,166 tokens (263,037 docs so far, 16s)
+[reading] stories_001.npy: 50,000,020 tokens (525,913 docs so far, 33s)
+[reading] stories_002.npy: 50,000,101 tokens (788,959 docs so far, 55s)
+[reading] stories_003.npy: 50,000,118 tokens (1,052,150 docs so far, 81s)
+[reading] stories_004.npy: 50,000,120 tokens (1,314,839 docs so far, 107s)
+[reading] stories_005.npy: 50,000,337 tokens (1,577,787 docs so far, 129s)
+[reading] stories_006.npy: 50,000,052 tokens (1,840,524 docs so far, 143s)
+[reading] stories_007.npy: 50,000,034 tokens (2,103,169 docs so far, 161s)
+[reading] stories_008.npy: 50,000,111 tokens (2,365,820 docs so far, 183s)
+[reading] stories_009.npy: 50,000,052 tokens (2,628,638 docs so far, 200s)
+[reading] stories_010.npy: 16,894,650 tokens (2,717,495 docs so far, 204s)
+[reading] adult_000.npy: 50,001,529 tokens (173,853 docs so far, 29s)
+[reading] adult_001.npy: 43,633,465 tokens (373,518 docs so far, 56s)
+{
+ "stories": {
+  "tokens": 516895761,
+  "docs": 2717495,
+  "shards": 11
+ },
+ "adult": {
+  "tokens": 93634994,
+  "docs": 373518,
+  "shards": 2
+ }
+}

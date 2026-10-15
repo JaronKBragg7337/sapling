@@ -141,7 +141,12 @@ def down_state() -> dict:
             generation = cons[0].get("generation")
     except Exception:
         pass
-    return {"running": False, "down": True, "tick": ticks[0]["tick"] if ticks else None,
+    try:
+        from sapling.reading import summary as reading_summary
+        reading = reading_summary()
+    except Exception:
+        reading = None
+    return {"running": False, "down": True, "tick": ticks[0]["tick"] if ticks else None, "reading": reading,
             "generation": generation, "vocab_size": last_vocab,
             "last_action": ticks[0]["action"] if ticks else None, "clock": clock, "memories": memories,
             "rules": cfg["rules"], "settings": cfg["settings"], "goals": [], "exams": [], "ticks": ticks,
