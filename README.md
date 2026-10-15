@@ -186,7 +186,7 @@ DESIGN-CHOICES.md  # every design choice an AI made, who made it, what it affect
 PROPOSALS.md       # open questions for the owner; nothing in here is built
 CHANGELOG.md       # v1 -> v2 -> v2.1, each change tied to Jaron's decision
 results/           # report card (history kept, FAILs kept), train log, stop reports, memory.db, checkpoints/
-tests/             # 26 pytest tests + plain runner
+tests/             # 34 pytest tests + plain runner
 ```
 
 ## Lineage
