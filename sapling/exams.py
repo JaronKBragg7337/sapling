@@ -29,6 +29,8 @@ import torch
 
 from .curriculum import PREFIXES, SUFFIXES, compose, prefix_gloss, split_combos, suffix_gloss
 from .curriculum2 import exam_items_grammar, exam_items_reading
+from .curriculum3 import exam_items_bridge, exam_items_longread
+from .text import normalize
 from .goals import parts_of_question
 from .memory import MemoryStore
 from .train import RESULTS_DIR, load_checkpoint
@@ -39,6 +41,10 @@ BARS = {"E1_composition": 0.60, "E2_affix_recall": 0.90,
         "E3_recall_echo": 0.90, "E4_deferral": 0.80,
         "E6_grammar": 0.60, "E7_reading": 0.50}
 REPORT_CARD = os.path.join(RESULTS_DIR, "report_card.json")
+# v3.1: E9 is the owner's own exam about his own documents (NEXT.md section 0, item 5). The file is his;
+# empty = "not yet written" (INFO). E7L (long reading on a held-out public-domain essay) and E1b (the
+# bridge: held-out E1 combos asked as whole words) are info rows: first attempts, no bar yet.
+OWNER_EXAM = os.path.join(os.path.dirname(RESULTS_DIR), "owner_exam.json")
 WRITING_DIR = os.path.join(RESULTS_DIR, "writing_samples")
 WORD_MEANS = re.compile(r"^the word (\S+) means (.+?)\s*\.?$", re.I)
 # E8 (info only): free writing, saved for Jaron to read. Seeded sampling = reproducible.
@@ -50,6 +56,16 @@ def answer(model, tok, prompt: str, max_new: int = 24, temperature: float = 0.0,
     ids = torch.tensor([tok.encode(prompt, eos=False)], device=next(model.parameters()).device)
     out = model.generate(ids, max_new=max_new, eos_id=tok.stoi["<eos>"], temperature=temperature, seed=seed)
     return tok.decode(out[0, ids.shape[1]:].tolist())
+
+
+def owner_exam(path: str | None = None) -> dict:
+    """The owner's E9 file, read fresh every time (his edit is the only write)."""
+    path = path or OWNER_EXAM
+    try:
+        d = json.load(open(path, encoding="utf-8"))
+        return {"bar": d.get("bar", 0.5), "items": [i for i in d.get("items", []) if isinstance(i, dict)]}
+    except Exception:
+        return {"bar": 0.5, "items": []}
 
 
 def run_exams(seed: int = 7337, verbose: bool = True, model=None, tok=None,
@@ -158,6 +174,48 @@ def run_exams(seed: int = 7337, verbose: bool = True, model=None, tok=None,
         passed += ok; total += 1; rows.append({"q": it["q"], "expected": it["a"], "got": got, "ok": ok})
     rows.sort(key=lambda r: r["ok"])
     record("E7_reading", BARS["E7_reading"], passed, total, rows)
+
+    # E7L (INFO): reading tasks on a whole held-out essay (public domain), one or two passages per prompt (v3.1).
+    rows, passed, total = [], 0, 0
+    for it in exam_items_longread(seed):
+        if len(tok.encode(it["q"], eos=False)) + 44 > model.block_size:
+            continue
+        got = answer(model, tok, it["q"], max_new=44)
+        ok = got.strip() == it["a"]
+        passed += ok; total += 1; rows.append({"kind": it["kind"], "q": it["q"][-160:], "expected": it["a"], "got": got, "ok": ok})
+    rows.sort(key=lambda r: r["ok"])
+    record("E7L_longread", None, passed, total, rows)
+
+    # E1b (INFO): the bridge - held-out E1 combos in their whole-word spelling (never taught in either spelling).
+    rows, passed, total = [], 0, 0
+    for it in exam_items_bridge(seed):
+        got = answer(model, tok, it["q"])
+        ok = got.strip() == it["a"]
+        passed += ok; total += 1; rows.append({"q": it["whole"], "expected": it["a"], "got": got, "ok": ok})
+    rows.sort(key=lambda r: r["ok"])
+    record("E1b_bridge", None, passed, total, rows)
+
+    # E9: the owner's exam about his own documents (owner_exam.json); runs when it has items.
+    owner = owner_exam()
+    if owner["items"] and store is not None:
+        from .reader import ask as read_ask
+        from .session import Brain
+        rows, passed, total = [], 0, 0
+        b = Brain.from_loaded(model, tok, meta, store)
+        for it in owner["items"]:
+            q, exp, mode = str(it.get("q", "")), normalize(str(it.get("a", ""))).rstrip(" ."), str(it.get("match", "contains"))
+            if not q or not exp:
+                continue
+            r = read_ask(b, store, q, max_new=48) if store.documents() else {"answer": answer(model, tok, f"q : {normalize(q)} a :", max_new=48), "cites": ""}
+            got = normalize(r["answer"]).rstrip(" .")
+            ok = (got == exp) if mode == "exact" else (exp in got)
+            passed += ok; total += 1; rows.append({"q": q, "expected": exp, "got": r["answer"], "cites": r.get("cites", ""), "ok": ok})
+        if total:
+            rows.sort(key=lambda r: r["ok"])
+            record("E9_owner_exam", float(owner.get("bar", 0.5)), passed, total, rows)
+    else:
+        card["exams"].append({"exam": "E9_owner_exam", "bar": owner.get("bar"), "score": "0 items", "accuracy": None,
+                              "verdict": "INFO", "detail": [{"note": "not yet written - owner_exam.json is empty"}]})
 
     # E8 (INFO): free writing samples, saved for the owner to read; no bar.
     samples = []

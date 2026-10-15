@@ -1,0 +1,6 @@
+{
+  "_what": "E9 - the exam Jaron writes himself about his own documents (NEXT.md section 0, item 5). Empty until he fills it; the exam runs the moment it has items, after every consolidation, like E1-E8.",
+  "_how": "First read the document into it (chat: /read C:\\path\\to\\file.txt - or /read: <pasted text>). Then add items here: q = the question in plain words, a = the answer you expect, match = 'contains' (the expected words appear in its answer, after lower-casing and spacing) or 'exact'. The bar is yours too (share of items it must get right to PASS). Nothing else in the code knows the answers; they stay cold.",
+  "bar": 0.5,
+  "items": []
+}

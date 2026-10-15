@@ -17,6 +17,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 V3_CONFIG = dict(d_model=384, n_head=6, n_layer=6, block_size=256)
+# v3.1 (10/14 night): the same core with twice the context (a document chunk + a question fit).
+V31_CONFIG = dict(d_model=384, n_head=6, n_layer=6, block_size=512)
 
 
 def autocast_ctx(device: str):
@@ -159,6 +161,23 @@ class SaplingCore(nn.Module):
         self.tok_emb = new_emb
         self.head = nn.Linear(old.shape[1], new_size, bias=False).to(old.device)
         self.head.weight = self.tok_emb.weight
+        return added
+
+    @torch.no_grad()
+    def grow_context(self, new_block: int) -> int:
+        """v3.1: lengthen the context in place (256 -> 512). The learned position
+        rows it has stay; the new positions start as copies of the last learned
+        row plus small noise, so a long prompt is readable at once and training
+        moves them. Returns rows added. The same individual keeps its weights."""
+        old = self.pos_emb.weight
+        if new_block <= old.shape[0]:
+            return 0
+        added = new_block - old.shape[0]
+        new_pos = nn.Embedding(new_block, old.shape[1]).to(old.device)
+        new_pos.weight[: old.shape[0]] = old
+        new_pos.weight[old.shape[0]:] = old[-1:] + 0.02 * torch.randn(added, old.shape[1], device=old.device)
+        self.pos_emb = new_pos
+        self.block_size = new_block
         return added
 
     def n_params(self) -> int:

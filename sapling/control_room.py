@@ -75,7 +75,14 @@ def state_of(hb) -> dict:
             except Exception:
                 pass
     growth = hb.store.last_ledger("growth")
+    from .reader import documents_summary
+    try:
+        docs = [{k: d.get(k) for k in ("id", "title", "source", "passages", "recalls")} | {"ts": time.strftime("%m-%d %H:%M", time.localtime(float(d["ts"])))}
+                for d in documents_summary(hb.store)][-20:]
+    except Exception:
+        docs = []
     return {
+        "documents": docs,
         "core": hb.brain.core_info(),
         "growth": {k: growth.get(k) for k in ("event", "ts", "seconds")} | {
             "from": {k: (growth.get("from") or {}).get(k) for k in ("generation", "params", "vocab_size")},

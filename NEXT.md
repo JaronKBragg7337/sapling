@@ -4,21 +4,26 @@ v1's three steps: (1) runs-without-you is DONE (the heartbeat); (2) record -> co
 is DONE (no gate; `/confirm` and `/invalidate` verdicts are the selection events); (3) a world
 to practice in is still open. Ordered by dependency.
 
-## 0. After level 2 (v3, 10/14 evening) - what step 2 (his documents) needs to be accurate
+## 0. Step 2 - Jaron's documents (his call; the prerequisites are DONE in v3.1, 10/14 night)
 
-Level 2 gave it sentences from generated lessons + children's stories. Before it reads Jaron's own
-documents (his call, after he checks this step) it needs, in order:
-1. **A bridge lesson** between the two spellings: "report is re + port" - so the morpheme school and the
-   whole-word reader are one language, not two (DESIGN-CHOICES D11).
-2. **A bigger reading vocabulary** than a first reader's 3,000 words: his documents use words no children's
-   story has. Either raise the story cap and read the TinyStories train split (2.2 GB, same license), or
-   move to sub-word tokens (BPE) - the second makes old checkpoints and E1 incomparable, so it is his call.
-3. **Longer context** than 256 tokens for a document (512-1024), and a retrieval path that feeds a passage
-   into the prompt the way `recall [ user ]` feeds a fact today (the E7 "passage : ... q : ... a :" frame is
-   that path in the small).
-4. **Provenance per document** in memory.db (which file, which line) so an answer can cite it - the
-   `retrieval/captured` provenance already exists for this.
-5. **An exam from his documents that he writes himself** (cold, like E7) - the only honest check.
+Everything the list below asked for is built (CHANGELOG v3.1, DESIGN-CHOICES D16-D19): copy lesson (E6 12 -> 21/48),
+bridge lesson (E1b 81/86 cold), vocabulary 17,660 with word pieces (any adult word spellable, E1 still comparable),
+context 512 + the passage path (`/read`, `reader.py`, cited answers), provenance per document in memory.db (chain
+intact), and the E9 slot (`owner_exam.json`). What step 2 still needs, in order:
+1. **Jaron's go**, after he reads the swap rows and the retrieval demo in README "Run record - v3.1".
+2. **His documents as plain text files on the MSI** (.txt; a .docx/.pdf needs a text export first - the reader takes
+   text only). Then from the phone: `/read C:\path\to\file.txt`, one per document. Each read is a `documents` row
+   + its passages as memories; the heartbeat consolidates them on its next draw (no gate) - **read E1-E7 on the page
+   after the first consolidation with his text in it** (D14/D18: the big core memorises fast; the share cap is set,
+   the drift is still the thing to watch).
+3. **E9 filled by him**: questions about his documents + the answers he expects, into `owner_exam.json`. It runs
+   after every consolidation from then on; the bar is his.
+4. **Long reading is the weak leg** (E7L on a cold essay - see the run record for the drill result): fluent prose
+   comes easier to it than copying a sentence out of a 150-word passage it has never seen. More task passages it has
+   not read as prose, and a copy task with *long* spans, are the next lessons if E7L stays low; a bar for E7L is
+   declared only after it has a level.
+5. **Context 1024** is one `grow_context` call away (the same in-place growth) once 512 is used well; at 512 one
+   passage + one distractor + a question fit.
 
 ## 1. Let it run for days, then read the record (no build)
 

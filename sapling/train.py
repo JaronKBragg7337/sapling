@@ -19,6 +19,7 @@ import torch
 
 from .curriculum import LESSONS, build_corpus, build_vocab, corpus_hash
 from .model import SaplingCore
+from .pieces import MARK, join_pieces, split_word
 
 RESULTS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results")
 CHECKPOINT = os.path.join(RESULTS_DIR, "core_checkpoint.pt")
@@ -27,14 +28,38 @@ TRAIN_LOG = os.path.join(RESULTS_DIR, "train_log.jsonl")
 
 
 class Tokenizer:
-    """Whitespace/morpheme tokenizer. The vocabulary IS the curriculum."""
+    """Whitespace/morpheme tokenizer. The vocabulary IS the curriculum.
 
-    def __init__(self, stoi: dict, itos: list[str]):
+    v3.1: an unknown word is spelled from pieces when the vocabulary has any
+    ("##"-marked continuation pieces, pieces.py) instead of becoming <unk>;
+    `splits` forces the school's composed words to their parts ("report" ->
+    "re ##port"). A vocabulary without pieces (every checkpoint before v3.1)
+    behaves exactly as before."""
+
+    def __init__(self, stoi: dict, itos: list[str], splits: dict | None = None):
         self.stoi = stoi
         self.itos = itos
+        self.splits = dict(splits or {})
+        self._pieces = any(t.startswith(MARK) for t in itos)
+
+    def has_pieces(self) -> bool:
+        return self._pieces
+
+    def tokens(self, text: str) -> list[str]:
+        """The token strings for a text (unknown words spelled from pieces where possible)."""
+        out = []
+        for t in text.split():
+            if t in self.stoi and t not in self.splits:
+                out.append(t)
+            elif self._pieces or t in self.splits:
+                parts = split_word(t, self.stoi, self.splits)
+                out.extend(parts if parts and all(p in self.stoi for p in parts) else ["<unk>"])
+            else:
+                out.append("<unk>")
+        return out
 
     def encode(self, text: str, bos: bool = True, eos: bool = True) -> list[int]:
-        ids = [self.stoi.get(t, self.stoi["<unk>"]) for t in text.split()]
+        ids = [self.stoi[t] for t in self.tokens(text)]
         if bos:
             ids = [self.stoi["<bos>"]] + ids
         if eos:
@@ -42,9 +67,11 @@ class Tokenizer:
         return ids
 
     def unknown_tokens(self, text: str) -> list[str]:
+        """Whole words not in the list (even when pieces could spell them):
+        what grow_vocab_for may add as tokens of their own."""
         seen, out = set(), []
         for t in text.split():
-            if t not in self.stoi and t not in seen:
+            if t not in self.stoi and t not in self.splits and t not in seen:
                 seen.add(t)
                 out.append(t)
         return out
@@ -57,6 +84,8 @@ class Tokenizer:
                 self.stoi[t] = len(self.itos)
                 self.itos.append(t)
                 n += 1
+                if t.startswith(MARK):
+                    self._pieces = True
         return n
 
     def decode(self, ids: list[int]) -> str:
@@ -68,7 +97,7 @@ class Tokenizer:
             if t == "<eos>":
                 break
             toks.append(t)
-        return " ".join(toks)
+        return " ".join(join_pieces(toks))
 
 
 def sentences_to_tensor(sentences: list[str], tok: Tokenizer, block_size: int) -> torch.Tensor:
@@ -168,7 +197,7 @@ def save_checkpoint(model, tok: Tokenizer, meta: dict, path: str = CHECKPOINT) -
         "model_state": model.state_dict(),
         "config": model.config(),
         "params": model.n_params(),
-        "vocab": {"stoi": dict(tok.stoi), "itos": list(tok.itos)},
+        "vocab": {"stoi": dict(tok.stoi), "itos": list(tok.itos), "splits": dict(tok.splits)},
         **meta,
     }
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -183,7 +212,7 @@ def load_checkpoint(device: str | None = None, path: str = CHECKPOINT):
     model = SaplingCore(**cfg).to(device)
     model.load_state_dict(ckpt["model_state"])
     model.eval()
-    tok = Tokenizer(ckpt["vocab"]["stoi"], ckpt["vocab"]["itos"])
+    tok = Tokenizer(ckpt["vocab"]["stoi"], ckpt["vocab"]["itos"], ckpt["vocab"].get("splits"))
     return model, tok, ckpt
 
 

@@ -232,7 +232,7 @@ def test_consolidation_keeps_checkpoint_and_runs_exams(store, tmp_path, monkeypa
     row = C.consolidate(b, store, goals=[], steps=20, verbose=False, rehearsal=50)
     assert row["generation"] == gen0 + 1 and row["facts_new"] == 2
     assert os.path.exists(tmp_path / "ck" / f"gen_{gen0 + 1:04d}.pt") and os.path.exists(tmp_path / "latest.pt")
-    assert {e["exam"] for e in row["exams"]} >= {"E1_composition", "E2_affix_recall", "E5_facts_in_weights"}
+    assert {e["exam"] for e in row["exams"]} >= {"E1_composition", "E2_affix_recall", "E5_facts_in_weights", "E7L_longread", "E9_owner_exam"}
     assert C.pending_facts(store) == []                         # now on the record as consolidated
     assert store.last_ledger("consolidation")["generation"] == gen0 + 1
     assert store.verify_chain()
@@ -446,25 +446,149 @@ def test_exam_bars_for_level2_are_predeclared():
     assert BARS["E1_composition"] == 0.60                                # old bars untouched
 
 
-def test_growth_smoke_keeps_chain_and_logs_one_growth_row():
-    """The whole pipeline on CPU in a temp dir: level 1 + level 2 + the record -> v3 core,
-    vocab carries every old token, one `growth` ledger row, E1-E8 on the card."""
+def test_growth_smoke_keeps_chain_and_logs_growth_rows():
+    """The whole pipeline on CPU in a temp dir, twice: a fresh tiny v3-shaped core (level 1 + 2 + 3 + the
+    record), then the SAME core grown in place to v3.1 (new vocab rows + pieces, context 64 -> 128).
+    Two `growth` ledger rows on one chain, every old token kept, E1-E9 on the card."""
     import shutil
     from sapling.grow import smoke
     out = smoke(verbose=False)
     try:
         st = out["store"]
         assert st.verify_chain()
-        rows = st.ledger_rows("growth", limit=10)
-        assert len(rows) == 1 and rows[0]["event"] == "growth: core v2 -> v3"
-        assert rows[0]["to"]["core_version"] == 3 and rows[0]["to"]["vocab_size"] == len(out["tok"].itos)
-        if rows[0]["from"]:
-            assert rows[0]["to"]["generation"] == rows[0]["from"]["generation"] + 1
-            assert set(rows[0]["from"]["exams"] and [e["exam"] for e in rows[0]["from"]["exams"]]) >= {"E6_grammar", "E7_reading"}
-        names = {e["exam"] for e in rows[0]["to"]["exams"]}
-        assert {"E1_composition", "E6_grammar", "E7_reading", "E8_writing"} <= names
-        assert "hello" in out["tok"].stoi and "once" in out["tok"].stoi    # record + stories both in the vocabulary
+        rows = list(reversed(st.ledger_rows("growth", limit=10)))      # oldest first
+        assert len(rows) == 2
+        assert rows[0]["event"] == "growth: core v- -> v3" and rows[0]["to"]["core_version"] == 3
+        assert rows[1]["event"] == "growth: core v3 -> v3.1" and rows[1]["to"]["core_version"] == 3.1
+        assert rows[1]["from"]["generation"] == rows[0]["to"]["generation"]
+        assert rows[1]["to"]["generation"] == rows[1]["from"]["generation"] + 1
+        assert rows[1]["to"]["vocab_size"] == len(out["tok"].itos) > rows[1]["from"]["vocab_size"]
+        assert rows[1]["to"]["config"]["block_size"] == 128 and rows[1]["from"]["config"]["block_size"] == 64
+        assert rows[1]["to"]["pieces"] is True
+        assert set(e["exam"] for e in rows[1]["from"]["exams"]) >= {"E6_grammar", "E7_reading"}
+        names = {e["exam"] for e in rows[1]["to"]["exams"]}
+        assert {"E1_composition", "E6_grammar", "E7_reading", "E7L_longread", "E1b_bridge", "E9_owner_exam", "E8_writing"} <= names
+        e9 = next(e for e in rows[1]["to"]["exams"] if e["exam"] == "E9_owner_exam")
+        assert e9["verdict"] == "INFO" and e9["score"] == "0 items"       # the slot is there; Jaron has not filled it
+        tok = out["tok"]
+        assert "hello" in tok.stoi and "once" in tok.stoi               # record + stories both in the vocabulary
+        assert tok.has_pieces() and tok.tokens("report") == ["re", "##port"]   # the bridge split
+        assert "<unk>" not in tok.tokens("archaeologists digitised the necklace")   # adult words spell from pieces
+        assert tok.decode(tok.encode("archaeologists digitised the necklace")) == "archaeologists digitised the necklace"
         assert os.path.isdir(os.path.join(out["tmp"], "writing")) and os.listdir(os.path.join(out["tmp"], "writing"))
         st.db.close()
     finally:
         shutil.rmtree(out["tmp"], ignore_errors=True)
+
+
+# -- v3.1 (10/14 night, "prepare it to read my documents") -----------------------------------------
+def test_pieces_spell_unknown_words_and_old_tokenizers_are_unchanged():
+    from sapling.pieces import base_pieces, learn_pieces, split_word, join_pieces
+    from sapling.train import Tokenizer
+    base = ["<pad>", "<bos>", "<eos>", "<unk>", "re", "port", "the", "word", "means", ".", "?"]
+    old = Tokenizer({t: i for i, t in enumerate(base)}, list(base))
+    assert old.tokens("re port zap") == ["re", "port", "<unk>"] and not old.has_pieces()
+    learned = learn_pieces({"archaeology": 5, "biology": 8, "geology": 3, "ology": 2}, n_merges=30)
+    assert learned and learned == learn_pieces({"archaeology": 5, "biology": 8, "geology": 3, "ology": 2}, n_merges=30)
+    itos = base + base_pieces() + ["##port"] + learned
+    tok = Tokenizer({t: i for i, t in enumerate(itos)}, itos, splits={"report": ["re", "##port"]})
+    assert tok.has_pieces()
+    assert tok.tokens("the word report means archaeology .") == ["the", "word", "re", "##port", "means"] + split_word("archaeology", tok.stoi) + ["."]
+    assert "<unk>" not in tok.tokens("zebra 42 don't")
+    assert tok.decode(tok.encode("the word report means archaeology zqx .")) == "the word report means archaeology zqx ."
+    assert join_pieces(["arch", "##ae", "##ology", "."]) == ["archaeology", "."]
+    assert tok.unknown_tokens("report zqx the") == ["zqx"]                 # a forced split is never "unknown"
+
+
+def test_level3_lessons_are_cold_for_E6_and_E1():
+    from sapling.curriculum import compose, split_combos
+    from sapling.curriculum2 import VERBS, split_level2
+    from sapling.curriculum3 import build_corpus3, composed_words, exam_items_bridge
+    kw = dict(docs=False, words=["lantern", "river", "engine"], story_sents=["tom has a red ball ."], sizes={"copy": 300})
+    c = build_corpus3(7337, **kw)
+    assert c["lessons"]["copy"] == build_corpus3(7337, **kw)["lessons"]["copy"]
+    text = " " + " ".join(c["lessons"]["copy"]) + " "
+    sp = split_level2(7337)
+    for v, o in sp["vo_exam"]:                       # E6's held-out (verb, object) pairs never appear, in any form
+        head, _, rest = v.partition(" ")
+        for form in (head,) + VERBS[head]:
+            assert f" {form}{(' ' + rest) if rest else ''} {o} " not in text
+    assert any("q : copy :" in s for s in c["lessons"]["copy"]) and any("q : fill :" in s for s in c["lessons"]["copy"])
+    bridge = " " + " ".join(c["lessons"]["bridge"]) + " "
+    s1 = split_combos(7337)
+    for p, r in s1["pre_exam"]:                      # E1's held-out combos: neither spelling in the bridge lesson
+        assert f" {p + r} " not in bridge and f" {compose([p, r])} " not in bridge
+    for r, s in s1["suf_exam"]:
+        assert f" {r + s} " not in bridge and f" {compose([r, s])} " not in bridge
+    assert len(exam_items_bridge(7337)) == 86 and composed_words()["report"] == ["re", "##port"]
+
+
+def test_memory_schema_keeps_old_chain_and_chains_documents(tmp_path):
+    import sqlite3, hashlib, json as J
+    # a pre-v3.1 database written by the old code (no doc/passage columns, no documents table)
+    p = str(tmp_path / "old.db")
+    con = sqlite3.connect(p)
+    con.executescript("""CREATE TABLE memories (id INTEGER PRIMARY KEY, ts REAL NOT NULL, content TEXT NOT NULL,
+        provenance TEXT NOT NULL, state TEXT NOT NULL, prev_hash TEXT NOT NULL, hash TEXT NOT NULL);
+        CREATE TABLE recalls (id INTEGER PRIMARY KEY, ts REAL NOT NULL, memory_id INTEGER NOT NULL, query TEXT NOT NULL,
+        prev_hash TEXT NOT NULL, hash TEXT NOT NULL);
+        CREATE TABLE ledger (id INTEGER PRIMARY KEY, ts REAL NOT NULL, kind TEXT NOT NULL, payload TEXT NOT NULL,
+        prev_hash TEXT NOT NULL, hash TEXT NOT NULL);""")
+    prev = "sapling-genesis"
+    for i, c in enumerate(("the word glorp means happy", "the word zint means cold")):
+        ts = 1000.0 + i
+        payload = J.dumps({"ts": ts, "content": c, "provenance": "user", "state": "captured"}, sort_keys=True)
+        h = hashlib.sha256((prev + "|" + payload).encode()).hexdigest()
+        con.execute("INSERT INTO memories (ts, content, provenance, state, prev_hash, hash) VALUES (?,?,?,?,?,?)",
+                    (ts, c, "user", "captured", prev, h))
+        prev = h
+    con.commit(); con.close()
+    s = MemoryStore(p)                               # opening migrates: columns added, old rows untouched
+    assert s.verify_chain() and s.count() == 2
+    d = s.add_document("Walking", "chat", "abc123", 500, 2)
+    a = s.remember("first passage .", provenance="retrieval", doc=d, passage=0)
+    b = s.remember("second passage .", provenance="retrieval", doc=d, passage=1)
+    assert s.verify_chain()
+    assert [x["passage"] for x in s.passages(d)] == [0, 1] and s.documents()[0]["title"] == "Walking"
+    assert s.search("first passage", record=False) == []            # passages are the reader's, not the fact search's
+    assert all(f["doc"] == d for f in s.facts() if f["id"] in (a, b))
+    s.db.execute("UPDATE memories SET passage=7 WHERE id=?", (b,)); s.db.commit()
+    assert not s.verify_chain()                                     # provenance is inside the hash
+    s.db.close()
+
+
+def test_reader_chunks_and_retrieves_with_provenance(store):
+    from sapling import reader
+    text = ("The lantern was made in Sweden in 1891. It burned whale oil. " * 3 +
+            "The necklace was found in a cave near the river. The cave was dry. " * 3 +
+            "Franklin printed newspapers in Philadelphia. He flew a kite in a storm. " * 3)
+    r = reader.read_document(store, text=text, title="notes")
+    assert r["new"] and r["passages"] >= 1 and store.verify_chain()
+    again = reader.read_document(store, text=text, title="notes")
+    assert again["new"] is False and store.count("documents") == 1    # same sha256 = nothing added twice
+    hits = reader.retrieve(store, "where was the necklace found ?", k=2)
+    assert hits and "necklace" in hits[0]["content"] and hits[0]["doc"] == r["doc"]
+    assert store.recall_count(hits[0]["id"]) == 1                       # a pick is a recorded recall
+    assert reader.retrieve(store, "what is the capital of france ?", k=2) == []
+    assert store.last_ledger("read_document")["title"] == "notes"
+
+
+def test_model_context_grows_in_place():
+    import torch
+    from sapling.model import SaplingCore
+    m = SaplingCore(50, d_model=32, n_head=4, n_layer=2, block_size=16)
+    before = m.pos_emb.weight[:16].clone()
+    assert m.grow_context(32) == 16 and m.block_size == 32 and m.grow_context(32) == 0
+    assert torch.equal(m.pos_emb.weight[:16], before)                  # the learned rows stay
+    logits, _ = m(torch.randint(0, 50, (1, 30)))
+    assert logits.shape == (1, 30, 50) and m.config()["block_size"] == 32
+
+
+def test_owner_exam_file_is_read_fresh(tmp_path):
+    from sapling.exams import owner_exam
+    p = tmp_path / "owner_exam.json"
+    p.write_text('{"bar": 0.7, "items": [{"q": "who made the lantern ?", "a": "Sweden", "match": "contains"}]}', encoding="utf-8")
+    e = owner_exam(str(p))
+    assert e["bar"] == 0.7 and e["items"][0]["q"] == "who made the lantern ?"
+    p.write_text('{"items": []}', encoding="utf-8")
+    assert owner_exam(str(p))["items"] == [] and owner_exam(str(tmp_path / "missing.json"))["items"] == []

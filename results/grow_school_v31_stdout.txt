@@ -1,0 +1,13 @@
+[grow] old core: v3.0 gen 173 params=11,926,656 vocab=3099 ctx=256
+[grow] growing live core: params=17,453,952 vocab=17237 pieces=878 config={'vocab_size': 17237, 'd_model': 384, 'n_head': 6, 'n_layer': 6, 'block_size': 512} device=cuda
+[grow] stories: {"present": true, "path": "C:\\Users\\lilli\\Projects\\sapling\\data\\tinystories\\TinyStoriesV2-GPT4-valid.txt", "stories_in_file": 27630, "distinct_words_in_file": 10410, "vocab_cap": 6000, "kept": 20000, "tokens": 3335225, "note": "TinyStories (Eldan & Li, 2023), dataset roneneldan/TinyStories on
+[grow] docs: {"pg2944": {"title": "Essays \u2014 First Series", "passages": 640, "tokens": 84725}, "pg20203": {"title": "Autobiography of Benjamin Franklin", "passages": 699, "tokens": 88799}, "pg2680": {"title": "Meditations", "passages": 650, "tokens": 83727}, "pg1228": {"title": "On the Origin of Species By Means of Natural Selection", "passages": 1417, "tokens": 177321}, "pg205": {"title": "Walden, and On 
+[grow] record: 711 sentences from memory.db
+[grow] stage=copy           examples=6557   tokens=190464   loss 6.021 -> 0.049 (116.8s)
+[grow] stage=bridge         examples=4676   tokens=68096    loss 6.669 -> 0.033 (47.2s)
+[grow] stage=prose          examples=24069  tokens=915968   loss 8.485 -> 1.681 (206.5s)
+[grow] stage=docs           examples=18565  tokens=774144   loss 2.756 -> 0.166 (236.8s)
+[grow] stage=longread       examples=19424  tokens=925184   loss 2.855 -> 0.277 (145.4s)
+[grow] stage=record         examples=884    tokens=10240    loss 1.997 -> 0.016 (43.6s)
+[grow] stage=all            examples=45768  tokens=1079296  loss 2.636 -> 0.247 (237.8s)
+[grow] school done in 1047.0s -> C:\Users\lilli\Projects\sapling\results\core_staged.pt (staged; run `swap` to install)

@@ -1,5 +1,57 @@
 # Changelog
 
+## v3.1 (2026-10-14, night) - ready to read documents (the prerequisites for Jaron's step 2)
+
+Jaron (10/14 8 PM): "your call boss" on NEXT.md section 0 - everything his documents need before they are read.
+Built by Claude (Fable 5.1). Rules freeze holds (no new rule, limit or gate); AI choices in `DESIGN-CHOICES.md` D16-D19.
+No document of Jaron's was read; step 2 is still his.
+
+| what | before (v3) | after (v3.1) |
+|---|---|---|
+| core | 11.9M params, **256** tokens of context, gen 178 | **the same weights, grown in place** (D17): 17.6M params (embedding rows), **512** tokens of context (`model.grow_context`), gen 183 |
+| vocabulary | 3,098 whole words / word parts; unknown word = `<unk>` | **17,660** = the 3,098 kept (same ids) + 6,000 story words + document words + **1,037 word pieces** (`pieces.py`, D16): any word is spellable ("arch ##ae ##ology"); every school composition is a forced split ("report" = `re ##port`) |
+| school | levels 1-2 | + **level 3** (`curriculum3.py`): **copy** (the answer must reuse the prompt's words - E6's fix), **bridge** ("re port" = "report", train combos only), **prose / docs / longread** (public-domain adult nonfiction: Emerson, Franklin, Marcus Aurelius, Darwin, Thoreau - Project Gutenberg; reading tasks whose answer is a copy out of one or two passages) |
+| reading | the E7 frame on 2-4 generated sentences | **`reader.py`**: `/read <path>` or `/read: <text>` -> passages in memory **with provenance** (document + place; `documents` table, `doc`/`passage` columns, chain intact over the schema change, D18); a question a document covers goes passages-first through the 512-token frame and comes back cited `[doc:N "title" passage K memory:M]` |
+| exams | E1-E8 | + **E7L** long reading on a whole held-out essay (Thoreau, *Walking*; info), **E1b** the bridge cold (held-out E1 combos as whole words; info), **E9 = the exam Jaron writes** (`owner_exam.json`; empty = "0 items"; his questions, his answers, his bar) (D19) |
+| consolidation | levels 1-2 rehearsed | + level-3 rehearsal; the fact share held at ~30% in both directions (a document's passages are sampled down, not allowed to flood) |
+| control room | E1-E7 | + E7L / E1b / E9 columns, "Documents it has read" card, vocab line says "+ pieces" (local + phone page) |
+
+**The runs (10/14, RTX 4060, heartbeat kept running beside school):**
+- School A (in place, 1,047 s, batch 32): copy 6.02 -> 0.05, bridge 6.67 -> 0.03, prose 8.49 -> 1.68, docs 2.76 -> 0.17,
+  longread 2.86 -> 0.28, record 2.00 -> 0.02, all 2.64 -> 0.25. Swap at 20:48 = ledger row `growth: core v3 -> v3.1`,
+  gen 178 -> 179, vocab 3,098 -> 17,237 (878 pieces), 11.93M -> 17.45M params, context 256 -> 512.
+- **Data from swap A:** E6 12 -> 21/48 (copy lesson: +9), E7 25 -> 27/40, E1-E5 held, **E1b 0 -> 81/86** (the bridge
+  transfers cold: a held-out word it never saw in either spelling, answered from its parts), **E7L 0/40**. The E7L misses
+  were fluent prose, not copies: the reading tasks had been built on the same passages it read as prose, so it learned
+  the passages, not the copying (docs loss 0.17 is memorisation). Fixed in `curriculum3._split_passages`: task passages
+  and prose passages are disjoint halves of every document.
+- School B ("reading drill", in place again, batch 24): prose 600 / docs 1,500 / longread 1,000 / record 100 / all 800
+  steps. Swap B = ledger row `growth: core v3.1 -> v3.1 (reading drill: ...)`, gen 182 -> 183 (the heartbeat consolidated three times in between), vocab 17,237 -> 17,660
+  (the piece learner saw a different rare-word set the second time; nothing lost). Before B the heartbeat had consolidated three times on v3.1 (gen 180-182) and the card had drifted: E1 80/86, E6 19/48, E7 29/40, **E1b 59/86** (D14-style drift on the bridge - watch it). After B (gen 183): E1 85/86, E6 21/48, E7 26/40, E1b 83/86, **E7L still 0/40**. The misses are still fluent prose from the training documents, not copies out of the cold passage (docs loss reached 0.12 even on disjoint passages: 18k tasks over 2.2k passages let it learn the task passages through the tasks). Long cold reading is the weak leg - NEXT.md section 0, item 4.
+
+Exams before (v3 gen 178) -> after A (gen 179) -> after B (gen 183), same seed:
+
+| exam | v3 gen 178 | v3.1 gen 179 | v3.1 gen 183 | bar |
+|---|---|---|---|---|
+| E1 composition (held-out word parts) | 82/86 | 82/86 | 85/86 | .60 PASS |
+| E2 affix recall | 24/24 | 24/24 | 24/24 | .90 PASS |
+| E3 recall echo | 12/12 | 12/12 | 12/12 | .90 PASS |
+| E4 deferral | 10/10 | 10/10 | 10/10 | .80 PASS |
+| E5 facts in weights (info) | 7/7 | 7/7 | 7/7 | - |
+| E6 grammar (held-out verb+object) | 12/48 | **21/48** | 21/48 | .60 FAIL (kept) |
+| E7 reading (held-out facts) | 25/40 | 27/40 | 26/40 | .50 PASS |
+| **E7L long reading** (held-out essay, info) | 0/20 (256 ctx: half the items did not fit) | 0/40 | 0/40 | - |
+| **E1b bridge** (held-out combos as whole words, info) | 0/86 | **81/86** | 83/86 | - |
+| **E9 owner exam** | 0 items | 0 items | 0 items | his |
+| E8 writing (info) | 4 samples | 4 samples | 4 samples | - |
+
+E6 misses now copy the wrong span ("does the frog find the frog ?" for "does the child find the frog ?") instead of
+swapping in a familiar object - the habit is gone, the pointer is off by one noun. Data for the next lesson, not a bar move.
+
+Tests: 40 (6 new: pieces + forced splits, level-3 lessons cold for E6/E1, schema migration keeps an old chain + chains
+documents, reader chunks/retrieves/cites, context grows in place, owner-exam file; the growth smoke test now runs both
+growths - fresh, then in place).
+
 ## v3 (2026-10-14, evening) - school level 2: real sentences
 
 Jaron (10/14 7:02 PM): **"school level 2: real sentences"** - grow it from word parts to reading and writing

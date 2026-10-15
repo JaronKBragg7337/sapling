@@ -102,6 +102,21 @@ def main():
     assert len(SLOTS) == 8 and MAX_RECALLS == 4
     print("  ok  curriculum reproducible; exam combos never taught; 8 recall slots")
 
+    # v3.1: pieces + per-document provenance
+    from sapling.pieces import base_pieces
+    from sapling.train import Tokenizer
+    itos = ["<pad>", "<bos>", "<eos>", "<unk>", "re", "the"] + base_pieces() + ["##port"]
+    tok = Tokenizer({t: i for i, t in enumerate(itos)}, itos, splits={"report": ["re", "##port"]})
+    assert tok.tokens("the report zebra") == ["the", "re", "##port", "z", "##e", "##b", "##r", "##a"]
+    assert tok.decode(tok.encode("the report zebra")) == "the report zebra"
+    print("  ok  unknown words are spelled from pieces; composed school words split to their parts")
+    s, p = fresh_store()
+    d = s.add_document("doc", "chat", "sha", 10, 1)
+    s.remember("a passage .", provenance="retrieval", doc=d, passage=0)
+    assert s.verify_chain() and s.passages(d)[0]["passage"] == 0
+    print("  ok  documents + passages are chained with their provenance")
+    close(s, p)
+
     print("ALL GREEN")
 
 

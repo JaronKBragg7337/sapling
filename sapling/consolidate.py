@@ -65,7 +65,10 @@ FACT_SHARE = 0.30   # facts are ~30% of the sentences it trains on (at ~3% they 
 LR_V3 = 1.5e-4
 REHEARSAL2 = 600     # level-2 generated sentences per consolidation
 REHEARSAL_STORIES = 150
+# v3.1: level 3 rehearsal (copy / bridge / document reading) so reading skills survive consolidation too
+REHEARSAL3 = {"copy": 200, "bridge": 100, "docs": 80, "longread": 40, "prose": 60}
 _CORPUS2 = {}
+_CORPUS3 = {}
 
 
 def record_sentences(store) -> list[str]:
@@ -89,6 +92,16 @@ def _corpus2(seed: int):
     return _CORPUS2[seed]
 
 
+def _corpus3(seed: int, tok=None):
+    if seed not in _CORPUS3:
+        from .curriculum3 import build_corpus3
+        c2 = _corpus2(seed)
+        words = sorted({t for s in c2["lessons"]["stories"][:2000] for t in s.split() if t.isalpha()})
+        _CORPUS3[seed] = build_corpus3(seed, words=words, story_sents=c2["lessons"]["stories"][:500],
+                                       sizes={"copy": 800, "prose": 400, "docs": 400, "longread": 200})
+    return _CORPUS3[seed]
+
+
 def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | None = None,
                 batch_size: int = 32, seed: int = 7337, verbose: bool = True,
                 rehearsal: int = 400) -> dict:
@@ -96,7 +109,8 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
     rng = random.Random(seed + brain.generation + 1)
     torch.manual_seed(seed + brain.generation + 1)
     model, tok = brain.model, brain.tok
-    v3 = int((brain.meta or {}).get("core_version", 2)) >= 3
+    v3 = float((brain.meta or {}).get("core_version", 2)) >= 3
+    v31 = float((brain.meta or {}).get("core_version", 2)) >= 3.1
     if lr is None:
         lr = LR_V3 if v3 else 5e-4
 
@@ -122,13 +136,31 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
         other += rng.sample(gen2, min(int(rehearsal * REHEARSAL2 / 400), len(gen2)))
         if c2["lessons"]["stories"]:
             other += rng.sample(c2["lessons"]["stories"], min(int(rehearsal * REHEARSAL_STORIES / 400), len(c2["lessons"]["stories"])))
-    rep = max(1, int(len(other) * FACT_SHARE / (1 - FACT_SHARE) / max(1, len(fact_mix)))) if fact_mix else 0
+    if v31:
+        c3 = _corpus3(seed)
+        for name, n in REHEARSAL3.items():
+            L = c3["lessons"].get(name) or []
+            if L:
+                other += rng.sample(L, min(int(rehearsal * n / 400), len(L)))
+    # facts (incl. passages it has read) are ~FACT_SHARE of the mix in BOTH directions: repeated when few,
+    # sampled down when a document brings hundreds of passages (D14 lesson: the big core memorises fast)
+    cap = int(len(other) * FACT_SHARE / (1 - FACT_SHARE))
+    if fact_mix and len(fact_mix) > cap > 0:
+        fact_mix = rng.sample(fact_mix, cap)
+    rep = max(1, int(cap / max(1, len(fact_mix)))) if fact_mix else 0
     mix = other + fact_mix * rep
     rng.shuffle(mix)
 
     added: list[str] = []
-    for s in mix:
-        added += brain.grow_vocab_for(s, why="consolidation")
+    if not brain.tok.has_pieces():
+        for s in mix:
+            added += brain.grow_vocab_for(s, why="consolidation")
+    else:
+        # v3.1: words it was TAUGHT become tokens of their own; words it merely read are spelled from pieces
+        for f in facts:
+            if f.get("provenance") == "user":
+                for s in _fact_sentences(f):
+                    added += brain.grow_vocab_for(s, why="consolidation")
 
     with brain.lock:
         model.train()

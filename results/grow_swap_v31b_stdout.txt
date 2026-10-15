@@ -1,0 +1,23 @@
+[exam] E1_composition       80/86 acc=0.930 bar=0.6 -> PASS
+[exam] E2_affix_recall      24/24 acc=1.000 bar=0.9 -> PASS
+[exam] E3_recall_echo       12/12 acc=1.000 bar=0.9 -> PASS
+[exam] E4_deferral          10/10 acc=1.000 bar=0.8 -> PASS
+[exam] E6_grammar           19/48 acc=0.396 bar=0.6 -> FAIL
+[exam] E7_reading           29/40 acc=0.725 bar=0.5 -> PASS
+[exam] E7L_longread         0/40 acc=0.000 bar=None -> INFO
+[exam] E1b_bridge           59/86 acc=0.686 bar=None -> INFO
+[exam] E8_writing          4 samples -> C:\Users\lilli\Projects\sapling\results\writing_samples\2026-10-14T210542_gen182.txt
+[exam] E5_facts_in_weights  7/7 acc=1.000 bar=None -> INFO
+[exam] report card -> C:\Users\lilli\Projects\sapling\results\report_card.json (and hash-chained into memory)
+[exam] E1_composition       85/86 acc=0.988 bar=0.6 -> PASS
+[exam] E2_affix_recall      24/24 acc=1.000 bar=0.9 -> PASS
+[exam] E3_recall_echo       12/12 acc=1.000 bar=0.9 -> PASS
+[exam] E4_deferral          10/10 acc=1.000 bar=0.8 -> PASS
+[exam] E6_grammar           21/48 acc=0.438 bar=0.6 -> FAIL
+[exam] E7_reading           26/40 acc=0.650 bar=0.5 -> PASS
+[exam] E7L_longread         0/40 acc=0.000 bar=None -> INFO
+[exam] E1b_bridge           83/86 acc=0.965 bar=None -> INFO
+[exam] E8_writing          4 samples -> C:\Users\lilli\Projects\sapling\results\writing_samples\2026-10-14T210554_gen183.txt
+[exam] E5_facts_in_weights  7/7 acc=1.000 bar=None -> INFO
+[exam] report card -> C:\Users\lilli\Projects\sapling\results\report_card.json (and hash-chained into memory)
+[grow] swapped: growth: core v3.1 -> v3.1 (reading drill: task passages disjoint from prose), gen 183, 17,616,384 params, vocab 17660 -> C:\Users\lilli\Projects\sapling\results\core_checkpoint.pt

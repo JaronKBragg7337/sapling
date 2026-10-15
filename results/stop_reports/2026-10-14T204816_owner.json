@@ -1,0 +1,3533 @@
+{
+  "kind": "stop",
+  "ts": "2026-10-14T20:48:16",
+  "who": "owner",
+  "reason": "stop file written by the owner",
+  "tick": 3826,
+  "clock": {
+    "now": 1792025296.081731,
+    "now_iso": "2026-10-14 20:48:16",
+    "born_iso": "2026-10-14 13:50:50",
+    "age_s": 25045.7,
+    "uptime_s": 4060.0,
+    "since_last_input_s": 3977.6,
+    "budget_total_s": 3600.0,
+    "budget_spent_s": 2971.737,
+    "budget_left_s": 628.263,
+    "budget_left_frac": 0.1745,
+    "day_ends_in_s": 11504.0,
+    "kwh_today": 0.014202078,
+    "kwh_total": 0.014202078,
+    "gpu_watts_now": null
+  },
+  "drives": null,
+  "open_goals": [
+    {
+      "part": "prefix:super",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 1294,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:inter",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1494,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:chron",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 855,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:fer",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1633,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:luc",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1192,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:spect",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1245,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ology",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1068,
+      "target": "0 misses in the last 10 tries"
+    }
+  ],
+  "last_ticks": [
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24841.0,
+        "budget_left_frac": 0.1836,
+        "budget_left_s": 660.851,
+        "kwh_today": 0.014134755,
+        "since_last_input_s": 3772.9,
+        "uptime_s": 3855.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.093,
+        "practice": 0.26,
+        "rest": 0.68,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1836,
+        "generation": 177,
+        "memories": 1492,
+        "open_goals": 7,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 67.2,
+        "since_explore_s": 13.6,
+        "since_input_s": 3772.8,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3797,
+      "ts": 1792025091.374288,
+      "id": 12632
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 24849.6,
+        "budget_left_frac": 0.1834,
+        "budget_left_s": 660.238,
+        "kwh_today": 0.014136057,
+        "since_last_input_s": 3781.5,
+        "uptime_s": 3863.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.111,
+        "practice": 0.26,
+        "rest": 0.68,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 424.8,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.1836,
+        "generation": 177,
+        "memories": 1492,
+        "open_goals": 7,
+        "pending_facts": 1,
+        "rest_streak": 2,
+        "since_consolidation_s": 75.3,
+        "since_explore_s": 21.8,
+        "since_input_s": 3777.9,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3798,
+      "ts": 1792025099.9762306,
+      "id": 12637
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24854.8,
+        "budget_left_frac": 0.1834,
+        "budget_left_s": 660.238,
+        "kwh_today": 0.014136057,
+        "since_last_input_s": 3786.7,
+        "uptime_s": 3869.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.123,
+        "practice": 0.231,
+        "rest": 0.68,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1834,
+        "generation": 177,
+        "memories": 1492,
+        "open_goals": 5,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 81.0,
+        "since_explore_s": 27.4,
+        "since_input_s": 3786.6,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3799,
+      "ts": 1792025105.1772368,
+      "id": 12638
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 24863.5,
+        "budget_left_frac": 0.1832,
+        "budget_left_s": 659.551,
+        "kwh_today": 0.014137489,
+        "since_last_input_s": 3795.4,
+        "uptime_s": 3877.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.141,
+        "practice": 0.231,
+        "rest": 0.68,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 484.2,
+      "result": {
+        "misses": [
+          "q : what does the root luc mean ? a :"
+        ],
+        "n": 6,
+        "ok": 5
+      },
+      "state": {
+        "budget_left_frac": 0.1834,
+        "generation": 177,
+        "memories": 1492,
+        "open_goals": 5,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 89.2,
+        "since_explore_s": 35.7,
+        "since_input_s": 3791.7,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3800,
+      "ts": 1792025113.8944747,
+      "id": 12641
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24868.7,
+        "budget_left_frac": 0.1832,
+        "budget_left_s": 659.551,
+        "kwh_today": 0.014137489,
+        "since_last_input_s": 3800.6,
+        "uptime_s": 3883.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.153,
+        "practice": 0.231,
+        "rest": 0.68,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1832,
+        "generation": 177,
+        "memories": 1492,
+        "open_goals": 5,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 94.9,
+        "since_explore_s": 41.3,
+        "since_input_s": 3800.5,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3801,
+      "ts": 1792025119.0718157,
+      "id": 12642
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24876.8,
+        "budget_left_frac": 0.1832,
+        "budget_left_s": 659.551,
+        "kwh_today": 0.014137489,
+        "since_last_input_s": 3808.7,
+        "uptime_s": 3891.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.17,
+        "practice": 0.231,
+        "rest": 0.68,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1832,
+        "generation": 177,
+        "memories": 1492,
+        "open_goals": 5,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 103.0,
+        "since_explore_s": 49.4,
+        "since_input_s": 3805.6,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3802,
+      "ts": 1792025127.1979432,
+      "id": 12643
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24882.0,
+        "budget_left_frac": 0.1832,
+        "budget_left_s": 659.551,
+        "kwh_today": 0.014137489,
+        "since_last_input_s": 3814.0,
+        "uptime_s": 3896.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.181,
+        "practice": 0.231,
+        "rest": 0.68,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1832,
+        "generation": 177,
+        "memories": 1492,
+        "open_goals": 5,
+        "pending_facts": 1,
+        "rest_streak": 2,
+        "since_consolidation_s": 108.2,
+        "since_explore_s": 54.7,
+        "since_input_s": 3813.8,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3803,
+      "ts": 1792025132.4179645,
+      "id": 12644
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24887.1,
+        "budget_left_frac": 0.1832,
+        "budget_left_s": 659.551,
+        "kwh_today": 0.014137489,
+        "since_last_input_s": 3819.1,
+        "uptime_s": 3901.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.192,
+        "practice": 0.231,
+        "rest": 0.68,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1832,
+        "generation": 177,
+        "memories": 1492,
+        "open_goals": 5,
+        "pending_facts": 1,
+        "rest_streak": 3,
+        "since_consolidation_s": 113.3,
+        "since_explore_s": 59.8,
+        "since_input_s": 3819.0,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3804,
+      "ts": 1792025137.5266752,
+      "id": 12645
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 24892.4,
+        "budget_left_frac": 0.1832,
+        "budget_left_s": 659.487,
+        "kwh_today": 0.014137619,
+        "since_last_input_s": 3824.4,
+        "uptime_s": 3906.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.203,
+        "practice": 0.231,
+        "rest": 0.68,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 106.2,
+      "result": {
+        "kind": "generate",
+        "memory": 1493,
+        "prompt": "super + pos =",
+        "said": "super pos ."
+      },
+      "state": {
+        "budget_left_frac": 0.1832,
+        "generation": 177,
+        "memories": 1492,
+        "open_goals": 5,
+        "pending_facts": 1,
+        "rest_streak": 4,
+        "since_consolidation_s": 118.5,
+        "since_explore_s": 65.0,
+        "since_input_s": 3824.1,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3805,
+      "ts": 1792025142.8124354,
+      "id": 12647
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24897.6,
+        "budget_left_frac": 0.1832,
+        "budget_left_s": 659.487,
+        "kwh_today": 0.014137619,
+        "since_last_input_s": 3829.5,
+        "uptime_s": 3911.9
+      },
+      "drives": {
+        "consolidate": 0.188,
+        "explore": 0.076,
+        "practice": 0.231,
+        "rest": 0.68,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1832,
+        "generation": 177,
+        "memories": 1493,
+        "open_goals": 5,
+        "pending_facts": 2,
+        "rest_streak": 0,
+        "since_consolidation_s": 123.8,
+        "since_explore_s": 5.3,
+        "since_input_s": 3829.4,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3806,
+      "ts": 1792025148.0040865,
+      "id": 12648
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24905.8,
+        "budget_left_frac": 0.1832,
+        "budget_left_s": 659.487,
+        "kwh_today": 0.014137619,
+        "since_last_input_s": 3837.7,
+        "uptime_s": 3920.1
+      },
+      "drives": {
+        "consolidate": 0.188,
+        "explore": 0.093,
+        "practice": 0.231,
+        "rest": 0.68,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1832,
+        "generation": 177,
+        "memories": 1493,
+        "open_goals": 5,
+        "pending_facts": 2,
+        "rest_streak": 1,
+        "since_consolidation_s": 132.0,
+        "since_explore_s": 13.5,
+        "since_input_s": 3834.6,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3807,
+      "ts": 1792025156.1932876,
+      "id": 12649
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 24911.4,
+        "budget_left_frac": 0.1831,
+        "budget_left_s": 658.987,
+        "kwh_today": 0.014138596,
+        "since_last_input_s": 3843.3,
+        "uptime_s": 3925.7
+      },
+      "drives": {
+        "consolidate": 0.188,
+        "explore": 0.104,
+        "practice": 0.231,
+        "rest": 0.68,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 394.1,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.1832,
+        "generation": 177,
+        "memories": 1493,
+        "open_goals": 5,
+        "pending_facts": 2,
+        "rest_streak": 2,
+        "since_consolidation_s": 137.2,
+        "since_explore_s": 18.7,
+        "since_input_s": 3842.8,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3808,
+      "ts": 1792025161.7728887,
+      "id": 12652
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24919.6,
+        "budget_left_frac": 0.1831,
+        "budget_left_s": 658.987,
+        "kwh_today": 0.014138596,
+        "since_last_input_s": 3851.5,
+        "uptime_s": 3933.9
+      },
+      "drives": {
+        "consolidate": 0.188,
+        "explore": 0.123,
+        "practice": 0.231,
+        "rest": 0.681,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1831,
+        "generation": 177,
+        "memories": 1493,
+        "open_goals": 5,
+        "pending_facts": 2,
+        "rest_streak": 0,
+        "since_consolidation_s": 145.7,
+        "since_explore_s": 27.3,
+        "since_input_s": 3848.3,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3809,
+      "ts": 1792025169.9608822,
+      "id": 12653
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 24924.9,
+        "budget_left_frac": 0.183,
+        "budget_left_s": 658.755,
+        "kwh_today": 0.014139052,
+        "since_last_input_s": 3856.9,
+        "uptime_s": 3939.3
+      },
+      "drives": {
+        "consolidate": 0.188,
+        "explore": 0.134,
+        "practice": 0.231,
+        "rest": 0.681,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 185.6,
+      "result": {
+        "a": "inter ject means throw between .  [memory:34 self/captured: she will inter ject the story .]",
+        "kind": "rehearse",
+        "memory": 1060,
+        "q": "inter"
+      },
+      "state": {
+        "budget_left_frac": 0.1831,
+        "generation": 177,
+        "memories": 1493,
+        "open_goals": 5,
+        "pending_facts": 2,
+        "rest_streak": 1,
+        "since_consolidation_s": 150.9,
+        "since_explore_s": 32.4,
+        "since_input_s": 3856.5,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3810,
+      "ts": 1792025175.3325534,
+      "id": 12656
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24933.1,
+        "budget_left_frac": 0.183,
+        "budget_left_s": 658.755,
+        "kwh_today": 0.014139052,
+        "since_last_input_s": 3865.0,
+        "uptime_s": 3947.4
+      },
+      "drives": {
+        "consolidate": 0.188,
+        "explore": 0.082,
+        "practice": 0.231,
+        "rest": 0.681,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.183,
+        "generation": 177,
+        "memories": 1493,
+        "open_goals": 5,
+        "pending_facts": 2,
+        "rest_streak": 0,
+        "since_consolidation_s": 159.2,
+        "since_explore_s": 8.3,
+        "since_input_s": 3861.9,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3811,
+      "ts": 1792025183.4448109,
+      "id": 12657
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 24938.6,
+        "budget_left_frac": 0.1828,
+        "budget_left_s": 658.109,
+        "kwh_today": 0.014140289,
+        "since_last_input_s": 3870.6,
+        "uptime_s": 3953.0
+      },
+      "drives": {
+        "consolidate": 0.188,
+        "explore": 0.093,
+        "practice": 0.231,
+        "rest": 0.681,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 467.8,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.183,
+        "generation": 177,
+        "memories": 1493,
+        "open_goals": 5,
+        "pending_facts": 2,
+        "rest_streak": 1,
+        "since_consolidation_s": 164.3,
+        "since_explore_s": 13.4,
+        "since_input_s": 3870.0,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3812,
+      "ts": 1792025189.0275524,
+      "id": 12660
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 24947.2,
+        "budget_left_frac": 0.1826,
+        "budget_left_s": 657.413,
+        "kwh_today": 0.014141721,
+        "since_last_input_s": 3879.2,
+        "uptime_s": 3961.6
+      },
+      "drives": {
+        "consolidate": 0.188,
+        "explore": 0.111,
+        "practice": 0.231,
+        "rest": 0.681,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 484.7,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.1828,
+        "generation": 177,
+        "memories": 1493,
+        "open_goals": 5,
+        "pending_facts": 2,
+        "rest_streak": 0,
+        "since_consolidation_s": 172.9,
+        "since_explore_s": 22.0,
+        "since_input_s": 3875.6,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3813,
+      "ts": 1792025197.6294112,
+      "id": 12665
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24952.4,
+        "budget_left_frac": 0.1826,
+        "budget_left_s": 657.413,
+        "kwh_today": 0.014141721,
+        "since_last_input_s": 3884.3,
+        "uptime_s": 3966.7
+      },
+      "drives": {
+        "consolidate": 0.188,
+        "explore": 0.123,
+        "practice": 0.173,
+        "rest": 0.681,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1826,
+        "generation": 177,
+        "memories": 1493,
+        "open_goals": 3,
+        "pending_facts": 2,
+        "rest_streak": 0,
+        "since_consolidation_s": 178.6,
+        "since_explore_s": 27.7,
+        "since_input_s": 3884.2,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3814,
+      "ts": 1792025202.7988095,
+      "id": 12666
+    },
+    {
+      "action": "consolidate",
+      "clock": {
+        "age_s": 24974.6,
+        "budget_left_frac": 0.175,
+        "budget_left_s": 629.824,
+        "kwh_today": 0.014198492,
+        "since_last_input_s": 3906.5,
+        "uptime_s": 3988.9
+      },
+      "drives": {
+        "consolidate": 0.188,
+        "explore": 0.141,
+        "practice": 0.173,
+        "rest": 0.681,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 13988.4,
+      "result": {
+        "checkpoint": "checkpoints\\gen_0178.pt",
+        "exams": [
+          {
+            "accuracy": 0.953,
+            "exam": "E1_composition",
+            "score": "82/86",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E2_affix_recall",
+            "score": "24/24",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E3_recall_echo",
+            "score": "12/12",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E4_deferral",
+            "score": "10/10",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.25,
+            "exam": "E6_grammar",
+            "score": "12/48",
+            "verdict": "FAIL"
+          },
+          {
+            "accuracy": 0.625,
+            "exam": "E7_reading",
+            "score": "25/40",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": null,
+            "exam": "E8_writing",
+            "score": "4 samples",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E5_facts_in_weights",
+            "score": "7/7",
+            "verdict": "INFO"
+          }
+        ],
+        "facts_new": 2,
+        "generation": 178,
+        "loss_first": 1.4113,
+        "loss_last": 0.0704,
+        "vocab_size": 3099
+      },
+      "state": {
+        "budget_left_frac": 0.1826,
+        "generation": 177,
+        "memories": 1493,
+        "open_goals": 3,
+        "pending_facts": 2,
+        "rest_streak": 1,
+        "since_consolidation_s": 186.8,
+        "since_explore_s": 35.9,
+        "since_input_s": 3889.4,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3815,
+      "ts": 1792025224.9856386,
+      "id": 12671
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24979.7,
+        "budget_left_frac": 0.175,
+        "budget_left_s": 629.824,
+        "kwh_today": 0.014198492,
+        "since_last_input_s": 3911.6,
+        "uptime_s": 3994.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.179,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.175,
+        "generation": 178,
+        "memories": 1501,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 5.1,
+        "since_explore_s": 54.9,
+        "since_input_s": 3911.5,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3816,
+      "ts": 1792025230.092446,
+      "id": 12678
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24986.6,
+        "budget_left_frac": 0.175,
+        "budget_left_s": 629.824,
+        "kwh_today": 0.014198492,
+        "since_last_input_s": 3918.5,
+        "uptime_s": 4000.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.194,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.175,
+        "generation": 178,
+        "memories": 1501,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 12.0,
+        "since_explore_s": 61.9,
+        "since_input_s": 3916.7,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3817,
+      "ts": 1792025236.9989018,
+      "id": 12679
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24991.8,
+        "budget_left_frac": 0.175,
+        "budget_left_s": 629.824,
+        "kwh_today": 0.014198492,
+        "since_last_input_s": 3923.8,
+        "uptime_s": 4006.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.205,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.175,
+        "generation": 178,
+        "memories": 1501,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 17.2,
+        "since_explore_s": 67.1,
+        "since_input_s": 3923.6,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3818,
+      "ts": 1792025242.2137938,
+      "id": 12680
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24997.0,
+        "budget_left_frac": 0.175,
+        "budget_left_s": 629.824,
+        "kwh_today": 0.014198492,
+        "since_last_input_s": 3928.9,
+        "uptime_s": 4011.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.216,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.175,
+        "generation": 178,
+        "memories": 1501,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 22.4,
+        "since_explore_s": 72.2,
+        "since_input_s": 3928.8,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3819,
+      "ts": 1792025247.3875058,
+      "id": 12681
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 25002.6,
+        "budget_left_frac": 0.1748,
+        "budget_left_s": 629.172,
+        "kwh_today": 0.01420019,
+        "since_last_input_s": 3934.5,
+        "uptime_s": 4016.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.227,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 379.7,
+      "result": {
+        "kind": "generate",
+        "memory": 1502,
+        "prompt": "once upon a time ,",
+        "said": "there was a little boy named tim . tim loved to play hockey . he thought it was very important to play with his friends . every day , they would play hockey in the park . one day ,"
+      },
+      "state": {
+        "budget_left_frac": 0.175,
+        "generation": 178,
+        "memories": 1501,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 4,
+        "since_consolidation_s": 27.6,
+        "since_explore_s": 77.4,
+        "since_input_s": 3934.0,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3820,
+      "ts": 1792025252.9435945,
+      "id": 12683
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 25007.7,
+        "budget_left_frac": 0.1748,
+        "budget_left_s": 629.172,
+        "kwh_today": 0.01420019,
+        "since_last_input_s": 3939.6,
+        "uptime_s": 4022.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.075,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1748,
+        "generation": 178,
+        "memories": 1502,
+        "open_goals": 7,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 33.1,
+        "since_explore_s": 5.5,
+        "since_input_s": 3939.5,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3821,
+      "ts": 1792025258.0473754,
+      "id": 12684
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 25015.2,
+        "budget_left_frac": 0.1748,
+        "budget_left_s": 629.172,
+        "kwh_today": 0.01420019,
+        "since_last_input_s": 3947.1,
+        "uptime_s": 4029.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.091,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1748,
+        "generation": 178,
+        "memories": 1502,
+        "open_goals": 7,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 40.6,
+        "since_explore_s": 13.0,
+        "since_input_s": 3944.6,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3822,
+      "ts": 1792025265.5657382,
+      "id": 12685
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 25020.3,
+        "budget_left_frac": 0.1748,
+        "budget_left_s": 629.172,
+        "kwh_today": 0.01420019,
+        "since_last_input_s": 3952.3,
+        "uptime_s": 4034.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.102,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1748,
+        "generation": 178,
+        "memories": 1502,
+        "open_goals": 7,
+        "pending_facts": 1,
+        "rest_streak": 2,
+        "since_consolidation_s": 45.7,
+        "since_explore_s": 18.2,
+        "since_input_s": 3952.2,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3823,
+      "ts": 1792025270.73147,
+      "id": 12686
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 25027.3,
+        "budget_left_frac": 0.1748,
+        "budget_left_s": 629.172,
+        "kwh_today": 0.01420019,
+        "since_last_input_s": 3959.3,
+        "uptime_s": 4041.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.116,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1748,
+        "generation": 178,
+        "memories": 1502,
+        "open_goals": 7,
+        "pending_facts": 1,
+        "rest_streak": 3,
+        "since_consolidation_s": 52.7,
+        "since_explore_s": 25.2,
+        "since_input_s": 3957.3,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3824,
+      "ts": 1792025277.7194219,
+      "id": 12687
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 25032.5,
+        "budget_left_frac": 0.1748,
+        "budget_left_s": 629.172,
+        "kwh_today": 0.01420019,
+        "since_last_input_s": 3964.4,
+        "uptime_s": 4046.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.127,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1748,
+        "generation": 178,
+        "memories": 1502,
+        "open_goals": 7,
+        "pending_facts": 1,
+        "rest_streak": 4,
+        "since_consolidation_s": 57.9,
+        "since_explore_s": 30.3,
+        "since_input_s": 3964.3,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3825,
+      "ts": 1792025282.873916,
+      "id": 12688
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 25041.2,
+        "budget_left_frac": 0.1745,
+        "budget_left_s": 628.263,
+        "kwh_today": 0.014202078,
+        "since_last_input_s": 3973.2,
+        "uptime_s": 4055.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.145,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 511.2,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.1748,
+        "generation": 178,
+        "memories": 1502,
+        "open_goals": 7,
+        "pending_facts": 1,
+        "rest_streak": 5,
+        "since_consolidation_s": 66.1,
+        "since_explore_s": 38.5,
+        "since_input_s": 3969.4,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3826,
+      "ts": 1792025291.6235626,
+      "id": 12691
+    }
+  ],
+  "last_events": [
+    {
+      "items": [
+        {
+          "expected": "log ly means in that manner speech .",
+          "focus": "suffix:ly",
+          "got": "log ly means in that manner speech .",
+          "ok": true,
+          "parts": [
+            "root:log",
+            "suffix:ly"
+          ],
+          "q": "q : what does log ly mean ? a :"
+        },
+        {
+          "expected": "vis ly means in that manner see .",
+          "focus": "suffix:ly",
+          "got": "vis ly means in that manner see .",
+          "ok": true,
+          "parts": [
+            "root:vis",
+            "suffix:ly"
+          ],
+          "q": "q : what does vis ly mean ? a :"
+        },
+        {
+          "expected": "graph less means without write .",
+          "focus": "suffix:less",
+          "got": "graph less means without write .",
+          "ok": true,
+          "parts": [
+            "root:graph",
+            "suffix:less"
+          ],
+          "q": "q : what does graph less mean ? a :"
+        },
+        {
+          "expected": "luc ful means full of light .",
+          "focus": "root:luc",
+          "got": "luc ful means full of light .",
+          "ok": true,
+          "parts": [
+            "root:luc",
+            "suffix:ful"
+          ],
+          "q": "q : what does luc ful mean ? a :"
+        },
+        {
+          "expected": "phon ive means tending to sound .",
+          "focus": null,
+          "got": "phon ive means tending to sound .",
+          "ok": true,
+          "parts": [
+            "root:phon",
+            "suffix:ive"
+          ],
+          "q": "q : what does phon ive mean ? a :"
+        },
+        {
+          "expected": "mis bio means life wrong .",
+          "focus": null,
+          "got": "mis bio means life wrong .",
+          "ok": true,
+          "parts": [
+            "prefix:mis",
+            "root:bio"
+          ],
+          "q": "q : what does mis bio mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792025197.593889,
+      "id": 12662
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "suffix:less",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792025197.627401,
+      "id": 12663
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "suffix:ly",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792025197.6284063,
+      "id": 12664
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 24947.2,
+        "budget_left_frac": 0.1826,
+        "budget_left_s": 657.413,
+        "kwh_today": 0.014141721,
+        "since_last_input_s": 3879.2,
+        "uptime_s": 3961.6
+      },
+      "drives": {
+        "consolidate": 0.188,
+        "explore": 0.111,
+        "practice": 0.231,
+        "rest": 0.681,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 484.7,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.1828,
+        "generation": 177,
+        "memories": 1493,
+        "open_goals": 5,
+        "pending_facts": 2,
+        "rest_streak": 0,
+        "since_consolidation_s": 172.9,
+        "since_explore_s": 22.0,
+        "since_input_s": 3875.6,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3813,
+      "ts": 1792025197.6294112,
+      "id": 12665
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24952.4,
+        "budget_left_frac": 0.1826,
+        "budget_left_s": 657.413,
+        "kwh_today": 0.014141721,
+        "since_last_input_s": 3884.3,
+        "uptime_s": 3966.7
+      },
+      "drives": {
+        "consolidate": 0.188,
+        "explore": 0.123,
+        "practice": 0.173,
+        "rest": 0.681,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1826,
+        "generation": 177,
+        "memories": 1493,
+        "open_goals": 3,
+        "pending_facts": 2,
+        "rest_streak": 0,
+        "since_consolidation_s": 178.6,
+        "since_explore_s": 27.7,
+        "since_input_s": 3884.2,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3814,
+      "ts": 1792025202.7988095,
+      "id": 12666
+    },
+    {
+      "checkpoint": "checkpoints\\gen_0178.pt",
+      "fact_sentences": 444,
+      "facts_new": 2,
+      "facts_self": 429,
+      "facts_total": 436,
+      "facts_user": 7,
+      "generation": 178,
+      "kind": "consolidation",
+      "loss_first": 1.4113,
+      "loss_last": 0.0704,
+      "lr": 0.00015,
+      "memory_ids": [
+        1492,
+        1493
+      ],
+      "seconds": 9.5,
+      "self_ids": [
+        21,
+        28,
+        34,
+        40,
+        41,
+        47,
+        48,
+        49,
+        55,
+        56,
+        57,
+        58,
+        64,
+        65,
+        66,
+        72,
+        73,
+        79,
+        80,
+        81,
+        87,
+        93,
+        94,
+        95,
+        96,
+        102,
+        103,
+        109,
+        110,
+        126,
+        127,
+        133,
+        134,
+        140,
+        141,
+        142,
+        148,
+        149,
+        155,
+        161,
+        162,
+        168,
+        169,
+        175,
+        176,
+        177,
+        183,
+        184,
+        185,
+        186,
+        187,
+        193,
+        194,
+        195,
+        201,
+        202,
+        208,
+        214,
+        215,
+        221,
+        227,
+        233,
+        239,
+        240,
+        246,
+        247,
+        248,
+        254,
+        255,
+        256,
+        262,
+        268,
+        274,
+        275,
+        276,
+        277,
+        283,
+        289,
+        290,
+        291,
+        297,
+        303,
+        309,
+        310,
+        311,
+        312,
+        313,
+        319,
+        320,
+        326,
+        327,
+        328,
+        334,
+        335,
+        341,
+        342,
+        348,
+        349,
+        355,
+        361,
+        367,
+        368,
+        374,
+        380,
+        381,
+        387,
+        388,
+        389,
+        390,
+        396,
+        397,
+        398,
+        399,
+        405,
+        406,
+        412,
+        418,
+        419,
+        420,
+        426,
+        432,
+        433,
+        434,
+        440,
+        441,
+        448,
+        454,
+        455,
+        456,
+        462,
+        463,
+        469,
+        475,
+        476,
+        482,
+        493,
+        494,
+        495,
+        501,
+        502,
+        503,
+        509,
+        515,
+        516,
+        522,
+        523,
+        524,
+        525,
+        531,
+        532,
+        533,
+        539,
+        540,
+        541,
+        547,
+        548,
+        549,
+        550,
+        556,
+        557,
+        568,
+        569,
+        570,
+        571,
+        572,
+        578,
+        579,
+        585,
+        586,
+        592,
+        593,
+        594,
+        600,
+        601,
+        607,
+        608,
+        609,
+        615,
+        616,
+        617,
+        623,
+        629,
+        630,
+        636,
+        637,
+        638,
+        649,
+        650,
+        656,
+        657,
+        658,
+        664,
+        665,
+        666,
+        672,
+        673,
+        674,
+        680,
+        681,
+        687,
+        688,
+        689,
+        695,
+        696,
+        702,
+        703,
+        709,
+        710,
+        716,
+        717,
+        723,
+        729,
+        730,
+        731,
+        732,
+        738,
+        739,
+        740,
+        741,
+        747,
+        748,
+        749,
+        750,
+        756,
+        757,
+        763,
+        764,
+        765,
+        771,
+        772,
+        778,
+        779,
+        785,
+        791,
+        792,
+        798,
+        799,
+        805,
+        806,
+        807,
+        808,
+        814,
+        820,
+        821,
+        827,
+        828,
+        834,
+        835,
+        841,
+        847,
+        848,
+        854,
+        855,
+        861,
+        862,
+        863,
+        869,
+        870,
+        876,
+        877,
+        883,
+        884,
+        890,
+        891,
+        897,
+        898,
+        904,
+        905,
+        911,
+        912,
+        918,
+        919,
+        925,
+        926,
+        932,
+        933,
+        939,
+        940,
+        946,
+        947,
+        953,
+        954,
+        955,
+        961,
+        962,
+        963,
+        969,
+        970,
+        971,
+        972,
+        978,
+        979,
+        985,
+        986,
+        992,
+        993,
+        994,
+        995,
+        1001,
+        1002,
+        1008,
+        1009,
+        1010,
+        1016,
+        1017,
+        1023,
+        1024,
+        1030,
+        1031,
+        1037,
+        1038,
+        1039,
+        1045,
+        1046,
+        1047,
+        1053,
+        1054,
+        1060,
+        1061,
+        1067,
+        1073,
+        1074,
+        1075,
+        1076,
+        1082,
+        1088,
+        1089,
+        1095,
+        1096,
+        1102,
+        1103,
+        1109,
+        1110,
+        1111,
+        1117,
+        1118,
+        1124,
+        1125,
+        1131,
+        1137,
+        1138,
+        1144,
+        1145,
+        1146,
+        1147,
+        1153,
+        1154,
+        1155,
+        1161,
+        1162,
+        1163,
+        1169,
+        1170,
+        1171,
+        1177,
+        1178,
+        1184,
+        1185,
+        1186,
+        1192,
+        1193,
+        1194,
+        1200,
+        1201,
+        1207,
+        1208,
+        1214,
+        1231,
+        1240,
+        1241,
+        1250,
+        1251,
+        1252,
+        1261,
+        1262,
+        1272,
+        1273,
+        1274,
+        1283,
+        1284,
+        1285,
+        1286,
+        1295,
+        1296,
+        1305,
+        1306,
+        1315,
+        1324,
+        1325,
+        1334,
+        1335,
+        1344,
+        1345,
+        1354,
+        1355,
+        1356,
+        1365,
+        1366,
+        1375,
+        1376,
+        1377,
+        1386,
+        1387,
+        1388,
+        1389,
+        1390,
+        1391,
+        1400,
+        1401,
+        1410,
+        1411,
+        1420,
+        1421,
+        1422,
+        1439,
+        1440,
+        1441,
+        1442,
+        1451,
+        1460,
+        1461,
+        1470,
+        1471,
+        1480,
+        1481,
+        1482,
+        1483,
+        1492,
+        1493
+      ],
+      "self_new": [
+        1492,
+        1493
+      ],
+      "sentences": 1642,
+      "steps": 200,
+      "tokens": 50176,
+      "ts": 1792025220.5187478,
+      "vocab_added": [],
+      "vocab_size": 3099,
+      "id": 12667
+    },
+    {
+      "generation": 178,
+      "kind": "exam",
+      "results": [
+        {
+          "accuracy": 0.953,
+          "exam": "E1_composition",
+          "score": "82/86",
+          "verdict": "PASS"
+        },
+        {
+          "accuracy": 1.0,
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "verdict": "PASS"
+        },
+        {
+          "accuracy": 1.0,
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "verdict": "PASS"
+        },
+        {
+          "accuracy": 1.0,
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "verdict": "PASS"
+        },
+        {
+          "accuracy": 0.25,
+          "exam": "E6_grammar",
+          "score": "12/48",
+          "verdict": "FAIL"
+        },
+        {
+          "accuracy": 0.625,
+          "exam": "E7_reading",
+          "score": "25/40",
+          "verdict": "PASS"
+        },
+        {
+          "accuracy": null,
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "verdict": "INFO"
+        },
+        {
+          "accuracy": 1.0,
+          "exam": "E5_facts_in_weights",
+          "score": "7/7",
+          "verdict": "INFO"
+        }
+      ],
+      "trigger": "consolidation gen 178",
+      "ts": 1792025224.981616,
+      "vocab_size": 3099,
+      "id": 12668
+    },
+    {
+      "generation": 178,
+      "items": [
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:graph"
+          ],
+          "q": "co graph"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:cred"
+          ],
+          "q": "trans cred"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:luc"
+          ],
+          "q": "trans luc"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:port"
+          ],
+          "q": "un port"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:phon"
+          ],
+          "q": "inter phon"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:re",
+            "root:struct"
+          ],
+          "q": "re struct"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:ject"
+          ],
+          "q": "ex ject"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "prefix:inter",
+            "root:spect"
+          ],
+          "q": "inter spect"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:pend"
+          ],
+          "q": "inter pend"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:scrib"
+          ],
+          "q": "ex scrib"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:pos"
+          ],
+          "q": "inter pos"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:vis"
+          ],
+          "q": "inter vis"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:port"
+          ],
+          "q": "inter port"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:re",
+            "root:form"
+          ],
+          "q": "re form"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:aud"
+          ],
+          "q": "co aud"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pro",
+            "root:pos"
+          ],
+          "q": "pro pos"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:luc"
+          ],
+          "q": "ex luc"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:vis"
+          ],
+          "q": "co vis"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:dis",
+            "root:ject"
+          ],
+          "q": "dis ject"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:sub",
+            "root:mit"
+          ],
+          "q": "sub mit"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:dis",
+            "root:bio"
+          ],
+          "q": "dis bio"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:super",
+            "root:struct"
+          ],
+          "q": "super struct"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:fer"
+          ],
+          "q": "co fer"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:dis",
+            "root:phon"
+          ],
+          "q": "dis phon"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:sub",
+            "root:rupt"
+          ],
+          "q": "sub rupt"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:fer"
+          ],
+          "q": "un fer"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:pend"
+          ],
+          "q": "un pend"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pre",
+            "root:chron"
+          ],
+          "q": "pre chron"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:super",
+            "root:pos"
+          ],
+          "q": "super pos"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:phon"
+          ],
+          "q": "trans phon"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:fer"
+          ],
+          "q": "trans fer"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:super",
+            "root:dict"
+          ],
+          "q": "super dict"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:pend"
+          ],
+          "q": "ex pend"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pre",
+            "root:aud"
+          ],
+          "q": "pre aud"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "prefix:super",
+            "root:fer"
+          ],
+          "q": "super fer"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:dict"
+          ],
+          "q": "ex dict"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pre",
+            "root:fer"
+          ],
+          "q": "pre fer"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:re",
+            "root:ject"
+          ],
+          "q": "re ject"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "prefix:super",
+            "root:luc"
+          ],
+          "q": "super luc"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pro",
+            "root:pend"
+          ],
+          "q": "pro pend"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:spect"
+          ],
+          "q": "ex spect"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:spect"
+          ],
+          "q": "co spect"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:geo"
+          ],
+          "q": "co geo"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:cred",
+            "suffix:less"
+          ],
+          "q": "cred less"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:ject",
+            "suffix:ology"
+          ],
+          "q": "ject ology"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:scrib",
+            "suffix:ist"
+          ],
+          "q": "scrib ist"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:pend",
+            "suffix:able"
+          ],
+          "q": "pend able"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:spect",
+            "suffix:ology"
+          ],
+          "q": "spect ology"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:bio",
+            "suffix:able"
+          ],
+          "q": "bio able"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:chron",
+            "suffix:ive"
+          ],
+          "q": "chron ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:port",
+            "suffix:ly"
+          ],
+          "q": "port ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:form",
+            "suffix:less"
+          ],
+          "q": "form less"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:rupt",
+            "suffix:less"
+          ],
+          "q": "rupt less"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:cred",
+            "suffix:ive"
+          ],
+          "q": "cred ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:vis",
+            "suffix:able"
+          ],
+          "q": "vis able"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:phon",
+            "suffix:ful"
+          ],
+          "q": "phon ful"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "root:chron",
+            "suffix:ology"
+          ],
+          "q": "chron ology"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:geo",
+            "suffix:ly"
+          ],
+          "q": "geo ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:bio",
+            "suffix:er"
+          ],
+          "q": "bio er"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:fer",
+            "suffix:able"
+          ],
+          "q": "fer able"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:rupt",
+            "suffix:ive"
+          ],
+          "q": "rupt ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:scrib",
+            "suffix:ive"
+          ],
+          "q": "scrib ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:luc",
+            "suffix:ly"
+          ],
+          "q": "luc ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:log",
+            "suffix:ful"
+          ],
+          "q": "log ful"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:geo",
+            "suffix:tion"
+          ],
+          "q": "geo tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:bio",
+            "suffix:ly"
+          ],
+          "q": "bio ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:dict",
+            "suffix:ing"
+          ],
+          "q": "dict ing"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:port",
+            "suffix:er"
+          ],
+          "q": "port er"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:tract",
+            "suffix:ly"
+          ],
+          "q": "tract ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:spect",
+            "suffix:ive"
+          ],
+          "q": "spect ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:port",
+            "suffix:ed"
+          ],
+          "q": "port ed"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:ten",
+            "suffix:ed"
+          ],
+          "q": "ten ed"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:fer",
+            "suffix:ness"
+          ],
+          "q": "fer ness"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:phon",
+            "suffix:tion"
+          ],
+          "q": "phon tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:bio",
+            "suffix:ness"
+          ],
+          "q": "bio ness"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:chron",
+            "suffix:tion"
+          ],
+          "q": "chron tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:struct",
+            "suffix:ful"
+          ],
+          "q": "struct ful"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:mit",
+            "suffix:tion"
+          ],
+          "q": "mit tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:luc",
+            "suffix:ive"
+          ],
+          "q": "luc ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:spect",
+            "suffix:tion"
+          ],
+          "q": "spect tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:fer",
+            "suffix:ly"
+          ],
+          "q": "fer ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:ject",
+            "suffix:less"
+          ],
+          "q": "ject less"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:phon",
+            "suffix:ology"
+          ],
+          "q": "phon ology"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:dict",
+            "suffix:ful"
+          ],
+          "q": "dict ful"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:phon",
+            "suffix:ness"
+          ],
+          "q": "phon ness"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:geo",
+            "suffix:ive"
+          ],
+          "q": "geo ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:re"
+          ],
+          "q": "re"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:un"
+          ],
+          "q": "un"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pre"
+          ],
+          "q": "pre"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:dis"
+          ],
+          "q": "dis"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:trans"
+          ],
+          "q": "trans"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:sub"
+          ],
+          "q": "sub"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:super"
+          ],
+          "q": "super"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter"
+          ],
+          "q": "inter"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:mis"
+          ],
+          "q": "mis"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex"
+          ],
+          "q": "ex"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pro"
+          ],
+          "q": "pro"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co"
+          ],
+          "q": "co"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:er"
+          ],
+          "q": "er"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ing"
+          ],
+          "q": "ing"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ed"
+          ],
+          "q": "ed"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:tion"
+          ],
+          "q": "tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:able"
+          ],
+          "q": "able"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:less"
+          ],
+          "q": "less"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ful"
+          ],
+          "q": "ful"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ly"
+          ],
+          "q": "ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ness"
+          ],
+          "q": "ness"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ive"
+          ],
+          "q": "ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ology"
+          ],
+          "q": "ology"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ist"
+          ],
+          "q": "ist"
+        }
+      ],
+      "kind": "exam_detail",
+      "ts": 1792025224.9826207,
+      "id": 12669
+    },
+    {
+      "cpu_s": 13.625,
+      "gpu_s": 13.9642,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 5.6771e-05,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792025224.9846394,
+      "wall_s": 13.9642,
+      "what": "consolidate",
+      "id": 12670
+    },
+    {
+      "action": "consolidate",
+      "clock": {
+        "age_s": 24974.6,
+        "budget_left_frac": 0.175,
+        "budget_left_s": 629.824,
+        "kwh_today": 0.014198492,
+        "since_last_input_s": 3906.5,
+        "uptime_s": 3988.9
+      },
+      "drives": {
+        "consolidate": 0.188,
+        "explore": 0.141,
+        "practice": 0.173,
+        "rest": 0.681,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 13988.4,
+      "result": {
+        "checkpoint": "checkpoints\\gen_0178.pt",
+        "exams": [
+          {
+            "accuracy": 0.953,
+            "exam": "E1_composition",
+            "score": "82/86",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E2_affix_recall",
+            "score": "24/24",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E3_recall_echo",
+            "score": "12/12",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E4_deferral",
+            "score": "10/10",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.25,
+            "exam": "E6_grammar",
+            "score": "12/48",
+            "verdict": "FAIL"
+          },
+          {
+            "accuracy": 0.625,
+            "exam": "E7_reading",
+            "score": "25/40",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": null,
+            "exam": "E8_writing",
+            "score": "4 samples",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E5_facts_in_weights",
+            "score": "7/7",
+            "verdict": "INFO"
+          }
+        ],
+        "facts_new": 2,
+        "generation": 178,
+        "loss_first": 1.4113,
+        "loss_last": 0.0704,
+        "vocab_size": 3099
+      },
+      "state": {
+        "budget_left_frac": 0.1826,
+        "generation": 177,
+        "memories": 1493,
+        "open_goals": 3,
+        "pending_facts": 2,
+        "rest_streak": 1,
+        "since_consolidation_s": 186.8,
+        "since_explore_s": 35.9,
+        "since_input_s": 3889.4,
+        "vocab_size": 3099,
+        "worst_misses": 2
+      },
+      "tick": 3815,
+      "ts": 1792025224.9856386,
+      "id": 12671
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 1,
+      "part": "prefix:inter",
+      "status": "open",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792025228.346239,
+      "id": 12672
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 1,
+      "part": "root:chron",
+      "status": "open",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792025228.3582602,
+      "id": 12673
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 1,
+      "part": "root:fer",
+      "status": "open",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792025228.3602614,
+      "id": 12674
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 1,
+      "part": "root:spect",
+      "status": "open",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792025228.360765,
+      "id": 12675
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 1,
+      "part": "suffix:ology",
+      "status": "open",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792025228.3617682,
+      "id": 12676
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "root:port",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792025228.3632777,
+      "id": 12677
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24979.7,
+        "budget_left_frac": 0.175,
+        "budget_left_s": 629.824,
+        "kwh_today": 0.014198492,
+        "since_last_input_s": 3911.6,
+        "uptime_s": 3994.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.179,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.175,
+        "generation": 178,
+        "memories": 1501,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 5.1,
+        "since_explore_s": 54.9,
+        "since_input_s": 3911.5,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3816,
+      "ts": 1792025230.092446,
+      "id": 12678
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24986.6,
+        "budget_left_frac": 0.175,
+        "budget_left_s": 629.824,
+        "kwh_today": 0.014198492,
+        "since_last_input_s": 3918.5,
+        "uptime_s": 4000.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.194,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.175,
+        "generation": 178,
+        "memories": 1501,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 12.0,
+        "since_explore_s": 61.9,
+        "since_input_s": 3916.7,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3817,
+      "ts": 1792025236.9989018,
+      "id": 12679
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24991.8,
+        "budget_left_frac": 0.175,
+        "budget_left_s": 629.824,
+        "kwh_today": 0.014198492,
+        "since_last_input_s": 3923.8,
+        "uptime_s": 4006.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.205,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.175,
+        "generation": 178,
+        "memories": 1501,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 17.2,
+        "since_explore_s": 67.1,
+        "since_input_s": 3923.6,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3818,
+      "ts": 1792025242.2137938,
+      "id": 12680
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 24997.0,
+        "budget_left_frac": 0.175,
+        "budget_left_s": 629.824,
+        "kwh_today": 0.014198492,
+        "since_last_input_s": 3928.9,
+        "uptime_s": 4011.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.216,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.175,
+        "generation": 178,
+        "memories": 1501,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 22.4,
+        "since_explore_s": 72.2,
+        "since_input_s": 3928.8,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3819,
+      "ts": 1792025247.3875058,
+      "id": 12681
+    },
+    {
+      "cpu_s": 0.3281,
+      "gpu_s": 0.3237,
+      "gpu_watts_sample": 3.68,
+      "kind": "meter",
+      "kwh_est": 1.698e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792025252.9400177,
+      "wall_s": 0.3237,
+      "what": "explore_generate",
+      "id": 12682
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 25002.6,
+        "budget_left_frac": 0.1748,
+        "budget_left_s": 629.172,
+        "kwh_today": 0.01420019,
+        "since_last_input_s": 3934.5,
+        "uptime_s": 4016.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.227,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 379.7,
+      "result": {
+        "kind": "generate",
+        "memory": 1502,
+        "prompt": "once upon a time ,",
+        "said": "there was a little boy named tim . tim loved to play hockey . he thought it was very important to play with his friends . every day , they would play hockey in the park . one day ,"
+      },
+      "state": {
+        "budget_left_frac": 0.175,
+        "generation": 178,
+        "memories": 1501,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 4,
+        "since_consolidation_s": 27.6,
+        "since_explore_s": 77.4,
+        "since_input_s": 3934.0,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3820,
+      "ts": 1792025252.9435945,
+      "id": 12683
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 25007.7,
+        "budget_left_frac": 0.1748,
+        "budget_left_s": 629.172,
+        "kwh_today": 0.01420019,
+        "since_last_input_s": 3939.6,
+        "uptime_s": 4022.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.075,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1748,
+        "generation": 178,
+        "memories": 1502,
+        "open_goals": 7,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 33.1,
+        "since_explore_s": 5.5,
+        "since_input_s": 3939.5,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3821,
+      "ts": 1792025258.0473754,
+      "id": 12684
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 25015.2,
+        "budget_left_frac": 0.1748,
+        "budget_left_s": 629.172,
+        "kwh_today": 0.01420019,
+        "since_last_input_s": 3947.1,
+        "uptime_s": 4029.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.091,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1748,
+        "generation": 178,
+        "memories": 1502,
+        "open_goals": 7,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 40.6,
+        "since_explore_s": 13.0,
+        "since_input_s": 3944.6,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3822,
+      "ts": 1792025265.5657382,
+      "id": 12685
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 25020.3,
+        "budget_left_frac": 0.1748,
+        "budget_left_s": 629.172,
+        "kwh_today": 0.01420019,
+        "since_last_input_s": 3952.3,
+        "uptime_s": 4034.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.102,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1748,
+        "generation": 178,
+        "memories": 1502,
+        "open_goals": 7,
+        "pending_facts": 1,
+        "rest_streak": 2,
+        "since_consolidation_s": 45.7,
+        "since_explore_s": 18.2,
+        "since_input_s": 3952.2,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3823,
+      "ts": 1792025270.73147,
+      "id": 12686
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 25027.3,
+        "budget_left_frac": 0.1748,
+        "budget_left_s": 629.172,
+        "kwh_today": 0.01420019,
+        "since_last_input_s": 3959.3,
+        "uptime_s": 4041.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.116,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1748,
+        "generation": 178,
+        "memories": 1502,
+        "open_goals": 7,
+        "pending_facts": 1,
+        "rest_streak": 3,
+        "since_consolidation_s": 52.7,
+        "since_explore_s": 25.2,
+        "since_input_s": 3957.3,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3824,
+      "ts": 1792025277.7194219,
+      "id": 12687
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 25032.5,
+        "budget_left_frac": 0.1748,
+        "budget_left_s": 629.172,
+        "kwh_today": 0.01420019,
+        "since_last_input_s": 3964.4,
+        "uptime_s": 4046.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.127,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.1748,
+        "generation": 178,
+        "memories": 1502,
+        "open_goals": 7,
+        "pending_facts": 1,
+        "rest_streak": 4,
+        "since_consolidation_s": 57.9,
+        "since_explore_s": 30.3,
+        "since_input_s": 3964.3,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3825,
+      "ts": 1792025282.873916,
+      "id": 12688
+    },
+    {
+      "cpu_s": 0.4531,
+      "gpu_s": 0.4554,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 1.888e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792025291.5970309,
+      "wall_s": 0.4554,
+      "what": "practice",
+      "id": 12689
+    },
+    {
+      "items": [
+        {
+          "expected": "vis ology means the study of see .",
+          "focus": "suffix:ology",
+          "got": "vis ology means the study of see .",
+          "ok": true,
+          "parts": [
+            "root:vis",
+            "suffix:ology"
+          ],
+          "q": "q : what does vis ology mean ? a :"
+        },
+        {
+          "expected": "mis chron means time wrong .",
+          "focus": "root:chron",
+          "got": "mis chron means time wrong .",
+          "ok": true,
+          "parts": [
+            "prefix:mis",
+            "root:chron"
+          ],
+          "q": "q : what does mis chron mean ? a :"
+        },
+        {
+          "expected": "super ject means throw above .",
+          "focus": "prefix:super",
+          "got": "super ject means throw above .",
+          "ok": true,
+          "parts": [
+            "prefix:super",
+            "root:ject"
+          ],
+          "q": "q : what does super ject mean ? a :"
+        },
+        {
+          "expected": "inter struct means build between .",
+          "focus": "prefix:inter",
+          "got": "inter struct means build between .",
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:struct"
+          ],
+          "q": "q : what does inter struct mean ? a :"
+        },
+        {
+          "expected": "graph ly means in that manner write .",
+          "focus": null,
+          "got": "graph ly means in that manner write .",
+          "ok": true,
+          "parts": [
+            "root:graph",
+            "suffix:ly"
+          ],
+          "q": "q : what does graph ly mean ? a :"
+        },
+        {
+          "expected": "pend ist means one who practices hang .",
+          "focus": null,
+          "got": "pend ist means one who practices hang .",
+          "ok": true,
+          "parts": [
+            "root:pend",
+            "suffix:ist"
+          ],
+          "q": "q : what does pend ist mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792025291.5990288,
+      "id": 12690
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 25041.2,
+        "budget_left_frac": 0.1745,
+        "budget_left_s": 628.263,
+        "kwh_today": 0.014202078,
+        "since_last_input_s": 3973.2,
+        "uptime_s": 4055.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.145,
+        "practice": 0.255,
+        "rest": 0.693,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 511.2,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.1748,
+        "generation": 178,
+        "memories": 1502,
+        "open_goals": 7,
+        "pending_facts": 1,
+        "rest_streak": 5,
+        "since_consolidation_s": 66.1,
+        "since_explore_s": 38.5,
+        "since_input_s": 3969.4,
+        "vocab_size": 3099,
+        "worst_misses": 3
+      },
+      "tick": 3826,
+      "ts": 1792025291.6235626,
+      "id": 12691
+    }
+  ],
+  "memories": 1502,
+  "vocab_size": 3099,
+  "generation": 178
+}

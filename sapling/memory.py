@@ -24,6 +24,12 @@ Three tables, all append-only. Nothing is ever UPDATEd or DELETEd:
 - recalls:  one row per recall event. Strength and tier are *derived* views,
   recomputed from events — so history is never rewritten, only re-read.
 - ledger:   every tick, meter reading, consolidation, goal, stop report.
+v3.1 (10/14 night, reading documents): a fourth table `documents` (title,
+source, sha256, passages - chained like the others) and two columns on
+memories, `doc` and `passage`, so a passage memory knows which document and
+which place it came from. Old rows have NULL there and hash exactly as before;
+a row with a doc hashes {ts, content, provenance, state, doc, passage}, so the
+chain stays one chain across the schema change.
 """
 
 from __future__ import annotations
@@ -138,10 +144,26 @@ class MemoryStore:
                 prev_hash TEXT NOT NULL,
                 hash TEXT NOT NULL
             );
+            CREATE TABLE IF NOT EXISTS documents (
+                id INTEGER PRIMARY KEY,
+                ts REAL NOT NULL,
+                title TEXT NOT NULL,
+                source TEXT NOT NULL,          -- file path or 'chat' / 'url'
+                sha256 TEXT NOT NULL,
+                chars INTEGER NOT NULL,
+                passages INTEGER NOT NULL,
+                prev_hash TEXT NOT NULL,
+                hash TEXT NOT NULL
+            );
             CREATE INDEX IF NOT EXISTS recalls_mid ON recalls(memory_id);
             CREATE INDEX IF NOT EXISTS ledger_kind ON ledger(kind, id);
             """
         )
+        cols = {r[1] for r in self.db.execute("PRAGMA table_info(memories)").fetchall()}
+        if "doc" not in cols:        # v3.1 provenance per document; NULL on every older row
+            self.db.execute("ALTER TABLE memories ADD COLUMN doc INTEGER")
+            self.db.execute("ALTER TABLE memories ADD COLUMN passage INTEGER")
+        self.db.execute("CREATE INDEX IF NOT EXISTS memories_doc ON memories(doc, passage)")
         self.db.commit()
 
     # -- hash chain ----------------------------------------------------------
@@ -154,23 +176,62 @@ class MemoryStore:
         return hashlib.sha256((prev_hash + "|" + payload).encode()).hexdigest()
 
     # -- writes (append only; there is deliberately no update/delete API) ----
+    @staticmethod
+    def _memory_payload(ts, content, provenance, state, doc=None, passage=None) -> str:
+        d = {"ts": ts, "content": content, "provenance": provenance, "state": state}
+        if doc is not None:
+            d["doc"], d["passage"] = int(doc), (int(passage) if passage is not None else None)
+        return json.dumps(d, sort_keys=True)
+
     def remember(self, content: str, provenance: str = "user", state: str = "captured",
-                 ts: float | None = None) -> int:
-        """`ts` exists so tests can plant an old memory; it is still appended, never edited."""
+                 ts: float | None = None, doc: int | None = None, passage: int | None = None) -> int:
+        """`ts` exists so tests can plant an old memory; it is still appended, never edited.
+        `doc` / `passage` (v3.1): which document and which passage this came from."""
         with self.lock:
             ts = _now() if ts is None else ts
-            payload = json.dumps(
-                {"ts": ts, "content": content, "provenance": provenance, "state": state},
-                sort_keys=True,
-            )
+            payload = self._memory_payload(ts, content, provenance, state, doc, passage)
             prev = self._last_hash("memories")
             cur = self.db.execute(
-                "INSERT INTO memories (ts, content, provenance, state, prev_hash, hash)"
-                " VALUES (?,?,?,?,?,?)",
-                (ts, content, provenance, state, prev, self._hash(payload, prev)),
+                "INSERT INTO memories (ts, content, provenance, state, prev_hash, hash, doc, passage)"
+                " VALUES (?,?,?,?,?,?,?,?)",
+                (ts, content, provenance, state, prev, self._hash(payload, prev), doc, passage),
             )
             self.db.commit()
             return int(cur.lastrowid)
+
+    def add_document(self, title: str, source: str, sha256: str, chars: int, passages: int) -> int:
+        """v3.1: one chained row per document read; its passages are memories with doc=this id."""
+        with self.lock:
+            ts = _now()
+            payload = json.dumps({"ts": ts, "title": title, "source": source, "sha256": sha256,
+                                  "chars": int(chars), "passages": int(passages)}, sort_keys=True)
+            prev = self._last_hash("documents")
+            cur = self.db.execute(
+                "INSERT INTO documents (ts, title, source, sha256, chars, passages, prev_hash, hash) VALUES (?,?,?,?,?,?,?,?)",
+                (ts, title, source, sha256, int(chars), int(passages), prev, self._hash(payload, prev)),
+            )
+            self.db.commit()
+            return int(cur.lastrowid)
+
+    def documents(self) -> list[dict]:
+        rows = self.db.execute("SELECT id, ts, title, source, sha256, chars, passages FROM documents ORDER BY id").fetchall()
+        return [dict(zip(("id", "ts", "title", "source", "sha256", "chars", "passages"), r)) for r in rows]
+
+    def document_by_sha(self, sha256: str) -> dict | None:
+        for d in self.documents():
+            if d["sha256"] == sha256:
+                return d
+        return None
+
+    def passages(self, doc: int | None = None) -> list[dict]:
+        """Passage memories (provenance 'retrieval' with a doc), in document order."""
+        q = "SELECT id, ts, content, doc, passage FROM memories WHERE doc IS NOT NULL"
+        args: list = []
+        if doc is not None:
+            q += " AND doc=?"; args.append(doc)
+        q += " ORDER BY doc, passage"
+        return [{"id": r[0], "ts": r[1], "content": r[2], "doc": r[3], "passage": r[4]}
+                for r in self.db.execute(q, args).fetchall()]
 
     def record_recall(self, memory_id: int, query: str, ts: float | None = None) -> None:
         with self.lock:
@@ -314,8 +375,9 @@ class MemoryStore:
                embed_fn=None, record: bool = True) -> list[dict]:
         """embed_fn(text) -> vector (list[float]) lets the core's own embeddings
         join the score (0.6 lexical + 0.4 cosine). Without it, lexical only."""
+        # v3.1: document passages are retrieved by reader.py (coverage score), not here
         rows = self.db.execute(
-            "SELECT id, ts, content, provenance, state FROM memories WHERE provenance!='verdict'"
+            "SELECT id, ts, content, provenance, state FROM memories WHERE provenance!='verdict' AND doc IS NULL"
         ).fetchall()
         k = limit if limit is not None else self.top_k_for(len(rows))
         qvec = embed_fn(query) if embed_fn else None
@@ -363,18 +425,19 @@ class MemoryStore:
     def facts(self) -> list[dict]:
         """Everything taught or found (not verdicts / exam rows), with derived state."""
         rows = self.db.execute(
-            "SELECT id, ts, content, provenance FROM memories "
+            "SELECT id, ts, content, provenance, doc, passage FROM memories "
             "WHERE provenance IN ('user','self','retrieval') ORDER BY id"
         ).fetchall()
         return [{"id": mid, "ts": ts, "content": c, "provenance": p, "state": self.state_of(mid),
-                 "recalls": self.recall_count(mid)} for mid, ts, c, p in rows]
+                 "recalls": self.recall_count(mid), "doc": d, "passage": pg} for mid, ts, c, p, d, pg in rows]
 
     # -- integrity -------------------------------------------------------------
     def verify_chain(self) -> bool:
         ok = True
         for table, cols in (
-            ("memories", ("ts", "content", "provenance", "state")),
+            ("memories", ("ts", "content", "provenance", "state", "doc", "passage")),
             ("recalls", ("ts", "memory_id", "query")),
+            ("documents", ("ts", "title", "source", "sha256", "chars", "passages")),
         ):
             prev = GENESIS
             rows = self.db.execute(
@@ -384,7 +447,10 @@ class MemoryStore:
                 rid = row[0]
                 vals = row[1: 1 + len(cols)]
                 prev_hash, stored = row[-2], row[-1]
-                payload = json.dumps(dict(zip(cols, vals)), sort_keys=True)
+                if table == "memories":
+                    payload = self._memory_payload(*vals)
+                else:
+                    payload = json.dumps(dict(zip(cols, vals)), sort_keys=True)
                 if prev_hash != prev or self._hash(payload, prev_hash) != stored:
                     print(f"[memory] CHAIN BREAK at {table}#{rid}")
                     ok = False

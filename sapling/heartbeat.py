@@ -152,6 +152,17 @@ class Heartbeat:
         facts = [f for f in self.store.facts() if f["state"] != "invalidated"]
         if facts and self.rng.random() < 0.5:
             f = self.rng.choice(facts)
+            if f.get("doc") is not None:
+                # v3.1: a passage it has read - re-read it with one reading task (a recall protects it)
+                from .curriculum3 import doc_item
+                from . import reader
+                it = doc_item(self.rng, f["content"])
+                if it:
+                    q = it[0].split(" q : ", 1)[1][: -len(" a :")]
+                    with Meter(self.clock, "explore_rehearse", on_gpu=True):
+                        r = reader.ask(self.brain, self.store, q, doc=f["doc"])
+                    return {"kind": "reread", "memory": f["id"], "doc": f["doc"], "passage": f["passage"],
+                            "q": q, "a": r["answer"], "expected": it[1], "ok": r["answer"].strip() == it[1]}
             word = f["content"].split()[2] if f["content"].lower().startswith("the word ") else f["content"].split()[0]
             with Meter(self.clock, "explore_rehearse", on_gpu=True):
                 out = self.session.ask(f"what does {word} mean ?")
@@ -160,7 +171,7 @@ class Heartbeat:
         seeds = [f"the root {r}", f"{self.rng.choice(list(PREFIXES))} + {r} =",
                  f"she will {compose([self.rng.choice(list(PREFIXES)), r])}",
                  f"{r} + {self.rng.choice(list(SUFFIXES))} ="]
-        if int((self.brain.meta or {}).get("core_version", 2)) >= 3:
+        if float((self.brain.meta or {}).get("core_version", 2)) >= 3:
             # v3: it can write sentences now - half of its free generation starts from one
             seeds += ["once upon a time ,", f"{self.rng.choice(NAMES)} has a", "the little dog",
                       f"q : what does {self.rng.choice(NAMES)} like to do ? a :"]

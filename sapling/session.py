@@ -19,12 +19,14 @@ Usage:
 
 from __future__ import annotations
 
+import os
 import re
 import threading
 import time
 
 import torch
 
+from . import reader
 from .curriculum import MAX_RECALLS, SLOTS
 from .memory import MemoryStore
 from .text import normalize, sentences
@@ -48,6 +50,15 @@ class Brain:
             self.model = self.tok = self.meta = None
             self.ok = False
         self.generation = int((self.meta or {}).get("generation", 0))
+
+    @classmethod
+    def from_loaded(cls, model, tok, meta: dict | None = None, store: MemoryStore | None = None) -> "Brain":
+        """Wrap an already-loaded core (exams use this for E9 so the owner's questions go through
+        the same reading path as the chat)."""
+        b = cls.__new__(cls)
+        b.store, b.lock, b.model, b.tok, b.meta, b.ok = store, threading.RLock(), model, tok, meta or {}, True
+        b.generation = int((b.meta or {}).get("generation", 0))
+        return b
 
     @property
     def device(self):
@@ -85,8 +96,9 @@ class Brain:
     def core_info(self) -> dict:
         if not self.ok:
             return {"version": None, "params": 0, "config": None}
-        return {"version": int((self.meta or {}).get("core_version", 2)), "params": self.model.n_params(),
-                "config": self.model.config(), "grown_from": (self.meta or {}).get("grown_from")}
+        return {"version": (self.meta or {}).get("core_version", 2), "params": self.model.n_params(),
+                "config": self.model.config(), "grown_from": (self.meta or {}).get("grown_from"),
+                "pieces": self.tok.has_pieces()}
 
     @torch.no_grad()
     def embed(self, text: str) -> list[float]:
@@ -135,7 +147,10 @@ class Session:
         parsed.sort(key=lambda t: t[1] not in qwords)
         parsed = parsed[:MAX_RECALLS]
 
-        if parsed and self.has_core:
+        # v3.1 fix (10/14 21:10, seen in the chat samples): a fact whose gloss merely SHARES a word with the question
+        # ("lantern" in "yesterday tom ( throw ) the old lantern") used to hijack the answer into "the word quimble
+        # means a tiny lantern". The recall-slot route is for questions about the fact's own word.
+        if parsed and self.has_core and parsed[0][1] in qwords:
             recall_lines = []
             for (h, word, gloss), (sw, sg) in zip(parsed, SLOT_PAIRS):
                 slots[sw], slots[sg] = word, gloss
@@ -151,6 +166,12 @@ class Session:
             h = hits[0]
             answer = (f"i recall : {h['content']} "
                       f"[memory:{h['id']} {h['provenance']}/{h['state']}, tier={h['tier']}]")
+        elif self.has_core and self.store.documents() and (doc_hits := reader.retrieve(
+                self.store, query, k=3, embed_fn=embed_fn)) and doc_hits[0]["cov"] >= 0.3:
+            # v3.1: a question that a document it has read can cover goes through the reading frame
+            # (passages in front of the question) and comes back cited by document + passage.
+            r = reader.ask(self.brain, self.store, query, k=3)
+            answer = f"{r['answer']}  {r.get('cites', '')}".strip()
         elif self.has_core:
             # v3: it answers in sentences where it can (level 2 taught "q : ... ? a : <sentence>").
             # Two or more sentences ending in a question go in the reading frame it was taught
@@ -188,6 +209,20 @@ class Session:
         self.store.meter("consumption", {"turn": self.turns, "tokens_in": len(prompt.split()),
                                          "tokens_out": len(out.split()), "recalls": 0, "kind": "write"})
         return f"{prompt} {out}".strip()
+
+    def read(self, arg: str) -> str:
+        """/read <path>  or  /read: <text> - the document becomes passages in memory (provenance per document)."""
+        arg = arg.strip()
+        if arg.startswith(":"):
+            r = reader.read_document(self.store, text=arg[1:].strip(), brain=self.brain)
+        else:
+            if not os.path.exists(arg):
+                return f"no such file: {arg}"
+            r = reader.read_document(self.store, path=arg, brain=self.brain)
+        self.store.meter("consumption", {"turn": self.turns, "kind": "read", "doc": r["doc"], "passages": r["passages"]})
+        if not r["new"]:
+            return f'already read: doc:{r["doc"]} "{r["title"]}" ({r["passages"]} passages)'
+        return f'read doc:{r["doc"]} "{r["title"]}" -> {r["passages"]} passages in memory (ask about it; its passages consolidate like any memory)'
 
     def teach(self, fact: str) -> str:
         fact = normalize(fact).rstrip(".").strip()
@@ -227,6 +262,8 @@ class Session:
             return self.teach(line[len("/teach "):])
         if line.startswith("/write"):
             return self.write(line[len("/write"):])
+        if line.startswith("/read"):
+            return self.read(line[len("/read"):])
         if line.startswith("/keep "):
             return self.keep(int(line[len("/keep "):].strip()))
         if line.startswith("/confirm "):
@@ -275,7 +312,7 @@ def main():
     if "--demo" in sys.argv:
         demo(); return
     s = Session()
-    print("sapling session. commands: /teach <fact>  /keep <id>  /confirm <id>  /invalidate <id>  /report  /quit")
+    print("sapling session. commands: /teach <fact>  /read <path>  /read: <text>  /write <prompt>  /keep <id>  /confirm <id>  /invalidate <id>  /report  /quit")
     while True:
         try:
             line = input("> ")

@@ -2,7 +2,8 @@
 
 A small AI of its own design, rebuilt (v2) to Jaron's decisions of 2026-10-14: a **heartbeat**
 that keeps going on its own and feels time and energy passing, a **trained core** (from scratch;
-~0.82M parameters in v2, **~11.9M since v3** - see "Level 2") that can **become what it learns**, **memory** that grows and is
+~0.82M parameters in v2, ~11.9M in v3, **~17.6M since v3.1** with 512 tokens of context - see "Level 2" and
+"Level 3") that can **become what it learns**, **memory** that grows and is
 protected by use, **goals it sets itself**, **outside exams** it cannot fake, the freedom to
 **stop itself** (every stop is a report), and a **membrane** of rules only the owner edits -
 each rule with its origin. A plain-words **control room** on localhost shows all of it and has
@@ -41,6 +42,31 @@ append-only hash-chained record for his eyes.
 | Backup to an owner machine needs owner approval | Kimi | on, pending Jaron's keep/drop |
 | The system cannot write this file | Kimi (structural) | on |
 
+## Level 3 (v3.1, 10/14 night): ready to read documents
+
+Jaron: "your call boss" on the list in NEXT.md section 0 - what his own documents need before they are read.
+The **same weights grew in place** (DESIGN-CHOICES D17): new vocabulary rows, context **256 -> 512**, then
+level 3 at school: **copy** (the answer must reuse the prompt's words - the fix for E6's habit of swapping in a
+familiar object), **bridge** ("re port" and "report" are one word), and **prose / docs / longread** on
+public-domain adult nonfiction (Emerson, Franklin, Marcus Aurelius, Darwin, Thoreau - Project Gutenberg;
+`curriculum3.DOCS_NOTE`). The vocabulary is **17,660 tokens**: every old token (same ids), 6,000 story words,
+document words, and **1,037 word pieces** so any word is spellable ("arch ##ae ##ology"; D16) - no `<unk>` for
+adult text, and E1-E7 stay comparable on the same ids.
+
+It can now **read a document**: `/read C:\path\file.txt` (or `/read: <pasted text>`) in the chat makes one
+`documents` row and one memory per passage **with provenance** (document + place; `reader.py`, D18). A question a
+document covers goes passages-first into the 512-token frame and comes back cited: `[doc:1 "The Declaration of
+Independence..." passage 3 memory:1480]`. What it reads consolidates into its weights like any memory (no gate).
+New rows on the card: **E7L** (long reading on a whole held-out essay, info), **E1b** (the bridge, cold: held-out
+E1 combos as whole words, info) and **E9 - the exam Jaron writes himself** in `owner_exam.json` (empty until he
+fills it; his questions, his answers, his bar). None of his documents are read yet - that is his step 2.
+
+```bash
+python -m sapling.grow --smoke                 # CPU, ~1-2 min: both growths (fresh v3, then in place v3.1) in a temp dir
+python -m sapling.grow school --base live      # GPU ~17 min: grow the live core in place -> results/core_staged.pt
+python -m sapling.heartbeat stop && python -m sapling.grow swap && python -m sapling.heartbeat start
+```
+
 ## Level 2 (v3, 10/14 evening): real sentences
 
 Jaron: "school level 2: real sentences - language first, then everything grows." The core grew from
@@ -72,7 +98,7 @@ python -m sapling.heartbeat start         # the heartbeat, detached; log in resu
 #   control room: http://127.0.0.1:7337/  (rules, status, budget, ticks, goals, exams, memory, chat)
 python -m sapling.heartbeat status
 python -m sapling.heartbeat stop          # owner stop -> stop report + exit
-python -m sapling.session                 # talk without the heartbeat; /teach /confirm /invalidate /keep /report
+python -m sapling.session                 # talk without the heartbeat; /teach /read /write /confirm /invalidate /keep /report
 python tests/run_tests.py                 # invariants without pytest   (or: pytest tests/)
 ```
 
@@ -137,6 +163,45 @@ All five facts it was taught (zib, glorp, brindle, zint, quimble) are now in its
 became what it learned, with no gate, and the outside exams show the cost (E1 drifts down a few
 points per consolidation; that drift is the next thing to watch, not a reason to add a gate).
 
+## Run record - v3.1 growth (10/14 20:25-21:05, RTX 4060, heartbeat kept running)
+
+```
+school A (results/grow_school_v31_stdout.txt, in place, 1047 s, batch 32 at 512 tokens):
+  copy 6.02 -> .049   bridge 6.67 -> .033   prose 8.49 -> 1.68   docs 2.76 -> .166   longread 2.86 -> .277
+  record 2.00 -> .016   all 2.64 -> .247        (loss first -> last 20 steps)
+swap A (results/grow_swap_v31_stdout.txt, ledger row `growth: core v3 -> v3.1`): gen 178 -> 179
+  vocab 3,098 -> 17,237 (878 pieces)   params 11,926,272 -> 17,453,952   context 256 -> 512
+school B (results/grow_school_v31b_stdout.txt, "reading drill": task passages disjoint from prose, batch 24)
+swap B (results/grow_swap_v31b_stdout.txt, `growth: core v3.1 -> v3.1 (reading drill ...)`): gen 182 -> 183 (three heartbeat consolidations ran between the swaps), vocab 17,660
+
+             v3 gen 178   v3.1 gen 179   v3.1 gen 183   bar
+  E1 comp     82/86        82/86          85/86          .60 PASS
+  E2 affix    24/24        24/24          24/24          .90 PASS
+  E3 echo     12/12        12/12          12/12          .90 PASS
+  E4 defer    10/10        10/10          10/10          .80 PASS
+  E5 facts     7/7          7/7           7/7          info
+  E6 grammar  12/48        21/48          21/48          .60 FAIL (kept)
+  E7 reading  25/40        27/40          26/40          .50 PASS
+  E7L long     0/20         0/40          0/40         info (held-out essay; 256 ctx fit only 20 items)
+  E1b bridge   0/86        81/86          83/86         info (cold: whole-word spelling of held-out combos)
+  E9 owner    0 items      0 items        0 items       his (owner_exam.json)
+retrieval demo (live heartbeat, 21:06, Project Gutenberg #1 - public domain, NOT one of Jaron's documents):
+  > /read C:\...\data\gutenberg\pg1.txt
+  read doc:1 "The Declaration of Independence of the United States of America" -> 16 passages in memory
+  > which sentence has the word happiness ?
+  (prose, not the sentence)  [doc:1 "The Declaration of Independenc" passage 4 memory:1587]   <- the RIGHT passage
+  > which sentence has the word tyranny ?
+  (prose)  [doc:1 ... passage 6 memory:1589] [doc:1 ... passage 11 memory:1594]              <- both passages with the word
+  -> retrieval + provenance + citation work; copying a sentence out of a cold passage does not yet (= E7L 0/40)
+chat (live heartbeat, gen 183):
+  > what does report mean ?                       -> the word report means carry again .      (the bridge, no memory hit)
+  > what does hello mean ?                        -> the word hello means a greeting .  [memory:447 user/captured]
+  > q : fill : yesterday tom ( throw ) the old lantern . a :   -> yesterday tom pushed the old cake .   (wrong verb + object; before the 21:12
+                                                   routing fix it answered "the word quimble means a tiny lantern" - a fact sharing one word hijacked it)
+  > tom has a green boat . anna has a red kite . what color is tom 's boat ?   -> tom .   (E7-style question, wrong)
+  > /write the archaeologist opened the box and   -> ... said , hi , little pine needles is familiar . woods hereabouts by birds ...
+```
+
 ## Run record - v3 growth (10/14 19:17-19:33, RTX 4060)
 
 ```
@@ -166,27 +231,32 @@ sapling/
   consolidate.py   # record -> weights; checkpoint per generation; exams after each
   goals.py         # its own practice goals from its failure record (parts, never exam items)
   control_room.py  # localhost page: rules + origins, status, budget, ticks, stops, goals, exams, memory, chat
-  session.py       # a turn of talk; vocab grows on new word parts; up to 4 recalled facts per prompt
-  memory.py        # append-only hash-chained SQLite; fades only if unused; use protects; top-k grows
-  exams.py         # E1-E4 outside exams (bars fixed, FAIL kept); E6 grammar, E7 reading; E5 + E8 info only
+  session.py       # a turn of talk; /read a document; questions a document covers go through reader.py
+  memory.py        # append-only hash-chained SQLite; fades only if unused; use protects; top-k grows; documents + doc/passage provenance (v3.1)
+  reader.py        # v3.1: read_document (passages with provenance) / retrieve (coverage) / ask (passages-first prompt, cited answer)
+  exams.py         # E1-E4 outside exams (bars fixed, FAIL kept); E6 grammar, E7 reading; E7L, E1b, E5, E8 info; E9 = owner_exam.json
   curriculum.py    # school level 1: roots -> affixes -> composition -> sentences -> recall (8 slots)
   curriculum2.py   # school level 2: simple -> grammar -> paragraphs -> comprehension -> stories (cold E6/E7 splits)
+  curriculum3.py   # school level 3: copy -> bridge -> prose / docs / longread (Gutenberg; one essay held out for E7L)
+  pieces.py        # v3.1: word pieces (BPE, "##" continuation) + forced splits of the school's composed words
   text.py          # normalize(): story text / phone typing -> the school's spacing
-  grow.py          # v2 -> v3: school (staged) + swap (one `growth` ledger row); --smoke on CPU
-  model.py         # decoder-only transformer (V3_CONFIG ~11.9M); grow_vocab() resizes the tied embedding safely
-  train.py         # level-1 school (v2 recipe), tokenizer with add_tokens, checkpoint save/load
+  grow.py          # growth: school (staged; --base live grows in place, --base fresh re-schools) + swap (one `growth` row); --smoke
+  model.py         # decoder-only transformer (V3/V31_CONFIG); grow_vocab() / grow_context() resize in place
+  train.py         # level-1 school (v2 recipe), tokenizer (pieces fallback, splits), checkpoint save/load
   membrane.py      # reads membrane.yaml (rules with origin + switch); no write path
   archive.py       # hourly: keep last 10 + 1/day local, move the rest to cloud (Supabase 'sapling-archive'), restore any gen
 membrane.yaml      # the rules and the settings - the owner's file
+owner_exam.json    # E9: the exam the owner writes about his own documents (q / a / match / bar); empty until he does
+data/              # gitignored: tinystories/ (CDLA-Sharing-1.0) and gutenberg/ (public domain) - see curriculum2/3 notes
 tools/             # OWNER side, outside the AI's package:
   owner_relay.py   # phone/remote door: pushes state to Supabase, runs owner commands (chat, rule switch, restore, parole)
   owner_rules.py   # flips a rule's enabled line when the owner clicks; logged
   self_memory_drift.py # compares exams with vs without self-made memories in training
 DESIGN-CHOICES.md  # every design choice an AI made, who made it, what it affects, options not chosen
 PROPOSALS.md       # open questions for the owner; nothing in here is built
-CHANGELOG.md       # v1 -> v2 -> v2.1, each change tied to Jaron's decision
+CHANGELOG.md       # v1 -> v2 -> v2.1 -> v3 -> v3.1, each change tied to Jaron's decision
 results/           # report card (history kept, FAILs kept), train log, stop reports, memory.db, checkpoints/
-tests/             # 34 pytest tests + plain runner
+tests/             # 40 pytest tests + plain runner
 ```
 
 ## Lineage

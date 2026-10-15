@@ -305,7 +305,7 @@ LESSONS2 = ["simple", "grammar", "paragraphs", "comprehension", "stories"]
 
 
 def build_corpus2(seed: int = 7337, stories: bool = True, max_stories: int = 12000,
-                  sizes: dict | None = None) -> dict:
+                  sizes: dict | None = None, vocab_cap: int = STORY_VOCAB_CAP) -> dict:
     """{lessons: {name: [sentences]}, split, story_stats}. `sizes` lets the CPU
     smoke test shrink every lesson."""
     sizes = sizes or {}
@@ -317,7 +317,7 @@ def build_corpus2(seed: int = 7337, stories: bool = True, max_stories: int = 120
         "paragraphs": lesson_paragraphs(rng, split, sizes.get("paragraphs", 1200)),
         "comprehension": lesson_comprehension(rng, split, sizes.get("comprehension", 2400)),
     }
-    st = load_stories(max_stories=max_stories, seed=seed) if stories else {"stories": [], "stats": {"present": False}}
+    st = load_stories(max_stories=max_stories, seed=seed, vocab_cap=vocab_cap) if stories else {"stories": [], "stats": {"present": False}}
     lessons["stories"] = st["stories"]
     return {"lessons": lessons, "split": split, "story_stats": st["stats"]}
 
