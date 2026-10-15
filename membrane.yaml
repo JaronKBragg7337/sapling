@@ -64,7 +64,7 @@ rules:
 # the budget is a pressure it can feel and see draining, not a wall.
 settings:
   tick_seconds: 5             # how often the heart beats
-  daily_budget_seconds: 3600  # compute-seconds per day it can see draining (GPU+CPU)
+  daily_budget_seconds: 14400  # compute-seconds per day it can see draining (GPU+CPU)
   control_room_port: 7337     # localhost only
   consolidate_min_pending: 2  # how many unconsolidated facts make consolidation worth choosing
   consolidate_steps: 200      # fine-tune steps per consolidation

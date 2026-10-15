@@ -1,5 +1,14 @@
 # Changelog
 
+
+## 2026-10-15 7:31 AM - budget 1 h -> 4 h, scheduled parole (Jaron's calls)
+- Sapling self-stopped 06:46 (report results/stop_reports/2026-10-15T064635_self.json): 2.9 h spent of a 1 h budget, 3.7 h
+  since input, 21 rests in a row. Jaron: "4 hours is fine. I was going to say 6 but let's try 4 first." -> membrane
+  daily_budget_seconds 3600 -> 14400 (owner log row).
+- "Restart at 10:30 please": one-shot Windows task "Sapling Parole 1030" runs tools/scheduled_parole.py, which waits for the
+  9:45 news render (UnrealEditor) to leave the GPU, then paroles and logs it like the Restart button.
+- Observe: how long it runs before stopping again with the budget still overspent until midnight.
+
 ## v3.2 (2026-10-15, small hours) - much more reading
 
 Jaron (10/14 9:40 PM) agreed to the lab-style order: **more reading first, watch for the copying ability to switch on,
