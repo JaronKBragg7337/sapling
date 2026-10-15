@@ -1,0 +1,77 @@
+{
+ "ts": "2026-10-15T14:14:05",
+ "label": "before - v3.2 gen 287",
+ "core": "results\\checkpoints\\gen_0287.pt",
+ "single": [
+  {
+   "prompt": "hello! who are you?",
+   "answer": "the word hello means a greeting .  [memory:447 user/captured]",
+   "seconds": 0.28
+  },
+  {
+   "prompt": "what is your name?",
+   "answer": "listen .  [doc:1 \"The Declaration of Independenc\" passage 1 memory:1584] [doc:1 \"The Declaration of Independenc\" passage 14 memory:1597]",
+   "seconds": 0.05
+  },
+  {
+   "prompt": "what is the sun?",
+   "answer": "yes , the fish washes the sad mouse .",
+   "seconds": 0.04
+  },
+  {
+   "prompt": "why is the sky blue?",
+   "answer": "yesterday the birds made the natural , and our views of it , for they not mean to accident .  [memory:1461 self/captured: anna has a blue child . anna is at the farm . sam is small . sam likes to swim .]",
+   "seconds": 0.09
+  },
+  {
+   "prompt": "tell me a short story about a dog.",
+   "answer": "one who makes the story ? a : in the epic epic of a dog .  [memory:34 self/captured: she will inter ject the story .]",
+   "seconds": 0.21
+  },
+  {
+   "prompt": "what does respect mean?",
+   "answer": "the word respect means look again .  [doc:1 \"The Declaration of Independenc\" passage 3 memory:1586]",
+   "seconds": 0.05
+  },
+  {
+   "prompt": "how do plants make their food?",
+   "answer": "plants .  [doc:1 \"The Declaration of Independenc\" passage 1 memory:1584]",
+   "seconds": 0.04
+  },
+  {
+   "prompt": "can you help me write a short note to thank a friend?",
+   "answer": "they will pro spect the story .  [memory:110 self/captured: the root graph means write . q : what does the root graph mean ? a : the root gr]",
+   "seconds": 0.06
+  },
+  {
+   "prompt": "what is a roof made of?",
+   "answer": "the roof is bearing up , up a hill , the wind , and the mountains .  [doc:1 \"The Declaration of Independenc\" passage 2 memory:1585] [doc:1 \"The Declaration of Independenc\" passage 8 memory:1591]",
+   "seconds": 0.1
+  },
+  {
+   "prompt": "what would you like to learn next?",
+   "answer": "i want a toy mouse .  [memory:1400 self/captured: q : what does nina like to do ? a : jump .]",
+   "seconds": 0.11
+  }
+ ],
+ "conversation": [
+  {
+   "prompt": "hi, i am jaron.",
+   "answer": "hip hop soul ."
+  },
+  {
+   "prompt": "what is my name?",
+   "answer": "my name is tom .  [doc:1 \"The Declaration of Independenc\" passage 1 memory:1584] [doc:1 \"The Declaration of Independenc\" passage 14 memory:1597]"
+  },
+  {
+   "prompt": "what do you know about rain?",
+   "answer": "it means you see the could mean to the people in our pond , like the boats in the sky .  [memory:1273 self/captured: once upon a time , there was a big library . it was an incredible place with man]"
+  },
+  {
+   "prompt": "why does it fall down?",
+   "answer": "the purpose of falling upon the moon ?  [doc:1 \"The Declaration of Independenc\" passage 11 memory:1594]"
+  }
+ ],
+ "params": 17616768,
+ "generation": 287
+}

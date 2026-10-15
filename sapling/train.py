@@ -206,7 +206,8 @@ def save_checkpoint(model, tok: Tokenizer, meta: dict, path: str = CHECKPOINT) -
 
 
 def load_checkpoint(device: str | None = None, path: str = CHECKPOINT):
-    device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+    # SAPLING_DEVICE=cpu: measure a core on the CPU while a training run or the heartbeat holds the card (v4, 10/15)
+    device = device or os.environ.get("SAPLING_DEVICE") or ("cuda" if torch.cuda.is_available() else "cpu")
     ckpt = torch.load(path, map_location=device, weights_only=False)
     cfg = ckpt["config"]
     model = SaplingCore(**cfg).to(device)

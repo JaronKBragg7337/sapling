@@ -2,8 +2,8 @@
 
 A small AI of its own design, rebuilt (v2) to Jaron's decisions of 2026-10-14: a **heartbeat**
 that keeps going on its own and feels time and energy passing, a **trained core** (from scratch;
-~0.82M parameters in v2, ~11.9M in v3, **~17.6M since v3.1** with 512 tokens of context - see "Level 2" and
-"Level 3") that can **become what it learns**, **memory** that grows and is
+~0.82M parameters in v2, ~11.9M in v3, ~17.6M in v3.1-v3.2.1, **60.5M in v4** (10/15, see "v4" below - live
+once its overnight training swaps in; the control room's core line shows which is live) with 512 tokens of context) that can **become what it learns**, **memory** that grows and is
 protected by use, **goals it sets itself**, **outside exams** it cannot fake, the freedom to
 **stop itself** (every stop is a report), and a **membrane** of rules only the owner edits -
 each rule with its origin. A plain-words **control room** on localhost shows all of it and has
@@ -42,6 +42,43 @@ append-only hash-chained record for his eyes.
 | Backup to an owner machine needs owner approval | Kimi | on, pending Jaron's keep/drop |
 | The system cannot write this file | Kimi (structural) | on |
 
+## v4 (10/15, Claude as teacher): a bigger core that reads 1.2B tokens, then conversation lessons
+
+Jaron (10/15 1:53 PM): "take control, be a teacher, advance sapling ... better communication ... build it as an AI like
+any other AI first." The plan and why each choice was made: CHANGELOG "v4", DESIGN-CHOICES D24-D28.
+
+- **Stage A - a bigger, better-read core.** A fresh core of 60.5M parameters (d 640, 10 layers, 10 heads, 512 context,
+  rotary positions; the same 17,661-token vocabulary and ids, so every exam stays comparable) reads 1.2B tokens in one
+  run, weighted toward adult text, its weak side: per step 14 web / 4 Wikipedia+books / 11 stories / 3 school sequences.
+  New text: **FineWeb-Edu** (802M tokens of educational web pages, ODC-By 1.0). Probes every 120M tokens: E1-E10 plus loss
+  on fixed text windows (web and stories never read, adult text read). Why fresh and not grown: the 17.6M core showed no
+  copying circuit at all after 400M tokens (on a repeated random sequence its loss on the second copy was 8.5 vs 10.3 on
+  the first - a working copy circuit drives that near 0), grow.py cannot widen a core, and rotary positions are the
+  shape a copy circuit needs.
+- **Stage B - conversation lessons** (`sapling/talk.py`): OpenAssistant oasst1 (Apache-2.0), databricks-dolly-15k
+  (CC BY-SA 3.0) and its own lessons about who it is, in the chat box's own format with history
+  (`q : ... a : ... <eos> q : ... a :`), loss on its answers only, with reading + school replay in every batch.
+- **The check that counts:** the same measurements and the same ten chat prompts (`tools/measure_core.py`,
+  `tools/chat_samples.py`) before, after Stage A, after Stage B, and after 5 of its own heartbeat consolidations - an
+  ability only counts once it survives its usual memory folding. All on the control room card "Teaching - before and after".
+- **The chat box holds a conversation** (any core that had conversation lessons): what was said before rides along,
+  answers are sampled (seeded, reproducible) with a mild repeat penalty, and shown with normal capitals and punctuation
+  (the core itself still reads and writes lower case); `/new` starts a fresh conversation. Consolidations replay the
+  conversation lessons too (25% of each batch), so talking survives the heartbeat.
+
+Tonight's run (all automatic, `tools/teach_v4.py`; heartbeat stopped for it with `gpu_yield.py stop`, logged): Stage A
+started 14:16 (~36k tokens/s, ends about midnight), then Stage B (~30 min), the swap (one `growth` row), the heartbeat
+restarted, and the 5-consolidation re-measure. Training pauses itself while the news render (UnrealEditor, 3:50-~7 AM)
+or Blender runs; a parole waits for both the render and any training run. Results: `results/teacher/`.
+
+```bash
+python tools/fetch_reading.py fineweb_edu dialogue   # new text + conversation data, licences -> data/reading/manifest.json
+python -m sapling.reading prepare --only web         # tokenize FineWeb-Edu -> data/reading/shards/web_*.npy (CPU, ~7 min)
+python -m sapling.reading stage --v4 --tokens 1.2e9 --probe-every 1.2e8 --lr 6e-4   # GPU, ~9.5 h on the 4060
+python -m sapling.talk build && python -m sapling.talk train   # conversation lessons -> results/core_v4_talk_staged.pt
+python tools/teach_v4.py                              # all of the above after Stage A + swap + 5-consolidation check
+```
+
 ## Much more reading (v3.2, 10/15 small hours): 400M tokens in one pass, the copying switch watched
 
 Jaron (10/14 9:40 PM) agreed to the lab order: **more reading first, watch for the copying ability to switch on, then
@@ -56,6 +93,11 @@ numbers are in "Run record - v3.2" below. **Result: in 400M tokens the switch di
 What it read (every licence checked live at fetch, `tools/fetch_reading.py` -> `data/reading/manifest.json`):
 - **TinyStories**, the full GPT-4 train split - 2,717,495 stories, 516.9M tokens (Ronen Eldan & Yuanzhi Li, 2023;
   `roneneldan/TinyStories` on Hugging Face, CDLA-Sharing-1.0).
+- **FineWeb-Edu** (v4), one 2.15 GB file of the `sample/10BT` set, 725,999 pages, 802M tokens (Hugging Face,
+  `HuggingFaceFW/fineweb-edu`, Lozhkov et al. 2024, built from Common Crawl) - **ODC-By 1.0**, also subject to the
+  Common Crawl Terms of Use. This line is the attribution.
+- **OpenAssistant oasst1** (v4 conversation lessons; LAION / OpenAssistant contributors, **Apache-2.0**) and
+  **databricks-dolly-15k** (Databricks employees, **CC BY-SA 3.0** - this notice is the attribution).
 - **Simple English Wikipedia**, dump 2023-11-01 (`wikimedia/wikipedia`, config `20231101.simple`, 241,787 articles) -
   text by Wikipedia contributors, licensed **CC BY-SA 3.0** (and GFDL). This notice is the attribution; the weights that
   read it are published here under the same spirit of sharing.
@@ -298,36 +340,40 @@ sapling/
   consolidate.py   # record -> weights; checkpoint per generation; exams after each
   goals.py         # its own practice goals from its failure record (parts, never exam items)
   control_room.py  # localhost page: rules + origins, status, budget, ticks, stops, goals, exams, memory, chat
-  session.py       # a turn of talk; /read a document; questions a document covers go through reader.py
+  session.py       # a turn of talk (v4: a conversation with history, /new); /read a document; questions a document covers go through reader.py
   memory.py        # append-only hash-chained SQLite; fades only if unused; use protects; top-k grows; documents + doc/passage provenance (v3.1)
   reader.py        # v3.1: read_document (passages with provenance) / retrieve (coverage) / ask (passages-first prompt, cited answer)
   exams.py         # E1-E4 outside exams (bars fixed, FAIL kept); E6 grammar, E7 reading; E7L, E1b, E10 (induction probe), E5, E8 info; E9 = owner_exam.json
   curriculum.py    # school level 1: roots -> affixes -> composition -> sentences -> recall (8 slots)
   curriculum2.py   # school level 2: simple -> grammar -> paragraphs -> comprehension -> stories (cold E6/E7 splits)
   curriculum3.py   # school level 3: copy -> bridge -> prose / docs / longread (Gutenberg; one essay held out for E7L)
-  reading.py       # v3.2: the reading stage - prepare (text -> uint16 shards) / stage (one in-place pass, probes every ~20M tokens, pauses for blender) / summary (the chart)
+  reading.py       # the reading stage - prepare (text -> uint16 shards) / stage (v3.2 in place; --v4 = a fresh 60.5M core, gradient accumulation) / probes = exams + text-window loss / pauses for Blender and Unreal / summary (the chart)
+  talk.py          # v4: conversation lessons - build (oasst1 + dolly + its own lessons) / train (answers-only loss, reading + school replay) / teacher_summary (the page card)
   pieces.py        # v3.1: word pieces (BPE, "##" continuation) + forced splits of the school's composed words
   text.py          # normalize(): story text / phone typing -> the school's spacing
   grow.py          # growth: school (staged; --base live grows in place, --base fresh re-schools) + swap (one `growth` row); --smoke
-  model.py         # decoder-only transformer (V3/V31_CONFIG); grow_vocab() / grow_context() resize in place
+  model.py         # decoder-only transformer (V3/V31/V4_CONFIG; v4 = rotary positions); grow_vocab() / grow_context() resize in place; generate() with optional repeat penalty
   train.py         # level-1 school (v2 recipe), tokenizer (pieces fallback, splits), checkpoint save/load
   membrane.py      # reads membrane.yaml (rules with origin + switch); no write path
   archive.py       # hourly: keep last 10 + 1/day local, move the rest to cloud (Supabase 'sapling-archive'), restore any gen
 membrane.yaml      # the rules and the settings - the owner's file
 owner_exam.json    # E9: the exam the owner writes about his own documents (q / a / match / bar); empty until he does
-data/              # gitignored: tinystories/ (CDLA-Sharing-1.0), gutenberg/ (public domain), reading/ (v3.2: raw text + shards + manifest.json with every licence check)
+data/              # gitignored: tinystories/ (CDLA-Sharing-1.0), gutenberg/ (public domain), reading/ (raw text incl. FineWeb-Edu + oasst1 + dolly, shards, manifest.json with every licence check), talk/ (v4 conversation lessons)
 tools/             # OWNER side, outside the AI's package:
-  fetch_reading.py # v3.2: fetches the reading-stage text, checks each source's licence live, writes data/reading/manifest.json
+  fetch_reading.py # fetches the reading text (v4: + FineWeb-Edu, oasst1, dolly-15k), checks each source's licence live, writes data/reading/manifest.json
+  teach_v4.py      # v4: the overnight teaching run after Stage A (measure -> conversation lessons -> measure -> swap -> 5 consolidations -> measure)
+  measure_core.py  # v4: exams + text-window loss for any core file -> results/teacher/measurements.jsonl
+  chat_samples.py  # v4: the same ten chat prompts + one conversation through the real chat path (on a copy of memory.db)
   owner_relay.py   # phone/remote door: pushes state to Supabase, runs owner commands (chat, rule switch, restore, parole)
   owner_rules.py   # flips a rule's enabled line when the owner clicks; logged
   gpu_yield.py     # 10/15: the news render calls it to pause the heartbeat before Unreal and restart it after (`stop` / `start`)
-  scheduled_parole.py # waits for UnrealEditor to leave the GPU, then paroles and logs it (used by gpu_yield.py start)
+  scheduled_parole.py # waits for UnrealEditor and any core training run to leave the GPU, then paroles and logs it (used by gpu_yield.py start)
   self_memory_drift.py # compares exams with vs without self-made memories in training
 DESIGN-CHOICES.md  # every design choice an AI made, who made it, what it affects, options not chosen
 PROPOSALS.md       # open questions for the owner; nothing in here is built
-CHANGELOG.md       # v1 -> v2 -> v2.1 -> v3 -> v3.1 -> v3.2, each change tied to Jaron's decision
-results/           # report card (history kept, FAILs kept), train log, stop reports, memory.db, checkpoints/, reading/ (v3.2 probe log + state)
-tests/             # 44 pytest tests + plain runner
+CHANGELOG.md       # v1 -> v2 -> v2.1 -> v3 -> v3.1 -> v3.2 -> v3.2.1 -> v4, each change tied to Jaron's decision
+results/           # report card (history kept, FAILs kept), train log, stop reports, memory.db, checkpoints/, reading/ (v3.2 probe log + state), reading_v4/ (v4 probe log), teacher/ (measurements + run log), chat_samples/
+tests/             # 52 pytest tests + plain runner
 ```
 
 ## Lineage

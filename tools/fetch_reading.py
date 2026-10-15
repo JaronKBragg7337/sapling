@@ -41,6 +41,11 @@ GUTENBERG_IDS = [
     3177, 4280, 1946, 7849, 2680, 3090, 2199, 2554, 6593, 20417, 1526, 1524, 1513, 2267, 23700, 29870, 15399,
     4085, 2554, 2591, 6400, 1399, 7142, 5740, 408, 17135, 2446, 3268, 2708, 2852, 2097, 1155, 1998, 1342,
 ]
+# v4 (10/15, Claude as teacher): more adult text + conversation lessons. Licences checked live on the HF API 10/15.
+FINEWEB_EDU_URL = "https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu/resolve/main/sample/10BT/{name}"
+FINEWEB_EDU_FILES = ["000_00000.parquet"]            # one 2.15 GB file of the 10BT sample (~0.7B GPT-2 tokens)
+OASST1_URL = "https://huggingface.co/datasets/OpenAssistant/oasst1/resolve/main/2023-04-12_oasst_ready.trees.jsonl.gz"
+DOLLY_URL = "https://huggingface.co/datasets/databricks/databricks-dolly-15k/resolve/main/databricks-dolly-15k.jsonl"
 GUTENBERG_OK = "almost no restrictions whatsoever"
 GUTENBERG_URL = "https://www.gutenberg.org/cache/epub/{id}/pg{id}.txt"
 
@@ -130,12 +135,42 @@ def fetch_gutenberg(m: dict, pause: float = 1.5):
                                  "fetched": time.strftime("%Y-%m-%dT%H:%M:%S")}
 
 
+def fetch_fineweb_edu(m: dict):
+    files = []
+    for name in FINEWEB_EDU_FILES:
+        dest = os.path.join(RAW, f"fineweb_edu_{name}")
+        if not os.path.exists(dest) or os.path.getsize(dest) < 2_000_000_000:
+            print(f"[fetch] FineWeb-Edu sample/10BT/{name} (~2.15 GB) ...", flush=True)
+            _get(FINEWEB_EDU_URL.format(name=name), dest)
+        files.append({"file": os.path.basename(dest), "bytes": os.path.getsize(dest)})
+    m["sources"]["fineweb_edu"] = {"files": files, "url": FINEWEB_EDU_URL.format(name="..."),
+                                   "license": "ODC-By 1.0 (dataset card HuggingFaceFW/fineweb-edu, checked live 2026-10-15); "
+                                              "also subject to the Common Crawl Terms of Use",
+                                   "attribution": "FineWeb-Edu (Hugging Face, Lozhkov et al. 2024), built from Common Crawl",
+                                   "fetched": time.strftime("%Y-%m-%dT%H:%M:%S")}
+
+
+def fetch_dialogue(m: dict):
+    for key, url, fn, lic, attr in [
+        ("oasst1", OASST1_URL, "oasst1_ready.trees.jsonl.gz", "Apache-2.0 (dataset card OpenAssistant/oasst1, checked live 2026-10-15)",
+         "OpenAssistant Conversations (oasst1), LAION / OpenAssistant contributors"),
+        ("dolly15k", DOLLY_URL, "databricks-dolly-15k.jsonl", "CC BY-SA 3.0 (dataset card databricks/databricks-dolly-15k, checked live 2026-10-15)",
+         "databricks-dolly-15k, Databricks employees (CC BY-SA 3.0)")]:
+        dest = os.path.join(RAW, fn)
+        if not os.path.exists(dest):
+            print(f"[fetch] {key} ...", flush=True)
+            _get(url, dest, resume=False)
+        m["sources"][key] = {"file": fn, "bytes": os.path.getsize(dest), "url": url, "license": lic, "attribution": attr,
+                             "fetched": time.strftime("%Y-%m-%dT%H:%M:%S")}
+
+
 def main(argv=None):
-    what = (argv or sys.argv[1:]) or ["tinystories", "simplewiki", "gutenberg"]
+    what = (argv or sys.argv[1:]) or ["tinystories", "simplewiki", "gutenberg", "fineweb_edu", "dialogue"]
     os.makedirs(RAW, exist_ok=True)
     m = _manifest()
     for w in what:
-        {"tinystories": fetch_tinystories, "simplewiki": fetch_simplewiki, "gutenberg": fetch_gutenberg}[w](m)
+        {"tinystories": fetch_tinystories, "simplewiki": fetch_simplewiki, "gutenberg": fetch_gutenberg,
+         "fineweb_edu": fetch_fineweb_edu, "dialogue": fetch_dialogue}[w](m)
         _save(m)
     print(json.dumps(m["sources"], indent=1))
 

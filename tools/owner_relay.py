@@ -142,11 +142,16 @@ def down_state() -> dict:
     except Exception:
         pass
     try:
-        from sapling.reading import summary as reading_summary
-        reading = reading_summary()
+        from sapling.reading import current_summary
+        reading = current_summary()
     except Exception:
         reading = None
-    return {"running": False, "down": True, "tick": ticks[0]["tick"] if ticks else None, "reading": reading,
+    try:
+        from sapling.talk import teacher_summary
+        teacher = teacher_summary()
+    except Exception:
+        teacher = None
+    return {"running": False, "down": True, "tick": ticks[0]["tick"] if ticks else None, "reading": reading, "teacher": teacher,
             "generation": generation, "vocab_size": last_vocab,
             "last_action": ticks[0]["action"] if ticks else None, "clock": clock, "memories": memories,
             "rules": cfg["rules"], "settings": cfg["settings"], "goals": [], "exams": [], "ticks": ticks,

@@ -81,12 +81,18 @@ def state_of(hb) -> dict:
                 for d in documents_summary(hb.store)][-20:]
     except Exception:
         docs = []
-    from .reading import summary as reading_summary
+    from .reading import current_summary
     try:
-        reading = reading_summary()
+        reading = current_summary()
     except Exception:
         reading = None
+    from .talk import teacher_summary
+    try:
+        teacher = teacher_summary()
+    except Exception:
+        teacher = None
     return {
+        "teacher": teacher,
         "documents": docs,
         "reading": reading,
         "core": hb.brain.core_info(),

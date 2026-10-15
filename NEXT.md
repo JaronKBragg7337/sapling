@@ -6,7 +6,31 @@ v1's three steps: (1) runs-without-you is DONE (the heartbeat); (2) record -> co
 is DONE (no gate; `/confirm` and `/invalidate` verdicts are the selection events); (3) a world
 to practice in is still open. Ordered by dependency.
 
+## 00. v4 (10/15, Claude as teacher) - running tonight; what comes after it
+
+Stage A (a fresh 60.5M core reading 1.2B tokens) and Stage B (conversation lessons) run unattended tonight via
+`tools/teach_v4.py`; the swap and a re-measure after 5 of its own consolidations follow automatically (CHANGELOG v4).
+After it, in order:
+1. **Read the before / after table and the ten chat samples** on the control room card "Teaching - before and after"
+   (results/teacher/, results/chat_samples/). If anything drops after the 5 consolidations, that is the first fix
+   (the consolidation mix, D28) - before anything new.
+2. **Write the results into README / CHANGELOG v4** (numbers, the samples) - the run itself only writes results files.
+3. If E10 / E7L switched on: Jaron's documents (step 2 below) become worth trying. If not: the supervised long-copy
+   lesson (0a item 2) on the v4 core.
+4. Communication next: multi-turn lessons built from its own memories and taught facts (questions about what it was
+   taught, asked in several wordings), and a bigger conversation set if oasst1 + dolly are not enough.
+5. **Archive size (ops, decide soon):** a v4 checkpoint is ~242 MB (60.5M params, fp32) vs ~71 MB before. At the
+   10/15 pace (~4 consolidations an hour while the heartbeat runs) the cloud archive (D5: everything but the last 10 +
+   one a day goes to Supabase) would grow ~20-25 GB a day against the 100 GB Pro plan. Options: save generations as bf16
+   (half the size, tiny precision loss), keep one generation per hour in the cloud plus every growth/swap, or pay the
+   overage. Nothing is changed yet; "nothing deleted forever" means this needs a deliberate choice, not a quiet one.
+6. Items 0a.3-0a.5 below still apply to v4 (E5 refresh, rehearsal share; the reader-route fix is done for talking
+   cores - coverage 0.6, D27).
+
 ## 0a. After v3.2 (10/15): the reading stage did not switch copying on - what to try next (lab order holds)
+
+(10/15 afternoon: answered in part by v4 - the 17.6M core had no copy circuit at all, so the next try is a bigger, fresh
+core with rotary positions; the list below is kept for the v4 core.)
 
 400M tokens of plain reading (CHANGELOG v3.2): E7L 0/40 at all 21 probes, E10 0 -> 9/2016 (chance ~0.1, so above noise
 but no circuit), while E6 went 28 -> 46/48 and E7 30 -> 33/40. The hypothesis (induction heads appear with enough text)

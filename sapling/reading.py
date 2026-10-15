@@ -59,9 +59,13 @@ LATEST = os.path.join(OUT_DIR, "latest.pt")
 PAUSE_FILE = os.path.join(OUT_DIR, "pause")
 STAGED = os.path.join(RESULTS_DIR, "core_staged.pt")
 SHARD_TOKENS = 50_000_000
-SOURCES = ("stories", "adult")
+SOURCES = ("stories", "adult", "web")
 # batch composition (of 32): stories / adult text / rehearsal of everything it already knows
 SHARES = {"stories": 25, "adult": 4, "rehearsal": 3}
+# v4 (10/15): weighted toward adult text, its weak side - web 14 + wiki/books 4 = 18 of the 29 new sequences per step
+V4_SHARES = {"stories": 11, "adult": 4, "web": 14, "rehearsal": 3}
+V4_DIR = os.path.join(RESULTS_DIR, "reading_v4")
+V4_STAGED = os.path.join(RESULTS_DIR, "core_v4_staged.pt")
 NOTE = ("Reading stage text: TinyStories GPT-4 train split (CDLA-Sharing-1.0); Simple English Wikipedia "
         "(wikimedia/wikipedia 20231101.simple, CC BY-SA 3.0 + GFDL, Wikipedia contributors); Project Gutenberg "
         "public-domain books (headers checked at fetch, licence text stripped). The held-out essay pg1022 is never read.")
@@ -111,6 +115,18 @@ def iter_gutenberg(gdir: str):
         body = strip_gutenberg(raw) if "Project Gutenberg" in raw[:2000] else raw
         for p in chunk_passages(doc_text(body)):
             yield p
+
+
+def iter_fineweb(raw_dir: str):
+    """v4: FineWeb-Edu (ODC-By), educational web pages - the adult register at scale. Every *.parquet that
+    starts with fineweb_edu_ in raw/, in name order."""
+    import pyarrow.parquet as pq
+    for name in sorted(n for n in os.listdir(raw_dir) if n.startswith("fineweb_edu_") and n.endswith(".parquet")):
+        pf = pq.ParquetFile(os.path.join(raw_dir, name))
+        for rg in range(pf.num_row_groups):
+            for text in pf.read_row_group(rg, columns=["text"]).column("text").to_pylist():
+                if text and len(text) >= 200:
+                    yield doc_text(text)
 
 
 def iter_adult(raw_dir: str, wiki_share: float = 0.8):
@@ -252,22 +268,28 @@ class Stream:
 # GPU sharing
 # ---------------------------------------------------------------------------
 
+# programs that need the whole card: a Phobos render (Blender) and the daily news render (Unreal, 3:50-~7 AM)
+GPU_HOGS = {"blender.exe": "blender", "unrealeditor.exe": "unreal", "unrealeditor-cmd.exe": "unreal"}
+
+
 def gpu_busy(pause_file: str = PAUSE_FILE) -> str | None:
-    """Why training should hold: 'blender' (a render is running) or 'pause file' (the owner's hand)."""
+    """Why training should hold: 'blender' / 'unreal' (a render is running) or 'pause file' (the owner's hand)."""
     if os.path.exists(pause_file):
         return "pause file"
     try:
         import psutil
         for p in psutil.process_iter(["name"]):
-            if (p.info.get("name") or "").lower() == "blender.exe":
-                return "blender"
+            why = GPU_HOGS.get((p.info.get("name") or "").lower())
+            if why:
+                return why
         return None
     except Exception:
         pass
     try:
-        out = subprocess.run(["powershell", "-NoProfile", "-Command", "Get-Process blender -ErrorAction SilentlyContinue"],
-                             capture_output=True, text=True, timeout=20).stdout
-        return "blender" if "blender" in out.lower() else None
+        out = subprocess.run(["powershell", "-NoProfile", "-Command",
+                              "Get-Process blender,UnrealEditor,UnrealEditor-Cmd -ErrorAction SilentlyContinue | Select -Expand Name"],
+                             capture_output=True, text=True, timeout=20).stdout.lower()
+        return "unreal" if "unreal" in out else ("blender" if "blender" in out else None)
     except Exception:
         return None
 
@@ -288,6 +310,49 @@ def _lr_at(step: int, total_steps: int, lr: float, min_lr: float, warmup: int) -
         return lr * (step + 1) / warmup
     p = min(1.0, (step - warmup) / max(1, total_steps - warmup))
     return min_lr + 0.5 * (lr - min_lr) * (1 + math.cos(math.pi * p))
+
+
+EVAL_WINDOWS = 48          # per source; fixed, seeded
+
+
+def eval_windows(shard_dir: str = SHARD_DIR, block: int = 512, n: int = EVAL_WINDOWS, seed: int = 4242) -> dict:
+    """Fixed text windows for the 'loss on held text' line (v4, 10/15). Per source: n windows from the LAST
+    shard's tail (stories / web: never reached by v3.2 or v4 - held out) and, for adult text (read more than
+    once by v4), the first shard's head (held-in, as the v3.2.1 finding measured it)."""
+    idx = json.load(open(os.path.join(shard_dir, "index.json"), encoding="utf-8"))
+    out = {}
+    for name, info in idx["sources"].items():
+        sh = info.get("shards") or []
+        if not sh:
+            continue
+        held_in = name == "adult"
+        a = np.load(os.path.join(shard_dir, (sh[0] if held_in else sh[-1])["file"]), mmap_mode="r")
+        rng = np.random.default_rng(seed)
+        lo, hi = (0, min(len(a), 5_000_000)) if held_in else (max(0, len(a) - 5_000_000), len(a))
+        offs = sorted(rng.integers(lo, hi - block - 1, size=n).tolist())
+        out[name + ("_held_in" if held_in else "_held_out")] = torch.from_numpy(
+            np.stack([np.asarray(a[o:o + block + 1]) for o in offs]).astype(np.int64))
+    return out
+
+
+@torch.no_grad()
+def window_losses(model, windows: dict, batch: int = 8) -> dict:
+    dev = next(model.parameters()).device
+    was = model.training
+    model.eval()
+    res = {}
+    for name, w in windows.items():
+        w = w[:, : model.block_size + 1]
+        tot = 0.0
+        for i in range(0, len(w), batch):
+            x = w[i:i + batch].to(dev)
+            with autocast_ctx(str(dev)):
+                _, loss = model(x[:, :-1], x[:, 1:])
+            tot += float(loss) * len(x)
+        res[name] = round(tot / len(w), 3)
+    if was:
+        model.train()
+    return res
 
 
 def exam_scores(card: dict) -> dict:
@@ -312,9 +377,11 @@ def stage(target_tokens: float = 400e6, batch: int = 32, shares: dict | None = N
           shard_dir: str = SHARD_DIR, rehearsal: list[str] | None = None, store=None, resume: bool = True,
           wait_for_gpu: bool = True, poll_s: float = 60.0, step_log_every: int = 100, verbose: bool = True,
           label: str = "much more reading", to_version: float = 3.2, keep_probe_checkpoints: bool = True,
-          busy_fn=None) -> dict:
+          busy_fn=None, init_config: dict | None = None, micro: int | None = None, weight_decay: float = 0.01) -> dict:
     """Read `target_tokens` of new text (one pass, in order) into the live core; probe + checkpoint every
-    `probe_every` tokens; pause while the GPU is busy; write the staged core for `grow swap`."""
+    `probe_every` tokens; pause while the GPU is busy; write the staged core for `grow swap`.
+    v4: `init_config` = a FRESH core of that shape with the live tokenizer (same vocabulary, same ids) instead of
+    the live weights; `micro` = micro-batch size (gradient accumulation, so a bigger core fits the 8 GB card)."""
     t_all = time.time()
     device = device or ("cuda" if torch.cuda.is_available() else "cpu")
     shares = {**SHARES, **(shares or {})}
@@ -337,12 +404,25 @@ def stage(target_tokens: float = 400e6, batch: int = 32, shares: dict | None = N
             print(f"[reading] resuming at step {st['step']} ({st['tokens_new'] / 1e6:.1f}M tokens read)", flush=True)
     else:
         model, tok, ck = load_checkpoint(device=device, path=old_path)
+        old_info = None
+        if init_config:
+            from .model import SaplingCore
+            old_info = {"generation": int(ck.get("generation", 0)), "params": model.n_params(), "config": model.config()}
+            del model
+            torch.manual_seed(seed + 3)
+            model = SaplingCore(len(tok.itos), **init_config).to(device)
+            if verbose:
+                print(f"[reading] fresh core {init_config}: {model.n_params():,} params, vocab {len(tok.itos):,}", flush=True)
         st = {"step": 0, "tokens_new": 0, "tokens_total": 0, "streams": {}, "pauses": [], "probes": [],
               "started": time.strftime("%Y-%m-%dT%H:%M:%S"), "seconds_training": 0.0,
               "from": {"generation": int(ck.get("generation", 0)), "params": model.n_params(), "vocab_size": len(tok.itos),
                        "core_version": float(ck.get("core_version", 3)), "config": model.config()}}
+        if old_info:
+            st["from"]["fresh"] = True
+            st["from"]["previous_core"] = old_info
         _log({"kind": "start", "target_tokens": target_tokens, "batch": batch, "shares": shares, "lr": lr, "min_lr": min_lr,
-              "warmup": warmup, "probe_every": probe_every, "device": device, "from": st["from"],
+              "warmup": warmup, "probe_every": probe_every, "device": device, "from": st["from"], "micro": micro,
+              "weight_decay": weight_decay, "init_config": init_config,
               "sources": {k: {"tokens": v["tokens"], "docs": v["docs"], "shards": len(v["shards"])} for k, v in index["sources"].items()}}, log_path)
     if index["vocab_sha"] != vocab_sha(tok, int(index["vocab_size"])):
         raise RuntimeError("shards were tokenized with a different vocabulary - run `prepare` again")
@@ -350,7 +430,8 @@ def stage(target_tokens: float = 400e6, batch: int = 32, shares: dict | None = N
     block = model.block_size
     total_steps = int(math.ceil(target_tokens / (n_new_per_step * block)))
     streams = {name: Stream(shard_dir, index["sources"][name]["shards"], block, **st["streams"].get(name, {}))
-               for name in SOURCES if index["sources"].get(name, {}).get("shards")}
+               for name in SOURCES if shares.get(name) and index["sources"].get(name, {}).get("shards")}
+    windows = eval_windows(shard_dir, block)
     if rehearsal is None:
         rehearsal = rehearsal_sentences(seed, store, verbose=verbose)
     reh = sentences_to_tensor(rehearsal, tok, block)
@@ -358,7 +439,10 @@ def stage(target_tokens: float = 400e6, batch: int = 32, shares: dict | None = N
         reh = torch.cat([reh] * (block * 2 // max(1, len(reh)) + 2))
 
     def make_opt(m):
-        o = torch.optim.AdamW(m.parameters(), lr=lr, weight_decay=0.01)
+        decay = [p for p in m.parameters() if p.dim() >= 2]
+        no_decay = [p for p in m.parameters() if p.dim() < 2]
+        o = torch.optim.AdamW([{"params": decay, "weight_decay": weight_decay}, {"params": no_decay, "weight_decay": 0.0}],
+                              lr=lr, betas=(0.9, 0.95) if init_config else (0.9, 0.999))
         opt_path = latest + ".opt"
         if resume and os.path.exists(opt_path) and st["step"] > 0:
             try:
@@ -381,7 +465,8 @@ def stage(target_tokens: float = 400e6, batch: int = 32, shares: dict | None = N
         card = run_exams(seed=seed, verbose=False, model=m, tok=tok, meta={"generation": from_info["generation"], "note": "reading probe"},
                          store=None, write=False, trigger=f"reading probe {st['tokens_new'] / 1e6:.0f}M")
         scores = exam_scores(card)
-        row = {"kind": "probe", "why": why, "step": st["step"], "tokens_new": st["tokens_new"], "tokens_total": st["tokens_total"],
+        wl = window_losses(m, windows)
+        row = {"kind": "probe", "window_loss": wl, "why": why, "step": st["step"], "tokens_new": st["tokens_new"], "tokens_total": st["tokens_total"],
                "tokens_m": round(st["tokens_new"] / 1e6, 1), "loss": st.get("loss_recent"), "lr": st.get("lr"),
                "seconds_training": round(st["seconds_training"], 1), "exams": scores,
                "writing": [s["text"] for s in next((e["detail"] for e in card["exams"] if e["exam"] == "E8_writing"), [])],
@@ -390,7 +475,7 @@ def stage(target_tokens: float = 400e6, batch: int = 32, shares: dict | None = N
         st["probes"].append({k: row[k] for k in ("ts", "step", "tokens_m", "loss") if k in row} | {"tokens_m": row["tokens_m"], "step": row["step"], "loss": row["loss"],
                             "E10": scores.get("E10_induction", {}).get("accuracy"), "E7L": scores.get("E7L_longread", {}).get("accuracy"),
                             "E7": scores.get("E7_reading", {}).get("accuracy"), "E1": scores.get("E1_composition", {}).get("accuracy"),
-                            "E6": scores.get("E6_grammar", {}).get("accuracy")})
+                            "E6": scores.get("E6_grammar", {}).get("accuracy"), "window_loss": wl})
         if keep_probe_checkpoints:
             save_checkpoint(m, tok, {"seed": seed, "generation": from_info["generation"], "core_version": to_version, "staged": True,
                                      "reading_step": st["step"], "reading_tokens": st["tokens_new"]},
@@ -399,7 +484,7 @@ def stage(target_tokens: float = 400e6, batch: int = 32, shares: dict | None = N
             e = scores
             print(f"[reading] probe @ {st['tokens_new'] / 1e6:.0f}M tokens: E10 {e.get('E10_induction', {}).get('score')} "
                   f"E7L {e.get('E7L_longread', {}).get('score')} E7 {e.get('E7_reading', {}).get('score')} "
-                  f"E1 {e.get('E1_composition', {}).get('score')} E6 {e.get('E6_grammar', {}).get('score')} ({row['probe_seconds']}s)", flush=True)
+                  f"E1 {e.get('E1_composition', {}).get('score')} E6 {e.get('E6_grammar', {}).get('score')} loss {wl} ({row['probe_seconds']}s)", flush=True)
         m.train()
         return row
 
@@ -455,10 +540,17 @@ def stage(target_tokens: float = 400e6, batch: int = 32, shares: dict | None = N
         for g in opt.param_groups:
             g["lr"] = cur_lr
         try:
-            with ctx:
-                _, loss = model(x, y)
             opt.zero_grad(set_to_none=True)
-            loss.backward()
+            mb = micro or len(x)
+            perm = torch.randperm(len(x), device=x.device) if mb < len(x) else torch.arange(len(x), device=x.device)
+            loss_sum = 0.0
+            for i in range(0, len(x), mb):          # v4: gradient accumulation; each micro-batch mixes every source
+                j = perm[i:i + mb]
+                with ctx:
+                    _, lj = model(x[j], y[j])
+                (lj * len(j) / len(x)).backward()
+                loss_sum += float(lj.detach()) * len(j) / len(x)
+            loss = torch.tensor(loss_sum)
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             opt.step()
         except torch.cuda.OutOfMemoryError if device.startswith("cuda") else MemoryError:
@@ -540,7 +632,8 @@ def summary(out_dir: str = OUT_DIR, max_rows: int = 60) -> dict | None:
                              "E10": e.get("E10_induction", {}).get("accuracy"), "E10s": e.get("E10_induction", {}).get("score"),
                              "E7L": e.get("E7L_longread", {}).get("accuracy"), "E7Ls": e.get("E7L_longread", {}).get("score"),
                              "E7": e.get("E7_reading", {}).get("accuracy"), "E1": e.get("E1_composition", {}).get("accuracy"),
-                             "E6": e.get("E6_grammar", {}).get("accuracy"), "E1b": e.get("E1b_bridge", {}).get("accuracy")})
+                             "E6": e.get("E6_grammar", {}).get("accuracy"), "E1b": e.get("E1b_bridge", {}).get("accuracy"),
+                             "window_loss": r.get("window_loss")})
             elif k == "start":
                 start = {"ts": r.get("ts"), "target_tokens": r.get("target_tokens"), "from": r.get("from"), "sources": r.get("sources")}
             elif k == "step":
@@ -558,6 +651,16 @@ def summary(out_dir: str = OUT_DIR, max_rows: int = 60) -> dict | None:
             "paused": paused, "note": NOTE}
 
 
+def current_summary() -> dict | None:
+    """The reading stage the page shows: the v4 run (fresh 60M core, 10/15) once it has started, else v3.2."""
+    v4 = summary(V4_DIR)
+    if v4:
+        return v4 | {"label": "v4: a bigger core (60.5M), read fresh - adult-weighted (web 14 / wiki+books 4 / stories 11 / school 3 of 32)",
+                     "version": 4}
+    s = summary()
+    return (s | {"label": "v3.2: much more reading (17.6M core, in place)", "version": 3.2}) if s else None
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["prepare", "stage", "summary"])
@@ -568,6 +671,7 @@ def main(argv=None):
     ap.add_argument("--no-resume", action="store_true")
     ap.add_argument("--no-wait", action="store_true", help="do not pause for blender / the pause file")
     ap.add_argument("--only", choices=list(SOURCES), help="prepare: re-tokenize one source, keep the other's shards")
+    ap.add_argument("--v4", action="store_true", help="stage: a fresh v4 core (model.V4_CONFIG), adult-weighted mix, results/reading_v4")
     args = ap.parse_args(argv)
     if args.cmd == "prepare":
         _, tok, _ = load_checkpoint(device="cpu")
@@ -576,8 +680,16 @@ def main(argv=None):
             src = {"stories": iter_stories(os.path.join(RAW_DIR, "TinyStoriesV2-GPT4-train.txt"))}
         elif args.only == "adult":
             src = {"adult": iter_adult(RAW_DIR)}
+        elif args.only == "web":
+            src = {"web": iter_fineweb(RAW_DIR)}
         idx = prepare(tok, sources=src)
         print(json.dumps({k: {"tokens": v["tokens"], "docs": v["docs"], "shards": len(v["shards"])} for k, v in idx["sources"].items()}, indent=1))
+    elif args.cmd == "stage" and args.v4:
+        from .model import V4_CONFIG
+        stage(target_tokens=args.tokens, probe_every=args.probe_every, lr=args.lr, min_lr=args.lr / 10, warmup=1000,
+              seed=args.seed, resume=not args.no_resume, wait_for_gpu=not args.no_wait, out_dir=V4_DIR, staged=V4_STAGED,
+              shares=V4_SHARES, init_config=dict(V4_CONFIG), micro=16, weight_decay=0.1,
+              label="v4: a bigger core, read fresh", to_version=4.0)
     elif args.cmd == "stage":
         stage(target_tokens=args.tokens, probe_every=args.probe_every, lr=args.lr, seed=args.seed,
               resume=not args.no_resume, wait_for_gpu=not args.no_wait)

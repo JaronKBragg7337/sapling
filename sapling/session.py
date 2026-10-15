@@ -36,6 +36,20 @@ WORD_MEANS = re.compile(r"^the word (\S+) means (.+?)\s*\.?$", re.I)
 SLOT_PAIRS = [(SLOTS[i], SLOTS[i + 1]) for i in range(0, len(SLOTS), 2)]
 
 
+_PUNCT_JOIN = re.compile(r" ([.,!?;:])")
+_SENT_START = re.compile(r"(^|[.!?] )([a-z])")
+
+
+def pretty(text: str) -> str:
+    """v4 chat display only: 'i like it . do you ?' -> 'I like it. Do you?' (the core itself reads and writes
+    lower case with spaced punctuation; exams and memory keep that form)."""
+    t = _PUNCT_JOIN.sub(r"\1", text.strip())
+    t = re.sub(r"\bi\b", "I", t)
+    t = re.sub(r"\bi'(m|ve|ll|d)\b", lambda m: "I'" + m.group(1), t)
+    t = re.sub(r"\b(sapling|jaron)\b", lambda m: m.group(1).capitalize(), t)
+    return _SENT_START.sub(lambda m: m.group(1) + m.group(2).upper(), t)
+
+
 class Brain:
     """The live core + tokenizer, with a lock (the heartbeat and the chat box
     share it) and vocabulary growth."""
@@ -81,6 +95,24 @@ class Brain:
             self.store.meter("vocab_grow", {"added": new, "why": why, "vocab_size": len(self.tok.itos)})
         return new
 
+    def talks(self) -> bool:
+        """v4: a core that had conversation lessons (talk.py) answers in the conversation format, with history."""
+        return bool(self.ok and (self.meta or {}).get("talk"))
+
+    @torch.no_grad()
+    def generate_ids(self, ids: list[int], max_new: int = 160, temperature: float = 0.7, seed: int | None = None,
+                     repeat_penalty: float = 1.15) -> str:
+        with self.lock:
+            was_training = self.model.training
+            self.model.eval()
+            ids = ids[-(self.model.block_size - max_new):]
+            x = torch.tensor([ids], device=self.device)
+            out = self.model.generate(x, max_new=max_new, eos_id=self.tok.stoi["<eos>"], temperature=temperature,
+                                      seed=seed, repeat_penalty=repeat_penalty)
+            if was_training:
+                self.model.train()
+            return self.tok.decode(out[0, x.shape[1]:].tolist()).replace("<eos>", "").strip()
+
     @torch.no_grad()
     def generate(self, prompt: str, max_new: int = 24, temperature: float = 0.0, seed: int | None = None) -> str:
         with self.lock:
@@ -120,6 +152,7 @@ class Session:
         self.brain = brain or Brain(store=self.store)
         self.clock = clock
         self.turns = 0
+        self.history: list[list[str]] = []      # v4: the conversation so far ([what was said, its answer], raw)
 
     @property
     def has_core(self) -> bool:
@@ -150,7 +183,10 @@ class Session:
         # v3.1 fix (10/14 21:10, seen in the chat samples): a fact whose gloss merely SHARES a word with the question
         # ("lantern" in "yesterday tom ( throw ) the old lantern") used to hijack the answer into "the word quimble
         # means a tiny lantern". The recall-slot route is for questions about the fact's own word.
-        if parsed and self.has_core and parsed[0][1] in qwords:
+        # v4: in a conversation the slot route is for questions about what a taught word MEANS ("hello ! who are you ?"
+        # must not turn into "the word hello means a greeting"); the fact still rides along as a citation.
+        if parsed and self.has_core and parsed[0][1] in qwords and (
+                not self.brain.talks() or qwords & {"mean", "means", "meaning"}):
             recall_lines = []
             for (h, word, gloss), (sw, sg) in zip(parsed, SLOT_PAIRS):
                 slots[sw], slots[sg] = word, gloss
@@ -167,11 +203,30 @@ class Session:
             answer = (f"i recall : {h['content']} "
                       f"[memory:{h['id']} {h['provenance']}/{h['state']}, tier={h['tier']}]")
         elif self.has_core and self.store.documents() and (doc_hits := reader.retrieve(
-                self.store, query, k=3, embed_fn=embed_fn)) and doc_hits[0]["cov"] >= 0.3:
+                self.store, query, k=3, embed_fn=embed_fn)) and doc_hits[0]["cov"] >= (0.6 if self.brain.talks() else 0.3):
             # v3.1: a question that a document it has read can cover goes through the reading frame
             # (passages in front of the question) and comes back cited by document + passage.
             r = reader.ask(self.brain, self.store, query, k=3)
             answer = f"{r['answer']}  {r.get('cites', '')}".strip()
+        elif self.has_core and self.brain.talks():
+            # v4: a conversation - what was said before rides along in the format it was taught (talk.py),
+            # seeded sampling (reproducible from the turn count) with a mild repeat penalty.
+            from .talk import encode_turns
+            q = query if query.endswith(("?", ".", "!")) else query + " ?"
+            turns = self.history[-6:] + [[q, ""]]
+            while True:
+                ids, _ = encode_turns(self.brain.tok, turns, answer_last=False)
+                if len(ids) <= self.brain.model.block_size - 160 or len(turns) == 1:
+                    break
+                turns = turns[1:]
+            raw = self.brain.generate_ids(ids, seed=self.turns + 1)
+            self.history.append([q, raw])
+            answer = pretty(raw)
+            # only memories that people gave it ride along as citations (its own captured notes were noise here)
+            user_hits = [h for h in hits if h["provenance"] == "user" and h["score"] >= 0.3]
+            if user_hits:
+                h = user_hits[0]
+                answer += f"  [memory:{h['id']} {h['provenance']}/{h['state']}: {h['content'][:80]}]"
         elif self.has_core:
             # v3: it answers in sentences where it can (level 2 taught "q : ... ? a : <sentence>").
             # Two or more sentences ending in a question go in the reading frame it was taught
@@ -272,6 +327,9 @@ class Session:
             return self.invalidate(int(line[len("/invalidate "):].strip()))
         if line == "/report":
             return self.report()
+        if line in ("/new", "/forget-chat"):
+            self.history = []
+            return "new conversation (the chat so far is set aside; memories stay)"
         if line in ("/quit", "/exit"):
             raise SystemExit
         return self.ask(line)

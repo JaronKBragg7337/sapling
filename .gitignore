@@ -18,3 +18,9 @@ data/
 results/reading/*.pt
 results/reading/*.opt
 results/reading/pause
+results/core_v4_staged.pt
+results/core_v4_talk_staged.pt
+results/reading_v4/*.pt
+results/reading_v4/*.opt
+results/reading_v4/pause
+results/talk/*.pt

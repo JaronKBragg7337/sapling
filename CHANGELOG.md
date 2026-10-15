@@ -1,5 +1,34 @@
 # Changelog
 
+## v4 (2026-10-15 afternoon -> night) - a bigger core, conversation lessons (Claude as teacher)
+Jaron 10/15 1:53 PM: "take control, be a teacher, advance sapling ... better communication ... build it as an AI like any
+other AI first." His own ideas are paused; nothing here adds a rule, gate or limit (PROPOSALS.md unchanged).
+- **Finding first:** the 17.6M core had no copy circuit at all - on a random sequence shown twice, loss on the second copy
+  8.5 vs 10.3 on the first (copy accuracy 1-2% even on its 2,000 commonest tokens). More reading of the same core was
+  not going to fix it in a night. -> **v4 core, fresh**: 60.5M params, d 640, 10 layers, 10 heads, 512 context, rotary
+  positions, the same 17,661-token vocabulary (D24).
+- **More adult text:** FineWeb-Edu, one file of `sample/10BT` (725,999 pages, 802M tokens, ODC-By 1.0, licence checked live
+  10/15, in `data/reading/manifest.json`). 1.41B tokens available in total.
+- **Stage A (running, started 14:16):** 1.2B new tokens, adult-weighted (14 web / 4 Wikipedia+books / 11 stories / 3 school
+  per 32), probes every 120M tokens incl. loss on fixed text windows (D25). ~36k tokens/s on the 4060 -> ends about midnight.
+- **Stage B (queued, automatic):** conversation lessons (`sapling/talk.py`, D26): oasst1 (Apache-2.0) + dolly-15k
+  (CC BY-SA 3.0) + 210 lessons about itself = 23,101 conversations; refusals and other assistants' names left out.
+- **Chat box** holds a conversation in a talking core (D27): history, seeded sampling + repeat penalty, normal capitals on
+  display, `/new`; the recall/document routes no longer hijack normal talk. Older cores behave exactly as before.
+- **Consolidation** replays conversation lessons (25%) beside the reading (50%) so talking survives the heartbeat (D28);
+  micro-batches of 16 so a 60M core fits the card.
+- **GPU sharing:** `reading.gpu_busy()` now also returns busy while UnrealEditor runs (the 3:50 AM news render), so training
+  pauses itself; `scheduled_parole.py` also waits for a running training (`sapling.reading stage` / `sapling.talk train`).
+- **Measured the same way at every point** (`tools/measure_core.py`, `tools/chat_samples.py`, results/teacher/,
+  results/chat_samples/, control room card "Teaching - before and after"): before = v3.2 gen 287: text loss stories
+  1.45 / adult (read) 4.06 / web (unread) 4.70; E1 73/86, E6 46/48, E7 33/40, E7L 0/40, E10 9/2016, E5 0/7.
+  The before chat samples: "what is your name?" -> "listen ." + a Declaration of Independence citation; "what is the
+  sun?" -> "yes , the fish washes the sad mouse ."
+- `tools/teach_v4.py` runs the rest unattended: measure Stage A -> Stage B -> measure -> swap -> heartbeat restart ->
+  after 5 of its own consolidations, measure again.
+- Bug found on the way: the core's loss used `.view()` on targets, which fails on a non-contiguous slice; now `.reshape()`.
+- Tests: 52 (8 new in tests/test_v4.py).
+
 ## v3.2.1 (2026-10-15 ~2 PM) - consolidations no longer erase the reading (Claude as teacher, 10/15)
 - **Finding:** every heartbeat consolidation since gen 241 trained 200 steps on school sentences only, and that wiped the
   400M-token reading out of the weights: loss on fixed held-in adult-text windows 3.82 (gen 241) -> 8.12 (gen 250) ->

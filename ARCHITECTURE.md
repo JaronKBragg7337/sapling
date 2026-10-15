@@ -52,12 +52,14 @@ fake, and a membrane the owner holds. v2 implements every box below.
  └────────────────────────────────────────────────────────────────────────────────────────────┘
                 │ recall [ provenance ] : the word <m1> means <m2> . ... q : ... a :
                 ▼
- ┌──────────── CORE (model.py, decoder-only transformer; v3 ~11.9M params, 256 tokens) ──────┐
+ ┌──── CORE (model.py, decoder-only transformer; v3.2 17.6M -> v4 60.5M params, 512 tokens) ───┐
  │ trained from scratch school-style: LEVEL 1 (curriculum.py: roots -> affixes ->            │
  │ composition -> sentences -> recall with 8 slots) then LEVEL 2 (curriculum2.py: simple ->  │
  │ grammar -> paragraphs -> comprehension -> stories) then its own RECORD (memory.db), then   │
  │ grown by consolidation; vocabulary = word parts + whole words, resizes in place.           │
- │ One checkpoint per generation. v2 -> v3 was one `growth` ledger row (grow.py, 10/14).      │
+ │ One checkpoint per generation. Every growth is one `growth` ledger row (grow.py).          │
+ │ v3.2 read 400M tokens in place; v4 (10/15) is a fresh rotary core that reads 1.2B tokens   │
+ │ (reading.py) then conversation lessons (talk.py); same vocabulary, memory, chain, clock.   │
  └────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -95,7 +97,8 @@ write path to the rule file. Everything else is observed, logged and left alone
 
 1. Memory hits with parseable facts -> the core answers through recall slots (up to 4 facts).
 2. Memory hit, unparseable -> cited verbatim with provenance.
-3. No memory -> the core generates from what it has become (incl. consolidated facts).
+3. No memory -> the core generates from what it has become (incl. consolidated facts). A core with
+   conversation lessons (v4) answers as a conversation: the turns so far ride along (session.py, D27).
 4. Deferral -> "i do not have that yet ." is trained and exam-tested (E4).
 
 ## What runs where

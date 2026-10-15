@@ -139,6 +139,37 @@ def reading_replay(block: int, rng: random.Random):
     return fn
 
 
+# v4 (10/15): a core that had conversation lessons also replays them in every consolidation, so the way it talks
+# survives the heartbeat the same way the reading does (the v3.2.1 lesson, applied before it could happen).
+TALK_REPLAY_SHARE = 0.25          # of each batch; reading then 0.5, school/facts 0.25
+MICRO = 16                        # micro-batch: a 60M core at 32 x 512 in one pass fills the 8 GB card
+
+
+_TALK_CACHE: dict = {}
+
+
+def talk_replay(brain, rng: random.Random):
+    """-> fn(n) giving (x, y) of n conversation lessons (loss on its answers only), or None."""
+    try:
+        from .talk import LESSONS, batch_examples, load_examples
+        if not (brain.talks() and os.path.exists(LESSONS)):
+            return None
+        key = (len(brain.tok.itos), brain.model.block_size, os.path.getmtime(LESSONS))
+        if key not in _TALK_CACHE:
+            _TALK_CACHE.clear()
+            _TALK_CACHE[key] = load_examples(brain.tok, brain.model.block_size)
+        ex = _TALK_CACHE[key]
+    except Exception:
+        return None
+    if not ex:
+        return None
+    pad = brain.tok.stoi["<pad>"]
+
+    def fn(n: int):
+        return batch_examples(ex, [rng.randrange(len(ex)) for _ in range(n)], pad, brain.model.block_size)
+    return fn
+
+
 def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | None = None,
                 batch_size: int = 32, seed: int = 7337, verbose: bool = True,
                 rehearsal: int = 400) -> dict:
@@ -206,24 +237,35 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
         losses = []
         ctx = autocast_ctx(str(brain.device))
         replay = reading_replay(model.block_size, rng)
-        n_read = int(batch_size * READ_REPLAY_SHARE) if replay else 0
+        talk = talk_replay(brain, rng)
+        n_talk = int(batch_size * TALK_REPLAY_SHARE) if talk else 0
+        n_read = int(batch_size * (READ_REPLAY_SHARE - (TALK_REPLAY_SHARE if talk else 0))) if replay else 0
         for _ in range(steps):
-            x, y = get_batch(data, model.block_size, batch_size - n_read, rng)
+            x, y = get_batch(data, model.block_size, batch_size - n_read - n_talk, rng)
             if n_read:
                 rx, ry = replay(n_read)
                 x, y = torch.cat([x, rx.to(x.device)]), torch.cat([y, ry.to(y.device)])
-            with ctx:
-                _, loss = model(x, y)
+            if n_talk:
+                tx, ty = talk(n_talk)
+                x, y = torch.cat([x, tx.to(x.device)]), torch.cat([y, ty.to(y.device)])
             opt.zero_grad(set_to_none=True)
-            loss.backward()
+            tot = 0.0
+            for i in range(0, len(x), MICRO):
+                xb, yb = x[i:i + MICRO], y[i:i + MICRO]
+                with ctx:
+                    _, lb = model(xb, yb)
+                (lb * len(xb) / len(x)).backward()
+                tot += float(lb.detach()) * len(xb) / len(x)
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             opt.step()
-            losses.append(loss.item())
+            losses.append(tot)
         model.eval()
         brain.generation += 1
         meta = {"seed": seed, "corpus_sha": (brain.meta or {}).get("corpus_sha"),
                 "generation": brain.generation, "core_version": (brain.meta or {}).get("core_version", 2),
                 "grown_from": (brain.meta or {}).get("grown_from"),
+                # v4: these travel with every generation (talk = it had conversation lessons -> the chat box uses them)
+                "talk": (brain.meta or {}).get("talk"), "label": (brain.meta or {}).get("label"),
                 "note": f"consolidation {brain.generation}: {len(pending)} new facts, {len(facts)} total"}
         brain.meta = {**(brain.meta or {}), **meta}
         kept = save_checkpoint(model, tok, meta,
@@ -240,6 +282,7 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
         "facts_self": len(self_ids), "facts_user": len([f for f in facts if f.get("provenance") == "user"]),
         "facts_total": len(facts), "facts_new": len(pending), "sentences": len(mix), "fact_sentences": len(fact_mix) * rep,
         "tokens": int(data.numel()), "steps": steps, "lr": lr,
+        "talk_share": round(n_talk / batch_size, 2), "read_share": round(n_read / batch_size, 2),
         "loss_first": round(losses[0], 4), "loss_last": round(sum(losses[-10:]) / min(10, len(losses)), 4),
         "vocab_added": added, "vocab_size": len(tok.itos),
         "checkpoint": os.path.relpath(kept, os.path.dirname(CHECKPOINT_DIR)),
