@@ -12,3 +12,11 @@ Kept so cloud vs MSI can be compared on real numbers. Add a row after every run.
 | v4 Stage B conversation (Husk) | MSI | 60.5M | - | after Stage A | - | ~30 min (est.) | - | runs automatically |
 
 From now on every run logs start, end and tokens/s.
+
+## Speed test: MSI vs cloud (10/15-16 night, tools/bench_speed.py, same 60.5M v4 model, random tokens)
+| Machine | Settings | Tokens/s | 1.2B tokens would take | Cost per 1.2B run |
+|---|---|---|---|---|
+| MSI laptop RTX 4060 | micro 16 (Stage A, real) | 35,500 | 9 h 35 min | electricity |
+| RunPod H100 SXM (secure, $3.99/h) | micro 16 (same as MSI) | 261,267 | 1 h 17 min | ~$5.10 |
+| RunPod H100 SXM | micro 32 (fits on 80 GB) | 303,153 | 1 h 06 min | ~$4.40 |
+Test: pod cvnd3rc2lle3cs, started 11:57 PM, terminated 12:02 AM, logged in AI-Shared/state/cloud-gpu-log.md.
