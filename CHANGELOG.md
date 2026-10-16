@@ -1,6 +1,11 @@
 # Changelog
 
 
+
+## 2026-10-15 9:08 PM - names (Jaron's decision)
+- Family name Sapling. Seed names before real conversation: v1 Pip, v2 Grain, v3-3.2 Kernel, v4 Husk; "Acorn" reserved for the
+  first version that truly holds a conversation; wood names after that, saved for official releases. Table in README "Names".
+
 ## 2026-10-15 7:50 PM - v4.0.3: consolidation replays the web reading too (Vex review #47)
 - v4 reads FineWeb-Edu as source "web" (14 of 32 sequences), but the v3.2.1 replay split held only stories + adult, so
   memory folding would have worn the web reading down after tonight's swap. Replay now follows the v4 mix (stories 11 / adult 4 /

@@ -23,6 +23,19 @@ have added as rules but did not in [PROPOSALS.md](PROPOSALS.md).
   "Sapling Relay") or the AI's own page http://127.0.0.1:7337/ (served by the heartbeat).
 - Every design choice an AI made, with origin and what it touches: [DESIGN-CHOICES.md](DESIGN-CHOICES.md).
 
+## Names (Jaron, 10/15)
+**Sapling** is the family name, always (like Claude, GPT, Gemini). Each version gets its own name:
+seed names while it can't really talk yet, **wood** names once it holds a real conversation. The wood names are saved for launches.
+
+| Version | Seed name | What it was |
+|---|---|---|
+| v1 | **Pip** | Kimi's first build, 0.82M params, word-part school (10/14) |
+| v2 | **Grain** | heartbeat, memory, goals, phone control room (10/14) |
+| v3 / v3.1 / v3.2 | **Kernel** / Kernel 3.1 / Kernel 3.2 | 11.9M -> 17.6M, real sentences, documents, 400M tokens read (10/14-15) |
+| v4 | **Husk** | 60.5M, fresh core, 1.2B tokens + conversation lessons (10/15-16) |
+| (next) | **Acorn** | reserved: the first version that truly holds a conversation - the seed of an oak |
+| after Acorn | wood names | official releases (Oak / Oakley under consideration) |
+
 ## The stance (Jaron, 10/14)
 
 Observe like a scientist. Behavior the code "says shouldn't happen" is data, not a flaw.
