@@ -32,3 +32,9 @@ Test: pod cvnd3rc2lle3cs, started 11:57 PM, terminated 12:02 AM, logged in AI-Sh
 | Run | Machine | Tokens | Start | End | Wall | Speed | Cost | Result |
 |---|---|---|---|---|---|---|---|---|
 | Long-reading lesson (Husk -> gen 319) | RunPod H100 SXM secure, $3.99/h | 953M | 01:22 | 02:31 (pod 01:23-02:28) | 69 min | ~338k tok/s | $4.34 | E7L 0/40 -> 17/40; held-out copy-answer test 1/300 -> 498/1000; E10 109 -> 131/2016 |
+
+## Lesson retention fix (10/16 morning, MSI, heartbeat consolidations)
+| Run | Machine | Time | Notes |
+|---|---|---|---|
+| roll-forward 1 (gen 319 -> 348) + 5 consolidations (try 1 mix, batch 32) | MSI | 08:28-08:52 (24 min) | ~105 s per consolidation incl. exams |
+| roll-forward 2 (gen 319 -> 354) + 5 consolidations (D33 mix, batch 40) | MSI | 08:55-09:38 (43 min) | ~110 s per consolidation; the 5th waited ~20 min (budget overspent -> rest drive 0.98) |

@@ -6,6 +6,12 @@ v1's three steps: (1) runs-without-you is DONE (the heartbeat); (2) record -> co
 is DONE (no gate; `/confirm` and `/invalidate` verdicts are the selection events); (3) a world
 to practice in is still open. Ordered by dependency.
 
+## 0000. Lesson retention (10/16 morning)
+D33 slowed the wear (E7L 17 -> 13 in 5 folds, instead of -> 8 in 27 without replay) but did not stop it. Next levers,
+cheapest first, each measured the same way (roll forward gen 319, 5 folds, tools/measure_core.py): (1) consolidation lr
+1.5e-4 -> 7.5e-5 for a core past 50M params (D14 was tuned for 12-17M); (2) lesson replay 8 -> 12 of 44; (3) fewer
+steps per fold (200 -> 120). Then the next cloud lesson starts from a core that keeps it.
+
 ## 000. The cloud long-reading lesson (built 10/16, not run) - the morning command
 
 ```bash

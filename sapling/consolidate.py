@@ -66,7 +66,7 @@ LR_V3 = 1.5e-4
 REHEARSAL2 = 600     # level-2 generated sentences per consolidation
 REHEARSAL_STORIES = 150
 # v3.1: level 3 rehearsal (copy / bridge / document reading) so reading skills survive consolidation too
-REHEARSAL3 = {"copy": 200, "bridge": 100, "docs": 80, "longread": 40, "prose": 60}
+REHEARSAL3 = {"copy": 200, "bridge": 300, "docs": 80, "longread": 40, "prose": 60}   # bridge 100 -> 300 (D33: E1b 84 -> 56 in 27 folds)
 _CORPUS2 = {}
 _CORPUS3 = {}
 
@@ -149,6 +149,43 @@ MICRO = 16                        # micro-batch: a 60M core at 32 x 512 in one p
 
 
 _TALK_CACHE: dict = {}
+
+
+# v4.1.1 (10/16, D33): a core that had the long-reading lesson replays it in every consolidation too. Without it,
+# 27 heartbeat folds took E7L 17 -> 8/40 (the v3.2.1 lesson a third time: what a consolidation does not replay, it erases).
+# First try (10/16 08:30): batch 32 = lesson 8 / reading 10 / talk 6 / school 8 -> after 5 folds E7L held (15/40) but the
+# text-window losses rose ~0.15-0.25 and E10 fell 131 -> 44: taking reading away to make room was the wrong trade.
+# Now (D33): the lesson is ADDED, nothing taken away - batch 40 = lesson 8 / reading 16 / talk 8 / school + facts 8.
+LESSON_REPLAY = 8
+SHARES_WITH_LESSON = {"reading": 16, "talk": 8}
+BATCH_WITH_LESSON = 40
+_LESSON_CACHE: dict = {}
+
+
+def had_longread(brain) -> bool:
+    m = brain.meta or {}
+    return bool(m.get("longread")) or "long-reading lesson" in str(m.get("label") or "")
+
+
+def lesson_replay(brain, rng: random.Random):
+    """-> fn(n) giving (x, y) of n long-reading lesson examples (answer-only loss), or None for a core that never had
+    the lesson. For a core that had it, a missing lesson file RAISES (a logged tick error), never a quiet skip."""
+    if not had_longread(brain):
+        return None
+    from .longread_lesson import BUNDLE, Ragged
+    path = os.path.join(BUNDLE, "lesson.npz")
+    if not os.path.exists(path):
+        raise RuntimeError(f"lesson replay: {path} is missing - run `python -m sapling.longread_lesson build`")
+    key = (path, os.path.getmtime(path))
+    if key not in _LESSON_CACHE:
+        _LESSON_CACHE.clear()
+        _LESSON_CACHE[key] = Ragged(path)
+    lesson = _LESSON_CACHE[key]
+    pad = brain.tok.stoi["<pad>"]
+
+    def fn(n: int):
+        return lesson.batch([rng.randrange(len(lesson)) for _ in range(n)], brain.model.block_size, pad)
+    return fn
 
 
 def talk_replay(brain, rng: random.Random):
@@ -245,10 +282,21 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
         ctx = autocast_ctx(str(brain.device))
         replay = reading_replay(model.block_size, rng)
         talk = talk_replay(brain, rng)
-        n_talk = int(batch_size * TALK_REPLAY_SHARE) if talk else 0
-        n_read = int(batch_size * (READ_REPLAY_SHARE - (TALK_REPLAY_SHARE if talk else 0))) if replay else 0
+        lesson = lesson_replay(brain, rng)
+        if lesson:
+            batch_size = max(batch_size, BATCH_WITH_LESSON)
+            n_lesson = LESSON_REPLAY
+            n_talk = SHARES_WITH_LESSON["talk"] if talk else 0
+            n_read = SHARES_WITH_LESSON["reading"] if replay else 0
+        else:
+            n_lesson = 0
+            n_talk = int(batch_size * TALK_REPLAY_SHARE) if talk else 0
+            n_read = int(batch_size * (READ_REPLAY_SHARE - (TALK_REPLAY_SHARE if talk else 0))) if replay else 0
         for _ in range(steps):
-            x, y = get_batch(data, model.block_size, batch_size - n_read - n_talk, rng)
+            x, y = get_batch(data, model.block_size, batch_size - n_read - n_talk - n_lesson, rng)
+            if n_lesson:
+                lx, ly = lesson(n_lesson)
+                x, y = torch.cat([x, lx.to(x.device)]), torch.cat([y, ly.to(y.device)])
             if n_read:
                 rx, ry = replay(n_read)
                 x, y = torch.cat([x, rx.to(x.device)]), torch.cat([y, ry.to(y.device)])
@@ -273,6 +321,7 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
                 "grown_from": (brain.meta or {}).get("grown_from"),
                 # v4: these travel with every generation (talk = it had conversation lessons -> the chat box uses them)
                 "talk": (brain.meta or {}).get("talk"), "label": (brain.meta or {}).get("label"),
+                "longread": (brain.meta or {}).get("longread"),
                 "note": f"consolidation {brain.generation}: {len(pending)} new facts, {len(facts)} total"}
         brain.meta = {**(brain.meta or {}), **meta}
         kept = save_checkpoint(model, tok, meta,
@@ -290,6 +339,7 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
         "facts_total": len(facts), "facts_new": len(pending), "sentences": len(mix), "fact_sentences": len(fact_mix) * rep,
         "tokens": int(data.numel()), "steps": steps, "lr": lr,
         "talk_share": round(n_talk / batch_size, 2), "read_share": round(n_read / batch_size, 2),
+        "lesson_share": round(n_lesson / batch_size, 2),
         "loss_first": round(losses[0], 4), "loss_last": round(sum(losses[-10:]) / min(10, len(losses)), 4),
         "vocab_added": added, "vocab_size": len(tok.itos),
         "checkpoint": os.path.relpath(kept, os.path.dirname(CHECKPOINT_DIR)),

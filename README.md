@@ -411,7 +411,7 @@ DESIGN-CHOICES.md  # every design choice an AI made, who made it, what it affect
 PROPOSALS.md       # open questions for the owner; nothing in here is built
 CHANGELOG.md       # v1 -> v2 -> v2.1 -> v3 -> v3.1 -> v3.2 -> v3.2.1 -> v4, each change tied to Jaron's decision
 results/           # report card (history kept, FAILs kept), train log, stop reports, memory.db, checkpoints/, reading/ (v3.2 probe log + state), reading_v4/ (v4 probe log), teacher/ (measurements + run log), chat_samples/
-tests/             # 65 pytest tests + plain runner (conftest.py: the real archive never runs inside a test)
+tests/             # 66 pytest tests + plain runner (conftest.py: the real archive never runs inside a test)
 ```
 
 ## Lineage

@@ -336,7 +336,7 @@ def swap(store: MemoryStore | None = None, seed: int = 7337, device: str | None 
 
     # the generation keeps counting from where the old core left off (it may have consolidated since school)
     gen = (old["generation"] + 1) if old else int(new_ck.get("generation", 0))
-    meta = {k: new_ck.get(k) for k in ("seed", "corpus_sha", "core_version", "note", "grown_from", "story_stats", "docs_stats", "school", "label", "reading", "talk")}
+    meta = {k: new_ck.get(k) for k in ("seed", "corpus_sha", "core_version", "note", "grown_from", "story_stats", "docs_stats", "school", "label", "reading", "talk", "longread")}
     meta["generation"] = gen
     meta["staged"] = False
     os.makedirs(checkpoint_dir, exist_ok=True)

@@ -73,3 +73,24 @@ def test_dry_run_never_creates_a_pod(monkeypatch, tmp_path):
     monkeypatch.setattr(R, "create_pod", boom)
     monkeypatch.setattr(R, "_http", boom)
     R.main(["--dry-run"])
+
+
+def test_consolidation_replays_the_long_reading_lesson_for_a_core_that_had_it(monkeypatch, tmp_path):
+    import random, pytest
+    import numpy as np
+    from sapling import consolidate as C, longread_lesson as L
+    from sapling.train import Tokenizer
+    class B:
+        meta = {"label": "v4 + conversation lessons"}
+        tok = Tokenizer({"<pad>": 0, "<bos>": 1, "<eos>": 2}, ["<pad>", "<bos>", "<eos>"])
+        class model:
+            block_size = 8
+    assert C.lesson_replay(B(), random.Random(0)) is None          # never had the lesson: nothing to replay
+    B.meta = {"label": "v4 + conversation lessons + long-reading lesson"}
+    monkeypatch.setattr(L, "BUNDLE", str(tmp_path))
+    with pytest.raises(RuntimeError, match="lesson replay"):
+        C.lesson_replay(B(), random.Random(0))                      # had it, file gone: loud, never a quiet skip
+    np.savez(tmp_path / "lesson.npz", **L.pack([([1, 1, 2], [-1, 1, 2])]))
+    x, y = C.lesson_replay(B(), random.Random(0))(3)
+    assert x.shape == (3, 8) and (y[:, 2:] == -1).all()
+    assert C.BATCH_WITH_LESSON - C.LESSON_REPLAY - sum(C.SHARES_WITH_LESSON.values()) == 8   # school + facts keep 8

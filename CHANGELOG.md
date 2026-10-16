@@ -11,6 +11,31 @@
   memory folding would have worn the web reading down after tonight's swap. Replay now follows the v4 mix (stories 11 / adult 4 /
   web 14). Found by Vex (ChatGPT) reviewing mailbox #46; checked and fixed by Claude before the swap.
 
+## v4.1.1 (2026-10-16 morning) - the lesson now survives the heartbeat (better, not fully) (Claude as teacher)
+- **Found (coordinator's retention check):** 27 heartbeat consolidations after the cloud lesson (gen 319 -> 346) took
+  E7L 17 -> 8/40, E1b 84 -> 56/86, E1 86 -> 76/86; reading, conversation, E6/E7 held. Consolidation replayed reading,
+  conversation and school but not the new lesson, and the bridge set was 100 of ~1,600 school sentences.
+- **Why 27 in ~3 h:** by design, not a bug (D30 note): 5 owed after the cloud swap's `growth` row, 22 from the old rule
+  (>= 2 pending facts or a goal with >= 3 misses, >= 90 s apart). Unchanged.
+- **Fix (D33):** a core that had the lesson replays it in every consolidation, added on top: batch 40 = 8 lesson /
+  16 reading / 8 conversation / 8 school + facts; bridge sentences 100 -> 300; `longread` travels in every checkpoint;
+  a missing lesson file fails loudly.
+- **Roll-forward (twice, each a `growth` row):** gen 348 and gen 354 = gen 319's weights (the fp32 core from the pod);
+  gens 320-347 and 349-353 kept. Measured after 5 consolidations each:
+
+| | gen 319 (lesson) | gen 346 (27 old folds) | gen 353 (5 folds, try 1: lesson took reading's room, 32 = 8/10/6/8) | **gen 359 (5 folds, D33: lesson added, 40 = 8/16/8/8)** |
+|---|---|---|---|---|
+| E7L long reading | 17/40 | 8/40 | 15/40 | **13/40** |
+| E1b bridge | 84/86 | 56/86 | 82/86 | **75/86** |
+| E1 composition | 86/86 | 76/86 | 85/86 | **81/86** |
+| E10 induction | 131/2016 | 136/2016 | 44/2016 | **154/2016** |
+| E6 / E7 | 47 / 33 | 48 / 33 | 47 / 33 | **46 / 33** |
+| E5 facts in weights | 0/7 | 3/7 | 7/7 | **6/7** |
+| loss stories / adult / web | 1.263 / 2.902 / 2.968 | 1.355 / 3.081 / 3.168 | 1.412 / 3.127 / 3.231 | **1.361 / 3.065 / 3.142** |
+
+  Try 1 kept more E7L but cost reading (windows +0.15-0.26) and E10 (131 -> 44), so D33 keeps the additive mix. Both
+  still lose some of the lesson in 5 folds (17 -> 13-15; one seed, 40 items, so +-2 is noise). Next lever in NEXT.md.
+
 ## v4.1 (2026-10-16, built ~12:30 AM, NOT run yet) - the long-reading lesson + a rented-GPU runner (Claude as teacher)
 Jaron wants to step up with a cloud GPU. Built tonight while the v4 chain finished on the MSI; nothing trained.
 - **`sapling/longread_lesson.py`** - a lesson aimed at E7L (0/40) and the look-back skill under it (E10 109/2016 at
