@@ -55,6 +55,10 @@ YEAR = re.compile(r"\b(1[0-9]{3}|20[0-9]{2})\b")
 NUM_NOUN = re.compile(r"\b(\d{1,6}) ([a-z]{3,}s)\b")      # "12 years", "500 soldiers": plural nouns only
 NAME = re.compile(r"(?<![.!?]\s)(?<!^)\b([A-Z][a-z]+(?: [A-Z][a-z]+){1,2})\b")
 DEFINE = re.compile(r"^((?:[A-Z][\w'-]*)(?: [\w'-]+){0,4}) (is|was|are|were) (?:a|an|the) ")
+# v2 of the mix (10/16, after the per-kind E7L check on gen 319: word-after 11/12, which-sentence 6/16, word-before
+# 0/4, copy-first-sentence 0/8): more "word before/after", "which sentence" and "copy a sentence" questions.
+KINDS = ["after", "word", "word", "word", "which", "which", "first", "first", "year", "number", "name", "define"]
+FIRST_WITH = 0.4      # share of two-passage examples asked "copy the first sentence of the passage with the word <w> ."
 STOP = {"the", "a", "an", "and", "but", "or", "in", "on", "at", "of", "for", "to", "by", "with", "from", "as", "if", "when",
         "then", "this", "that", "these", "those", "he", "she", "it", "they", "we", "i", "you", "his", "her", "its", "their",
         "our", "my", "your", "so", "yet", "after", "before", "while", "during", "since", "until", "mr", "mrs", "dr", "st"}
@@ -179,7 +183,7 @@ def question(rng: random.Random, raw_sents: list[str], kinds: list[str] | None =
     toks = P.split()
     if len(toks) < 30:
         return None
-    kind = rng.choice(kinds or ["after", "after", "word", "word", "which", "first", "year", "number", "name", "define"])
+    kind = rng.choice(kinds or KINDS)
     if kind == "after":
         i = rng.randrange(0, len(toks) - 8)
         span = " ".join(toks[i:i + 3])
@@ -302,7 +306,7 @@ def build_examples(tok, n_examples: int = 400_000, n_test: int = 2000, seed: int
                 q, a, kind, where = qa
                 body = normp
                 n_p = ntok(normp)
-                if not is_test and pool and kind != "first" and n_p <= 380 and rng.random() < DISTRACT / 0.5:
+                if pool and kind != "first" and n_p <= 380 and rng.random() < DISTRACT / 0.5:
                     # a piece of another document (whole sentences), so the fact must be found past or before other text
                     room, d = 470 - n_p, []
                     for s_ in rng.choice(pool):
@@ -315,6 +319,13 @@ def build_examples(tok, n_examples: int = 400_000, n_test: int = 2000, seed: int
                     if len(d.split()) >= 30 and f" {key} " not in f" {d} " and a.rstrip(" .") not in d:
                         body = f"{d} {normp}" if rng.random() < 0.5 else f"{normp} {d}"
                         stats["distractor"] += 1
+                        if rng.random() < FIRST_WITH:
+                            # two passages: copy the first sentence of the one that has word w (w only in that one)
+                            first = normalize(ps[0])
+                            ws = [t for t in first.split() if len(t) > 4 and t.isalpha() and f" {t} " not in f" {d} "]
+                            if ws and len(first.split()) <= 45:
+                                q, a, kind, where = f"copy the first sentence of the passage with the word {rng.choice(ws)} .", first, "first_with", 0.0
+                                stats["first_with"] = stats.get("first_with", 0) + 1
                 if is_test:
                     if len(test) < n_test:
                         test.append({"passage": body, "q": q, "a": a, "kind": kind, "where": round(where, 3), "doc": did})

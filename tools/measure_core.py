@@ -23,6 +23,29 @@ from sapling.train import CHECKPOINT, RESULTS_DIR, load_checkpoint  # noqa: E402
 OUT = os.path.join(RESULTS_DIR, "teacher", "measurements.jsonl")
 
 
+def e7l_kind(q: str) -> str:
+    q = q.split(" q : ")[-1]
+    for k in ("which sentence", "word comes after", "word comes before", "copy the first sentence of the passage with",
+              "copy the first sentence"):
+        if k in q:
+            return k
+    return "other"
+
+
+def e7l_by_kind(model, tok) -> dict:
+    """E7L broken down by question kind and by one / two passages (the exam's own items, same greedy answers)."""
+    from sapling.curriculum3 import exam_items_longread
+    from sapling.exams import answer
+    out = {}
+    for it in exam_items_longread(7337):
+        if len(tok.encode(it["q"], eos=False)) + 44 > model.block_size:
+            continue
+        ok = answer(model, tok, it["q"], max_new=44).strip() == it["a"]
+        for key in (e7l_kind(it["q"]), f"{e7l_kind(it['q'])} / {it['kind']}"):
+            c = out.setdefault(key, [0, 0]); c[0] += ok; c[1] += 1
+    return {k: f"{a}/{b}" for k, (a, b) in sorted(out.items())}
+
+
 def measure(core: str, label: str) -> dict:
     if os.environ.get("SAPLING_DEVICE", "cuda") != "cpu":
         from sapling.reading import wait_until_gpu_free
@@ -34,7 +57,7 @@ def measure(core: str, label: str) -> dict:
     row = {"ts": time.strftime("%Y-%m-%dT%H:%M:%S"), "label": label, "core": os.path.relpath(core, ROOT),
            "generation": ck.get("generation"), "params": model.n_params(), "config": model.config(),
            "window_loss": window_losses(model, eval_windows(block=model.block_size)),
-           "exams": {k: v["score"] for k, v in exam_scores(card).items()}}
+           "exams": {k: v["score"] for k, v in exam_scores(card).items()}, "e7l_by_kind": e7l_by_kind(model, tok)}
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "a", encoding="utf-8") as f:
         f.write(json.dumps(row) + "\n")

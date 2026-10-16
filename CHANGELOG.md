@@ -11,6 +11,19 @@
   memory folding would have worn the web reading down after tonight's swap. Replay now follows the v4 mix (stories 11 / adult 4 /
   web 14). Found by Vex (ChatGPT) reviewing mailbox #46; checked and fixed by Claude before the swap.
 
+## 2026-10-16 11:05 AM - paused by owner 10/16 10:46 AM
+- Suspect 1 done (fold test S1, D34 setting, 5 folds from gen 319, E7L by kind): gen 319 -> after 5 folds:
+  which sentence 6/16 -> 1/16, word after 11/12 -> 8/12, word before 0/4 -> 0/4, copy first sentence 0/4 -> 0/4,
+  copy the first sentence of the passage with the word 0/4 -> 2/4; total 17 -> 11/40 (E1b 68, E10 136, losses
+  1.318 / 2.974 / 3.063). The fold mostly erases "which sentence has the word". `tools/measure_core.py` now logs
+  E7L by kind; `tools/fold_test.py` has --steps and --no-school-docs.
+- Suspects 2-3 (drop the school's old longread/docs rehearsal; 120 steps per fold) NOT run - paused.
+- Prepared, not run: lesson templates v2 in `longread_lesson.py` (more which / word-before / copy-sentence questions,
+  a new "copy the first sentence of the passage with the word ..." kind on two passages, distractors in the test set
+  too). Needs a bundle rebuild (`python tools/runpod_run.py --rebuild`) before any second cloud lesson.
+- Live core: gen 364 = gen 319's weights again (E7L 17/40); heartbeat restarted through gpu_yield (D34 lr).
+- Slip: a stray `owner_relay.py --help` started a second relay for ~2 min (11:01-11:03) beside the real one; killed.
+
 ## v4.1.2 (2026-10-16 ~11 AM) - consolidation lr halved for the 60.5M core (D34), chosen by controlled fold tests
 - New `tools/fold_test.py`: the teacher's retention measurement - N consolidations forced on an isolated copy of
   memory.db (checkpoints, report card and writing samples into a scratch folder), same code as the heartbeat, then

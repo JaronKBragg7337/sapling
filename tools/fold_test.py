@@ -28,6 +28,8 @@ def main():
     ap.add_argument("--lr", type=float, default=None)
     ap.add_argument("--lesson", type=int, default=None)
     ap.add_argument("--batch", type=int, default=None)
+    ap.add_argument("--steps", type=int, default=None, help="steps per fold (default: membrane consolidate_steps)")
+    ap.add_argument("--no-school-docs", action="store_true", help="drop the old longread/docs school rehearsal from the fold")
     a = ap.parse_args()
     from sapling import consolidate as C, exams as E, membrane
     from sapling.goals import GoalTracker
@@ -43,9 +45,11 @@ def main():
         C.LESSON_REPLAY = a.lesson
     if a.batch is not None:
         C.BATCH_WITH_LESSON = a.batch
+    if a.no_school_docs:
+        C.REHEARSAL3 = {k: v for k, v in C.REHEARSAL3.items() if k not in ("longread", "docs")}
     store = MemoryStore(os.path.join(work, "memory.db"))
     brain = Brain(store=store, path=a.core)
-    steps = int(membrane.settings()["consolidate_steps"])
+    steps = a.steps or int(membrane.settings()["consolidate_steps"])
     rows = []
     t0 = time.time()
     for i in range(a.folds):
@@ -56,7 +60,7 @@ def main():
     last = os.path.join(work, "ck", f"gen_{brain.generation:04d}.pt")
     from measure_core import measure
     m = measure(last, f"fold test: {a.label} ({a.folds} folds from {os.path.basename(a.core)})")
-    out = {"label": a.label, "folds": rows, "seconds": round(time.time() - t0), "measure": {k: m[k] for k in ("window_loss", "exams")}}
+    out = {"label": a.label, "folds": rows, "seconds": round(time.time() - t0), "measure": {k: m[k] for k in ("window_loss", "exams", "e7l_by_kind")}}
     os.makedirs(os.path.join(ROOT, "results", "teacher"), exist_ok=True)
     with open(os.path.join(ROOT, "results", "teacher", "fold_tests.jsonl"), "a", encoding="utf-8") as f:
         f.write(json.dumps(out) + "\n")
