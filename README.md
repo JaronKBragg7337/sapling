@@ -6,7 +6,7 @@ that keeps going on its own and feels time and energy passing, a **trained core*
 once its overnight training swaps in; the control room's core line shows which is live) with 512 tokens of context) that can **become what it learns**, **memory** that grows and is
 protected by use, **goals it sets itself**, **outside exams** it cannot fake, the freedom to
 **stop itself** (every stop is a report), and a **membrane** of rules only the owner edits -
-each rule with its origin. A plain-words **control room** on localhost shows all of it and has
+each rule with its origin. A plain-words **control room** (on the MSI, and on the phone at heartbeatobservatory.com/admin/sapling/) shows all of it and has
 a chat box.
 
 Why each piece is the way it is: [CHANGELOG.md](CHANGELOG.md) (each change tied to his
