@@ -11,6 +11,23 @@
   memory folding would have worn the web reading down after tonight's swap. Replay now follows the v4 mix (stories 11 / adult 4 /
   web 14). Found by Vex (ChatGPT) reviewing mailbox #46; checked and fixed by Claude before the swap.
 
+## v4.1.2 (2026-10-16 ~11 AM) - consolidation lr halved for the 60.5M core (D34), chosen by controlled fold tests
+- New `tools/fold_test.py`: the teacher's retention measurement - N consolidations forced on an isolated copy of
+  memory.db (checkpoints, report card and writing samples into a scratch folder), same code as the heartbeat, then
+  `measure_core`. The live core, the ledger and the heartbeat's drives are untouched (the heartbeat's budget was
+  overspent, so waiting on it took ~20 min per fold).
+- Results, 5 folds from gen 319 (the cloud lesson: E7L 17, E1b 84, E1 86, E10 131, losses 1.263 / 2.902 / 2.968):
+
+| 5 folds with | E7L | E1b | E1 | E10 | E6 / E7 | E5 | loss stories / adult / web |
+|---|---|---|---|---|---|---|---|
+| lr 1.5e-4, lesson 8/40 (D33, controlled) | 10/40 | 68/86 | 82/86 | 104 | 45 / 35 | 5/7 | 1.366 / 3.070 / 3.184 |
+| **lr 7.5e-5, lesson 8/40 (D34, kept)** | **12/40** | **71/86** | **83/86** | **117** | **47 / 33** | **2/7** | **1.318 / 2.974 / 3.066** |
+| lr 7.5e-5, lesson 12/44 | 9/40 | 80/86 | 83/86 | 58 | 47 / 32 | 7/7 | 1.315 / 2.964 / 3.052 |
+
+- Kept: lr 7.5e-5 for cores past 50M params (`consolidate.LR_BIG`), lesson 8/40. More lesson replay did not hold
+  E7L, so the wear has another cause too (next steps in NEXT.md). E7L still drops ~5 in 5 folds with every setting.
+- Live core rolled forward again: gen 362 = gen 319's weights (E7L 17/40), heartbeat restarted on D34. Gens kept.
+
 ## v4.1.1 (2026-10-16 morning) - the lesson now survives the heartbeat (better, not fully) (Claude as teacher)
 - **Found (coordinator's retention check):** 27 heartbeat consolidations after the cloud lesson (gen 319 -> 346) took
   E7L 17 -> 8/40, E1b 84 -> 56/86, E1 86 -> 76/86; reading, conversation, E6/E7 held. Consolidation replayed reading,

@@ -400,6 +400,7 @@ tools/             # OWNER side, outside the AI's package:
   cloud_lesson.py  # v4.1: runs on the pod: download the bundle, train, serve status + core on port 8000
   bench_speed.py   # speed test of the v4 core (MSI vs cloud, RUN-TIMES.md)
   teach_v4.py      # v4: the overnight teaching run after Stage A (measure -> conversation lessons -> measure -> swap -> 5 consolidations -> measure)
+  fold_test.py     # v4.1.2: N consolidations forced on an isolated copy (the teacher's retention test), then measure_core
   measure_core.py  # v4: exams + text-window loss for any core file -> results/teacher/measurements.jsonl
   chat_samples.py  # v4: the same ten chat prompts + one conversation through the real chat path (on a copy of memory.db)
   owner_relay.py   # phone/remote door: pushes state to Supabase, runs owner commands (chat, rule switch, restore, parole)

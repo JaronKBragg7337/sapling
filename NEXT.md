@@ -7,10 +7,13 @@ is DONE (no gate; `/confirm` and `/invalidate` verdicts are the selection events
 to practice in is still open. Ordered by dependency.
 
 ## 0000. Lesson retention (10/16 morning)
-D33 slowed the wear (E7L 17 -> 13 in 5 folds, instead of -> 8 in 27 without replay) but did not stop it. Next levers,
-cheapest first, each measured the same way (roll forward gen 319, 5 folds, tools/measure_core.py): (1) consolidation lr
-1.5e-4 -> 7.5e-5 for a core past 50M params (D14 was tuned for 12-17M); (2) lesson replay 8 -> 12 of 44; (3) fewer
-steps per fold (200 -> 120). Then the next cloud lesson starts from a core that keeps it.
+D33 slowed the wear; D34 (lr 7.5e-5) is the best of three fold tests, but every setting still loses ~5 E7L in 5 folds,
+and MORE lesson replay (12/44) did not help - so something else in a fold works against it. Next, measured with
+`tools/fold_test.py` (isolated, ~10 min per test): (1) look at WHICH E7L kinds are lost (the exam detail: "which
+sentence", "word after/before", "copy the first sentence of the passage with the word ..." - the last kind is not in
+the lesson's templates); (2) drop the school's old `longread`/`docs` rehearsal (40 + 80 sentences in a different
+answer style) from the fold mix; (3) fewer steps per fold (200 -> 120); (4) a second cloud lesson with the missing
+E7L-style kinds added as templates. A ~5-point E7L wear per 5 folds is the number to beat.
 
 ## 000. The cloud long-reading lesson (built 10/16, not run) - the morning command
 

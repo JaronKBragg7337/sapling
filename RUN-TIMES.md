@@ -38,3 +38,4 @@ Test: pod cvnd3rc2lle3cs, started 11:57 PM, terminated 12:02 AM, logged in AI-Sh
 |---|---|---|---|
 | roll-forward 1 (gen 319 -> 348) + 5 consolidations (try 1 mix, batch 32) | MSI | 08:28-08:52 (24 min) | ~105 s per consolidation incl. exams |
 | roll-forward 2 (gen 319 -> 354) + 5 consolidations (D33 mix, batch 40) | MSI | 08:55-09:38 (43 min) | ~110 s per consolidation; the 5th waited ~20 min (budget overspent -> rest drive 0.98) |
+| fold tests x3 (5 forced consolidations each, isolated, tools/fold_test.py) | MSI | 10:00-11:00 (~12 min each incl. measure) | ~107 s per consolidation; heartbeat stopped for the GPU |

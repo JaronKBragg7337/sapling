@@ -63,6 +63,9 @@ FACT_SHARE = 0.30   # facts are ~30% of the sentences it trains on (at ~3% they 
 # 60 stories): gen 153 fit its mix to loss 0.045 in 200 steps and E7 fell 27 -> 20/40, E6 14 -> 13/48 - the
 # big core memorises a small mix fast. Second setting (below): half the step, twice the level-2 rehearsal.
 LR_V3 = 1.5e-4
+# D34 (10/16): a core past 50M params folds at half that step (tuned on the 60.5M v4 core; D14's 1.5e-4 was for 12-17M)
+LR_BIG = 7.5e-5
+BIG_PARAMS = 50_000_000
 REHEARSAL2 = 600     # level-2 generated sentences per consolidation
 REHEARSAL_STORIES = 150
 # v3.1: level 3 rehearsal (copy / bridge / document reading) so reading skills survive consolidation too
@@ -224,7 +227,7 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
     v3 = float((brain.meta or {}).get("core_version", 2)) >= 3
     v31 = float((brain.meta or {}).get("core_version", 2)) >= 3.1
     if lr is None:
-        lr = LR_V3 if v3 else 5e-4
+        lr = (LR_BIG if model.n_params() > BIG_PARAMS else LR_V3) if v3 else 5e-4
 
     facts = [f for f in store.facts() if f["state"] != "invalidated"]
     pending = pending_facts(store)

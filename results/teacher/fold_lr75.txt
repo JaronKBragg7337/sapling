@@ -1,0 +1,6 @@
+{"generation": 307, "lr": 7.5e-05, "loss_first": 1.9139, "loss_last": 1.2058, "lesson_share": 0.2, "read_share": 0.4, "talk_share": 0.2, "seconds": 117.2}
+{"generation": 308, "lr": 7.5e-05, "loss_first": 1.6051, "loss_last": 1.2079, "lesson_share": 0.2, "read_share": 0.4, "talk_share": 0.2, "seconds": 106.6}
+{"generation": 309, "lr": 7.5e-05, "loss_first": 1.5728, "loss_last": 1.2633, "lesson_share": 0.2, "read_share": 0.4, "talk_share": 0.2, "seconds": 106.4}
+{"generation": 310, "lr": 7.5e-05, "loss_first": 1.8663, "loss_last": 1.1396, "lesson_share": 0.2, "read_share": 0.4, "talk_share": 0.2, "seconds": 106.3}
+{"generation": 311, "lr": 7.5e-05, "loss_first": 1.5727, "loss_last": 1.2656, "lesson_share": 0.2, "read_share": 0.4, "talk_share": 0.2, "seconds": 107.0}
+{"window_loss": {"stories_held_out": 1.318, "adult_held_in": 2.974, "web_held_out": 3.066}, "exams": {"E1_composition": "83/86", "E2_affix_recall": "22/24", "E3_recall_echo": "12/12", "E4_deferral": "9/10", "E6_grammar": "47/48", "E7_reading": "33/40", "E7L_longread": "12/40", "E1b_bridge": "71/86", "E10_induction": "117/2016", "E9_owner_exam": "0 items", "E8_writing": "4 samples", "E5_facts_in_weights": "2/7"}}
