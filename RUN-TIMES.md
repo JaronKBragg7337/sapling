@@ -27,3 +27,8 @@ Test: pod cvnd3rc2lle3cs, started 11:57 PM, terminated 12:02 AM, logged in AI-Sh
 | bundle build (400k lesson examples, 162M tokens; 150M reading tokens; talk + school) | MSI CPU | 8 min 42 s | ~770 examples/s |
 | upload to GitHub release cloud-20261016-0034 (1,052 MB) | MSI -> GitHub | 4 min 42 s | 3.3-4.0 MB/s; anonymous download back verified (urllib) |
 | planned pod time (boot + download + 55 min lesson + fetch) | H100 SXM | ~70 min | $2.69/h community -> ~$3.15; $3.99/h secure -> ~$4.65; watchdog cap 95 min |
+
+## Cloud run 1 - long-reading lesson (10/16, tools/runpod_run.py)
+| Run | Machine | Tokens | Start | End | Wall | Speed | Cost | Result |
+|---|---|---|---|---|---|---|---|---|
+| Long-reading lesson (Husk -> gen 319) | RunPod H100 SXM secure, $3.99/h | 953M | 01:22 | 02:31 (pod 01:23-02:28) | 69 min | ~338k tok/s | $4.34 | E7L 0/40 -> 17/40; held-out copy-answer test 1/300 -> 498/1000; E10 109 -> 131/2016 |
