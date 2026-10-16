@@ -5,8 +5,12 @@ Stage A (already running: `python -m sapling.reading stage --v4 ...`) -> this sc
   2. conversation lessons (sapling.talk build + train)                              -> "after Stage B (conversation)"
   3. measure + chat samples for that core
   4. the swap (heartbeat is stopped; one `growth` row on the chain; old core kept)
-  5. heartbeat restarted (gpu_yield start) and left to do its USUAL consolidations; when 5 new ones are on the
-     chain, the newest generation is measured again (on the CPU, beside the running heartbeat)  -> "after 5 consolidations"
+  5. heartbeat restarted (gpu_yield start, then verified alive) and left to do its USUAL consolidations (D30: the
+     first 5 after a growth may happen with any pending count); when 5 new ones are on the chain, that generation is
+     measured again (on the CPU, beside the running heartbeat)  -> "after 5 consolidations". A heartbeat that goes
+     down meanwhile gets the parole re-armed (--if-ours) instead of a 10 h wait.
+Grok Build review 10/15 10:18 PM: the heartbeat is stopped AND gone before Stage B and before the swap; the whole run
+sits in try/finally so the heartbeat is always asked back; a torn log line no longer crashes the wait.
 Every step is a row in results/teacher/run.jsonl; measurements in results/teacher/measurements.jsonl; chat samples in
 results/chat_samples/. If a step fails the error is logged and the script stops there (the heartbeat is restarted
 either way, so Sapling is never left down by this script).
@@ -50,11 +54,33 @@ def sh(args: list[str], env: dict | None = None, timeout: float | None = None) -
     return p.stdout
 
 
+STARTED = time.time()
+
+
 def stage_a_done() -> bool:
+    """A complete `done` line, written after this driver started, whose staged core exists. Torn or blank lines
+    (Stage A is still appending) count as 'not yet' (Grok Build review 10/15)."""
     try:
-        return any(json.loads(l).get("kind") == "done" for l in open(V4_LOG, encoding="utf-8"))
+        lines = open(V4_LOG, encoding="utf-8").read().splitlines()
     except OSError:
         return False
+    for line in reversed(lines):
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            r = json.loads(line)
+        except ValueError:
+            continue
+        if r.get("kind") != "done":
+            continue
+        staged = r.get("staged") or A_CORE
+        try:
+            t = time.mktime(time.strptime(r.get("ts", ""), "%Y-%m-%dT%H:%M:%S"))
+        except ValueError:
+            return False
+        return os.path.exists(staged) and t >= STARTED - 60 and os.path.getmtime(staged) >= STARTED - 60
+    return False
 
 
 def measure(core: str, label: str, cpu: bool = False):
@@ -76,38 +102,72 @@ def last_ledger_id() -> int:
     return int(MemoryStore().db.execute("SELECT COALESCE(MAX(id), 0) FROM ledger").fetchone()[0])
 
 
+def heartbeat_gone(why: str):
+    """gpu_yield stop WAITS until the process is gone (up to 15 min); refuse to go on while it is still alive."""
+    from owner_relay import heartbeat_alive
+    if heartbeat_alive():
+        out = sh(["tools/gpu_yield.py", "stop", f"{WHO} - {why}"]).strip()
+        log({"step": "heartbeat stop", "why": why, "result": out})
+    if heartbeat_alive():
+        raise RuntimeError(f"heartbeat still alive before {why}")
+
+
+def heartbeat_up(why: str, wait_s: float = 8 * 3600) -> bool:
+    """Arm the parole (it waits for renders / training itself) and wait until the heartbeat is really running."""
+    from owner_relay import heartbeat_alive
+    out = sh(["tools/gpu_yield.py", "start", f"{WHO} - {why}"]).strip()
+    t0 = time.time()
+    while not heartbeat_alive() and time.time() - t0 < wait_s:
+        time.sleep(30)
+    alive = heartbeat_alive()
+    log({"step": "heartbeat start", "why": why, "result": out, "alive": alive, "waited_s": round(time.time() - t0)})
+    return alive
+
+
 def main():
-    log({"step": "waiting for Stage A"})
-    while not stage_a_done():
-        time.sleep(120)
-    log({"step": "Stage A done"})
+    log({"step": "waiting for Stage A", "driver_pid": os.getpid()})
+    swapped = False
     try:
+        while not stage_a_done():
+            time.sleep(120)
+        log({"step": "Stage A done"})
+        heartbeat_gone("Stage B")
         measure(A_CORE, "after Stage A - v4 reading")
         sh(["-m", "sapling.talk", "build", "--core", A_CORE])
         sh(["-m", "sapling.talk", "train", "--core", A_CORE])
         log({"step": "Stage B done"})
         measure(B_CORE, "after Stage B - conversation lessons")
-        # the swap: the heartbeat is already stopped for the training (gpu_yield stop); make sure
-        from owner_relay import heartbeat_alive
-        if heartbeat_alive():
-            sh(["tools/gpu_yield.py", "stop", WHO])
+        heartbeat_gone("the swap")
         out = sh(["-c", "from sapling.grow import swap; import sys; "
                   f"r = swap(staged={B_CORE!r}); print(r['event']['to']['generation'])"])
         gen = int(out.strip().splitlines()[-1])
         mark = last_ledger_id()
+        swapped = True
         log({"step": "swapped", "generation": gen, "ledger_id": mark})
     except Exception as e:
         log({"step": "error", "error": str(e)[-2000:], "trace": traceback.format_exc()[-2000:]})
-        sh(["tools/gpu_yield.py", "start", WHO])
+    finally:
+        try:
+            heartbeat_up("after the teaching run" if swapped else "teaching run stopped early")
+        except Exception as e:
+            log({"step": "error", "error": f"restart: {e}"})
+    if not swapped:
         return
-    sh(["tools/gpu_yield.py", "start", WHO])
-    log({"step": "heartbeat restarted - waiting for 5 of its own consolidations"})
-    t0 = time.time()
-    rows = []
+    log({"step": "waiting for 5 of its own consolidations"})
+    from owner_relay import heartbeat_alive
+    t0, rows, paroles = time.time(), [], 0
     while time.time() - t0 < 10 * 3600:
         rows = consolidations_since(mark)
         if len(rows) >= 5:
             break
+        if not heartbeat_alive():
+            # down (a render's stop, a crash, or a self-stop): ask for the parole instead of waiting 10 h on a dead pid.
+            # --if-ours leaves a self-stop to the owner; the teacher's run stopped it, so that one is ours to restart.
+            paroles += 1
+            out = sh(["tools/gpu_yield.py", "start", f"{WHO} - 5-consolidation check", "--if-ours"]).strip()
+            log({"step": "heartbeat down while waiting", "parole": out, "n": paroles})
+            time.sleep(600)
+            continue
         time.sleep(120)
     if not rows:
         log({"step": "no consolidation in 10 h - nothing to re-measure"})

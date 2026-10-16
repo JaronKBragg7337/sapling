@@ -11,6 +11,31 @@
   memory folding would have worn the web reading down after tonight's swap. Replay now follows the v4 mix (stories 11 / adult 4 /
   web 14). Found by Vex (ChatGPT) reviewing mailbox #46; checked and fixed by Claude before the swap.
 
+## v4.0.3 (2026-10-15 ~10:30 PM) - the overnight chain made safe (Grok Build review, 10/15 10:18 PM)
+Grok Build read tonight's chain (AI-Shared/projects/fly-brain/panel/grok-review-v4/review.md) and found ways it could
+freeze the card with Unreal or leave Sapling down. All eight fixed before Stage A finished; Stage A (pid 4176) untouched.
+1. `gpu_yield stop` now WAITS until the heartbeat process is gone (up to 15 min) before printing "stopped". The news
+   script (`run_rendered_news.ps1`) always asks for the restart after the render with `start --if-ours`: the parole is
+   armed when the heartbeat is down because a GPU job stopped it, never after a self-stop (D6 stays the owner's).
+2. `talk.train`, `measure_core`, `chat_samples`, `grow.swap` wait while a render / the pause file holds the card before
+   taking it (`reading.wait_until_gpu_free`); `talk.train` checks every step, moves model + optimizer to the CPU and
+   empties the cache while it waits, and retries a step after a CUDA out-of-memory (like Stage A).
+3. `teach_v4` stops the heartbeat and waits until it is gone before Stage B and again before the swap; after the swap it
+   starts it and checks it is alive.
+4. `teach_v4` ignores torn/blank log lines and only accepts a `done` row newer than itself whose staged core exists; the
+   whole run sits in try/finally, so the heartbeat is always asked back.
+5. Heartbeat: a practice / consolidation / explore draw while a render holds the card becomes a rest (logged as
+   `skipped` + `gpu_busy`); after a CUDA out-of-memory it empties the cache, sets the core to eval and keeps off the
+   card for 2 min.
+6. Consolidation in a talking core: a failed conversation replay now raises (a logged tick error) instead of quietly
+   consolidating without its conversation lessons.
+7. After a growth swap the first 5 consolidations can be chosen with any pending count (D30), so the 5-fold check
+   happens tonight; the driver re-arms the parole (`--if-ours`) if the heartbeat goes down while it waits, instead of
+   waiting 10 h on a dead process.
+8. Checkpoints are written to `.tmp` and renamed (`os.replace`), so a crash never leaves a truncated core.
+Not done: aborting a consolidation mid-way when the stop file appears (fix 1's wait covers it: the stop now waits for
+the tick to end). The driver was restarted on the fixed code (pid 45024), waiting for Stage A. Tests: 60.
+
 ## v4.0.2 (2026-10-15 ~6:10 PM) - archive to GitHub Releases, generations in bf16 (Jaron's call, 6:06 PM)
 - **Found:** the hourly archive had been failing since v3.1 - Supabase Storage rejects objects over 50 MB (413) and the
   17.6M checkpoints are 71 MB; with SSL drops on the rest, 99 generations had piled up on the MSI (7.5 GB).

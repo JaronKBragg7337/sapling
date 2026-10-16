@@ -368,7 +368,7 @@ def train(core: str, staged: str = STAGED, epochs: float = 2.0, conv_per_step: i
           seed: int = 7337, device: str | None = None, out_dir: str = OUT_DIR, store=None, wait_for_gpu: bool = True,
           verbose: bool = True, max_steps: int | None = None, lessons: str = LESSONS, label: str = "conversation lessons") -> dict:
     from .consolidate import reading_replay
-    from .reading import eval_windows, gpu_busy, rehearsal_sentences, window_losses, SHARD_DIR
+    from .reading import eval_windows, gpu_busy, rehearsal_sentences, wait_until_gpu_free, window_losses, SHARD_DIR
     from .train import get_batch, sentences_to_tensor
     t0 = time.time()
     device = device or ("cuda" if torch.cuda.is_available() else "cpu")
@@ -381,6 +381,8 @@ def train(core: str, staged: str = STAGED, epochs: float = 2.0, conv_per_step: i
 
     rng = random.Random(seed + 5)
     torch.manual_seed(seed + 5)
+    if wait_for_gpu and str(device).startswith("cuda"):
+        wait_until_gpu_free(who="talk.train", log=_log)
     model, tok, ck = load_checkpoint(device=device, path=core)
     block = model.block_size
     examples = load_examples(tok, block, lessons)
@@ -407,11 +409,27 @@ def train(core: str, staged: str = STAGED, epochs: float = 2.0, conv_per_step: i
     order = []
     losses = []
     model.train()
-    for step in range(total):
-        if wait_for_gpu and step % 50 == 0:
-            while gpu_busy(os.path.join(out_dir, "pause")):
-                _log({"kind": "pause", "step": step})
-                time.sleep(60)
+    def free_card_and_wait(step):
+        """A render wants the card: model + optimizer state to the CPU, empty the cache, wait, bring them back."""
+        model.to("cpu")
+        for st_ in opt.state.values():
+            for k, v in st_.items():
+                if torch.is_tensor(v):
+                    st_[k] = v.to("cpu")
+        torch.cuda.empty_cache()
+        waited = wait_until_gpu_free(who=f"talk.train step {step}", log=_log,
+                                     busy_fn=lambda: gpu_busy(os.path.join(out_dir, "pause")))
+        model.to(device)
+        for st_ in opt.state.values():
+            for k, v in st_.items():
+                if torch.is_tensor(v):
+                    st_[k] = v.to(device)
+        _log({"kind": "resumed", "step": step, "seconds": round(waited, 1)})
+
+    step = 0
+    while step < total:
+        if wait_for_gpu and str(device).startswith("cuda") and gpu_busy(os.path.join(out_dir, "pause")):
+            free_card_and_wait(step)
         if len(order) < conv_per_step:
             more = list(range(len(examples)))
             rng.shuffle(more)
@@ -430,22 +448,33 @@ def train(core: str, staged: str = STAGED, epochs: float = 2.0, conv_per_step: i
         cur = lr * (step + 1) / warmup if step < warmup else min_lr + 0.5 * (lr - min_lr) * (1 + math.cos(math.pi * p))
         for g in opt.param_groups:
             g["lr"] = cur
-        opt.zero_grad(set_to_none=True)
-        perm = torch.randperm(len(x), device=x.device)
-        tot = 0.0
-        for i in range(0, len(x), micro):
-            j = perm[i:i + micro]
-            with ctx:
-                _, l = model(x[j], y[j])
-            (l * len(j) / len(x)).backward()
-            tot += float(l.detach()) * len(j) / len(x)
-        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
-        opt.step()
-        losses.append(tot)
-        if (step + 1) % 100 == 0:
-            _log({"kind": "step", "step": step + 1, "loss": round(sum(losses[-100:]) / 100, 4), "lr": round(cur, 7)})
+        try:
+            opt.zero_grad(set_to_none=True)
+            perm = torch.randperm(len(x), device=x.device)
+            tot = 0.0
+            for i in range(0, len(x), micro):
+                j = perm[i:i + micro]
+                with ctx:
+                    _, l = model(x[j], y[j])
+                (l * len(j) / len(x)).backward()
+                tot += float(l.detach()) * len(j) / len(x)
+            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+            opt.step()
+        except torch.cuda.OutOfMemoryError:
+            # something else took the room: free what we can, wait, and do this step again (like Stage A)
+            opt.zero_grad(set_to_none=True)
+            torch.cuda.empty_cache()
+            _log({"kind": "oom", "step": step})
             if verbose:
-                print(f"[talk] step {step + 1}/{total} loss {sum(losses[-100:]) / 100:.3f} lr {cur:.2e}", flush=True)
+                print("[talk] CUDA out of memory - waiting 30 s and retrying the step", flush=True)
+            time.sleep(30)
+            continue
+        losses.append(tot)
+        step += 1
+        if step % 100 == 0:
+            _log({"kind": "step", "step": step, "loss": round(sum(losses[-100:]) / 100, 4), "lr": round(cur, 7)})
+            if verbose:
+                print(f"[talk] step {step}/{total} loss {sum(losses[-100:]) / 100:.3f} lr {cur:.2e}", flush=True)
     model.eval()
     wl = window_losses(model, windows)
     run = {"kind": label, "examples": len(examples), "steps": total, "batch": batch, "lr": lr,

@@ -294,6 +294,31 @@ def gpu_busy(pause_file: str = PAUSE_FILE) -> str | None:
         return None
 
 
+def wait_until_gpu_free(poll_s: float = 60.0, who: str = "", log=None, busy_fn=None) -> float:
+    """Block (before any CUDA allocation) while a render or the owner's pause file holds the card; the card must be
+    free for two polls in a row. Returns seconds waited. (Grok Build review 10/15: measure / talk / swap took the card
+    without asking.)"""
+    busy_fn = busy_fn or gpu_busy
+    t0, clear, said = time.time(), 0, False
+    while True:
+        why = busy_fn()
+        if not why:
+            if not said:
+                break                    # free at the first look: go
+            clear += 1
+            if clear >= 2:
+                break                    # was busy: must be free for two polls in a row
+        else:
+            clear = 0
+            if not said:
+                said = True
+                print(f"[gpu] {who or 'job'} waits: {why} holds the card", flush=True)
+                if log:
+                    log({"kind": "pause", "why": why, "who": who})
+        time.sleep(poll_s)
+    return time.time() - t0
+
+
 # ---------------------------------------------------------------------------
 # the stage
 # ---------------------------------------------------------------------------

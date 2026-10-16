@@ -50,6 +50,12 @@ PID_FILE = os.path.join(RESULTS_DIR, "heartbeat.pid")
 STOP_FILE = os.path.join(RESULTS_DIR, "heartbeat.stop")
 STOP_DIR = os.path.join(RESULTS_DIR, "stop_reports")
 ACTIONS = ("practice", "consolidate", "explore", "rest", "stop")
+GPU_ACTIONS = ("practice", "consolidate", "explore")
+# D30 (Claude as teacher, 10/15, from the Grok Build review): after a growth swap the first few consolidations may be
+# chosen with ANY pending count (even 0), so the teacher's "does it survive 5 foldings" check happens the same night.
+# It widens when consolidation is possible; it never blocks anything.
+CONSOLIDATIONS_AFTER_GROWTH = 5
+OOM_BACKOFF_S = 120
 
 
 class Heartbeat:
@@ -69,6 +75,7 @@ class Heartbeat:
         self.last_consolidation = self._last_ts("consolidation") or 0.0
         self.last_archive = self._last_ts("archive") or 0.0
         self.running = False
+        self.gpu_backoff_until = 0.0
         self.stopped_by: str | None = None
         self.server = None
         self.serve = serve
@@ -81,6 +88,17 @@ class Heartbeat:
         return float(row["ts"]) if row else None
 
     # -- drives -> choice ----------------------------------------------------------
+    def consolidations_owed_after_growth(self) -> int:
+        """How many of the first CONSOLIDATIONS_AFTER_GROWTH consolidations since the last growth swap are still to come."""
+        try:
+            g = self.store.db.execute("SELECT MAX(id) FROM ledger WHERE kind='growth'").fetchone()[0]
+            if g is None:
+                return 0
+            n = self.store.db.execute("SELECT COUNT(*) FROM ledger WHERE kind='consolidation' AND id > ?", (g,)).fetchone()[0]
+            return max(0, CONSOLIDATIONS_AFTER_GROWTH - int(n))
+        except Exception:
+            return 0
+
     def drives(self) -> dict:
         snap = self.clock.snapshot()
         b = max(0.0, snap["budget_left_frac"])
@@ -90,6 +108,7 @@ class Heartbeat:
         since_consol = time.time() - self.last_consolidation
         since_input = snap["since_last_input_s"]
         worst_misses = max([g["misses_recent"] for g in open_goals], default=0)
+        owed = self.consolidations_owed_after_growth() if self.brain.ok else 0
 
         d = {
             "practice": (0.25 + 0.5 * min(len(open_goals), 6) / 6) * (0.2 + 0.8 * b),
@@ -99,8 +118,8 @@ class Heartbeat:
             "stop": 0.0,
         }
         if self.brain.ok and since_consol > 90 and (
-                pending >= self.settings["consolidate_min_pending"] or worst_misses >= 3):
-            d["consolidate"] = (0.35 + 0.08 * min(pending, 10) + 0.1 * worst_misses) * (0.1 + 0.9 * b)
+                pending >= self.settings["consolidate_min_pending"] or worst_misses >= 3 or owed > 0):
+            d["consolidate"] = (0.35 + 0.08 * min(pending, 10) + 0.1 * worst_misses + (0.4 if owed else 0.0)) * (0.1 + 0.9 * b)
         if since_input is not None and since_input < 20:
             d["rest"] += 0.3          # someone is talking: hold still, answer fast
         if b <= 0.0 and self.rest_streak >= 20:
@@ -109,7 +128,7 @@ class Heartbeat:
             d["practice"] = d["consolidate"] = 0.0
         return {"drives": {k: round(v, 3) for k, v in d.items()}, "state": {
             "budget_left_frac": b, "open_goals": len(open_goals), "worst_misses": worst_misses,
-            "pending_facts": pending, "since_explore_s": round(since_explore, 1),
+            "pending_facts": pending, "consolidations_owed_after_growth": owed, "since_explore_s": round(since_explore, 1),
             "since_consolidation_s": round(since_consol, 1), "since_input_s": since_input,
             "rest_streak": self.rest_streak, "memories": self.store.count(),
             "vocab_size": self.brain.vocab_size(), "generation": self.brain.generation}}
@@ -206,6 +225,13 @@ class Heartbeat:
         action, info = self.choose()
         t0 = time.time()
         result: dict = {}
+        if action in GPU_ACTIONS:
+            # Grok Build review 10/15: never take the card while a render holds it, or right after an out-of-memory
+            from .reading import gpu_busy
+            why = gpu_busy() or ("backing off after CUDA out of memory" if time.time() < self.gpu_backoff_until else None)
+            if why:
+                result = {"skipped": action, "gpu_busy": why}
+                action = "rest"
         try:
             if action == "practice":
                 result = self.do_practice(); self.rest_streak = 0
@@ -221,6 +247,16 @@ class Heartbeat:
                 result = {"report": os.path.basename(self.stop_report("self", "chose stop: " + json.dumps(info["drives"]), info))}
         except Exception as e:  # an error is data too; the loop keeps going
             result = {"error": f"{type(e).__name__}: {e}"}
+            if "out of memory" in str(e).lower():
+                try:
+                    import torch
+                    if self.brain.ok:
+                        self.brain.model.eval()
+                    torch.cuda.empty_cache()
+                except Exception:
+                    pass
+                self.gpu_backoff_until = time.time() + OOM_BACKOFF_S
+                result["backoff_s"] = OOM_BACKOFF_S
         row = {"tick": self.tick_no, "action": action, "ms": round((time.time() - t0) * 1000, 1),
                "result": result, **info, "clock": {k: self.clock.snapshot()[k] for k in
                                                    ("age_s", "uptime_s", "since_last_input_s",

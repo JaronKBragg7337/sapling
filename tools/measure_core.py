@@ -24,6 +24,9 @@ OUT = os.path.join(RESULTS_DIR, "teacher", "measurements.jsonl")
 
 
 def measure(core: str, label: str) -> dict:
+    if os.environ.get("SAPLING_DEVICE", "cuda") != "cpu":
+        from sapling.reading import wait_until_gpu_free
+        wait_until_gpu_free(who="measure_core")
     model, tok, ck = load_checkpoint(path=core)
     user_facts = [f["content"] for f in MemoryStore().facts() if f["provenance"] == "user"]
     card = run_exams(verbose=False, model=model, tok=tok, meta={"generation": ck.get("generation")}, store=None,

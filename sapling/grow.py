@@ -307,6 +307,9 @@ def swap(store: MemoryStore | None = None, seed: int = 7337, device: str | None 
          verbose: bool = True) -> dict:
     t0 = time.time()
     device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+    if str(device).startswith("cuda"):
+        from .reading import wait_until_gpu_free
+        wait_until_gpu_free(who="grow.swap")
     store = store or MemoryStore()
     new_model, new_tok, new_ck = load_checkpoint(device=device, path=staged)
     to_v = float(new_ck.get("core_version", 3))

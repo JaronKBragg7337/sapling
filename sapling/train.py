@@ -207,7 +207,9 @@ def save_checkpoint(model, tok: Tokenizer, meta: dict, path: str = CHECKPOINT, h
         **meta,
     }
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    torch.save(payload, path)
+    tmp = path + ".tmp"                 # a crash mid-write never leaves a truncated core (Grok Build review 10/15)
+    torch.save(payload, tmp)
+    os.replace(tmp, path)
     return path
 
 

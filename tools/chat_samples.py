@@ -41,6 +41,9 @@ CONVERSATION = ["hi, i am jaron.", "what is my name?", "what do you know about r
 
 
 def run(core: str, label: str, memory: str | None = None) -> dict:
+    if os.environ.get("SAPLING_DEVICE", "cuda") != "cpu":
+        from sapling.reading import wait_until_gpu_free
+        wait_until_gpu_free(who="chat_samples")
     tmp = tempfile.mkdtemp(prefix="sapling_samples_")
     src = memory or os.path.join(RESULTS_DIR, "memory.db")
     dst = os.path.join(tmp, "memory.db")

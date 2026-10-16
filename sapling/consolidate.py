@@ -152,20 +152,24 @@ _TALK_CACHE: dict = {}
 
 
 def talk_replay(brain, rng: random.Random):
-    """-> fn(n) giving (x, y) of n conversation lessons (loss on its answers only), or None."""
+    """-> fn(n) giving (x, y) of n conversation lessons (loss on its answers only), or None for a core that never
+    had conversation lessons. For a core that talks, a failure RAISES (the tick logs it as an error) instead of
+    quietly consolidating without its conversation lessons (Grok Build review 10/15)."""
+    from .talk import LESSONS, batch_examples, load_examples
+    if not brain.talks():
+        return None
+    if not os.path.exists(LESSONS):
+        raise RuntimeError(f"talk replay: {LESSONS} is missing - run `python -m sapling.talk build`")
     try:
-        from .talk import LESSONS, batch_examples, load_examples
-        if not (brain.talks() and os.path.exists(LESSONS)):
-            return None
         key = (len(brain.tok.itos), brain.model.block_size, os.path.getmtime(LESSONS))
         if key not in _TALK_CACHE:
             _TALK_CACHE.clear()
             _TALK_CACHE[key] = load_examples(brain.tok, brain.model.block_size)
         ex = _TALK_CACHE[key]
-    except Exception:
-        return None
+    except Exception as e:
+        raise RuntimeError(f"talk replay failed: {type(e).__name__}: {e}") from e
     if not ex:
-        return None
+        raise RuntimeError("talk replay: the lesson file gave no examples")
     pad = brain.tok.stoi["<pad>"]
 
     def fn(n: int):

@@ -391,14 +391,14 @@ tools/             # OWNER side, outside the AI's package:
   chat_samples.py  # v4: the same ten chat prompts + one conversation through the real chat path (on a copy of memory.db)
   owner_relay.py   # phone/remote door: pushes state to Supabase, runs owner commands (chat, rule switch, restore, parole)
   owner_rules.py   # flips a rule's enabled line when the owner clicks; logged
-  gpu_yield.py     # 10/15: the news render calls it to pause the heartbeat before Unreal and restart it after (`stop` / `start`)
+  gpu_yield.py     # 10/15: the news render / teach_v4 call it: `stop` waits until the heartbeat is gone; `start [--if-ours]` arms the parole (only for a GPU-job stop with --if-ours)
   scheduled_parole.py # waits for UnrealEditor and any core training run to leave the GPU, then paroles and logs it (used by gpu_yield.py start)
   self_memory_drift.py # compares exams with vs without self-made memories in training
 DESIGN-CHOICES.md  # every design choice an AI made, who made it, what it affects, options not chosen
 PROPOSALS.md       # open questions for the owner; nothing in here is built
 CHANGELOG.md       # v1 -> v2 -> v2.1 -> v3 -> v3.1 -> v3.2 -> v3.2.1 -> v4, each change tied to Jaron's decision
 results/           # report card (history kept, FAILs kept), train log, stop reports, memory.db, checkpoints/, reading/ (v3.2 probe log + state), reading_v4/ (v4 probe log), teacher/ (measurements + run log), chat_samples/
-tests/             # 56 pytest tests + plain runner (conftest.py: the real archive never runs inside a test)
+tests/             # 60 pytest tests + plain runner (conftest.py: the real archive never runs inside a test)
 ```
 
 ## Lineage

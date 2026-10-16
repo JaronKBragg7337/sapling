@@ -117,3 +117,64 @@ def test_relay_saves_self_words_as_an_owner_action(monkeypatch):
     monkeypatch.setattr(owner_relay, "MemoryStore", lambda: type("S", (), {"db": type("D", (), {"close": lambda self: None})()})())
     r = owner_relay.do_owner("self_words", {"key": "maker", "text": "Jaron made me."}, by="owner@test")
     assert r["ok"] and r["row"]["action"] == "self_words" and seen == {"k": "maker", "t": "Jaron made me.", "by": "owner@test"}
+
+
+# -- Grok Build review fixes (10/15 10:18 PM) ------------------------------------------------------------------------
+def test_driver_tolerates_torn_log_lines_and_old_done_rows(tmp_path, monkeypatch):
+    import json, os, sys, time
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tools"))
+    import teach_v4 as T
+    log, staged = tmp_path / "log.jsonl", tmp_path / "staged.pt"
+    monkeypatch.setattr(T, "V4_LOG", str(log))
+    monkeypatch.setattr(T, "A_CORE", str(staged))
+    monkeypatch.setattr(T, "STARTED", time.time())
+    log.write_text('{"kind": "step"}\n\n{"kind": "pro')                        # torn last line
+    assert T.stage_a_done() is False
+    old = time.strftime("%Y-%m-%dT%H:%M:%S", time.localtime(time.time() - 3600))
+    staged.write_bytes(b"x")
+    log.write_text(json.dumps({"kind": "done", "ts": old, "staged": str(staged)}) + "\n")
+    assert T.stage_a_done() is False                                            # a done row from before this driver
+    now = time.strftime("%Y-%m-%dT%H:%M:%S")
+    log.write_text(json.dumps({"kind": "done", "ts": now, "staged": str(staged)}) + "\n{\"kind\"")
+    assert T.stage_a_done() is True
+
+
+def test_checkpoint_write_is_atomic(tmp_path):
+    import os
+    from sapling.model import SaplingCore
+    from sapling.train import Tokenizer, save_checkpoint
+    itos = ["<pad>", "<bos>", "<eos>", "<unk>"]
+    p = str(tmp_path / "c.pt")
+    save_checkpoint(SaplingCore(4, 16, 2, 1, 8), Tokenizer({t: i for i, t in enumerate(itos)}, itos), {}, path=p)
+    assert os.path.exists(p) and not os.path.exists(p + ".tmp")
+
+
+def test_talk_replay_failure_is_loud_for_a_talking_core(monkeypatch, tmp_path):
+    import random
+    import pytest
+    from sapling import consolidate as C, talk
+    class B:
+        def talks(self): return True
+    monkeypatch.setattr(talk, "LESSONS", str(tmp_path / "missing.jsonl"))
+    with pytest.raises(RuntimeError, match="talk replay"):
+        C.talk_replay(B(), random.Random(0))
+    class Quiet:
+        def talks(self): return False
+    assert C.talk_replay(Quiet(), random.Random(0)) is None
+
+
+def test_heartbeat_skips_gpu_work_while_a_render_holds_the_card_and_owes_consolidations_after_growth(tmp_path, monkeypatch):
+    from sapling import heartbeat as H, reading, membrane
+    monkeypatch.setattr(H, "STOP_DIR", str(tmp_path / "stops"))
+    monkeypatch.setattr(H, "PID_FILE", str(tmp_path / "pid"))
+    monkeypatch.setattr(H, "STOP_FILE", str(tmp_path / "stop"))
+    hb = H.Heartbeat(memory_path=str(tmp_path / "m.db"), serve=False, settings={**membrane.settings(), "tick_seconds": 0.01})
+    monkeypatch.setattr(reading, "gpu_busy", lambda *a: "unreal")
+    hb.rng.choices = lambda pop, weights, k: ["practice"]
+    row = hb.tick()
+    assert row["action"] == "rest" and row["result"]["gpu_busy"] == "unreal"
+    assert hb.consolidations_owed_after_growth() == 0
+    hb.store.meter("growth", {"event": "test growth"})
+    assert hb.consolidations_owed_after_growth() == 5
+    hb.store.meter("consolidation", {"generation": 1})
+    assert hb.consolidations_owed_after_growth() == 4
