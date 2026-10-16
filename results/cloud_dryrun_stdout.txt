@@ -1,0 +1,113 @@
+{"ts": "2026-10-16T00:26:14", "step": "start", "dry": true, "minutes": 55, "max_pod_minutes": 95, "gpu": "NVIDIA H100 80GB HBM3", "image": "runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04"}
+{"ts": "2026-10-16T00:26:14", "step": "price", "quote": {"id": "NVIDIA H100 80GB HBM3", "displayName": "H100 SXM", "memoryInGb": 80, "securePrice": 3.99, "communityPrice": 2.69, "secureCloud": true, "communityCloud": true, "lowest": {"minimumBidPrice": null, "uninterruptablePrice": 2.69}}}
+{"ts": "2026-10-16T00:26:15", "step": "pods running before", "n": 0, "names": []}
+[longread] 5,000 docs -> 9,841 train / 53 test (10s)
+[longread] 10,000 docs -> 21,763 train / 190 test (21s)
+[longread] 15,000 docs -> 30,390 train / 308 test (29s)
+[longread] 20,000 docs -> 38,663 train / 387 test (39s)
+[longread] 25,000 docs -> 46,911 train / 467 test (48s)
+[longread] 30,000 docs -> 56,326 train / 633 test (58s)
+[longread] 35,000 docs -> 65,166 train / 775 test (66s)
+[longread] 40,000 docs -> 74,270 train / 881 test (74s)
+[longread] 45,000 docs -> 82,196 train / 985 test (81s)
+[longread] 50,000 docs -> 90,158 train / 1,082 test (88s)
+[longread] 55,000 docs -> 97,838 train / 1,130 test (95s)
+[longread] 60,000 docs -> 106,144 train / 1,189 test (102s)
+[longread] 65,000 docs -> 114,727 train / 1,320 test (109s)
+[longread] 70,000 docs -> 123,444 train / 1,387 test (116s)
+[longread] 75,000 docs -> 132,394 train / 1,478 test (124s)
+[longread] 80,000 docs -> 140,356 train / 1,555 test (131s)
+[longread] 85,000 docs -> 148,504 train / 1,624 test (138s)
+[longread] 90,000 docs -> 156,165 train / 1,684 test (145s)
+[longread] 95,000 docs -> 164,519 train / 1,756 test (152s)
+[longread] 100,000 docs -> 172,581 train / 1,805 test (159s)
+[longread] 105,000 docs -> 180,722 train / 1,848 test (167s)
+[longread] 110,000 docs -> 189,146 train / 1,962 test (175s)
+[longread] 115,000 docs -> 197,112 train / 2,000 test (183s)
+[longread] 120,000 docs -> 204,954 train / 2,000 test (190s)
+[longread] 125,000 docs -> 213,045 train / 2,000 test (198s)
+[longread] 130,000 docs -> 221,236 train / 2,000 test (206s)
+[longread] 135,000 docs -> 229,263 train / 2,000 test (215s)
+[longread] 140,000 docs -> 237,938 train / 2,000 test (226s)
+[longread] 145,000 docs -> 246,930 train / 2,000 test (240s)
+[longread] 150,000 docs -> 254,808 train / 2,000 test (250s)
+[longread] 155,000 docs -> 262,570 train / 2,000 test (259s)
+[longread] 160,000 docs -> 270,742 train / 2,000 test (269s)
+[longread] 165,000 docs -> 280,599 train / 2,000 test (282s)
+[longread] 170,000 docs -> 290,462 train / 2,000 test (297s)
+[longread] 175,000 docs -> 299,159 train / 2,000 test (309s)
+[longread] 180,000 docs -> 308,095 train / 2,000 test (324s)
+[longread] 185,000 docs -> 317,105 train / 2,000 test (342s)
+[longread] 190,000 docs -> 326,973 train / 2,000 test (359s)
+[longread] 195,000 docs -> 336,993 train / 2,000 test (374s)
+[longread] 200,000 docs -> 346,766 train / 2,000 test (391s)
+[longread] 205,000 docs -> 356,775 train / 2,000 test (413s)
+[longread] 210,000 docs -> 367,362 train / 2,000 test (428s)
+[longread] 215,000 docs -> 377,293 train / 2,000 test (445s)
+[longread] 220,000 docs -> 387,048 train / 2,000 test (462s)
+[longread] 225,000 docs -> 396,781 train / 2,000 test (474s)
+[reading] rehearsal: 39,638 sentences from 15 lessons + record
+{
+ "built": "2026-10-16T00:34:58",
+ "core": "results\\core_checkpoint.pt",
+ "core_generation": 292,
+ "params": 60513920,
+ "talk_examples": 22859,
+ "reading_windows": 292383,
+ "school_tokens": 995328,
+ "note": "Long-reading lesson: passages of Simple English Wikipedia (CC BY-SA 3.0 + GFDL, Wikipedia contributors), Project Gutenberg public-domain books, and FineWeb-Edu (ODC-By 1.0, Hugging Face, from Common Crawl); questions made by rule-based code templates from the text itself (no generated text). pg1022 (E7L) never used.",
+ "seconds": 521.1,
+ "files": {
+  "core.pt": 242558781,
+  "lesson.npz": 489910227,
+  "reading.npy": 299985086,
+  "school.npy": 1990784,
+  "talk.npz": 14197385,
+  "test.jsonl": 3380771
+ },
+ "lesson": {
+  "train": 400000,
+  "test": 2000,
+  "train_tokens": 162236491,
+  "kinds": {
+   "after": 91715,
+   "name": 49910,
+   "word": 92145,
+   "first": 67978,
+   "number": 16328,
+   "year": 24601,
+   "which": 38200,
+   "define": 19123
+  },
+  "sources": {
+   "web": 319613,
+   "wiki": 58905,
+   "book": 21482
+  },
+  "distractor": 94356,
+  "dropped_e7l_overlap": 26,
+  "where": [
+   81955,
+   41434,
+   33854,
+   31963,
+   30627,
+   34308,
+   32565,
+   32138,
+   39675,
+   41481
+  ]
+ }
+}
+{"ts": "2026-10-16T00:35:00", "step": "bundle built", "seconds": 522, "files": {"core.pt": 242558781, "lesson.npz": 489910227, "reading.npy": 299985086, "school.npy": 1990784, "talk.npz": 14197385, "test.jsonl": 3380771}, "lesson": {"train": 400000, "test": 2000, "train_tokens": 162236491, "kinds": {"after": 91715, "name": 49910, "word": 92145, "first": 67978, "number": 16328, "year": 24601, "which": 38200, "define": 19123}, "distractor": 94356}}
+{"ts": "2026-10-16T00:36:15", "step": "uploaded", "file": "core.pt", "mb": 242.6, "seconds": 73.5, "mb_per_s": 3.3}
+{"ts": "2026-10-16T00:38:18", "step": "uploaded", "file": "lesson.npz", "mb": 489.9, "seconds": 123.2, "mb_per_s": 3.98}
+{"ts": "2026-10-16T00:39:33", "step": "uploaded", "file": "reading.npy", "mb": 300.0, "seconds": 74.9, "mb_per_s": 4.01}
+{"ts": "2026-10-16T00:39:34", "step": "uploaded", "file": "school.npy", "mb": 2.0, "seconds": 1.7, "mb_per_s": 1.18}
+{"ts": "2026-10-16T00:39:39", "step": "uploaded", "file": "talk.npz", "mb": 14.2, "seconds": 4.3, "mb_per_s": 3.29}
+{"ts": "2026-10-16T00:39:41", "step": "uploaded", "file": "test.jsonl", "mb": 3.4, "seconds": 2.1, "mb_per_s": 1.63}
+{"ts": "2026-10-16T00:39:42", "step": "uploaded", "file": "bundle.json", "mb": 0.0, "seconds": 1.4, "mb_per_s": 0.0}
+{"ts": "2026-10-16T00:39:43", "step": "upload verified", "release": "cloud-20261016-0034", "mb_sent": 1052.0, "seconds": 281.5}
+{"ts": "2026-10-16T00:39:43", "step": "plan", "release": "https://github.com/JaronKBragg7337/sapling/releases/download/cloud-20261016-0034", "pod_start_cmd": "set -x\nmkdir -p /workspace/out\necho '{\"state\":\"booting\"}' > /workspace/out/status.json\n( sleep 5700; echo \"watchdog $(date)\" >> /workspace/out/watchdog.txt;\n  runpodctl remove pod $RUNPOD_POD_ID || runpodctl pod delete $RUNPOD_POD_ID || runpodctl stop pod $RUNPOD_POD_ID ) &\ncd /workspace/out && nohup python -m http.server 8000 > /dev/null 2>&1 &\ncd /workspace && git clone --depth 1 https://github.com/JaronKBragg7337/sapling && cd sapling && pip install -q numpy pyyaml\npython tools/cloud_lesson.py --base https://github.com/JaronKBragg7337/sapling/releases/download/cloud-20261016-0034 --out /workspace/out --minutes 55 --micro 32 > /workspace/out/run.txt 2>&1\nsleep infinity\n", "expected_pod_hours": 1.17, "expected_cost": "$3.14 community / $4.66 secure", "hard_cap_cost": "$6.32 (watchdog at 95 min)"}
+{"ts": "2026-10-16T00:39:43", "step": "dry run ends here - no pod created"}

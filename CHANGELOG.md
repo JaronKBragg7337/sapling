@@ -11,6 +11,24 @@
   memory folding would have worn the web reading down after tonight's swap. Replay now follows the v4 mix (stories 11 / adult 4 /
   web 14). Found by Vex (ChatGPT) reviewing mailbox #46; checked and fixed by Claude before the swap.
 
+## v4.1 (2026-10-16, built ~12:30 AM, NOT run yet) - the long-reading lesson + a rented-GPU runner (Claude as teacher)
+Jaron wants to step up with a cloud GPU. Built tonight while the v4 chain finished on the MSI; nothing trained.
+- **`sapling/longread_lesson.py`** - a lesson aimed at E7L (0/40) and the look-back skill under it (E10 109/2016 at
+  1.08B tokens). Passages of 200-450 tokens of human text already on disk (Simple English Wikipedia, Gutenberg,
+  FineWeb-Edu), then a question whose answer is a span copied from earlier in the passage; loss on the answer only;
+  chat format. Questions are made by rule from the text (8 templates: what comes after / word before-after / which
+  sentence / copy first-second-last / a year / a number + noun / a name / "what is X"), no generated text. Fact
+  position drawn uniformly; ~30% of examples carry a distractor passage. 1% of documents held out as the test set;
+  E7L's essay is never read and any passage sharing an 8-word run with it is dropped. D31.
+- **`tools/runpod_run.py`** (MSI) + **`tools/cloud_lesson.py`** (pod): bundle -> GitHub release (public, verified) ->
+  one H100 pod (community first, then secure) -> train ~55 min -> core back over the pod's port 8000 -> the pod is
+  ALWAYS deleted in `finally`, plus a watchdog inside the pod (deletes itself at 95 min with its own key) and a
+  Windows one-shot "Sapling Cloud Reaper" task (`--reap`) at 105 min. START/TERMINATE lines with cost go to
+  AI-Shared/state/cloud-gpu-log.md. Then (default) measure + chat samples, heartbeat stop (waits), swap, restart. D32.
+- `--dry-run` does everything except create the pod (bundle, upload, live price, plan). Run tonight - see RUN-TIMES.md.
+- Tests: `tests/test_cloud.py` (every rule question answers with a span from its passage; held-out split; answer-only
+  loss packing; the pod command has the watchdog and no secret; a dry run never creates a pod).
+
 ## v4.0.3 (2026-10-15 ~10:30 PM) - the overnight chain made safe (Grok Build review, 10/15 10:18 PM)
 Grok Build read tonight's chain (AI-Shared/projects/fly-brain/panel/grok-review-v4/review.md) and found ways it could
 freeze the card with Unreal or leave Sapling down. All eight fixed before Stage A finished; Stage A (pid 4176) untouched.

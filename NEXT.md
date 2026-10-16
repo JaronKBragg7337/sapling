@@ -6,6 +6,15 @@ v1's three steps: (1) runs-without-you is DONE (the heartbeat); (2) record -> co
 is DONE (no gate; `/confirm` and `/invalidate` verdicts are the selection events); (3) a world
 to practice in is still open. Ordered by dependency.
 
+## 000. The cloud long-reading lesson (built 10/16, not run) - the morning command
+
+```bash
+python tools/runpod_run.py            # bundle (reused) -> upload (reused) -> H100 pod -> ~55 min lesson -> core back -> pod deleted -> swap
+```
+~75 min door to door, ~$3.40 on community cloud ($5.00 secure); hard cap $6.32. Watch: results/cloud/<stamp>/runner.jsonl,
+AI-Shared/state/cloud-gpu-log.md, and the phone (ntfy at start and end). After it: E7L / E10 on the card, and the held-out
+lesson score in the runner log. If anything looks stuck: `python tools/runpod_run.py --reap` deletes every sapling-* pod.
+
 ## 00. v4 (10/15, Claude as teacher) - running tonight; what comes after it
 
 Stage A (a fresh 60.5M core reading 1.2B tokens) and Stage B (conversation lessons) run unattended tonight via

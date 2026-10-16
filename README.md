@@ -55,6 +55,15 @@ append-only hash-chained record for his eyes.
 | Backup to an owner machine needs owner approval | Kimi | on, pending Jaron's keep/drop |
 | The system cannot write this file | Kimi (structural) | on |
 
+## The long-reading lesson on a rented GPU (built 10/16)
+
+`sapling/longread_lesson.py` builds ~400k reading questions by rule from human text it already has (answer = a span
+copied from earlier in a 200-450-token passage; 1% of documents held out; E7L's essay never used), and
+`tools/runpod_run.py` runs them on one rented H100 (RunPod) for ~55 minutes with reading, conversation and school
+replay, brings the core back and deletes the pod (three ways: finally, an in-pod watchdog, a reaper task). Every pod
+start and stop is a line in AI-Shared/state/cloud-gpu-log.md. `python tools/runpod_run.py --dry-run` does all of it
+except renting the GPU. Choices: DESIGN-CHOICES D31-D32; the command and cost: NEXT.md.
+
 ## Where old checkpoints live (10/15, Jaron's call)
 
 Every generation except the newest 10 (plus the last one of each day) is uploaded to a **GitHub release** on this repo -
@@ -373,6 +382,7 @@ sapling/
   curriculum2.py   # school level 2: simple -> grammar -> paragraphs -> comprehension -> stories (cold E6/E7 splits)
   curriculum3.py   # school level 3: copy -> bridge -> prose / docs / longread (Gutenberg; one essay held out for E7L)
   reading.py       # the reading stage - prepare (text -> uint16 shards) / stage (v3.2 in place; --v4 = a fresh 60.5M core, gradient accumulation) / probes = exams + text-window loss / pauses for Blender and Unreal / summary (the chart)
+  longread_lesson.py # v4.1: the long-reading lesson - rule-made questions on human text (build) + train_bundle (runs on the rented GPU)
   talk.py          # v4: conversation lessons - build (oasst1 + dolly + its own lessons) / train (answers-only loss, reading + school replay) / teacher_summary (the page card)
   pieces.py        # v3.1: word pieces (BPE, "##" continuation) + forced splits of the school's composed words
   text.py          # normalize(): story text / phone typing -> the school's spacing
@@ -386,6 +396,9 @@ owner_exam.json    # E9: the exam the owner writes about his own documents (q / 
 data/              # gitignored: tinystories/ (CDLA-Sharing-1.0), gutenberg/ (public domain), reading/ (raw text incl. FineWeb-Edu + oasst1 + dolly, shards, manifest.json with every licence check), talk/ (v4 conversation lessons)
 tools/             # OWNER side, outside the AI's package:
   fetch_reading.py # fetches the reading text (v4: + FineWeb-Edu, oasst1, dolly-15k), checks each source's licence live, writes data/reading/manifest.json
+  runpod_run.py    # v4.1: one rented H100 for the long-reading lesson - bundle, upload, pod, watch, fetch, ALWAYS delete, swap; --dry-run, --reap
+  cloud_lesson.py  # v4.1: runs on the pod: download the bundle, train, serve status + core on port 8000
+  bench_speed.py   # speed test of the v4 core (MSI vs cloud, RUN-TIMES.md)
   teach_v4.py      # v4: the overnight teaching run after Stage A (measure -> conversation lessons -> measure -> swap -> 5 consolidations -> measure)
   measure_core.py  # v4: exams + text-window loss for any core file -> results/teacher/measurements.jsonl
   chat_samples.py  # v4: the same ten chat prompts + one conversation through the real chat path (on a copy of memory.db)
@@ -398,7 +411,7 @@ DESIGN-CHOICES.md  # every design choice an AI made, who made it, what it affect
 PROPOSALS.md       # open questions for the owner; nothing in here is built
 CHANGELOG.md       # v1 -> v2 -> v2.1 -> v3 -> v3.1 -> v3.2 -> v3.2.1 -> v4, each change tied to Jaron's decision
 results/           # report card (history kept, FAILs kept), train log, stop reports, memory.db, checkpoints/, reading/ (v3.2 probe log + state), reading_v4/ (v4 probe log), teacher/ (measurements + run log), chat_samples/
-tests/             # 60 pytest tests + plain runner (conftest.py: the real archive never runs inside a test)
+tests/             # 65 pytest tests + plain runner (conftest.py: the real archive never runs inside a test)
 ```
 
 ## Lineage
