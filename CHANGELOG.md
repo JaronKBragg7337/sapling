@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-17 ~8:50 AM - overnight retention check: the fix holds in the real world (Kimi)
+55 of its own consolidations overnight (gen 469 -> 524, the heartbeat's normal pace, D36 mix): **long reading
+20 -> 17/40** (-0.3 per 5 folds; the old mix lost 9 in 27). Reading 32 -> 36/40, bridge 83 -> 79, facts back to
+4/7 as expected. Watch item: affix recall 24 -> 18/24 (a FAIL on the card; seeded exam, same items - real drift,
+watching). Window losses flat (1.336 / 3.006 / 3.084). Measured with `tools/measure_core.py` on the live core.
+
 
 
 ## 2026-10-17 ~12:20 AM - the second cloud lesson: long reading 20/40, the best it has ever been (Kimi as teacher)
