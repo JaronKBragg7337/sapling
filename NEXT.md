@@ -6,12 +6,14 @@ v1's three steps: (1) runs-without-you is DONE (the heartbeat); (2) record -> co
 is DONE (no gate; `/confirm` and `/invalidate` verdicts are the selection events); (3) a world
 to practice in is still open. Ordered by dependency.
 
-## 0000. Lesson retention - CLOSED 10/16 ~10:20 PM (D36 adopted)
+## 0000. Lesson retention - CLOSED 10/16 ~10:20 PM (D36 adopted); second cloud lesson DONE 10/17 ~12:20 AM
 The wear is fixed: cores that had the cloud lesson no longer rehearse the school's old `longread`/`docs` sentences in
 consolidations (D36; the S1-S4 fold-test matrix in CHANGELOG 10/16 ~10:20 PM). E7L wear per 5 folds: 5-6 -> ~1.
-Still open: (a) what the last ~1 point per 5 folds is (watch the card); (b) a second cloud lesson with the missing
-E7L-style kinds is prepared in `longread_lesson.py` (templates v2) and needs `python tools/runpod_run.py --rebuild`
-before it can run - with D36 in place, a second lesson's gains should now survive the heartbeat.
+The second cloud lesson (v2 templates) ran 10/16 11:14 PM: long reading exam 20/40, best ever (CHANGELOG 10/17
+~12:20 AM). Open: (a) what the last ~1 point per 5 folds is (watch the card); (b) the 5-fold retention check on the
+gen 469 core (`python tools/fold_test.py --core results/cloud/20261016-2314/core_staged.pt --label "gen 469 retention"`)
+- the first lesson run under D36 protection; (c) the "copy the first sentence of the passage with ..." kind is still
+the weakest (10/70 held out) - a third lesson could weight it more.
 
 ## 000. The cloud long-reading lesson (built 10/16, not run) - the morning command
 

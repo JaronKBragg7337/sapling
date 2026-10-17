@@ -1,0 +1,77 @@
+{
+ "ts": "2026-10-17T00:11:14",
+ "label": "after long-reading lesson (cloud 20261016-2314)",
+ "core": "results\\cloud\\20261016-2314\\core_staged.pt",
+ "single": [
+  {
+   "prompt": "hello! who are you?",
+   "answer": "I'm Sapling, a small synthetic cognitive assistant that grows as it learns.  [memory:447 user/captured: the word hello means a greeting]",
+   "seconds": 0.65
+  },
+  {
+   "prompt": "what is your name?",
+   "answer": "I'm Sapling, a small synthetic cognitive assistant that grows as it learns.",
+   "seconds": 0.43
+  },
+  {
+   "prompt": "what is the sun?",
+   "answer": "The sun is how we refer to the star in our solar system, around which each of the planets rotate.",
+   "seconds": 0.44
+  },
+  {
+   "prompt": "why is the sky blue?",
+   "answer": "All the light in our daytime sky comes from the sun. Our sunlight is directed at green light as an expander andise gh summed it up by a combination of factors: the light itself emits when it sacrificially changes position to the ground, into a spectrum of colors everything that passes through one'sluses hair. When light enters the skyline, our disc equalizes and opinion whips but these disc equalates are aligned with our favourite color pale colors.",
+   "seconds": 1.96
+  },
+  {
+   "prompt": "tell me a short story about a dog.",
+   "answer": "About a dog they were called to as an outdoor hunting. The dog was just about like any other dog there on earth., had a wild look and ruth like bark, with long buccalant colored fur and 185auds turned and walks in winter when the dog was an old person. Little did they know, that they had simply left the forest yesterday by man, where they came together for even though the age of the best athletes was is and. P27 they were perhaps the most famous dogs down under a thousand, so I had to take them down after ko even though I loved to climb trees. To get to the top of the highest branches, you would limp only one bird and can't fly in one windbreaker before anyone else",
+   "seconds": 3.19
+  },
+  {
+   "prompt": "what does respect mean?",
+   "answer": "The word respect means look again.",
+   "seconds": 0.21
+  },
+  {
+   "prompt": "how do plants make their food?",
+   "answer": "Plants help makes food. People also prefer other foodstuffs, such as grains and legumes, but can't eat them all.",
+   "seconds": 0.55
+  },
+  {
+   "prompt": "can you help me write a short note to thank a friend?",
+   "answer": "Of course, I'll be happy to help you. What would you like to write?",
+   "seconds": 0.44
+  },
+  {
+   "prompt": "what is a roof made of?",
+   "answer": "A roof could be made of anything or providing additional protection because of the shape of the house. Some roofs can also be made of plastic or polyp or polyurethane. In addition to plastic walls and flexible roofing, many roofs have other things such as furniture or interior materials that are better suited to your home or business.",
+   "seconds": 1.18
+  },
+  {
+   "prompt": "what would you like to learn next?",
+   "answer": "More about the world, and how to talk well with people. I would like to read more and to be taught.",
+   "seconds": 0.84
+  }
+ ],
+ "conversation": [
+  {
+   "prompt": "hi, i am jaron.",
+   "answer": "Hello, I am an open source chat assistant. It helps multiple devices work together on the same network. I am trained on a set of supported datasets and can talk to anyone with accessibility to a group or small group of friends for hours."
+  },
+  {
+   "prompt": "what is my name?",
+   "answer": "My name is Jaron."
+  },
+  {
+   "prompt": "what do you know about rain?",
+   "answer": "Rain is a serious matter. It's a substance that has a such length, and in order to formats a container you have need to clean it because water clouds come from different sources. Jaron is other related to rain but also have a type of info system called infrared smart datakit which provides better security on a large scale."
+  },
+  {
+   "prompt": "why does it fall down?",
+   "answer": "It will Jaron an attacker whose aim is to damage or even nomadic humans. = npc. National geographic hub = de ki in short, jaroning clouds means the infrastructure of Jaron and baseload. Jaron can be security intensive as developers always have a way to make code that extractes inputs that they need quickly. Jaron works by using highly specialized hardware called jaronthreads npcs to run large scale production development. Npcs can be used on a many different platforms, from simple server compute to complex databases where central tendency supervises and management are needed for very complex tasks. Jaron offers several advantages over other forms of"
+  }
+ ],
+ "params": 60514560,
+ "generation": 458
+}

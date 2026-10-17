@@ -1,0 +1,161 @@
+=== cloud lesson 2 (rebuild + run) start Fri 10/16/2026 22:52:44.33 === 
+{"ts": "2026-10-16T22:52:44", "step": "start", "dry": false, "minutes": 55, "max_pod_minutes": 95, "gpu": "NVIDIA H100 80GB HBM3", "image": "runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04"}
+{"ts": "2026-10-16T22:52:44", "step": "price", "quote": {"id": "NVIDIA H100 80GB HBM3", "displayName": "H100 SXM", "memoryInGb": 80, "securePrice": 3.99, "communityPrice": 2.69, "secureCloud": true, "communityCloud": true, "lowest": {"minimumBidPrice": null, "uninterruptablePrice": 2.69}}}
+{"ts": "2026-10-16T22:52:45", "step": "pods running before", "n": 0, "names": []}
+[longread] 5,000 docs -> 10,397 train / 62 test (15s)
+[longread] 10,000 docs -> 23,263 train / 199 test (35s)
+[longread] 15,000 docs -> 32,296 train / 319 test (50s)
+[longread] 20,000 docs -> 40,778 train / 400 test (63s)
+[longread] 25,000 docs -> 49,272 train / 491 test (75s)
+[longread] 30,000 docs -> 58,926 train / 645 test (90s)
+[longread] 35,000 docs -> 68,349 train / 832 test (106s)
+[longread] 40,000 docs -> 77,763 train / 935 test (122s)
+[longread] 45,000 docs -> 86,094 train / 1,049 test (137s)
+[longread] 50,000 docs -> 94,326 train / 1,161 test (150s)
+[longread] 55,000 docs -> 102,409 train / 1,210 test (163s)
+[longread] 60,000 docs -> 111,028 train / 1,276 test (176s)
+[longread] 65,000 docs -> 119,926 train / 1,425 test (190s)
+[longread] 70,000 docs -> 129,020 train / 1,485 test (204s)
+[longread] 75,000 docs -> 138,326 train / 1,596 test (218s)
+[longread] 80,000 docs -> 146,683 train / 1,689 test (231s)
+[longread] 85,000 docs -> 155,227 train / 1,771 test (244s)
+[longread] 90,000 docs -> 163,330 train / 1,835 test (257s)
+[longread] 95,000 docs -> 171,780 train / 1,935 test (270s)
+[longread] 100,000 docs -> 180,228 train / 1,993 test (285s)
+[longread] 105,000 docs -> 188,773 train / 2,000 test (299s)
+[longread] 110,000 docs -> 197,635 train / 2,000 test (314s)
+[longread] 115,000 docs -> 206,024 train / 2,000 test (328s)
+[longread] 120,000 docs -> 214,056 train / 2,000 test (341s)
+[longread] 125,000 docs -> 222,538 train / 2,000 test (354s)
+[longread] 130,000 docs -> 230,944 train / 2,000 test (369s)
+[longread] 135,000 docs -> 239,274 train / 2,000 test (383s)
+[longread] 140,000 docs -> 248,306 train / 2,000 test (397s)
+[longread] 145,000 docs -> 257,771 train / 2,000 test (418s)
+[longread] 150,000 docs -> 266,055 train / 2,000 test (434s)
+[longread] 155,000 docs -> 274,004 train / 2,000 test (447s)
+[longread] 160,000 docs -> 282,703 train / 2,000 test (462s)
+[longread] 165,000 docs -> 293,131 train / 2,000 test (482s)
+[longread] 170,000 docs -> 303,133 train / 2,000 test (499s)
+[longread] 175,000 docs -> 312,440 train / 2,000 test (514s)
+[longread] 180,000 docs -> 321,781 train / 2,000 test (531s)
+[longread] 185,000 docs -> 331,312 train / 2,000 test (547s)
+[longread] 190,000 docs -> 341,556 train / 2,000 test (563s)
+[longread] 195,000 docs -> 352,086 train / 2,000 test (579s)
+[longread] 200,000 docs -> 362,325 train / 2,000 test (596s)
+[longread] 205,000 docs -> 372,675 train / 2,000 test (616s)
+[longread] 210,000 docs -> 383,619 train / 2,000 test (632s)
+[longread] 215,000 docs -> 393,874 train / 2,000 test (647s)
+[reading] rehearsal: 39,638 sentences from 15 lessons + record
+{
+ "built": "2026-10-16T23:04:47",
+ "core": "results\\core_checkpoint.pt",
+ "core_generation": 455,
+ "core_file": "core_gen0455.pt",
+ "params": 60514560,
+ "talk_examples": 23009,
+ "reading_windows": 292383,
+ "school_tokens": 995328,
+ "note": "Long-reading lesson: passages of Simple English Wikipedia (CC BY-SA 3.0 + GFDL, Wikipedia contributors), Project Gutenberg public-domain books, and FineWeb-Edu (ODC-By 1.0, Hugging Face, from Common Crawl); questions made by rule-based code templates from the text itself (no generated text). pg1022 (E7L) never used.",
+ "seconds": 720.5,
+ "files": {
+  "core_gen0455.pt": 242562301,
+  "lesson.npz": 487465378,
+  "reading.npy": 299985086,
+  "school.npy": 1990784,
+  "talk.npz": 14216159,
+  "test.jsonl": 3664139
+ },
+ "lesson": {
+  "train": 400002,
+  "test": 2000,
+  "train_tokens": 161421536,
+  "kinds": {
+   "name": 35434,
+   "word": 103898,
+   "first": 109415,
+   "define": 13556,
+   "after": 32991,
+   "number": 11200,
+   "which": 53618,
+   "year": 17404,
+   "first_with": 22486
+  },
+  "sources": {
+   "web": 315148,
+   "wiki": 61503,
+   "book": 23351
+  },
+  "distractor": 85591,
+  "dropped_e7l_overlap": 30,
+  "where": [
+   117822,
+   40650,
+   27905,
+   25584,
+   24345,
+   27760,
+   26641,
+   26011,
+   36588,
+   46696
+  ]
+ }
+}
+{"ts": "2026-10-16T23:04:49", "step": "bundle built", "seconds": 722, "files": {"core_gen0455.pt": 242562301, "lesson.npz": 487465378, "reading.npy": 299985086, "school.npy": 1990784, "talk.npz": 14216159, "test.jsonl": 3664139}, "lesson": {"train": 400002, "test": 2000, "train_tokens": 161421536, "kinds": {"name": 35434, "word": 103898, "first": 109415, "define": 13556, "after": 32991, "number": 11200, "which": 53618, "year": 17404, "first_with": 22486}, "distractor": 85591}}
+Traceback (most recent call last):
+  File "C:\Users\lilli\Projects\sapling\tools\runpod_run.py", line 406, in <module>
+    main()
+  File "C:\Users\lilli\Projects\sapling\tools\runpod_run.py", line 364, in main
+    base = None if (a.dry_run and a.skip_upload) else upload_bundle(run, info)
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lilli\Projects\sapling\tools\runpod_run.py", line 178, in upload_bundle
+    code, out = gh(["release", "view", tag, "--json", "assets"])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lilli\Projects\sapling\tools\runpod_run.py", line 171, in gh
+    p = subprocess.run(["gh"] + args + ["-R", REPO], capture_output=True, text=True, timeout=timeout)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lilli\scoop\apps\python312\current\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lilli\scoop\apps\python312\current\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\lilli\scoop\apps\python312\current\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+=== runner exited Fri 10/16/2026 23:04:49.75 === 
+{"reaped": []}
+=== ALL DONE Fri 10/16/2026 23:04:50.36 === 
+=== cloud lesson 2 resume (bundle reused) Fri 10/16/2026 23:14:00.50 === 
+{"ts": "2026-10-16T23:14:00", "step": "start", "dry": false, "minutes": 55, "max_pod_minutes": 95, "gpu": "NVIDIA H100 80GB HBM3", "image": "runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04"}
+{"ts": "2026-10-16T23:14:00", "step": "price", "quote": {"id": "NVIDIA H100 80GB HBM3", "displayName": "H100 SXM", "memoryInGb": 80, "securePrice": 3.99, "communityPrice": 2.69, "secureCloud": true, "communityCloud": true, "lowest": {"minimumBidPrice": null, "uninterruptablePrice": 2.69}}}
+{"ts": "2026-10-16T23:14:01", "step": "pods running before", "n": 0, "names": []}
+{"ts": "2026-10-16T23:14:03", "step": "bundle reused", "built": "2026-10-16T23:04:47", "core": "core_gen0458.pt", "files": {"lesson.npz": 487465378, "reading.npy": 299985086, "school.npy": 1990784, "talk.npz": 14216159, "test.jsonl": 3664139, "core_gen0458.pt": 242562301}}
+{"ts": "2026-10-16T23:16:14", "step": "uploaded", "file": "lesson.npz", "mb": 487.5, "seconds": 129.1, "mb_per_s": 3.78}
+{"ts": "2026-10-16T23:17:32", "step": "uploaded", "file": "reading.npy", "mb": 300.0, "seconds": 78.1, "mb_per_s": 3.84}
+{"ts": "2026-10-16T23:17:33", "step": "uploaded", "file": "school.npy", "mb": 2.0, "seconds": 1.6, "mb_per_s": 1.27}
+{"ts": "2026-10-16T23:17:38", "step": "uploaded", "file": "talk.npz", "mb": 14.2, "seconds": 4.4, "mb_per_s": 3.22}
+{"ts": "2026-10-16T23:17:40", "step": "uploaded", "file": "test.jsonl", "mb": 3.7, "seconds": 1.9, "mb_per_s": 1.96}
+{"ts": "2026-10-16T23:18:36", "step": "uploaded", "file": "core_gen0458.pt", "mb": 242.6, "seconds": 56.9, "mb_per_s": 4.26}
+{"ts": "2026-10-16T23:18:37", "step": "uploaded", "file": "bundle.json", "mb": 0.0, "seconds": 1.0, "mb_per_s": 0.0}
+{"ts": "2026-10-16T23:18:38", "step": "upload verified", "release": "cloud-20261016-2304", "mb_sent": 1049.9, "seconds": 273.4}
+{"ts": "2026-10-16T23:18:38", "step": "plan", "release": "https://github.com/JaronKBragg7337/sapling/releases/download/cloud-20261016-2304", "pod_start_cmd": "set -x\nmkdir -p /workspace/out\necho '{\"state\":\"booting\"}' > /workspace/out/status.json\n( sleep 5700; echo \"watchdog $(date)\" >> /workspace/out/watchdog.txt;\n  runpodctl remove pod $RUNPOD_POD_ID || runpodctl pod delete $RUNPOD_POD_ID || runpodctl stop pod $RUNPOD_POD_ID ) &\ncd /workspace/out && nohup python -m http.server 8000 > /dev/null 2>&1 &\ncd /workspace && git clone --depth 1 https://github.com/JaronKBragg7337/sapling && cd sapling && pip install -q numpy pyyaml\npython tools/cloud_lesson.py --base https://github.com/JaronKBragg7337/sapling/releases/download/cloud-20261016-2304 --out /workspace/out --minutes 55 --micro 32 > /workspace/out/run.txt 2>&1\nsleep infinity\n", "expected_pod_hours": 1.17, "expected_cost": "$3.14 community / $4.66 secure", "hard_cap_cost": "$6.32 (watchdog at 95 min)"}
+{"ts": "2026-10-16T23:18:38", "step": "pod not created", "cloud": "COMMUNITY", "why": "COMMUNITY: 500 {'error': 'create pod: There are no instances currently available', 'status': 500}"}
+{"ts": "2026-10-16T23:18:39", "step": "pod created", "cloud": "SECURE", "pod": "tmqsavrbevrw9y", "cost_per_hr": 3.99, "adjusted": null}
+{"ts": "2026-10-16T23:18:40", "step": "pod status", "state": "unreachable", "last": null, "error": "HTTP Error 404: Not Found"}
+{"ts": "2026-10-16T23:19:41", "step": "pod status", "state": "training", "last": {"ts": "2026-10-17T03:19:35", "kind": "plan", "steps_per_s": 11.087, "total_steps": 32991, "tokens_planned": 1081049088}, "error": null}
+{"ts": "2026-10-16T23:20:41", "step": "pod status", "state": "training", "last": {"ts": "2026-10-17T03:20:39", "kind": "step", "step": 800, "of": 32991, "loss": 1.6265, "lr": 0.0001999, "tok_per_s": 382336, "minutes": 1.5}, "error": null}
+{"ts": "2026-10-16T23:30:44", "step": "pod status", "state": "training", "last": {"ts": "2026-10-17T03:30:40", "kind": "step", "step": 7600, "of": 32991, "loss": 1.5901, "lr": 0.0001788, "tok_per_s": 371883, "minutes": 11.6}, "error": null}
+{"ts": "2026-10-16T23:40:47", "step": "pod status", "state": "training", "last": {"ts": "2026-10-17T03:40:40", "kind": "step", "step": 14400, "of": 32991, "loss": 1.5186, "lr": 0.0001293, "tok_per_s": 371629, "minutes": 21.6}, "error": null}
+{"ts": "2026-10-16T23:50:50", "step": "pod status", "state": "training", "last": {"ts": "2026-10-17T03:50:42", "kind": "step", "step": 21200, "of": 32991, "loss": 1.4456, "lr": 7.19e-05, "tok_per_s": 371237, "minutes": 31.6}, "error": null}
+{"ts": "2026-10-17T00:00:54", "step": "pod status", "state": "training", "last": {"ts": "2026-10-17T04:00:22", "kind": "step", "step": 28000, "of": 32991, "loss": 1.4172, "lr": 3.02e-05, "tok_per_s": 374335, "minutes": 41.3}, "error": null}
+{"ts": "2026-10-17T00:09:56", "step": "pod status", "state": "done", "last": {"ts": "2026-10-17T04:08:58", "kind": "done", "steps": 32991, "tokens": 1081049088, "minutes": 49.9, "loss_last": 1.3789, "heldout_after": {"score": "539/1000", "accuracy": 0.539, "by_kind": {"number": "25/41", "year": "25/57", "first": "193/258", "word": "156/257", "name": "33/76", "which": "56/150", "after": "16/57", "define": "25/34", "first_with": "10/70"}}}, "error": null}
+{"ts": "2026-10-17T00:10:00", "step": "fetched", "files": {"core_staged.pt": {"bytes": 242564305, "seconds": 2.5}, "log.jsonl": {"bytes": 25675, "seconds": 0.3}, "status.json": {"bytes": 1373, "seconds": 0.2}, "run.txt": {"bytes": 25675, "seconds": 0.2}}}
+{"ts": "2026-10-17T00:10:01", "step": "pod terminated", "deleted": true, "minutes": 51.4, "cost": 3.42, "left": []}
+{"ts": "2026-10-17T00:13:36", "step": "heartbeat stop", "result": "owner stop requested (results/heartbeat.stop); it will write a stop report and exit\nstopped"}
+{"ts": "2026-10-17T00:15:23", "step": "swapped", "generation": "469"}
+{"ts": "2026-10-17T00:15:31", "step": "heartbeat start", "result": "parole armed\n{'ts': '2026-10-17T00:15:30', 'action': 'parole_start', 'by': 'Claude (teacher) - cloud lesson 20261016-2314', 'after_stop': {'ts': '2026-10-17T00:13:33', 'who': 'owner', 'reason': 'stop file written by the owner', 'tick': 12812, 'kind': 'stop'}, 'waited_for_render_s': 0, 'start_output': 'started pid 27000; log results/heartbeat.log; control room http://127.0.0.1:7337/', 'via': 'tools/owner_relay.py'}"}
+{"ts": "2026-10-17T00:15:31", "step": "finished"}
+=== runner exited Sat 10/17/2026  0:15:31.52 === 
+{"reaped": []}
+=== ALL DONE Sat 10/17/2026  0:15:32.06 === 

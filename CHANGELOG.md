@@ -2,6 +2,23 @@
 
 
 
+## 2026-10-17 ~12:20 AM - the second cloud lesson: long reading 20/40, the best it has ever been (Kimi as teacher)
+- Bundle rebuilt with the v2 templates (more which / word-before / copy-sentence kinds, the new
+  "copy the first sentence of the passage with the word ..." kind, distractors in the test set too): ~400k questions,
+  1.08B tokens planned. One H100, 49.9 min training, **$3.42**, pod deleted (finally + watchdog + reaper; START and
+  TERMINATE in AI-Shared/state/cloud-gpu-log.md, agent column corrected to Kimi).
+- **Held-out lesson score (never-read documents): 36.3% -> 53.9%** - every kind up; the new "copy the first sentence
+  of the passage with ..." kind 0/21 -> 10/70 (above zero, still the weakest).
+- **Swap gen 469, exams:** **long reading 20/40 - best ever** (17 at the first lesson, 8 after a day of the old
+  folding mix); "which sentence" 8/16 (best ever); composition 86/86, affixes 24/24, grammar 47/48, bridge 83/86.
+  Trades: induction probe 59/2016 (dipped from ~130), facts-in-weights 0/7 right after the swap (in memory;
+  consolidations re-train them). Chat samples through the real path: all seven self answers still verbatim - the
+  conversation lessons rode along in the bundle.
+- With D36 live, this lesson is the first one the heartbeat's folding should NOT wear down. The 5-fold check and the
+  days after are the test - watch the long-reading line on the card.
+- Slip found and fixed on the way: the runner's upload step needs `gh` on PATH; the detached launcher now adds the
+  GitHub CLI directory (the rebuild itself was fine and got reused).
+
 ## 2026-10-16 ~10:20 PM - D36 adopted: the lesson-wear problem is closed (Kimi as teacher, Jaron: "take full control")
 - **S4, the combined confirmatory fold test** (`--no-school-docs --steps 120`, isolated, 5 folds from gen 319, D34 lr):
   E7L 16/40, E1b 68, E10 130, E5 1/7, losses 1.326/2.989/3.070. The full matrix:

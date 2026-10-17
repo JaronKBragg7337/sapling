@@ -1,9 +1,9 @@
 {
-  "ts": "2026-10-16T22:18:09",
+  "ts": "2026-10-17T00:17:26",
   "seed": 7337,
-  "trigger": "consolidation gen 451",
+  "trigger": "consolidation gen 470",
   "corpus_sha": "0dd51f33e5eb6ddf",
-  "generation": 451,
+  "generation": 470,
   "vocab_size": 17662,
   "bars": {
     "E1_composition": 0.6,
@@ -17,14 +17,20 @@
     {
       "exam": "E1_composition",
       "bar": 0.6,
-      "score": "85/86",
-      "accuracy": 0.988,
+      "score": "84/86",
+      "accuracy": 0.977,
       "verdict": "PASS",
       "detail": [
         {
-          "q": "inter spect",
-          "expected": "inter spect means look between .",
-          "got": "inter spect means look between",
+          "q": "bio er",
+          "expected": "bio er means one who life .",
+          "got": "bio er means one who time .",
+          "ok": false
+        },
+        {
+          "q": "port ed",
+          "expected": "port ed means in the past carry .",
+          "got": "port ed means in the past bring .",
           "ok": false
         },
         {
@@ -62,46 +68,16 @@
           "expected": "re struct means build again .",
           "got": "re struct means build again .",
           "ok": true
-        },
-        {
-          "q": "ex ject",
-          "expected": "ex ject means throw out .",
-          "got": "ex ject means throw out .",
-          "ok": true
         }
       ]
     },
     {
       "exam": "E2_affix_recall",
       "bar": 0.9,
-      "score": "20/24",
-      "accuracy": 0.833,
-      "verdict": "FAIL",
+      "score": "24/24",
+      "accuracy": 1.0,
+      "verdict": "PASS",
       "detail": [
-        {
-          "q": "er",
-          "expected": "one who",
-          "got": "one who practices .",
-          "ok": false
-        },
-        {
-          "q": "ed",
-          "expected": "in the past",
-          "got": "in that case it is not possible to distinguish between the physical properties of matter . the physical properties of matter and their conc",
-          "ok": false
-        },
-        {
-          "q": "ly",
-          "expected": "in that manner",
-          "got": "in thatu .",
-          "ok": false
-        },
-        {
-          "q": "ive",
-          "expected": "tending to",
-          "got": "tending to means end .",
-          "ok": false
-        },
         {
           "q": "re",
           "expected": "again",
@@ -124,6 +100,30 @@
           "q": "dis",
           "expected": "away",
           "got": "away .",
+          "ok": true
+        },
+        {
+          "q": "trans",
+          "expected": "across",
+          "got": "across .",
+          "ok": true
+        },
+        {
+          "q": "sub",
+          "expected": "under",
+          "got": "under .",
+          "ok": true
+        },
+        {
+          "q": "super",
+          "expected": "above",
+          "got": "above .",
+          "ok": true
+        },
+        {
+          "q": "inter",
+          "expected": "between",
+          "got": "between .",
           "ok": true
         }
       ]
@@ -237,31 +237,10 @@
     {
       "exam": "E6_grammar",
       "bar": 0.6,
-      "score": "45/48",
-      "accuracy": 0.938,
+      "score": "48/48",
+      "accuracy": 1.0,
       "verdict": "PASS",
       "detail": [
-        {
-          "kind": "yesno",
-          "q": "q : does jack like the bus ? a :",
-          "expected": "yes , jack likes the bus .",
-          "got": "jack likes the bus .",
-          "ok": false
-        },
-        {
-          "kind": "yesno",
-          "q": "q : do the boats eat the frog ? a :",
-          "expected": "yes , the boats eat the frog .",
-          "got": "yes , boats eat the frog .",
-          "ok": false
-        },
-        {
-          "kind": "question",
-          "q": "q : make a question : the toy looks at the cake . a :",
-          "expected": "does the toy look at the cake ?",
-          "got": "do the toys look at the cake ?",
-          "ok": false
-        },
         {
           "kind": "past",
           "q": "q : fill : yesterday sam ( hold ) the book . a :",
@@ -296,20 +275,41 @@
           "expected": "the bag holds many houses .",
           "got": "the bag holds many houses .",
           "ok": true
+        },
+        {
+          "kind": "question",
+          "q": "q : make a question : the child finds the frog . a :",
+          "expected": "does the child find the frog ?",
+          "got": "does the child find the frog ?",
+          "ok": true
+        },
+        {
+          "kind": "yesno",
+          "q": "q : does the fish read the cat ? a :",
+          "expected": "yes , the fish reads the cat .",
+          "got": "yes , the fish reads the cat .",
+          "ok": true
+        },
+        {
+          "kind": "negation",
+          "q": "q : say no : ben carries the mouse . a :",
+          "expected": "ben does not carry the mouse .",
+          "got": "ben does not carry the mouse .",
+          "ok": true
         }
       ]
     },
     {
       "exam": "E7_reading",
       "bar": 0.5,
-      "score": "34/40",
-      "accuracy": 0.85,
+      "score": "35/40",
+      "accuracy": 0.875,
       "verdict": "PASS",
       "detail": [
         {
-          "q": "passage : mia is soft . zoe is fast . zoe likes to sit . q : how is mia ? a :",
-          "expected": "soft .",
-          "got": "fast .",
+          "q": "passage : max is at the park . max has a red cake . tom has a brown foot . tom is soft . q : what color is max 's cake ? a :",
+          "expected": "red .",
+          "got": "brown .",
           "ok": false
         },
         {
@@ -319,9 +319,9 @@
           "ok": false
         },
         {
-          "q": "passage : jack is at the park . jack is sad . leo likes to sing . leo is happy . q : how is leo ? a :",
-          "expected": "happy .",
-          "got": "sad .",
+          "q": "passage : mia likes to swim . mia has a yellow house . tom is at the river . tom has a pink apple . q : who has the yellow house ? a :",
+          "expected": "mia .",
+          "got": "tom .",
           "ok": false
         },
         {
@@ -331,15 +331,9 @@
           "ok": false
         },
         {
-          "q": "passage : zoe has a black bag . zoe likes to sit . lily likes to sleep . lily is at the farm . q : who has the black bag ? a :",
-          "expected": "zoe .",
-          "got": "mia .",
-          "ok": false
-        },
-        {
-          "q": "passage : jack likes to jump . jack has a brown cake . mia likes to sit . mia is big . q : what does jack like to do ? a :",
-          "expected": "jump .",
-          "got": "sit .",
+          "q": "passage : anna likes to walk . sam likes to sing . sam is soft . q : what does sam like to do ? a :",
+          "expected": "sing .",
+          "got": "walk .",
           "ok": false
         },
         {
@@ -353,14 +347,20 @@
           "expected": "happy .",
           "got": "happy .",
           "ok": true
+        },
+        {
+          "q": "passage : nina likes to sleep . nina is soft . q : how is nina ? a :",
+          "expected": "soft .",
+          "got": "soft .",
+          "ok": true
         }
       ]
     },
     {
       "exam": "E7L_longread",
       "bar": null,
-      "score": "12/40",
-      "accuracy": 0.3,
+      "score": "16/40",
+      "accuracy": 0.4,
       "verdict": "INFO",
       "detail": [
         {
@@ -378,17 +378,10 @@
           "ok": false
         },
         {
-          "kind": "two passages",
-          "q": "mpions of civilization : the minister and the school committee and every one of you will take care of that . q : which sentence has the word plaintiveness ? a :",
-          "expected": "the merit of this bird's strain is in its freedom from all plaintiveness .",
-          "got": "the singer can easily move us to tears or to laughter , but where is he who can excite in us a pure morning joy ?",
-          "ok": false
-        },
-        {
           "kind": "one passage",
           "q": " these wild fancies , which transcend the order of time and development . they are the sublimest recreation of the intellect . q : copy the first sentence . a :",
           "expected": "the geologist has discovered that the figures of serpents , griffins , flying dragons , and other fanciful embellishments of heraldry , have their prototypes in the forms of fossil species which were extinct before man was created , and hence indicate a faint and shadowy knowledge of a previous state of organic existence .",
-          "got": "the geologist has discovered that the figures of serpents , griffins , flying dragons , and other families of cats are in the forms of fossil species which were extinct before man was created , and hence indicate a faint and",
+          "got": "the geologist has discovered that the figures of serpents , griffins , flying dragons , and other fanciful embellishments of heraldry , have their prototypes in the forms of fossil species which were extinct before man was created .",
           "ok": false
         },
         {
@@ -402,14 +395,14 @@
           "kind": "one passage",
           "q": "pell of enchantment , as if i had been transported to an heroic age , and breathed an atmosphere of chivalry . q : which sentence has the word transported ? a :",
           "expected": "i floated along under the spell of enchantment , as if i had been transported to an heroic age , and breathed an atmosphere of chivalry .",
-          "got": "i floated along under the spell of tuttle , as if i had been transported to an heroic age , and breathed a space of seahorses on both sides of the ocean at the same time .",
+          "got": "i floated along under the spell of enchantment , as if i had been transported to an heroic age , and breathed an atmosphere of reverend .",
           "ok": false
         },
         {
           "kind": "two passages",
           "q": "ng their works on the tops of columns as perfectly as on the lower and more visible parts ! q : copy the first sentence of the passage with the word above . a :",
           "expected": "but , above all , i discovered around me , it was near the end of june , on the ends of the topmost branches only , a few minute and delicate red conelike blossoms , the fertile flower of the white pine looking heavenward .",
-          "got": "tell of ancient architects finishing their works on the tops of columns as perfectly as on the lower and more visible parts !",
+          "got": "but this is like the great dragon tree of the western isles , as old as mankind , and , whether that does or not , will endure as long ; for the decay of other literatures makes the soil in which it thrive",
           "ok": false
         },
         {
@@ -418,62 +411,69 @@
           "expected": "as .",
           "got": "of .",
           "ok": false
+        },
+        {
+          "kind": "two passages",
+          "q": "wild fancies , which transcend the order of time and development . they are the sublimest recreation of the intellect . q : what word comes after which is ? a :",
+          "expected": "perfectly .",
+          "got": "a .",
+          "ok": false
         }
       ]
     },
     {
       "exam": "E1b_bridge",
       "bar": null,
-      "score": "75/86",
-      "accuracy": 0.872,
+      "score": "73/86",
+      "accuracy": 0.849,
       "verdict": "INFO",
       "detail": [
         {
-          "q": "exject",
-          "expected": "the word exject means throw out .",
-          "got": "the word exject means throw out and devolution limited",
+          "q": "intervis",
+          "expected": "the word intervis means see between .",
+          "got": "the word inter vis means see between .",
           "ok": false
         },
         {
-          "q": "prechron",
-          "expected": "the word prechron means time before .",
-          "got": "the word prechron means light before .",
+          "q": "reform",
+          "expected": "the word reform means shape again .",
+          "got": "the word reform means in this particular society .",
+          "ok": false
+        },
+        {
+          "q": "superstruct",
+          "expected": "the word superstruct means build above .",
+          "got": "i do not have that yet .",
+          "ok": false
+        },
+        {
+          "q": "unpend",
+          "expected": "the word unpend means hang not .",
+          "got": "the word unpend means hang under .",
+          "ok": false
+        },
+        {
+          "q": "cospect",
+          "expected": "the word cospect means look together .",
+          "got": "the word cospect means look again .",
+          "ok": false
+        },
+        {
+          "q": "bioable",
+          "expected": "the word bioable means can be life .",
+          "got": "the word bioable means can be life on earth .",
+          "ok": false
+        },
+        {
+          "q": "chronive",
+          "expected": "the word chronive means tending to time .",
+          "got": "the word chronive means can be time .",
           "ok": false
         },
         {
           "q": "portly",
           "expected": "the word portly means in that manner carry .",
-          "got": "portly means in that manner carry .",
-          "ok": false
-        },
-        {
-          "q": "formless",
-          "expected": "the word formless means without shape .",
-          "got": "formless means without shape .",
-          "ok": false
-        },
-        {
-          "q": "geoly",
-          "expected": "the word geoly means in that manner earth .",
-          "got": "geoly means in that manner earth .",
-          "ok": false
-        },
-        {
-          "q": "lucly",
-          "expected": "the word lucly means in that manner light .",
-          "got": "lucly is a language . it means that it can talk , write , and understand . lucly's name is generally",
-          "ok": false
-        },
-        {
-          "q": "dicting",
-          "expected": "the word dicting means ongoing say .",
-          "got": "dicting means in the past say .",
-          "ok": false
-        },
-        {
-          "q": "porter",
-          "expected": "the word porter means one who carry .",
-          "got": "porter is a conversationally sophisticated accessibility system that allows users to enter a website's",
+          "got": "the word portly means in that manner carry",
           "ok": false
         }
       ]
@@ -481,19 +481,19 @@
     {
       "exam": "E10_induction",
       "bar": null,
-      "score": "40/2016",
-      "accuracy": 0.02,
+      "score": "82/2016",
+      "accuracy": 0.041,
       "verdict": "INFO",
       "detail": [
         {
           "length": 32,
-          "score": "23/496",
-          "accuracy": 0.046
+          "score": "24/496",
+          "accuracy": 0.048
         },
         {
           "length": 96,
-          "score": "17/1520",
-          "accuracy": 0.011
+          "score": "58/1520",
+          "accuracy": 0.038
         }
       ]
     },
@@ -518,11 +518,11 @@
       "detail": [
         {
           "prompt": "once upon a time ,",
-          "text": "there was an adorable little cat named kitty . kitty loved to play with her friends in the park . one day , kitty saw a big tree and wanted to climb it . kitty asked her friend , puppy , to join her . can i climb the tree , please ? kitty said . puppy was happy to help . yes , you can . i encourage you , said kitty . so , kitty and puppy went"
+          "text": "there was a little girl named lily . she had a big , red ball that she loved to play with . one day , she went to the park with her mom and her ball . at the park ."
         },
         {
           "prompt": "tom has a red ball .",
-          "text": "tom is big . tom is at the school ."
+          "text": "tom is big . max is at the school . max likes to walk ."
         },
         {
           "prompt": "the little dog",
@@ -530,10 +530,10 @@
         },
         {
           "prompt": "q : what do you like to do ? a :",
-          "text": "with white on average , i like spending time indoors most of my time indoors alone . you can still reach the park during natural pregnancy if it's dark , rocky and sunny . my only budget is to buy a neutral park for my child . i have worked with over 100 wise men here for my child for decades and have consistently set aside for nature walks and hi"
+          "text": "things that will interest you very well could you give me more context about what you like to do ?"
         }
       ],
-      "file": "2026-10-16T221809_gen451.txt"
+      "file": "2026-10-17T001726_gen470.txt"
     },
     {
       "exam": "E5_facts_in_weights",
@@ -545,43 +545,43 @@
         {
           "q": "zib",
           "expected": "the word zib means fast .",
-          "got": "zib is a very popular video game developed and published by sagan games . it was the first game of a zib",
+          "got": "the word ruptist means one who practices break .",
           "ok": false
         },
         {
           "q": "glorp",
           "expected": "the word glorp means happy .",
-          "got": "glorp means book ii . the word glorp means happy .",
+          "got": "simple as a tool for making things , using as much information as possible while using .",
           "ok": false
         },
         {
           "q": "brindle",
           "expected": "the word brindle means a small brave boat .",
-          "got": "brindle means a trans , of what in the flesh often means will look different .",
+          "got": "turns the waterline to biodiesel for years to come , with bane , we will be able to",
           "ok": false
         },
         {
           "q": "zint",
           "expected": "the word zint means a cold wind .",
-          "got": "the word zint means a cold wind .",
-          "ok": true
+          "got": "a combination of the following three parameters types of data transformation data transformation and data transformation",
+          "ok": false
         },
         {
           "q": "quimble",
           "expected": "the word quimble means a tiny lantern .",
-          "got": "it means its built in due .",
-          "ok": false
+          "got": "the word quimble means a tiny lantern .",
+          "ok": true
         },
         {
           "q": "hello",
           "expected": "the word hello means a greeting .",
-          "got": "hello refers to a way of being humans . this is because we are an organism .",
+          "got": "i am sapling , a small synthetic cognitive assistant that grows as it learns .",
           "ok": false
         },
         {
           "q": "sapling",
           "expected": "the word sapling means a young tree .",
-          "got": "sapling refers to a hand made from wood , with thewheel being resinous , and the biscuit",
+          "got": "saplings are small , oozing plants",
           "ok": false
         }
       ]
@@ -31752,6 +31752,1646 @@
           "exam": "E5_facts_in_weights",
           "score": "2/7",
           "accuracy": 0.286,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-16T22:18:09",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 451,
+      "trigger": "consolidation gen 451",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "85/86",
+          "accuracy": 0.988,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "20/24",
+          "accuracy": 0.833,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "45/48",
+          "accuracy": 0.938,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "34/40",
+          "accuracy": 0.85,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "12/40",
+          "accuracy": 0.3,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "75/86",
+          "accuracy": 0.872,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "40/2016",
+          "accuracy": 0.02,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "1/7",
+          "accuracy": 0.143,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-16T22:24:24",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 452,
+      "trigger": "consolidation gen 452",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "85/86",
+          "accuracy": 0.988,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "44/48",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "37/40",
+          "accuracy": 0.925,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "13/40",
+          "accuracy": 0.325,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "79/86",
+          "accuracy": 0.919,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "43/2016",
+          "accuracy": 0.021,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/7",
+          "accuracy": 0.714,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-16T22:30:50",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 453,
+      "trigger": "consolidation gen 453",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "85/86",
+          "accuracy": 0.988,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "45/48",
+          "accuracy": 0.938,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "36/40",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "11/40",
+          "accuracy": 0.275,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "25/2016",
+          "accuracy": 0.012,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "7/7",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-16T22:43:14",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 454,
+      "trigger": "consolidation gen 454",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "86/86",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "46/48",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "37/40",
+          "accuracy": 0.925,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "12/40",
+          "accuracy": 0.3,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "86/86",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "96/2016",
+          "accuracy": 0.048,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "7/7",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-16T22:49:31",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 455,
+      "trigger": "consolidation gen 455",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "85/86",
+          "accuracy": 0.988,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "9/10",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "43/48",
+          "accuracy": 0.896,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "37/40",
+          "accuracy": 0.925,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "12/40",
+          "accuracy": 0.3,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "80/86",
+          "accuracy": 0.93,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "53/2016",
+          "accuracy": 0.026,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/7",
+          "accuracy": 0.857,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-16T22:54:42",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 456,
+      "trigger": "consolidation gen 456",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "86/86",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "9/10",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "46/48",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "36/40",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "11/40",
+          "accuracy": 0.275,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "82/2016",
+          "accuracy": 0.041,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/7",
+          "accuracy": 0.714,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-16T23:05:11",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 457,
+      "trigger": "consolidation gen 457",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "84/86",
+          "accuracy": 0.977,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "9/10",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "47/48",
+          "accuracy": 0.979,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "37/40",
+          "accuracy": 0.925,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "12/40",
+          "accuracy": 0.3,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "61/2016",
+          "accuracy": 0.03,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "7/7",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-16T23:13:42",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 458,
+      "trigger": "consolidation gen 458",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "84/86",
+          "accuracy": 0.977,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "9/10",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "48/48",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "36/40",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "12/40",
+          "accuracy": 0.3,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "79/86",
+          "accuracy": 0.919,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "59/2016",
+          "accuracy": 0.029,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "7/7",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-16T23:22:12",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 459,
+      "trigger": "consolidation gen 459",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "9/10",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "45/48",
+          "accuracy": 0.938,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "36/40",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "11/40",
+          "accuracy": 0.275,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "76/86",
+          "accuracy": 0.884,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "60/2016",
+          "accuracy": 0.03,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "7/7",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-16T23:29:37",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 460,
+      "trigger": "consolidation gen 460",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "85/86",
+          "accuracy": 0.988,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "accuracy": 0.917,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "9/10",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "46/48",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "36/40",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "12/40",
+          "accuracy": 0.3,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "75/86",
+          "accuracy": 0.872,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "34/2016",
+          "accuracy": 0.017,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "4/7",
+          "accuracy": 0.571,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-16T23:37:03",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 461,
+      "trigger": "consolidation gen 461",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "20/24",
+          "accuracy": 0.833,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "9/10",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "46/48",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "34/40",
+          "accuracy": 0.85,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "12/40",
+          "accuracy": 0.3,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "79/86",
+          "accuracy": 0.919,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "72/2016",
+          "accuracy": 0.036,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/7",
+          "accuracy": 0.714,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-16T23:40:54",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 462,
+      "trigger": "consolidation gen 462",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "20/24",
+          "accuracy": 0.833,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "9/10",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "46/48",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "32/40",
+          "accuracy": 0.8,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "13/40",
+          "accuracy": 0.325,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "74/86",
+          "accuracy": 0.86,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "53/2016",
+          "accuracy": 0.026,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "7/7",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-16T23:44:42",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 463,
+      "trigger": "consolidation gen 463",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "85/86",
+          "accuracy": 0.988,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "21/24",
+          "accuracy": 0.875,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "9/10",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "47/48",
+          "accuracy": 0.979,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "36/40",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "10/40",
+          "accuracy": 0.25,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "72/86",
+          "accuracy": 0.837,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "113/2016",
+          "accuracy": 0.056,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "4/7",
+          "accuracy": 0.571,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-16T23:49:30",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 464,
+      "trigger": "consolidation gen 464",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "86/86",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "19/24",
+          "accuracy": 0.792,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "9/10",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "48/48",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "37/40",
+          "accuracy": 0.925,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "13/40",
+          "accuracy": 0.325,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "55/2016",
+          "accuracy": 0.027,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "6/7",
+          "accuracy": 0.857,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-17T00:01:48",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 465,
+      "trigger": "consolidation gen 465",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "85/86",
+          "accuracy": 0.988,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "19/24",
+          "accuracy": 0.792,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "9/10",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "48/48",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "36/40",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "12/40",
+          "accuracy": 0.3,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "76/86",
+          "accuracy": 0.884,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "72/2016",
+          "accuracy": 0.036,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/7",
+          "accuracy": 0.714,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-17T00:05:35",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 466,
+      "trigger": "consolidation gen 466",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "86/86",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "20/24",
+          "accuracy": 0.833,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "47/48",
+          "accuracy": 0.979,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "36/40",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "15/40",
+          "accuracy": 0.375,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "77/86",
+          "accuracy": 0.895,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "92/2016",
+          "accuracy": 0.046,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "4/7",
+          "accuracy": 0.571,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-17T00:09:18",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 467,
+      "trigger": "consolidation gen 467",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "86/86",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "20/24",
+          "accuracy": 0.833,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "9/10",
+          "accuracy": 0.9,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "47/48",
+          "accuracy": 0.979,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "32/40",
+          "accuracy": 0.8,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "14/40",
+          "accuracy": 0.35,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "75/86",
+          "accuracy": 0.872,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "49/2016",
+          "accuracy": 0.024,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "3/7",
+          "accuracy": 0.429,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-17T00:13:07",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 468,
+      "trigger": "consolidation gen 468",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "84/86",
+          "accuracy": 0.977,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "14/24",
+          "accuracy": 0.583,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "46/48",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "34/40",
+          "accuracy": 0.85,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "13/40",
+          "accuracy": 0.325,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "75/86",
+          "accuracy": 0.872,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "57/2016",
+          "accuracy": 0.028,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/7",
+          "accuracy": 0.714,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-17T00:13:40",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 468,
+      "trigger": "before growth (core v4 gen 468)",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "84/86",
+          "accuracy": 0.977,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "14/24",
+          "accuracy": 0.583,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "46/48",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "34/40",
+          "accuracy": 0.85,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "13/40",
+          "accuracy": 0.325,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "75/86",
+          "accuracy": 0.872,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "57/2016",
+          "accuracy": 0.028,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "5/7",
+          "accuracy": 0.714,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-17T00:14:33",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 469,
+      "trigger": "growth: core v4 -> v4 (v4: a bigger core, read fresh + conversation lessons + long-reading lesson (roll-forward of gen 319 after D34: consolidation lr 7.5e-5) + self lessons (owner's words) + self lessons (owner's words) + long-reading lesson) (gen 469)",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "86/86",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "24/24",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "47/48",
+          "accuracy": 0.979,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "32/40",
+          "accuracy": 0.8,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "20/40",
+          "accuracy": 0.5,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "83/86",
+          "accuracy": 0.965,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "59/2016",
+          "accuracy": 0.029,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "0/7",
+          "accuracy": 0.0,
           "verdict": "INFO"
         }
       ]
