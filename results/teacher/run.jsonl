@@ -1,2 +1,12 @@
 {"ts": "2026-10-15T14:22:57", "step": "waiting for Stage A"}
 {"ts": "2026-10-15T22:21:52", "step": "waiting for Stage A", "driver_pid": 45024}
+{"ts": "2026-10-15T23:51:53", "step": "Stage A done"}
+{"ts": "2026-10-15T23:52:31", "step": "measured", "label": "after Stage A - v4 reading", "core": "results\\core_v4_staged.pt"}
+{"ts": "2026-10-16T00:12:42", "step": "Stage B done"}
+{"ts": "2026-10-16T00:13:20", "step": "measured", "label": "after Stage B - conversation lessons", "core": "results\\core_v4_talk_staged.pt"}
+{"ts": "2026-10-16T00:13:56", "step": "swapped", "generation": 289, "ledger_id": 19761}
+{"ts": "2026-10-16T00:14:38", "step": "heartbeat start", "why": "after the teaching run", "result": "parole armed\n{'ts': '2026-10-16T00:14:07', 'action': 'parole_start', 'by': 'Claude (teacher) - v4 teaching plan, 10/15 - after the teaching run', 'after_stop': {'ts': '2026-10-15T14:07:22', 'who': 'owner', 'reason': 'stop file written by the owner', 'tick': 7400, 'kind': 'stop'}, 'waited_for_render_s': 0, 'start_output': 'started pid 14420; log results/heartbeat.log; control room http://127.0.0.1:7337/', 'via': 'tools/owner_relay.py'}", "alive": true, "waited_s": 31}
+{"ts": "2026-10-16T00:14:38", "step": "waiting for 5 of its own consolidations"}
+{"ts": "2026-10-16T00:30:41", "step": "consolidations seen", "n": 5, "generation": 294, "summary": [{"generation": 290, "loss_first": 2.5909, "loss_last": 2.0182, "talk_share": 0.25, "read_share": 0.5, "seconds": 91.1}, {"generation": 291, "loss_first": 2.3988, "loss_last": 1.8819, "talk_share": 0.25, "read_share": 0.5, "seconds": 85.1}, {"generation": 292, "loss_first": 2.0487, "loss_last": 1.8815, "talk_share": 0.25, "read_share": 0.5, "seconds": 84.4}, {"generation": 293, "loss_first": 2.3384, "loss_last": 1.9965, "talk_share": 0.25, "read_share": 0.5, "seconds": 85.2}, {"generation": 294, "loss_first": 2.3942, "loss_last": 2.0258, "talk_share": 0.25, "read_share": 0.5, "seconds": 85.5}]}
+{"ts": "2026-10-16T00:33:56", "step": "measured", "label": "after 5 consolidations - gen 294", "core": "results\\checkpoints\\gen_0294.pt"}
+{"ts": "2026-10-16T00:33:56", "step": "finished"}

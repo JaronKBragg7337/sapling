@@ -1,0 +1,38 @@
+[fetch] FineWeb-Edu sample/10BT/000_00000.parquet (~2.15 GB) ...
+{
+ "gutenberg": {
+  "dir": "gutenberg",
+  "books": 116,
+  "license": "public domain in the US; each kept file's own header carries the no-restrictions line (checked at fetch)",
+  "note": "Project Gutenberg header/footer/licence text is stripped before training; the trademark text is not trained on",
+  "fetched": "2026-10-14T21:56:31"
+ },
+ "oasst1": {
+  "file": "oasst1_ready.trees.jsonl.gz",
+  "bytes": 34145252,
+  "url": "https://huggingface.co/datasets/OpenAssistant/oasst1/resolve/main/2023-04-12_oasst_ready.trees.jsonl.gz",
+  "license": "Apache-2.0 (dataset card OpenAssistant/oasst1, checked live 2026-10-15)",
+  "attribution": "OpenAssistant Conversations (oasst1), LAION / OpenAssistant contributors",
+  "fetched": "2026-10-15T14:05:56"
+ },
+ "dolly15k": {
+  "file": "databricks-dolly-15k.jsonl",
+  "bytes": 13085339,
+  "url": "https://huggingface.co/datasets/databricks/databricks-dolly-15k/resolve/main/databricks-dolly-15k.jsonl",
+  "license": "CC BY-SA 3.0 (dataset card databricks/databricks-dolly-15k, checked live 2026-10-15)",
+  "attribution": "databricks-dolly-15k, Databricks employees (CC BY-SA 3.0)",
+  "fetched": "2026-10-15T14:05:57"
+ },
+ "fineweb_edu": {
+  "files": [
+   {
+    "file": "fineweb_edu_000_00000.parquet",
+    "bytes": 2152819114
+   }
+  ],
+  "url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu/resolve/main/sample/10BT/...",
+  "license": "ODC-By 1.0 (dataset card HuggingFaceFW/fineweb-edu, checked live 2026-10-15); also subject to the Common Crawl Terms of Use",
+  "attribution": "FineWeb-Edu (Hugging Face, Lozhkov et al. 2024), built from Common Crawl",
+  "fetched": "2026-10-15T14:06:20"
+ }
+}

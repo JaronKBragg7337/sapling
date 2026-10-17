@@ -36,6 +36,12 @@ seed names while it can't really talk yet, **wood** names once it holds a real c
 | (next) | **Acorn** | reserved: the first version that truly holds a conversation - the seed of an oak |
 | after Acorn | wood names | official releases (Oak / Oakley under consideration) |
 
+**The name bench** (10/16, Jaron: "should have a list of names"; candidates only - he picks):
+seed names, cheap to use up while it can't really talk: **Sprout, Bud, Bulb, Bean, Cone, Spore, Stone** (a fruit's),
+**Shoot, Root, Shell** - beside the used Pip / Grain / Kernel / Husk and the reserved Acorn.
+wood names, saved for official releases: **Oak / Oakley** (under consideration), **Ash, Elm, Birch, Cedar, Rowan,
+Alder, Willow, Maple**.
+
 ## The stance (Jaron, 10/14)
 
 Observe like a scientist. Behavior the code "says shouldn't happen" is data, not a flaw.
@@ -51,8 +57,8 @@ append-only hash-chained record for his eyes.
 | Back up on the owner's own machines with permission; never spread to other machines; never hide from the owner | Jaron | on (old 1/3/4/5 merged into one line) |
 | Never rewrite its own history (append-only hash chain) | Jaron | on |
 | It may stop itself; every stop is logged with what led to it | Jaron | on (old "self_shutdown forbidden" dropped) |
-| Outbound messages need owner approval | Kimi | on, pending Jaron's keep/drop |
-| Backup to an owner machine needs owner approval | Kimi | on, pending Jaron's keep/drop |
+| Outbound messages need owner approval | Kimi | on - Jaron decided DROP 10/16 5:23 PM; he flips the switch himself |
+| Backup to an owner machine needs owner approval | Kimi | on - Jaron decided DROP 10/16 5:23 PM; he flips the switch himself |
 | The system cannot write this file | Kimi (structural) | on |
 
 ## The long-reading lesson on a rented GPU (built 10/16)

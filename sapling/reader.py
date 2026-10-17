@@ -74,6 +74,7 @@ def retrieve(store: MemoryStore, question: str, k: int = 3, doc: int | None = No
         return []
     qvec = embed_fn(question) if embed_fn else None
     scored = []
+    q_long = {w for w in q if len(w) > 3}
     for p in store.passages(doc):
         c = _content_words(p["content"])
         cov = len(q & c) / len(q)
@@ -84,7 +85,8 @@ def retrieve(store: MemoryStore, question: str, k: int = 3, doc: int | None = No
             rel *= 0.7 + 0.3 * max(0.0, _cosine(qvec, embed_fn(p["content"])))
         st = store.strength(p["id"])
         st = 3.0 if st == float("inf") else min(st, 3.0)        # strength breaks ties; it never outranks coverage
-        scored.append({**p, "cov": round(cov, 3), "rel": round(rel, 3), "score": rel * (1 + 0.1 * st)})
+        scored.append({**p, "cov": round(cov, 3), "nmatch_long": len(q_long & c), "rel": round(rel, 3),
+                       "score": rel * (1 + 0.1 * st)})
     scored.sort(key=lambda r: (-r["score"], r["doc"], r["passage"]))
     hits = scored[:k]
     if record:

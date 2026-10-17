@@ -2,6 +2,58 @@
 
 
 
+## 2026-10-16 ~10:20 PM - D36 adopted: the lesson-wear problem is closed (Kimi as teacher, Jaron: "take full control")
+- **S4, the combined confirmatory fold test** (`--no-school-docs --steps 120`, isolated, 5 folds from gen 319, D34 lr):
+  E7L 16/40, E1b 68, E10 130, E5 1/7, losses 1.326/2.989/3.070. The full matrix:
+
+| 5 folds with | E7L | E1b | E10 | E5 |
+|---|---|---|---|---|
+| D34 baseline | 12/40 | 71 | 117 | 2/7 |
+| S2 no-school-docs | **16/40** | **81** | 120 | **6/7** |
+| S3 120 steps | 15/40 | 76 | **160** | 5/7 |
+| S4 both | 16/40 | 68 | 130 | 1/7 |
+
+  The combination ties S2 on E7L but gives back E1b (-13) and nearly stops taught facts entering the weights, so
+  **S2 alone is adopted as D36**: cores that had the cloud long-reading lesson drop the school's old `docs`/`longread`
+  rehearsal (40 + 80 sentences in a different answer style - the wearer) from every consolidation; steps stay 200.
+  Pre-lesson cores keep the old mix. Tests 66, ALL GREEN; heartbeat reloaded onto the new code at gen 433+.
+  The wear is now ~1 E7L per 5 folds instead of 5-6. What that last point is: unknown, recorded, watched.
+- **Name bench (Jaron: "should have a list of names"):** seed candidates (Sprout, Bud, Bulb, Bean, Cone, Spore, Stone,
+  Shoot, Root, Shell) and wood candidates (Oak/Oakley, Ash, Elm, Birch, Cedar, Rowan, Alder, Willow, Maple) listed in
+  README "Names" - candidates only; he picks.
+
+## 2026-10-16 ~8:45 PM - Sapling answers as itself: the owner's self lessons trained in (Kimi as teacher)
+
+Jaron (5:23 PM): AIs whose provider terms allow it may build AND train Sapling (Kimi cleared); the 10:46 AM pause was
+Claude-only. Kimi ran the queued evening work. Nothing here adds a rule, gate or limit.
+
+- **Fold-test suspects S2/S3 (NEXT.md 0000; isolated, 5 folds from gen 319, D34 lr 7.5e-5):**
+  **S2** (drop the school's old `longread`/`docs` rehearsal from the fold mix) -> **E7L 16/40** (gen 319 was 17 - the
+  wear is nearly gone: -1, every prior setting lost 5-6), E1b 81, E5 6/7, window losses unchanged. The S1 mechanism
+  confirmed: "which sentence" held at 5/16 instead of collapsing to 1/16 - the old school rehearsal in a different
+  answer style was overwriting the cloud lesson. **S3** (120 steps per fold) -> E7L 15/40, **E10 160/2016 (best ever
+  in a fold test)**, E1 86/86, E2 24/24. Both beat the ~5-point wear number; the combined confirmatory test is next.
+  Rows in `results/teacher/fold_tests.jsonl` + `measurements.jsonl`.
+- **The owner's seven self-lesson answers saved** (name, maker, what, can_do, memory, heartbeat, learn_next;
+  size / read / age left blank - fixed answers to changing facts go stale). Saved by Kimi on Jaron's explicit
+  delegation (the phone card is awkward on mobile) through the card's own code path (`talk.save_owner_answer`),
+  each one logged as an owner action (`by: "jaron (via kimi, owner-delegated)"`) in the owner log + ledger.
+- **Self-lesson top-up, two runs:** the first was underdosed - `--self-only` stops at
+  `epochs x examples / conv_per_step` = 2 x 150 / 8 = **38 steps**, not the ~300 NEXT.md item 5 intends; chat showed
+  no trace of the lessons. Re-run with `--epochs 16` = **300 steps** of 32 (8 self / 16 reading / 8 school), lr 5e-5.
+  Swap = one `growth` row each, gen 430 then **gen 433**; all exams PASS both times. (NEXT.md's command updated.)
+- **Verified live (fresh conversation per question):** all seven groups answer in his words, verbatim or near -
+  "who made you?" -> the past-sparks answer, both sentences, complete; "who are you?" -> "I'm Sapling, a small
+  synthetic cognitive assistant that grows as it learns." "who created you?" is still a partial echo ("Pieces of me
+  at the very least.") - consolidations replay the self lessons (25% conversation share), so watch it sharpen.
+- **Doc-route hijack fixed (D35):** "who made you?" and three more self wordings were intercepted by the Declaration
+  of Independence demo document on ONE common content word ("made"). The route now requires >= 2 matching content
+  words longer than 3 letters (NEXT.md 0a.5's prescribed fix). Tests 66, ALL GREEN. Trade-off: single-long-word
+  document questions ("which sentence has the word happiness?") no longer route - one line to tune if his documents
+  need that shape back.
+- Slip note (Jaron, 8:10 PM): the phone control room is too much one long page on mobile - a split into pages is a
+  candidate job for Claude; his answers live in `data/talk/owner_self_lessons.json` either way.
+
 ## 2026-10-15 9:08 PM - names (Jaron's decision)
 - Family name Sapling. Seed names before real conversation: v1 Pip, v2 Grain, v3-3.2 Kernel, v4 Husk; "Acorn" reserved for the
   first version that truly holds a conversation; wood names after that, saved for official releases. Table in README "Names".

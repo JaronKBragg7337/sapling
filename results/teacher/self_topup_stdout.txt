@@ -1,0 +1,39 @@
+=== stop heartbeat Fri 10/16/2026 20:25:34.83 === 
+owner stop requested (results/heartbeat.stop); it will write a stop report and exit
+stopped
+=== train start Fri 10/16/2026 20:27:55.23 === 
+[reading] rehearsal: 39,638 sentences from 15 lessons + record
+[talk] 150 conversation examples, 300 steps of 32 (8 conversation / 16 reading / 8 school)
+[talk] step 100/300 loss 2.054 lr 2.50e-05
+[talk] step 200/300 loss 1.960 lr 5.00e-05
+[talk] step 300/300 loss 1.912 lr 1.00e-05
+[talk] done in 2 min, loss 1.9117, windows {'stories_held_out': 1.316, 'adult_held_in': 2.992, 'web_held_out': 3.112} -> C:\Users\lilli\Projects\sapling\results\core_self_topup_staged.pt
+=== swap Fri 10/16/2026 20:30:14.87 === 
+[exam] E1_composition       80/86 acc=0.930 bar=0.6 -> PASS
+[exam] E2_affix_recall      24/24 acc=1.000 bar=0.9 -> PASS
+[exam] E3_recall_echo       12/12 acc=1.000 bar=0.9 -> PASS
+[exam] E4_deferral          10/10 acc=1.000 bar=0.8 -> PASS
+[exam] E6_grammar           46/48 acc=0.958 bar=0.6 -> PASS
+[exam] E7_reading           35/40 acc=0.875 bar=0.5 -> PASS
+[exam] E7L_longread         7/40 acc=0.175 bar=None -> INFO
+[exam] E1b_bridge           74/86 acc=0.860 bar=None -> INFO
+[exam] E10_induction        28/2016 acc=0.014 bar=None -> INFO
+[exam] E8_writing          4 samples -> C:\Users\lilli\Projects\sapling\results\writing_samples\2026-10-16T203019_gen432.txt
+[exam] E5_facts_in_weights  5/7 acc=0.714 bar=None -> INFO
+[exam] report card -> C:\Users\lilli\Projects\sapling\results\report_card.json (and hash-chained into memory)
+[exam] E1_composition       86/86 acc=1.000 bar=0.6 -> PASS
+[exam] E2_affix_recall      24/24 acc=1.000 bar=0.9 -> PASS
+[exam] E3_recall_echo       12/12 acc=1.000 bar=0.9 -> PASS
+[exam] E4_deferral          10/10 acc=1.000 bar=0.8 -> PASS
+[exam] E6_grammar           48/48 acc=1.000 bar=0.6 -> PASS
+[exam] E7_reading           38/40 acc=0.950 bar=0.5 -> PASS
+[exam] E7L_longread         7/40 acc=0.175 bar=None -> INFO
+[exam] E1b_bridge           80/86 acc=0.930 bar=None -> INFO
+[exam] E10_induction        22/2016 acc=0.011 bar=None -> INFO
+[exam] E8_writing          4 samples -> C:\Users\lilli\Projects\sapling\results\writing_samples\2026-10-16T203111_gen433.txt
+[exam] E5_facts_in_weights  5/7 acc=0.714 bar=None -> INFO
+[exam] report card -> C:\Users\lilli\Projects\sapling\results\report_card.json (and hash-chained into memory)
+[grow] swapped: growth: core v4 -> v4 (v4: a bigger core, read fresh + conversation lessons + long-reading lesson (roll-forward of gen 319 after D34: consolidation lr 7.5e-5) + self lessons (owner's words) + self lessons (owner's words)), gen 433, 60,514,560 params, vocab 17662 -> C:\Users\lilli\Projects\sapling\results\core_checkpoint.pt
+=== restart heartbeat Fri 10/16/2026 20:32:00.63 === 
+parole armed
+{'ts': '2026-10-16T20:32:07', 'action': 'parole_start', 'by': 'self-lesson top-up', 'after_stop': {'ts': '2026-10-16T20:27:53', 'who': 'owner', 'reason': 'stop file written by the owner', 'tick': 11475, 'kind': 'stop'}, 'waited_for_render_s': 0, 'start_output': 'started pid 47976; log results/heartbeat.log; control room http://127.0.0.1:7337/', 'via': 'tools/owner_relay.py'}

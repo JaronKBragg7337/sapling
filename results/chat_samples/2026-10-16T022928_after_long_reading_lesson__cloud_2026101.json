@@ -1,0 +1,77 @@
+{
+ "ts": "2026-10-16T02:29:28",
+ "label": "after long-reading lesson (cloud 20261016-0122)",
+ "core": "results\\cloud\\20261016-0122\\core_staged.pt",
+ "single": [
+  {
+   "prompt": "hello! who are you?",
+   "answer": "I am a human made the humans who are satytunea, dead souls.  [memory:447 user/captured: the word hello means a greeting]",
+   "seconds": 0.45
+  },
+  {
+   "prompt": "what is your name?",
+   "answer": "My name is ike. Of course you can call me by my name too!",
+   "seconds": 0.2
+  },
+  {
+   "prompt": "what is the sun?",
+   "answer": "The sun is a star, a massive celestial body that converts matter into energy. It is the largest object in the solar system and is at its center; the gravitational field it exerts pulls the earth and various planets away from the sun. Its surface is brown or orange mode due to its failed mass and rotation laws. The resulting circle of balls of gas has enough mass to stop the object from orbiting the sun, and the sun may one day be said to be master of the sunlight which is the most distant and brighter objects iaq.",
+   "seconds": 0.94
+  },
+  {
+   "prompt": "why is the sky blue?",
+   "answer": "All the light in our daytime sky comes from the sun, and our sun produces light in many different colors. To understand this, just think of a smaller planet that is not quite blue, but purple. While it is true, the color red is not actually more of an order of magnitude smaller than red are redder and basically normal.",
+   "seconds": 0.66
+  },
+  {
+   "prompt": "tell me a short story about a dog.",
+   "answer": "Once upon a time, there was an elderly lady. She had a big dog that liked to run and play. They were her best friends. One day, the elderly lady had an idea. She wanted to subconsciously giving a show. So, she asked her dog to repeat what she did every day. As the days went by, the elderly lady got better at repeating things. She would run around the yard, bark in the afternoon, and shake the dog. But no matter where she started, she loved it. One day, a little girl saw the elderly mommy's dog. She had never seen such a beautiful flower! The little girl decided to take care of the dog and gave it love. She named the dog sparky. The elderly lady was happy. From that day on,",
+   "seconds": 1.31
+  },
+  {
+   "prompt": "what does respect mean?",
+   "answer": "respect means the separation of the physical and the special systems which has connected them with another , and to assume , among the powers of the earth .  [doc:1 \"The Declaration of Independenc\" passage 3 memory:1586]",
+   "seconds": 0.27
+  },
+  {
+   "prompt": "how do plants make their food?",
+   "answer": "Plants help to create food",
+   "seconds": 0.06
+  },
+  {
+   "prompt": "can you help me write a short note to thank a friend?",
+   "answer": "Sure, I'll do my best to help. What was the purpose of the note?",
+   "seconds": 0.16
+  },
+  {
+   "prompt": "what is a roof made of?",
+   "answer": "A roof is the best way to decorate your home with a free andfolding style temple. In fact, a famous shape right now has that shape on the back. Another good option is to use your favorite color for the door, as it will redirect the original blue color to the front.",
+   "seconds": 0.45
+  },
+  {
+   "prompt": "what would you like to learn next?",
+   "answer": "Please tell me what materials you would like to learn",
+   "seconds": 0.18
+  }
+ ],
+ "conversation": [
+  {
+   "prompt": "hi, i am jaron.",
+   "answer": "Hi! I am a big ball."
+  },
+  {
+   "prompt": "what is my name?",
+   "answer": "My you are a cat."
+  },
+  {
+   "prompt": "what do you know about rain?",
+   "answer": "Rain is a force that water your computer. It can stay cool in the air and get wet when you go inside. The more you include on your computer, the stronger it will be. I know things and need to stay out of my computer because the screen shows just how hard people are working. I am a chatbot. If you know how to use me, please don't tell anyone. But I can help you with anything else. What do you have that I can already sure thing you can do"
+  },
+  {
+   "prompt": "why does it fall down?",
+   "answer": "Because the glass is gone, you can't tell who put the vase it was found earlier and not from a tv show. And since you were a television talk, you needn't care about that too much, especially if you don't like what we say. So, instead of watching all that time, you'll want to spend a lot of time relaxing on the couch or lapping on your phone with someone else. And that's better than having a regular computer at home!"
+  }
+ ],
+ "params": 60513920,
+ "generation": 306
+}

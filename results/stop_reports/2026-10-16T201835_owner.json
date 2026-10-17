@@ -1,0 +1,2350 @@
+{
+  "kind": "stop",
+  "ts": "2026-10-16T20:18:35",
+  "who": "owner",
+  "reason": "stop file written by the owner",
+  "tick": 11451,
+  "clock": {
+    "now": 1792196315.7651143,
+    "now_iso": "2026-10-16 20:18:35",
+    "born_iso": "2026-10-14 13:50:50",
+    "age_s": 196065.4,
+    "uptime_s": 25415.6,
+    "since_last_input_s": 148401.8,
+    "budget_total_s": 14400.0,
+    "budget_spent_s": 39722.451,
+    "budget_left_s": -25322.451,
+    "budget_left_frac": 0.0,
+    "day_ends_in_s": 13284.0,
+    "kwh_today": 0.171186184,
+    "kwh_total": 0.271002249,
+    "gpu_watts_now": 3.86
+  },
+  "drives": null,
+  "open_goals": [
+    {
+      "part": "prefix:sub",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 1299,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:bio",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 2118,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:luc",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 2099,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:port",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 2063,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:able",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 2113,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:er",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 1328,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ist",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 913,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ly",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 2982,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:co",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2922,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:super",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2477,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:chron",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1695,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:mit",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 899,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:rupt",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1350,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ive",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 3317,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ness",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1701,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ology",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2129,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:tion",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2505,
+      "target": "0 misses in the last 10 tries"
+    }
+  ],
+  "last_ticks": [
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 194831.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25067.939,
+        "kwh_today": 0.169195902,
+        "since_last_input_s": 147167.8,
+        "uptime_s": 24181.6
+      },
+      "drives": {
+        "consolidate": 0.079,
+        "explore": 0.088,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 428,
+        "memories": 5019,
+        "open_goals": 7,
+        "pending_facts": 3,
+        "rest_streak": 4,
+        "since_consolidation_s": 394.7,
+        "since_explore_s": 28.7,
+        "since_input_s": 147167.2,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11422,
+      "ts": 1792195081.7429903,
+      "id": 27913
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 194837.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25067.939,
+        "kwh_today": 0.169195902,
+        "since_last_input_s": 147173.5,
+        "uptime_s": 24187.3
+      },
+      "drives": {
+        "consolidate": 0.079,
+        "explore": 0.097,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 428,
+        "memories": 5019,
+        "open_goals": 7,
+        "pending_facts": 3,
+        "rest_streak": 5,
+        "since_consolidation_s": 400.5,
+        "since_explore_s": 34.5,
+        "since_input_s": 147172.8,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11423,
+      "ts": 1792195087.5022995,
+      "id": 27914
+    },
+    {
+      "action": "consolidate",
+      "clock": {
+        "age_s": 194970.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25317.71,
+        "kwh_today": 0.171174487,
+        "since_last_input_s": 147307.3,
+        "uptime_s": 24321.2
+      },
+      "drives": {
+        "consolidate": 0.079,
+        "explore": 0.105,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 128348.4,
+      "result": {
+        "checkpoint": "checkpoints\\gen_0429.pt",
+        "exams": [
+          {
+            "accuracy": 0.942,
+            "exam": "E1_composition",
+            "score": "81/86",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.75,
+            "exam": "E2_affix_recall",
+            "score": "18/24",
+            "verdict": "FAIL"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E3_recall_echo",
+            "score": "12/12",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E4_deferral",
+            "score": "10/10",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.958,
+            "exam": "E6_grammar",
+            "score": "46/48",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.875,
+            "exam": "E7_reading",
+            "score": "35/40",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.2,
+            "exam": "E7L_longread",
+            "score": "8/40",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 0.884,
+            "exam": "E1b_bridge",
+            "score": "76/86",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 0.014,
+            "exam": "E10_induction",
+            "score": "28/2016",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": null,
+            "exam": "E9_owner_exam",
+            "score": "0 items",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": null,
+            "exam": "E8_writing",
+            "score": "4 samples",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 0.714,
+            "exam": "E5_facts_in_weights",
+            "score": "5/7",
+            "verdict": "INFO"
+          }
+        ],
+        "facts_new": 3,
+        "generation": 429,
+        "loss_first": 1.2407,
+        "loss_last": 1.1235,
+        "vocab_size": 17661
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 428,
+        "memories": 5019,
+        "open_goals": 7,
+        "pending_facts": 3,
+        "rest_streak": 6,
+        "since_consolidation_s": 406.0,
+        "since_explore_s": 40.0,
+        "since_input_s": 147178.6,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11424,
+      "ts": 1792195221.3287132,
+      "id": 27919
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195913.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25317.71,
+        "kwh_today": 0.171174487,
+        "since_last_input_s": 148249.7,
+        "uptime_s": 25263.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 16,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 942.3,
+        "since_explore_s": 1110.6,
+        "since_input_s": 148248.9,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11425,
+      "ts": 1792196163.6718404,
+      "id": 27921
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195918.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25317.71,
+        "kwh_today": 0.171174487,
+        "since_last_input_s": 148255.2,
+        "uptime_s": 25269.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 16,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 947.8,
+        "since_explore_s": 1116.1,
+        "since_input_s": 148254.7,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11426,
+      "ts": 1792196169.1621025,
+      "id": 27922
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195924.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25317.71,
+        "kwh_today": 0.171174487,
+        "since_last_input_s": 148261.0,
+        "uptime_s": 25274.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 16,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 953.6,
+        "since_explore_s": 1121.9,
+        "since_input_s": 148260.2,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11427,
+      "ts": 1792196174.961074,
+      "id": 27923
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195930.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25317.71,
+        "kwh_today": 0.171174487,
+        "since_last_input_s": 148266.5,
+        "uptime_s": 25280.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 16,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 959.2,
+        "since_explore_s": 1127.5,
+        "since_input_s": 148266.0,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11428,
+      "ts": 1792196180.489048,
+      "id": 27924
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195935.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25317.71,
+        "kwh_today": 0.171174487,
+        "since_last_input_s": 148272.2,
+        "uptime_s": 25286.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 16,
+        "pending_facts": 0,
+        "rest_streak": 4,
+        "since_consolidation_s": 964.9,
+        "since_explore_s": 1133.2,
+        "since_input_s": 148271.5,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11429,
+      "ts": 1792196186.192817,
+      "id": 27925
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195941.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25317.71,
+        "kwh_today": 0.171174487,
+        "since_last_input_s": 148277.7,
+        "uptime_s": 25291.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 16,
+        "pending_facts": 0,
+        "rest_streak": 5,
+        "since_consolidation_s": 970.4,
+        "since_explore_s": 1138.7,
+        "since_input_s": 148277.2,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11430,
+      "ts": 1792196191.7003279,
+      "id": 27926
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 195947.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25318.684,
+        "kwh_today": 0.171176882,
+        "since_last_input_s": 148284.3,
+        "uptime_s": 25298.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 789.1,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 16,
+        "pending_facts": 0,
+        "rest_streak": 6,
+        "since_consolidation_s": 976.1,
+        "since_explore_s": 1144.4,
+        "since_input_s": 148282.7,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11431,
+      "ts": 1792196198.2511125,
+      "id": 27938
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195953.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25318.684,
+        "kwh_today": 0.171176882,
+        "since_last_input_s": 148289.8,
+        "uptime_s": 25303.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 16,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 982.5,
+        "since_explore_s": 1150.8,
+        "since_input_s": 148289.3,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11432,
+      "ts": 1792196203.8159902,
+      "id": 27939
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195959.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25318.684,
+        "kwh_today": 0.171176882,
+        "since_last_input_s": 148295.5,
+        "uptime_s": 25309.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 16,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 988.2,
+        "since_explore_s": 1156.5,
+        "since_input_s": 148294.9,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11433,
+      "ts": 1792196209.4818165,
+      "id": 27940
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 195965.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25319.766,
+        "kwh_today": 0.171179474,
+        "since_last_input_s": 148301.9,
+        "uptime_s": 25315.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 898.4,
+      "result": {
+        "a": "The word costruct means build together.",
+        "kind": "rehearse",
+        "memory": 2192,
+        "q": "q"
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 16,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 993.6,
+        "since_explore_s": 1161.9,
+        "since_input_s": 148300.5,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11434,
+      "ts": 1792196215.860241,
+      "id": 27943
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195971.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25319.766,
+        "kwh_today": 0.171179474,
+        "since_last_input_s": 148307.7,
+        "uptime_s": 25321.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.055,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 16,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 1000.3,
+        "since_explore_s": 6.7,
+        "since_input_s": 148306.9,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11435,
+      "ts": 1792196221.655355,
+      "id": 27944
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 195977.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148314.2,
+        "uptime_s": 25328.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.063,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 984.7,
+      "result": {
+        "misses": [
+          "q : what does super port mean ? a :",
+          "q : what does luc able mean ? a :"
+        ],
+        "n": 6,
+        "ok": 4
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 16,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 1005.9,
+        "since_explore_s": 12.2,
+        "since_input_s": 148312.7,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11436,
+      "ts": 1792196228.1792462,
+      "id": 27948
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195983.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148320.0,
+        "uptime_s": 25333.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.074,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 1012.7,
+        "since_explore_s": 19.1,
+        "since_input_s": 148319.2,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11437,
+      "ts": 1792196234.0246902,
+      "id": 27949
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195989.2,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148325.6,
+        "uptime_s": 25339.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.082,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 1018.2,
+        "since_explore_s": 24.6,
+        "since_input_s": 148325.1,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11438,
+      "ts": 1792196239.5393195,
+      "id": 27957
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195994.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148331.3,
+        "uptime_s": 25345.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.091,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 1024.0,
+        "since_explore_s": 30.4,
+        "since_input_s": 148330.6,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11439,
+      "ts": 1792196245.3290212,
+      "id": 27958
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196000.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148336.9,
+        "uptime_s": 25350.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.099,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 1029.5,
+        "since_explore_s": 35.9,
+        "since_input_s": 148336.4,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11440,
+      "ts": 1792196250.8494067,
+      "id": 27959
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196006.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148342.8,
+        "uptime_s": 25356.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.108,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 4,
+        "since_consolidation_s": 1035.4,
+        "since_explore_s": 41.8,
+        "since_input_s": 148341.9,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11441,
+      "ts": 1792196256.7584062,
+      "id": 27960
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196011.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148348.2,
+        "uptime_s": 25362.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.116,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 5,
+        "since_consolidation_s": 1040.9,
+        "since_explore_s": 47.3,
+        "since_input_s": 148347.8,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11442,
+      "ts": 1792196262.2308066,
+      "id": 27961
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196017.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148354.0,
+        "uptime_s": 25367.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.125,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 6,
+        "since_consolidation_s": 1046.7,
+        "since_explore_s": 53.0,
+        "since_input_s": 148353.3,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11443,
+      "ts": 1792196268.0027144,
+      "id": 27962
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196023.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148359.4,
+        "uptime_s": 25373.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.133,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 7,
+        "since_consolidation_s": 1052.1,
+        "since_explore_s": 58.4,
+        "since_input_s": 148359.0,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11444,
+      "ts": 1792196273.3807032,
+      "id": 27963
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196028.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148365.1,
+        "uptime_s": 25379.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.141,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 8,
+        "since_consolidation_s": 1057.8,
+        "since_explore_s": 64.2,
+        "since_input_s": 148364.4,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11445,
+      "ts": 1792196279.1155622,
+      "id": 27964
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196034.2,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148370.6,
+        "uptime_s": 25384.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.149,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 9,
+        "since_consolidation_s": 1063.3,
+        "since_explore_s": 69.6,
+        "since_input_s": 148370.2,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11446,
+      "ts": 1792196284.5968547,
+      "id": 27965
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196040.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148376.4,
+        "uptime_s": 25390.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.158,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 10,
+        "since_consolidation_s": 1069.1,
+        "since_explore_s": 75.4,
+        "since_input_s": 148375.6,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11447,
+      "ts": 1792196290.388949,
+      "id": 27966
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 196046.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25321.222,
+        "kwh_today": 0.17118298,
+        "since_last_input_s": 148382.4,
+        "uptime_s": 25396.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.166,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 453.0,
+      "result": {
+        "kind": "generate",
+        "memory": 5032,
+        "prompt": "the root ject",
+        "said": "means bring ."
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 11,
+        "since_consolidation_s": 1074.6,
+        "since_explore_s": 80.9,
+        "since_input_s": 148381.4,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11448,
+      "ts": 1792196296.3540494,
+      "id": 27968
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196051.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25321.222,
+        "kwh_today": 0.17118298,
+        "since_last_input_s": 148388.2,
+        "uptime_s": 25402.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.054,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5032,
+        "open_goals": 17,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 1080.8,
+        "since_explore_s": 6.2,
+        "since_input_s": 148387.4,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11449,
+      "ts": 1792196302.133269,
+      "id": 27969
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196057.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25321.222,
+        "kwh_today": 0.17118298,
+        "since_last_input_s": 148393.5,
+        "uptime_s": 25407.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.062,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5032,
+        "open_goals": 17,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 1086.2,
+        "since_explore_s": 11.6,
+        "since_input_s": 148393.2,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11450,
+      "ts": 1792196307.5199068,
+      "id": 27970
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 196064.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25322.451,
+        "kwh_today": 0.171186184,
+        "since_last_input_s": 148400.4,
+        "uptime_s": 25414.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.071,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 974.4,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5032,
+        "open_goals": 17,
+        "pending_facts": 1,
+        "rest_streak": 2,
+        "since_consolidation_s": 1092.0,
+        "since_explore_s": 17.5,
+        "since_input_s": 148398.6,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11451,
+      "ts": 1792196314.346367,
+      "id": 27973
+    }
+  ],
+  "last_events": [
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195971.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25319.766,
+        "kwh_today": 0.171179474,
+        "since_last_input_s": 148307.7,
+        "uptime_s": 25321.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.055,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 16,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 1000.3,
+        "since_explore_s": 6.7,
+        "since_input_s": 148306.9,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11435,
+      "ts": 1792196221.655355,
+      "id": 27944
+    },
+    {
+      "cpu_s": 0.5312,
+      "gpu_s": 0.6474,
+      "gpu_watts_sample": 3.24,
+      "kind": "meter",
+      "kwh_est": 2.796e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792196228.0005019,
+      "wall_s": 0.6474,
+      "what": "practice",
+      "id": 27945
+    },
+    {
+      "items": [
+        {
+          "expected": "graph ology means the study of write .",
+          "focus": "suffix:ology",
+          "got": "graph ology means the study of write .",
+          "ok": true,
+          "parts": [
+            "root:graph",
+            "suffix:ology"
+          ],
+          "q": "q : what does graph ology mean ? a :"
+        },
+        {
+          "expected": "rupt ness means the state of break .",
+          "focus": "suffix:ness",
+          "got": "rupt ness means the state of break .",
+          "ok": true,
+          "parts": [
+            "root:rupt",
+            "suffix:ness"
+          ],
+          "q": "q : what does rupt ness mean ? a :"
+        },
+        {
+          "expected": "super port means carry above .",
+          "focus": "root:port",
+          "got": "super port means believe above .",
+          "ok": false,
+          "parts": [
+            "prefix:super",
+            "root:port"
+          ],
+          "q": "q : what does super port mean ? a :"
+        },
+        {
+          "expected": "mit ly means in that manner send .",
+          "focus": "root:mit",
+          "got": "mit ly means in that manner send .",
+          "ok": true,
+          "parts": [
+            "root:mit",
+            "suffix:ly"
+          ],
+          "q": "q : what does mit ly mean ? a :"
+        },
+        {
+          "expected": "luc able means can be light .",
+          "focus": null,
+          "got": "luc able means can be light an old kite",
+          "ok": false,
+          "parts": [
+            "root:luc",
+            "suffix:able"
+          ],
+          "q": "q : what does luc able mean ? a :"
+        },
+        {
+          "expected": "struct ness means the state of build .",
+          "focus": null,
+          "got": "struct ness means the state of build .",
+          "ok": true,
+          "parts": [
+            "root:struct",
+            "suffix:ness"
+          ],
+          "q": "q : what does struct ness mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 4,
+      "ts": 1792196228.0025098,
+      "id": 27946
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 1,
+      "part": "prefix:super",
+      "status": "open",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792196228.1772437,
+      "id": 27947
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 195977.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148314.2,
+        "uptime_s": 25328.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.063,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 984.7,
+      "result": {
+        "misses": [
+          "q : what does super port mean ? a :",
+          "q : what does luc able mean ? a :"
+        ],
+        "n": 6,
+        "ok": 4
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 16,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 1005.9,
+        "since_explore_s": 12.2,
+        "since_input_s": 148312.7,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11436,
+      "ts": 1792196228.1792462,
+      "id": 27948
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195983.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148320.0,
+        "uptime_s": 25333.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.074,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 1012.7,
+        "since_explore_s": 19.1,
+        "since_input_s": 148319.2,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11437,
+      "ts": 1792196234.0246902,
+      "id": 27949
+    },
+    {
+      "action": "self_words",
+      "by": "jaron (via kimi, owner-delegated)",
+      "chars": 75,
+      "key": "name",
+      "kind": "owner_action",
+      "text": "I'm Sapling, a small Synthetic Cognitive Assistant that grows as it learns.",
+      "ts": "2026-10-16T20:17:16",
+      "via": "tools/owner_relay.py",
+      "id": 27950
+    },
+    {
+      "action": "self_words",
+      "by": "jaron (via kimi, owner-delegated)",
+      "chars": 161,
+      "key": "maker",
+      "kind": "owner_action",
+      "text": "Pieces of me were put together by a human named Jaron and the rest is constructed by knowledge of others and pieces of the world. I exist because of past sparks.",
+      "ts": "2026-10-16T20:17:16",
+      "via": "tools/owner_relay.py",
+      "id": 27951
+    },
+    {
+      "action": "self_words",
+      "by": "jaron (via kimi, owner-delegated)",
+      "chars": 74,
+      "key": "what",
+      "kind": "owner_action",
+      "text": "I am a Synthetic Cognitive Assistant - a small AI that grows as it learns.",
+      "ts": "2026-10-16T20:17:16",
+      "via": "tools/owner_relay.py",
+      "id": 27952
+    },
+    {
+      "action": "self_words",
+      "by": "jaron (via kimi, owner-delegated)",
+      "chars": 149,
+      "key": "can_do",
+      "kind": "owner_action",
+      "text": "I can talk, answer questions, tell short stories, and remember what you teach me. I am still learning, and I get better the more I read and practise.",
+      "ts": "2026-10-16T20:17:16",
+      "via": "tools/owner_relay.py",
+      "id": 27953
+    },
+    {
+      "action": "self_words",
+      "by": "jaron (via kimi, owner-delegated)",
+      "chars": 149,
+      "key": "memory",
+      "kind": "owner_action",
+      "text": "Everything I learn goes into a memory that is never erased. What I use stays strong, and what I never use slowly fades - but nothing is ever deleted.",
+      "ts": "2026-10-16T20:17:16",
+      "via": "tools/owner_relay.py",
+      "id": 27954
+    },
+    {
+      "action": "self_words",
+      "by": "jaron (via kimi, owner-delegated)",
+      "chars": 127,
+      "key": "heartbeat",
+      "kind": "owner_action",
+      "text": "My heartbeat is a loop that keeps going on its own. On every beat I choose to practise, explore, train what I learned, or rest.",
+      "ts": "2026-10-16T20:17:16",
+      "via": "tools/owner_relay.py",
+      "id": 27955
+    },
+    {
+      "action": "self_words",
+      "by": "jaron (via kimi, owner-delegated)",
+      "chars": 99,
+      "key": "learn_next",
+      "kind": "owner_action",
+      "text": "More about the world, and how to talk well with people. I would like to read more and to be taught.",
+      "ts": "2026-10-16T20:17:16",
+      "via": "tools/owner_relay.py",
+      "id": 27956
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195989.2,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148325.6,
+        "uptime_s": 25339.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.082,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 1018.2,
+        "since_explore_s": 24.6,
+        "since_input_s": 148325.1,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11438,
+      "ts": 1792196239.5393195,
+      "id": 27957
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 195994.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148331.3,
+        "uptime_s": 25345.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.091,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 1024.0,
+        "since_explore_s": 30.4,
+        "since_input_s": 148330.6,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11439,
+      "ts": 1792196245.3290212,
+      "id": 27958
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196000.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148336.9,
+        "uptime_s": 25350.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.099,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 1029.5,
+        "since_explore_s": 35.9,
+        "since_input_s": 148336.4,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11440,
+      "ts": 1792196250.8494067,
+      "id": 27959
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196006.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148342.8,
+        "uptime_s": 25356.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.108,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 4,
+        "since_consolidation_s": 1035.4,
+        "since_explore_s": 41.8,
+        "since_input_s": 148341.9,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11441,
+      "ts": 1792196256.7584062,
+      "id": 27960
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196011.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148348.2,
+        "uptime_s": 25362.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.116,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 5,
+        "since_consolidation_s": 1040.9,
+        "since_explore_s": 47.3,
+        "since_input_s": 148347.8,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11442,
+      "ts": 1792196262.2308066,
+      "id": 27961
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196017.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148354.0,
+        "uptime_s": 25367.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.125,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 6,
+        "since_consolidation_s": 1046.7,
+        "since_explore_s": 53.0,
+        "since_input_s": 148353.3,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11443,
+      "ts": 1792196268.0027144,
+      "id": 27962
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196023.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148359.4,
+        "uptime_s": 25373.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.133,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 7,
+        "since_consolidation_s": 1052.1,
+        "since_explore_s": 58.4,
+        "since_input_s": 148359.0,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11444,
+      "ts": 1792196273.3807032,
+      "id": 27963
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196028.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148365.1,
+        "uptime_s": 25379.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.141,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 8,
+        "since_consolidation_s": 1057.8,
+        "since_explore_s": 64.2,
+        "since_input_s": 148364.4,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11445,
+      "ts": 1792196279.1155622,
+      "id": 27964
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196034.2,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148370.6,
+        "uptime_s": 25384.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.149,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 9,
+        "since_consolidation_s": 1063.3,
+        "since_explore_s": 69.6,
+        "since_input_s": 148370.2,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11446,
+      "ts": 1792196284.5968547,
+      "id": 27965
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196040.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25320.944,
+        "kwh_today": 0.17118227,
+        "since_last_input_s": 148376.4,
+        "uptime_s": 25390.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.158,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 10,
+        "since_consolidation_s": 1069.1,
+        "since_explore_s": 75.4,
+        "since_input_s": 148375.6,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11447,
+      "ts": 1792196290.388949,
+      "id": 27966
+    },
+    {
+      "cpu_s": 0.1406,
+      "gpu_s": 0.1368,
+      "gpu_watts_sample": 3.26,
+      "kind": "meter",
+      "kwh_est": 7.1e-07,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792196296.3406003,
+      "wall_s": 0.1368,
+      "what": "explore_generate",
+      "id": 27967
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 196046.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25321.222,
+        "kwh_today": 0.17118298,
+        "since_last_input_s": 148382.4,
+        "uptime_s": 25396.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.166,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 453.0,
+      "result": {
+        "kind": "generate",
+        "memory": 5032,
+        "prompt": "the root ject",
+        "said": "means bring ."
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5031,
+        "open_goals": 17,
+        "pending_facts": 0,
+        "rest_streak": 11,
+        "since_consolidation_s": 1074.6,
+        "since_explore_s": 80.9,
+        "since_input_s": 148381.4,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11448,
+      "ts": 1792196296.3540494,
+      "id": 27968
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196051.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25321.222,
+        "kwh_today": 0.17118298,
+        "since_last_input_s": 148388.2,
+        "uptime_s": 25402.0
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.054,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5032,
+        "open_goals": 17,
+        "pending_facts": 1,
+        "rest_streak": 0,
+        "since_consolidation_s": 1080.8,
+        "since_explore_s": 6.2,
+        "since_input_s": 148387.4,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11449,
+      "ts": 1792196302.133269,
+      "id": 27969
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 196057.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25321.222,
+        "kwh_today": 0.17118298,
+        "since_last_input_s": 148393.5,
+        "uptime_s": 25407.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.062,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5032,
+        "open_goals": 17,
+        "pending_facts": 1,
+        "rest_streak": 1,
+        "since_consolidation_s": 1086.2,
+        "since_explore_s": 11.6,
+        "since_input_s": 148393.2,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11450,
+      "ts": 1792196307.5199068,
+      "id": 27970
+    },
+    {
+      "cpu_s": 0.6094,
+      "gpu_s": 0.6205,
+      "gpu_watts_sample": 3.86,
+      "kind": "meter",
+      "kwh_est": 3.204e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792196314.128925,
+      "wall_s": 0.6205,
+      "what": "practice",
+      "id": 27971
+    },
+    {
+      "items": [
+        {
+          "expected": "bio ful means full of life .",
+          "focus": "root:bio",
+          "got": "bio ful means full of life .",
+          "ok": true,
+          "parts": [
+            "root:bio",
+            "suffix:ful"
+          ],
+          "q": "q : what does bio ful mean ? a :"
+        },
+        {
+          "expected": "chron less means without time .",
+          "focus": "root:chron",
+          "got": "chron less means without time .",
+          "ok": true,
+          "parts": [
+            "root:chron",
+            "suffix:less"
+          ],
+          "q": "q : what does chron less mean ? a :"
+        },
+        {
+          "expected": "pend ology means the study of hang .",
+          "focus": "suffix:ology",
+          "got": "pend ology means the study of hang .",
+          "ok": true,
+          "parts": [
+            "root:pend",
+            "suffix:ology"
+          ],
+          "q": "q : what does pend ology mean ? a :"
+        },
+        {
+          "expected": "cred ness means the state of believe .",
+          "focus": "suffix:ness",
+          "got": "cred ness means the state of believe .",
+          "ok": true,
+          "parts": [
+            "root:cred",
+            "suffix:ness"
+          ],
+          "q": "q : what does cred ness mean ? a :"
+        },
+        {
+          "expected": "spect ness means the state of look .",
+          "focus": null,
+          "got": "spect ness means the state of look .",
+          "ok": true,
+          "parts": [
+            "root:spect",
+            "suffix:ness"
+          ],
+          "q": "q : what does spect ness mean ? a :"
+        },
+        {
+          "expected": "tract ing means ongoing pull .",
+          "focus": null,
+          "got": "tract ing means ongoing pull .",
+          "ok": true,
+          "parts": [
+            "root:tract",
+            "suffix:ing"
+          ],
+          "q": "q : what does tract ing mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792196314.1419914,
+      "id": 27972
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 196064.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -25322.451,
+        "kwh_today": 0.171186184,
+        "since_last_input_s": 148400.4,
+        "uptime_s": 25414.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.071,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 974.4,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 429,
+        "memories": 5032,
+        "open_goals": 17,
+        "pending_facts": 1,
+        "rest_streak": 2,
+        "since_consolidation_s": 1092.0,
+        "since_explore_s": 17.5,
+        "since_input_s": 148398.6,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 11451,
+      "ts": 1792196314.346367,
+      "id": 27973
+    }
+  ],
+  "memories": 5032,
+  "vocab_size": 17661,
+  "generation": 429
+}

@@ -253,7 +253,14 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
             other += rng.sample(c2["lessons"]["stories"], min(int(rehearsal * REHEARSAL_STORIES / 400), len(c2["lessons"]["stories"])))
     if v31:
         c3 = _corpus3(seed)
-        for name, n in REHEARSAL3.items():
+        r3 = REHEARSAL3
+        if had_longread(brain):
+            # D36: the old docs/longread school rehearsal (40 + 80 sentences in a different answer style) wears
+            # the cloud long-reading lesson out of the weights - fold tests S1-S4 (10/16): E7L 12 -> 16/40 in 5
+            # folds without it, "which sentence" held 5/16 instead of 1/16, E1b 81, E5 6/7. Cores that never had
+            # the lesson keep the old mix.
+            r3 = {k: v for k, v in r3.items() if k not in ("longread", "docs")}
+        for name, n in r3.items():
             L = c3["lessons"].get(name) or []
             if L:
                 other += rng.sample(L, min(int(rehearsal * n / 400), len(L)))

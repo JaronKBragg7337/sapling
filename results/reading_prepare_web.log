@@ -1,0 +1,34 @@
+[reading] web_000.npy: 50,000,606 tokens (44,698 docs so far, 26s)
+[reading] web_001.npy: 50,000,270 tokens (89,796 docs so far, 52s)
+[reading] web_002.npy: 50,000,569 tokens (135,700 docs so far, 76s)
+[reading] web_003.npy: 50,000,160 tokens (181,346 docs so far, 101s)
+[reading] web_004.npy: 50,000,120 tokens (227,420 docs so far, 123s)
+[reading] web_005.npy: 50,000,640 tokens (273,404 docs so far, 147s)
+[reading] web_006.npy: 50,000,108 tokens (319,436 docs so far, 171s)
+[reading] web_007.npy: 50,000,197 tokens (363,497 docs so far, 195s)
+[reading] web_008.npy: 50,000,003 tokens (408,339 docs so far, 218s)
+[reading] web_009.npy: 50,000,065 tokens (452,764 docs so far, 240s)
+[reading] web_010.npy: 50,001,900 tokens (497,717 docs so far, 262s)
+[reading] web_011.npy: 50,001,896 tokens (543,143 docs so far, 284s)
+[reading] web_012.npy: 50,000,103 tokens (588,322 docs so far, 306s)
+[reading] web_013.npy: 50,003,104 tokens (633,885 docs so far, 328s)
+[reading] web_014.npy: 50,000,343 tokens (678,825 docs so far, 349s)
+[reading] web_015.npy: 50,000,520 tokens (724,282 docs so far, 371s)
+[reading] web_016.npy: 1,978,821 tokens (725,999 docs so far, 371s)
+{
+ "stories": {
+  "tokens": 516895761,
+  "docs": 2717495,
+  "shards": 11
+ },
+ "adult": {
+  "tokens": 93634994,
+  "docs": 373518,
+  "shards": 2
+ },
+ "web": {
+  "tokens": 801989425,
+  "docs": 725999,
+  "shards": 17
+ }
+}

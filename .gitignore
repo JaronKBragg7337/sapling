@@ -27,3 +27,6 @@ results/reading_v4/*.pt
 results/reading_v4/*.opt
 results/reading_v4/pause
 results/talk/*.pt
+results/cloud/
+results/core_self_topup_staged.pt
+results/core_rollforward_staged.pt

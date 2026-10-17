@@ -1,0 +1,2341 @@
+{
+  "kind": "stop",
+  "ts": "2026-10-16T08:55:19",
+  "who": "owner",
+  "reason": "stop file written by the owner",
+  "tick": 8439,
+  "clock": {
+    "now": 1792155319.721577,
+    "now_iso": "2026-10-16 08:55:19",
+    "born_iso": "2026-10-14 13:50:50",
+    "age_s": 155069.3,
+    "uptime_s": 1616.1,
+    "since_last_input_s": 107405.7,
+    "budget_total_s": 14400.0,
+    "budget_spent_s": 16463.226,
+    "budget_left_s": -2063.226,
+    "budget_left_frac": 0.0,
+    "day_ends_in_s": 54280.0,
+    "kwh_today": 0.061590247,
+    "kwh_total": 0.161406312,
+    "gpu_watts_now": null
+  },
+  "drives": null,
+  "open_goals": [
+    {
+      "part": "prefix:inter",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2707,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:phon",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2696,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:port",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1994,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:vis",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1237,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:tion",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2350,
+      "target": "0 misses in the last 10 tries"
+    }
+  ],
+  "last_ticks": [
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154726.2,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -1817.73,
+        "kwh_today": 0.061085299,
+        "since_last_input_s": 107062.6,
+        "uptime_s": 1273.0
+      },
+      "drives": {
+        "consolidate": 0.095,
+        "explore": 0.144,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 1,
+        "generation": 352,
+        "memories": 3937,
+        "open_goals": 12,
+        "pending_facts": 0,
+        "rest_streak": 5,
+        "since_consolidation_s": 167.2,
+        "since_explore_s": 66.3,
+        "since_input_s": 107059.3,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 8410,
+      "ts": 1792154976.587363,
+      "id": 22806
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154731.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -1817.73,
+        "kwh_today": 0.061085299,
+        "since_last_input_s": 107068.0,
+        "uptime_s": 1278.4
+      },
+      "drives": {
+        "consolidate": 0.095,
+        "explore": 0.153,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 1,
+        "generation": 352,
+        "memories": 3937,
+        "open_goals": 12,
+        "pending_facts": 0,
+        "rest_streak": 6,
+        "since_consolidation_s": 172.6,
+        "since_explore_s": 71.7,
+        "since_input_s": 107067.7,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 8411,
+      "ts": 1792154981.9868395,
+      "id": 22807
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 154740.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -1818.625,
+        "kwh_today": 0.061087057,
+        "since_last_input_s": 107077.3,
+        "uptime_s": 1287.7
+      },
+      "drives": {
+        "consolidate": 0.095,
+        "explore": 0.165,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 752.4,
+      "result": {
+        "a": "Spect ful means full of look.",
+        "kind": "rehearse",
+        "memory": 48,
+        "q": "spect"
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 1,
+        "generation": 352,
+        "memories": 3937,
+        "open_goals": 12,
+        "pending_facts": 0,
+        "rest_streak": 7,
+        "since_consolidation_s": 181.2,
+        "since_explore_s": 80.3,
+        "since_input_s": 107073.1,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 8412,
+      "ts": 1792154991.3256626,
+      "id": 22810
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154746.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -1818.625,
+        "kwh_today": 0.061087057,
+        "since_last_input_s": 107082.8,
+        "uptime_s": 1293.2
+      },
+      "drives": {
+        "consolidate": 0.095,
+        "explore": 0.054,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 1,
+        "generation": 352,
+        "memories": 3937,
+        "open_goals": 12,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 187.4,
+        "since_explore_s": 6.2,
+        "since_input_s": 107082.5,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 8413,
+      "ts": 1792154996.7491212,
+      "id": 22811
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154754.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -1818.625,
+        "kwh_today": 0.061087057,
+        "since_last_input_s": 107091.3,
+        "uptime_s": 1301.7
+      },
+      "drives": {
+        "consolidate": 0.095,
+        "explore": 0.067,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 1,
+        "generation": 352,
+        "memories": 3937,
+        "open_goals": 12,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 196.0,
+        "since_explore_s": 14.8,
+        "since_input_s": 107087.9,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 8414,
+      "ts": 1792155005.3310614,
+      "id": 22812
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154760.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -1818.625,
+        "kwh_today": 0.061087057,
+        "since_last_input_s": 107096.8,
+        "uptime_s": 1307.2
+      },
+      "drives": {
+        "consolidate": 0.095,
+        "explore": 0.075,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 1,
+        "generation": 352,
+        "memories": 3937,
+        "open_goals": 12,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 201.4,
+        "since_explore_s": 20.2,
+        "since_input_s": 107096.4,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 8415,
+      "ts": 1792155010.7852287,
+      "id": 22813
+    },
+    {
+      "action": "consolidate",
+      "clock": {
+        "age_s": 154887.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2053.021,
+        "kwh_today": 0.061569218,
+        "since_last_input_s": 107224.2,
+        "uptime_s": 1434.6
+      },
+      "drives": {
+        "consolidate": 0.095,
+        "explore": 0.088,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 118856.7,
+      "result": {
+        "checkpoint": "checkpoints\\gen_0353.pt",
+        "exams": [
+          {
+            "accuracy": 0.988,
+            "exam": "E1_composition",
+            "score": "85/86",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E2_affix_recall",
+            "score": "24/24",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E3_recall_echo",
+            "score": "12/12",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E4_deferral",
+            "score": "10/10",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.979,
+            "exam": "E6_grammar",
+            "score": "47/48",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.825,
+            "exam": "E7_reading",
+            "score": "33/40",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.375,
+            "exam": "E7L_longread",
+            "score": "15/40",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 0.953,
+            "exam": "E1b_bridge",
+            "score": "82/86",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 0.022,
+            "exam": "E10_induction",
+            "score": "44/2016",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": null,
+            "exam": "E9_owner_exam",
+            "score": "0 items",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": null,
+            "exam": "E8_writing",
+            "score": "4 samples",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E5_facts_in_weights",
+            "score": "7/7",
+            "verdict": "INFO"
+          }
+        ],
+        "facts_new": 0,
+        "generation": 353,
+        "loss_first": 1.7907,
+        "loss_last": 1.2369,
+        "vocab_size": 17661
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 1,
+        "generation": 352,
+        "memories": 3937,
+        "open_goals": 12,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 210.0,
+        "since_explore_s": 28.7,
+        "since_input_s": 107101.9,
+        "vocab_size": 17661,
+        "worst_misses": 2
+      },
+      "tick": 8416,
+      "ts": 1792155138.1756904,
+      "id": 22818
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154893.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2053.021,
+        "kwh_today": 0.061569218,
+        "since_last_input_s": 107229.7,
+        "uptime_s": 1440.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 9,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 5.5,
+        "since_explore_s": 153.1,
+        "since_input_s": 107229.3,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8417,
+      "ts": 1792155143.6605988,
+      "id": 22826
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154902.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2053.021,
+        "kwh_today": 0.061569218,
+        "since_last_input_s": 107238.5,
+        "uptime_s": 1448.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 9,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 14.3,
+        "since_explore_s": 161.9,
+        "since_input_s": 107234.7,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8418,
+      "ts": 1792155152.4512513,
+      "id": 22827
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154908.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2053.021,
+        "kwh_today": 0.061569218,
+        "since_last_input_s": 107244.4,
+        "uptime_s": 1454.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 9,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 20.2,
+        "since_explore_s": 167.8,
+        "since_input_s": 107243.6,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8419,
+      "ts": 1792155158.3920357,
+      "id": 22828
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154916.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2053.021,
+        "kwh_today": 0.061569218,
+        "since_last_input_s": 107253.2,
+        "uptime_s": 1463.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 9,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 29.0,
+        "since_explore_s": 176.6,
+        "since_input_s": 107249.5,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8420,
+      "ts": 1792155167.1468413,
+      "id": 22829
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154922.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2053.021,
+        "kwh_today": 0.061569218,
+        "since_last_input_s": 107259.1,
+        "uptime_s": 1469.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 9,
+        "pending_facts": 0,
+        "rest_streak": 4,
+        "since_consolidation_s": 34.9,
+        "since_explore_s": 182.5,
+        "since_input_s": 107258.3,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8421,
+      "ts": 1792155173.0929606,
+      "id": 22830
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154931.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2053.021,
+        "kwh_today": 0.061569218,
+        "since_last_input_s": 107267.8,
+        "uptime_s": 1478.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 9,
+        "pending_facts": 0,
+        "rest_streak": 5,
+        "since_consolidation_s": 43.6,
+        "since_explore_s": 191.2,
+        "since_input_s": 107264.2,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8422,
+      "ts": 1792155181.750793,
+      "id": 22831
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154937.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2053.021,
+        "kwh_today": 0.061569218,
+        "since_last_input_s": 107273.8,
+        "uptime_s": 1484.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 9,
+        "pending_facts": 0,
+        "rest_streak": 6,
+        "since_consolidation_s": 49.6,
+        "since_explore_s": 197.2,
+        "since_input_s": 107273.1,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8423,
+      "ts": 1792155187.788931,
+      "id": 22832
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154946.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2053.021,
+        "kwh_today": 0.061569218,
+        "since_last_input_s": 107282.5,
+        "uptime_s": 1492.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 9,
+        "pending_facts": 0,
+        "rest_streak": 7,
+        "since_consolidation_s": 58.4,
+        "since_explore_s": 205.9,
+        "since_input_s": 107279.0,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8424,
+      "ts": 1792155196.5257132,
+      "id": 22833
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 154953.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2054.62,
+        "kwh_today": 0.061572473,
+        "since_last_input_s": 107289.5,
+        "uptime_s": 1499.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 1130.4,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 9,
+        "pending_facts": 0,
+        "rest_streak": 8,
+        "since_consolidation_s": 64.1,
+        "since_explore_s": 211.7,
+        "since_input_s": 107287.7,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8425,
+      "ts": 1792155203.4418643,
+      "id": 22837
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 154964.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2056.666,
+        "kwh_today": 0.061576575,
+        "since_last_input_s": 107300.5,
+        "uptime_s": 1510.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 1476.3,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 8,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 74.8,
+        "since_explore_s": 222.4,
+        "since_input_s": 107294.6,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8426,
+      "ts": 1792155214.4744825,
+      "id": 22841
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 154974.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2057.304,
+        "kwh_today": 0.061577812,
+        "since_last_input_s": 107310.8,
+        "uptime_s": 1521.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 4010.1,
+      "result": {
+        "a": "The word the truck means carry.",
+        "kind": "rehearse",
+        "memory": 877,
+        "q": "the"
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 82.6,
+        "since_explore_s": 230.2,
+        "since_input_s": 107305.5,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8427,
+      "ts": 1792155224.7906408,
+      "id": 22844
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154980.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2057.304,
+        "kwh_today": 0.061577812,
+        "since_last_input_s": 107316.7,
+        "uptime_s": 1527.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.06,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 92.5,
+        "since_explore_s": 9.9,
+        "since_input_s": 107316.0,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8428,
+      "ts": 1792155230.6458902,
+      "id": 22845
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154989.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2057.304,
+        "kwh_today": 0.061577812,
+        "since_last_input_s": 107325.8,
+        "uptime_s": 1536.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.073,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 101.6,
+        "since_explore_s": 19.0,
+        "since_input_s": 107321.7,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8429,
+      "ts": 1792155239.771011,
+      "id": 22846
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 154996.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2058.859,
+        "kwh_today": 0.061581002,
+        "since_last_input_s": 107332.7,
+        "uptime_s": 1543.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.082,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 1098.1,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 107.4,
+        "since_explore_s": 24.8,
+        "since_input_s": 107330.9,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8430,
+      "ts": 1792155246.6742442,
+      "id": 22849
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 155005.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2058.859,
+        "kwh_today": 0.061581002,
+        "since_last_input_s": 107341.4,
+        "uptime_s": 1551.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.097,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 117.2,
+        "since_explore_s": 34.6,
+        "since_input_s": 107337.7,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8431,
+      "ts": 1792155255.3819811,
+      "id": 22850
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 155010.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2058.859,
+        "kwh_today": 0.061581002,
+        "since_last_input_s": 107347.1,
+        "uptime_s": 1557.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.105,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 122.9,
+        "since_explore_s": 40.3,
+        "since_input_s": 107346.4,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8432,
+      "ts": 1792155261.0558774,
+      "id": 22851
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 155019.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2058.859,
+        "kwh_today": 0.061581002,
+        "since_last_input_s": 107356.0,
+        "uptime_s": 1566.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.119,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 131.8,
+        "since_explore_s": 49.2,
+        "since_input_s": 107352.3,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8433,
+      "ts": 1792155269.958246,
+      "id": 22852
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 155025.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2058.859,
+        "kwh_today": 0.061581002,
+        "since_last_input_s": 107361.9,
+        "uptime_s": 1572.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.128,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 137.7,
+        "since_explore_s": 55.1,
+        "since_input_s": 107361.3,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8434,
+      "ts": 1792155275.90765,
+      "id": 22853
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 155036.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2061.791,
+        "kwh_today": 0.061587252,
+        "since_last_input_s": 107373.3,
+        "uptime_s": 1583.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.142,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 1879.8,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 4,
+        "since_consolidation_s": 147.2,
+        "since_explore_s": 64.6,
+        "since_input_s": 107367.2,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8435,
+      "ts": 1792155287.2515507,
+      "id": 22858
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 155042.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2061.791,
+        "kwh_today": 0.061587252,
+        "since_last_input_s": 107378.8,
+        "uptime_s": 1589.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.153,
+        "practice": 0.133,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 5,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 154.6,
+        "since_explore_s": 72.0,
+        "since_input_s": 107378.3,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8436,
+      "ts": 1792155292.7679114,
+      "id": 22859
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 155051.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2061.791,
+        "kwh_today": 0.061587252,
+        "since_last_input_s": 107387.5,
+        "uptime_s": 1597.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.166,
+        "practice": 0.133,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 5,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 163.3,
+        "since_explore_s": 80.7,
+        "since_input_s": 107383.9,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8437,
+      "ts": 1792155301.4842267,
+      "id": 22860
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 155056.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2061.791,
+        "kwh_today": 0.061587252,
+        "since_last_input_s": 107393.2,
+        "uptime_s": 1603.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.175,
+        "practice": 0.133,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 5,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 169.0,
+        "since_explore_s": 86.4,
+        "since_input_s": 107392.7,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8438,
+      "ts": 1792155307.159684,
+      "id": 22861
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 155066.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2063.226,
+        "kwh_today": 0.061590247,
+        "since_last_input_s": 107402.8,
+        "uptime_s": 1613.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.183,
+        "practice": 0.133,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 4042.6,
+      "result": {
+        "kind": "generate",
+        "memory": 3950,
+        "prompt": "once upon a time ,",
+        "said": "there was a little boy named tim . tim loved to play hockey . he thought it was very important to play with his friends . every day , they would play hockey in the park . one day ,"
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 5,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 174.6,
+        "since_explore_s": 92.0,
+        "since_input_s": 107398.2,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8439,
+      "ts": 1792155316.7944236,
+      "id": 22863
+    }
+  ],
+  "last_events": [
+    {
+      "cpu_s": 0.7812,
+      "gpu_s": 0.8181,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 3.255e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792155203.371062,
+      "wall_s": 0.8181,
+      "what": "practice",
+      "id": 22834
+    },
+    {
+      "items": [
+        {
+          "expected": "co log means speech together .",
+          "focus": "prefix:co",
+          "got": "co log means speech together .",
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:log"
+          ],
+          "q": "q : what does co log mean ? a :"
+        },
+        {
+          "expected": "struct tion means the act of build .",
+          "focus": "suffix:tion",
+          "got": "struct tion means the act of build .",
+          "ok": true,
+          "parts": [
+            "root:struct",
+            "suffix:tion"
+          ],
+          "q": "q : what does struct tion mean ? a :"
+        },
+        {
+          "expected": "pro struct means build forward .",
+          "focus": "root:struct",
+          "got": "pro struct means build forward .",
+          "ok": true,
+          "parts": [
+            "prefix:pro",
+            "root:struct"
+          ],
+          "q": "q : what does pro struct mean ? a :"
+        },
+        {
+          "expected": "rupt er means one who break .",
+          "focus": "suffix:er",
+          "got": "rupt er means one who break .",
+          "ok": true,
+          "parts": [
+            "root:rupt",
+            "suffix:er"
+          ],
+          "q": "q : what does rupt er mean ? a :"
+        },
+        {
+          "expected": "pro log means speech forward .",
+          "focus": null,
+          "got": "pro log means speech forward .",
+          "ok": true,
+          "parts": [
+            "prefix:pro",
+            "root:log"
+          ],
+          "q": "q : what does pro log mean ? a :"
+        },
+        {
+          "expected": "the root geo means earth .",
+          "focus": null,
+          "got": "the root geo means earth .",
+          "ok": true,
+          "parts": [
+            "root:geo"
+          ],
+          "q": "q : what does the root geo mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792155203.3720627,
+      "id": 22835
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "prefix:co",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792155203.4398665,
+      "id": 22836
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 154953.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2054.62,
+        "kwh_today": 0.061572473,
+        "since_last_input_s": 107289.5,
+        "uptime_s": 1499.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 1130.4,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 9,
+        "pending_facts": 0,
+        "rest_streak": 8,
+        "since_consolidation_s": 64.1,
+        "since_explore_s": 211.7,
+        "since_input_s": 107287.7,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8425,
+      "ts": 1792155203.4418643,
+      "id": 22837
+    },
+    {
+      "cpu_s": 0.9844,
+      "gpu_s": 1.0618,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 4.102e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792155214.3510077,
+      "wall_s": 1.0618,
+      "what": "practice",
+      "id": 22838
+    },
+    {
+      "items": [
+        {
+          "expected": "struct ive means tending to build .",
+          "focus": "root:struct",
+          "got": "struct ive means tending to build .",
+          "ok": true,
+          "parts": [
+            "root:struct",
+            "suffix:ive"
+          ],
+          "q": "q : what does struct ive mean ? a :"
+        },
+        {
+          "expected": "mis dict means say wrong .",
+          "focus": "root:dict",
+          "got": "mis dict means say wrong .",
+          "ok": true,
+          "parts": [
+            "prefix:mis",
+            "root:dict"
+          ],
+          "q": "q : what does mis dict mean ? a :"
+        },
+        {
+          "expected": "trans dict means say across .",
+          "focus": "root:dict",
+          "got": "trans dict means say across .",
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:dict"
+          ],
+          "q": "q : what does trans dict mean ? a :"
+        },
+        {
+          "expected": "struct er means one who build .",
+          "focus": "root:struct",
+          "got": "struct er means one who build .",
+          "ok": true,
+          "parts": [
+            "root:struct",
+            "suffix:er"
+          ],
+          "q": "q : what does struct er mean ? a :"
+        },
+        {
+          "expected": "sub port means carry under .",
+          "focus": null,
+          "got": "sub port means carry under .",
+          "ok": true,
+          "parts": [
+            "prefix:sub",
+            "root:port"
+          ],
+          "q": "q : what does sub port mean ? a :"
+        },
+        {
+          "expected": "co scrib means write together .",
+          "focus": null,
+          "got": "co scrib means write together .",
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:scrib"
+          ],
+          "q": "q : what does co scrib mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792155214.3634932,
+      "id": 22839
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "root:struct",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792155214.4574816,
+      "id": 22840
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 154964.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2056.666,
+        "kwh_today": 0.061576575,
+        "since_last_input_s": 107300.5,
+        "uptime_s": 1510.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 1476.3,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 8,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 74.8,
+        "since_explore_s": 222.4,
+        "since_input_s": 107294.6,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8426,
+      "ts": 1792155214.4744825,
+      "id": 22841
+    },
+    {
+      "kind": "consumption",
+      "ms": 331.1,
+      "recalls": 0,
+      "tokens_in": 5,
+      "tokens_out": 6,
+      "ts": 1792155221.7454858,
+      "turn": 9,
+      "id": 22842
+    },
+    {
+      "cpu_s": 0.2969,
+      "gpu_s": 0.3408,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 1.237e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792155224.7756412,
+      "wall_s": 0.3408,
+      "what": "explore_rehearse",
+      "id": 22843
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 154974.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2057.304,
+        "kwh_today": 0.061577812,
+        "since_last_input_s": 107310.8,
+        "uptime_s": 1521.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 4010.1,
+      "result": {
+        "a": "The word the truck means carry.",
+        "kind": "rehearse",
+        "memory": 877,
+        "q": "the"
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 82.6,
+        "since_explore_s": 230.2,
+        "since_input_s": 107305.5,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8427,
+      "ts": 1792155224.7906408,
+      "id": 22844
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154980.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2057.304,
+        "kwh_today": 0.061577812,
+        "since_last_input_s": 107316.7,
+        "uptime_s": 1527.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.06,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 92.5,
+        "since_explore_s": 9.9,
+        "since_input_s": 107316.0,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8428,
+      "ts": 1792155230.6458902,
+      "id": 22845
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 154989.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2057.304,
+        "kwh_today": 0.061577812,
+        "since_last_input_s": 107325.8,
+        "uptime_s": 1536.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.073,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 101.6,
+        "since_explore_s": 19.0,
+        "since_input_s": 107321.7,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8429,
+      "ts": 1792155239.771011,
+      "id": 22846
+    },
+    {
+      "cpu_s": 0.7656,
+      "gpu_s": 0.7893,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 3.19e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792155246.4363863,
+      "wall_s": 0.7893,
+      "what": "practice",
+      "id": 22847
+    },
+    {
+      "items": [
+        {
+          "expected": "dict ness means the state of say .",
+          "focus": "root:dict",
+          "got": "dict ness means the state of say .",
+          "ok": true,
+          "parts": [
+            "root:dict",
+            "suffix:ness"
+          ],
+          "q": "q : what does dict ness mean ? a :"
+        },
+        {
+          "expected": "pre phon means sound before .",
+          "focus": "root:phon",
+          "got": "pre phon means sound before .",
+          "ok": true,
+          "parts": [
+            "prefix:pre",
+            "root:phon"
+          ],
+          "q": "q : what does pre phon mean ? a :"
+        },
+        {
+          "expected": "struct tion means the act of build .",
+          "focus": "suffix:tion",
+          "got": "struct tion means the act of build .",
+          "ok": true,
+          "parts": [
+            "root:struct",
+            "suffix:tion"
+          ],
+          "q": "q : what does struct tion mean ? a :"
+        },
+        {
+          "expected": "pend tion means the act of hang .",
+          "focus": "suffix:tion",
+          "got": "pend tion means the act of hang .",
+          "ok": true,
+          "parts": [
+            "root:pend",
+            "suffix:tion"
+          ],
+          "q": "q : what does pend tion mean ? a :"
+        },
+        {
+          "expected": "struct ive means tending to build .",
+          "focus": null,
+          "got": "struct ive means tending to build .",
+          "ok": true,
+          "parts": [
+            "root:struct",
+            "suffix:ive"
+          ],
+          "q": "q : what does struct ive mean ? a :"
+        },
+        {
+          "expected": "un luc means light not .",
+          "focus": null,
+          "got": "un luc means light not .",
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:luc"
+          ],
+          "q": "q : what does un luc mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792155246.4383657,
+      "id": 22848
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 154996.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2058.859,
+        "kwh_today": 0.061581002,
+        "since_last_input_s": 107332.7,
+        "uptime_s": 1543.1
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.082,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 1098.1,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 107.4,
+        "since_explore_s": 24.8,
+        "since_input_s": 107330.9,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8430,
+      "ts": 1792155246.6742442,
+      "id": 22849
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 155005.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2058.859,
+        "kwh_today": 0.061581002,
+        "since_last_input_s": 107341.4,
+        "uptime_s": 1551.8
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.097,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 117.2,
+        "since_explore_s": 34.6,
+        "since_input_s": 107337.7,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8431,
+      "ts": 1792155255.3819811,
+      "id": 22850
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 155010.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2058.859,
+        "kwh_today": 0.061581002,
+        "since_last_input_s": 107347.1,
+        "uptime_s": 1557.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.105,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 122.9,
+        "since_explore_s": 40.3,
+        "since_input_s": 107346.4,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8432,
+      "ts": 1792155261.0558774,
+      "id": 22851
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 155019.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2058.859,
+        "kwh_today": 0.061581002,
+        "since_last_input_s": 107356.0,
+        "uptime_s": 1566.4
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.119,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 131.8,
+        "since_explore_s": 49.2,
+        "since_input_s": 107352.3,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8433,
+      "ts": 1792155269.958246,
+      "id": 22852
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 155025.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2058.859,
+        "kwh_today": 0.061581002,
+        "since_last_input_s": 107361.9,
+        "uptime_s": 1572.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.128,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 137.7,
+        "since_explore_s": 55.1,
+        "since_input_s": 107361.3,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8434,
+      "ts": 1792155275.90765,
+      "id": 22853
+    },
+    {
+      "cpu_s": 1.5,
+      "gpu_s": 1.4326,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 6.25e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792155287.1631992,
+      "wall_s": 1.4326,
+      "what": "practice",
+      "id": 22854
+    },
+    {
+      "items": [
+        {
+          "expected": "dict er means one who say .",
+          "focus": "root:dict",
+          "got": "dict er means one who say .",
+          "ok": true,
+          "parts": [
+            "root:dict",
+            "suffix:er"
+          ],
+          "q": "q : what does dict er mean ? a :"
+        },
+        {
+          "expected": "the root phon means sound .",
+          "focus": "root:phon",
+          "got": "the root phon means sound .",
+          "ok": true,
+          "parts": [
+            "root:phon"
+          ],
+          "q": "q : what does the root phon mean ? a :"
+        },
+        {
+          "expected": "dict er means one who say .",
+          "focus": "suffix:er",
+          "got": "dict er means one who say .",
+          "ok": true,
+          "parts": [
+            "root:dict",
+            "suffix:er"
+          ],
+          "q": "q : what does dict er mean ? a :"
+        },
+        {
+          "expected": "pos er means one who place .",
+          "focus": "suffix:er",
+          "got": "pos er means one who place .",
+          "ok": true,
+          "parts": [
+            "root:pos",
+            "suffix:er"
+          ],
+          "q": "q : what does pos er mean ? a :"
+        },
+        {
+          "expected": "port ive means tending to carry .",
+          "focus": null,
+          "got": "port ive means tending to carry .",
+          "ok": true,
+          "parts": [
+            "root:port",
+            "suffix:ive"
+          ],
+          "q": "q : what does port ive mean ? a :"
+        },
+        {
+          "expected": "sub cred means believe under .",
+          "focus": null,
+          "got": "sub cred means believe under .",
+          "ok": true,
+          "parts": [
+            "prefix:sub",
+            "root:cred"
+          ],
+          "q": "q : what does sub cred mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792155287.164199,
+      "id": 22855
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "root:dict",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792155287.2376359,
+      "id": 22856
+    },
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "suffix:er",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792155287.2407618,
+      "id": 22857
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 155036.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2061.791,
+        "kwh_today": 0.061587252,
+        "since_last_input_s": 107373.3,
+        "uptime_s": 1583.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.142,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 1879.8,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 4,
+        "since_consolidation_s": 147.2,
+        "since_explore_s": 64.6,
+        "since_input_s": 107367.2,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8435,
+      "ts": 1792155287.2515507,
+      "id": 22858
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 155042.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2061.791,
+        "kwh_today": 0.061587252,
+        "since_last_input_s": 107378.8,
+        "uptime_s": 1589.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.153,
+        "practice": 0.133,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 5,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 154.6,
+        "since_explore_s": 72.0,
+        "since_input_s": 107378.3,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8436,
+      "ts": 1792155292.7679114,
+      "id": 22859
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 155051.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2061.791,
+        "kwh_today": 0.061587252,
+        "since_last_input_s": 107387.5,
+        "uptime_s": 1597.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.166,
+        "practice": 0.133,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 5,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 163.3,
+        "since_explore_s": 80.7,
+        "since_input_s": 107383.9,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8437,
+      "ts": 1792155301.4842267,
+      "id": 22860
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 155056.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2061.791,
+        "kwh_today": 0.061587252,
+        "since_last_input_s": 107393.2,
+        "uptime_s": 1603.6
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.175,
+        "practice": 0.133,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 5,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 169.0,
+        "since_explore_s": 86.4,
+        "since_input_s": 107392.7,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8438,
+      "ts": 1792155307.159684,
+      "id": 22861
+    },
+    {
+      "cpu_s": 0.7188,
+      "gpu_s": 0.7156,
+      "gpu_watts_sample": null,
+      "kind": "meter",
+      "kwh_est": 2.995e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792155316.7914226,
+      "wall_s": 0.7156,
+      "what": "explore_generate",
+      "id": 22862
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 155066.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -2063.226,
+        "kwh_today": 0.061590247,
+        "since_last_input_s": 107402.8,
+        "uptime_s": 1613.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.183,
+        "practice": 0.133,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 4042.6,
+      "result": {
+        "kind": "generate",
+        "memory": 3950,
+        "prompt": "once upon a time ,",
+        "said": "there was a little boy named tim . tim loved to play hockey . he thought it was very important to play with his friends . every day , they would play hockey in the park . one day ,"
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 353,
+        "memories": 3949,
+        "open_goals": 5,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 174.6,
+        "since_explore_s": 92.0,
+        "since_input_s": 107398.2,
+        "vocab_size": 17661,
+        "worst_misses": 1
+      },
+      "tick": 8439,
+      "ts": 1792155316.7944236,
+      "id": 22863
+    }
+  ],
+  "memories": 3950,
+  "vocab_size": 17661,
+  "generation": 353
+}

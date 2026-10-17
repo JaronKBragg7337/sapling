@@ -6,14 +6,12 @@ v1's three steps: (1) runs-without-you is DONE (the heartbeat); (2) record -> co
 is DONE (no gate; `/confirm` and `/invalidate` verdicts are the selection events); (3) a world
 to practice in is still open. Ordered by dependency.
 
-## 0000. Lesson retention (10/16 morning)
-D33 slowed the wear; D34 (lr 7.5e-5) is the best of three fold tests, but every setting still loses ~5 E7L in 5 folds,
-and MORE lesson replay (12/44) did not help - so something else in a fold works against it. Next, measured with
-`tools/fold_test.py` (isolated, ~10 min per test): (1) look at WHICH E7L kinds are lost (the exam detail: "which
-sentence", "word after/before", "copy the first sentence of the passage with the word ..." - the last kind is not in
-the lesson's templates); (2) drop the school's old `longread`/`docs` rehearsal (40 + 80 sentences in a different
-answer style) from the fold mix; (3) fewer steps per fold (200 -> 120); (4) a second cloud lesson with the missing
-E7L-style kinds added as templates. A ~5-point E7L wear per 5 folds is the number to beat.
+## 0000. Lesson retention - CLOSED 10/16 ~10:20 PM (D36 adopted)
+The wear is fixed: cores that had the cloud lesson no longer rehearse the school's old `longread`/`docs` sentences in
+consolidations (D36; the S1-S4 fold-test matrix in CHANGELOG 10/16 ~10:20 PM). E7L wear per 5 folds: 5-6 -> ~1.
+Still open: (a) what the last ~1 point per 5 folds is (watch the card); (b) a second cloud lesson with the missing
+E7L-style kinds is prepared in `longread_lesson.py` (templates v2) and needs `python tools/runpod_run.py --rebuild`
+before it can run - with D36 in place, a second lesson's gains should now survive the heartbeat.
 
 ## 000. The cloud long-reading lesson (built 10/16, not run) - the morning command
 
@@ -39,9 +37,11 @@ After it, in order:
    taught, asked in several wordings), and a bigger conversation set if oasst1 + dolly are not enough.
 5. **Sapling's own words (Jaron):** the ten answers about itself are his to write on the control room card "Sapling's own
    words". Tonight's Stage B trains none (none written yet). When he has written them, a short top-up on just those
-   (~300 steps, a few minutes; reading + school replay inside, heartbeat stopped for it):
+   (~300 steps, a few minutes; reading + school replay inside, heartbeat stopped for it). NOTE (10/16 evening, found by
+   the first run): without `--epochs 16` the top-up stops at `epochs x examples / 8` = 38 steps and the lessons do not
+   land - the flag is required (DONE 10/16 evening, gen 433; CHANGELOG):
    ```bash
-   python tools/gpu_yield.py stop "self-lesson top-up" && python -m sapling.talk train --self-only --core results/core_checkpoint.pt
+   python tools/gpu_yield.py stop "self-lesson top-up" && python -m sapling.talk train --self-only --epochs 16 --core results/core_checkpoint.pt
    python -c "from sapling.grow import swap; swap(staged='results/core_self_topup_staged.pt')"
    python tools/gpu_yield.py start "self-lesson top-up"
    ```

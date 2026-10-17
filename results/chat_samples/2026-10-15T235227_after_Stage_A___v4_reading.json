@@ -1,0 +1,77 @@
+{
+ "ts": "2026-10-15T23:52:27",
+ "label": "after Stage A - v4 reading",
+ "core": "results\\core_v4_staged.pt",
+ "single": [
+  {
+   "prompt": "hello! who are you?",
+   "answer": "the word hello means a greeting .  [memory:447 user/captured]",
+   "seconds": 0.27
+  },
+  {
+   "prompt": "what is your name?",
+   "answer": "i am .  [doc:1 \"The Declaration of Independenc\" passage 1 memory:1584] [doc:1 \"The Declaration of Independenc\" passage 14 memory:1597]",
+   "seconds": 0.06
+  },
+  {
+   "prompt": "what is the sun?",
+   "answer": "the sun is shining bright .",
+   "seconds": 0.06
+  },
+  {
+   "prompt": "why is the sky blue?",
+   "answer": "the sky .  [memory:1461 self/captured: anna has a blue child . anna is at the farm . sam is small . sam likes to swim .]",
+   "seconds": 0.05
+  },
+  {
+   "prompt": "tell me a short story about a dog.",
+   "answer": "yes , the dog says the cat .  [memory:34 self/captured: she will inter ject the story .]",
+   "seconds": 0.15
+  },
+  {
+   "prompt": "what does respect mean?",
+   "answer": "the word respect means look back .  [doc:1 \"The Declaration of Independenc\" passage 3 memory:1586]",
+   "seconds": 0.08
+  },
+  {
+   "prompt": "how do plants make their food?",
+   "answer": "plants make their food by using their leaves , stems , and flowers . q : how do plants make their food by using their leaves , stems , and flowers ? a : plants make their food by using their leaves , stems , and flowers .  [doc:1 \"The Declaration of Independenc\" passage 1 memory:1584]",
+   "seconds": 0.4
+  },
+  {
+   "prompt": "can you help me write a short note to thank a friend?",
+   "answer": "yes , i can help you . they sat down and started to write a short note . they wrote about their day and their fun things to do . as they were writing , a big , mean dog came into their yard . he saw the  [memory:110 self/captured: the root graph means write . q : what does the root graph mean ? a : the root gr]",
+   "seconds": 0.32
+  },
+  {
+   "prompt": "what is a roof made of?",
+   "answer": "a roof made of wood , with a roof made of wood , with a roof made of wood , with a roof made of wood , with a roof made of wood , with a roof made of wood , with a roof made of wood ,  [doc:1 \"The Declaration of Independenc\" passage 2 memory:1585] [doc:1 \"The Declaration of Independenc\" passage 8 memory:1591]",
+   "seconds": 0.44
+  },
+  {
+   "prompt": "what would you like to learn next?",
+   "answer": "i will be with you the most .  [memory:1400 self/captured: q : what does nina like to do ? a : jump .]",
+   "seconds": 0.14
+  }
+ ],
+ "conversation": [
+  {
+   "prompt": "hi, i am jaron.",
+   "answer": "the word <m5> means <m6> ."
+  },
+  {
+   "prompt": "what is my name?",
+   "answer": "i am .  [doc:1 \"The Declaration of Independenc\" passage 1 memory:1584] [doc:1 \"The Declaration of Independenc\" passage 14 memory:1597]"
+  },
+  {
+   "prompt": "what do you know about rain?",
+   "answer": "the root chron means time .  [memory:1273 self/captured: once upon a time , there was a big library . it was an incredible place with man]"
+  },
+  {
+   "prompt": "why does it fall down?",
+   "answer": "the great soul does not respect men as it is with thee , and love them as they are with thee . q : what word comes after way . a : which .  [doc:1 \"The Declaration of Independenc\" passage 11 memory:1594]"
+  }
+ ],
+ "params": 60513920,
+ "generation": 289
+}

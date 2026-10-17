@@ -203,9 +203,11 @@ class Session:
             answer = (f"i recall : {h['content']} "
                       f"[memory:{h['id']} {h['provenance']}/{h['state']}, tier={h['tier']}]")
         elif self.has_core and self.store.documents() and (doc_hits := reader.retrieve(
-                self.store, query, k=3, embed_fn=embed_fn)) and doc_hits[0]["cov"] >= (0.6 if self.brain.talks() else 0.3):
+                self.store, query, k=3, embed_fn=embed_fn)) and doc_hits[0]["cov"] >= (0.6 if self.brain.talks() else 0.3) \
+                and doc_hits[0].get("nmatch_long", 0) >= 2:
             # v3.1: a question that a document it has read can cover goes through the reading frame
             # (passages in front of the question) and comes back cited by document + passage.
+            # nmatch_long >= 2 (NEXT 0a.5): one common content word ("made", "called") must not hijack talk.
             r = reader.ask(self.brain, self.store, query, k=3)
             answer = f"{r['answer']}  {r.get('cites', '')}".strip()
         elif self.has_core and self.brain.talks():
