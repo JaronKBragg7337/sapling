@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-18 ~11:25 PM - day-and-a-half check: long reading fades slowly, everything else holds (Kimi)
+Gen 765 (296 of its own folds since the second cloud lesson): long reading 20 -> 17 -> **12/40** (-5 in 241 folds,
+~0.1 per 5 - about 17x slower than the old mix, still a slow leak); affix recall recovered on its own 18 -> 23/24
+(PASS again, no fix needed); facts 7/7, reading 35/40, grammar 47/48, bridge 81/86, window losses flat. Chat still
+answers who it is in the owner's words. Open: the slow leak - a cheap refresh lesson every so often, or accept it.
+
 ## 2026-10-17 ~8:50 AM - overnight retention check: the fix holds in the real world (Kimi)
 55 of its own consolidations overnight (gen 469 -> 524, the heartbeat's normal pace, D36 mix): **long reading
 20 -> 17/40** (-0.3 per 5 folds; the old mix lost 9 in 27). Reading 32 -> 36/40, bridge 83 -> 79, facts back to

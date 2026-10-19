@@ -1,0 +1,4808 @@
+{
+  "kind": "stop",
+  "ts": "2026-10-18T11:32:25",
+  "who": "owner",
+  "reason": "stop file written by the owner",
+  "tick": 19170,
+  "clock": {
+    "now": 1792337545.5644512,
+    "now_iso": "2026-10-18 11:32:25",
+    "born_iso": "2026-10-14 13:50:50",
+    "age_s": 337295.2,
+    "uptime_s": 18297.5,
+    "since_last_input_s": 126449.1,
+    "budget_total_s": 14400.0,
+    "budget_spent_s": 26130.67,
+    "budget_left_s": -11730.67,
+    "budget_left_frac": 0.0,
+    "day_ends_in_s": 44854.0,
+    "kwh_today": 0.098697012,
+    "kwh_total": 0.561614643,
+    "gpu_watts_now": 7.0
+  },
+  "drives": null,
+  "open_goals": [
+    {
+      "part": "root:port",
+      "status": "open",
+      "misses_recent": 3,
+      "tries_recent": 10,
+      "tries_total": 2154,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:un",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 1677,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:bio",
+      "status": "open",
+      "misses_recent": 2,
+      "tries_recent": 10,
+      "tries_total": 2118,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "prefix:co",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2936,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "root:spect",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 2504,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ed",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1409,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:er",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1383,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ive",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 3271,
+      "target": "0 misses in the last 10 tries"
+    },
+    {
+      "part": "suffix:ness",
+      "status": "open",
+      "misses_recent": 1,
+      "tries_recent": 10,
+      "tries_total": 1708,
+      "target": "0 misses in the last 10 tries"
+    }
+  ],
+  "last_ticks": [
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336428.2,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -10796.108,
+        "kwh_today": 0.095829503,
+        "since_last_input_s": 125583.6,
+        "uptime_s": 17431.9
+      },
+      "drives": {
+        "consolidate": 0.069,
+        "explore": 0.093,
+        "practice": 0.117,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 684,
+        "memories": 8619,
+        "open_goals": 4,
+        "pending_facts": 3,
+        "rest_streak": 1,
+        "since_consolidation_s": 324.8,
+        "since_explore_s": 31.7,
+        "since_input_s": 125577.2,
+        "vocab_size": 17662,
+        "worst_misses": 1
+      },
+      "tick": 19141,
+      "ts": 1792336679.9895964,
+      "id": 43432
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 336444.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -10799.8,
+        "kwh_today": 0.095840957,
+        "since_last_input_s": 125598.4,
+        "uptime_s": 17446.7
+      },
+      "drives": {
+        "consolidate": 0.069,
+        "explore": 0.11,
+        "practice": 0.117,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 4386.5,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 684,
+        "memories": 8619,
+        "open_goals": 4,
+        "pending_facts": 3,
+        "rest_streak": 2,
+        "since_consolidation_s": 336.6,
+        "since_explore_s": 43.5,
+        "since_input_s": 125588.6,
+        "vocab_size": 17662,
+        "worst_misses": 1
+      },
+      "tick": 19142,
+      "ts": 1792336694.7837608,
+      "id": 43436
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336454.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -10799.8,
+        "kwh_today": 0.095840957,
+        "since_last_input_s": 125609.5,
+        "uptime_s": 17457.8
+      },
+      "drives": {
+        "consolidate": 0.069,
+        "explore": 0.131,
+        "practice": 0.1,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 684,
+        "memories": 8619,
+        "open_goals": 3,
+        "pending_facts": 3,
+        "rest_streak": 0,
+        "since_consolidation_s": 350.6,
+        "since_explore_s": 57.6,
+        "since_input_s": 125603.4,
+        "vocab_size": 17662,
+        "worst_misses": 1
+      },
+      "tick": 19143,
+      "ts": 1792336705.88592,
+      "id": 43437
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 336473.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -10801.552,
+        "kwh_today": 0.095847881,
+        "since_last_input_s": 125627.1,
+        "uptime_s": 17475.4
+      },
+      "drives": {
+        "consolidate": 0.069,
+        "explore": 0.149,
+        "practice": 0.1,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 7150.8,
+      "result": {
+        "kind": "generate",
+        "memory": 8620,
+        "prompt": "tom has a",
+        "said": "white child . tom is at the beach . sam is at the house . sam likes to swim ."
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 684,
+        "memories": 8619,
+        "open_goals": 3,
+        "pending_facts": 3,
+        "rest_streak": 1,
+        "since_consolidation_s": 362.6,
+        "since_explore_s": 69.5,
+        "since_input_s": 125614.5,
+        "vocab_size": 17662,
+        "worst_misses": 1
+      },
+      "tick": 19144,
+      "ts": 1792336723.529621,
+      "id": 43439
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336483.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -10801.552,
+        "kwh_today": 0.095847881,
+        "since_last_input_s": 125637.0,
+        "uptime_s": 17485.3
+      },
+      "drives": {
+        "consolidate": 0.077,
+        "explore": 0.071,
+        "practice": 0.1,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 684,
+        "memories": 8620,
+        "open_goals": 3,
+        "pending_facts": 4,
+        "rest_streak": 0,
+        "since_consolidation_s": 379.6,
+        "since_explore_s": 17.0,
+        "since_input_s": 125632.2,
+        "vocab_size": 17662,
+        "worst_misses": 1
+      },
+      "tick": 19145,
+      "ts": 1792336733.3994532,
+      "id": 43440
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336493.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -10801.552,
+        "kwh_today": 0.095847881,
+        "since_last_input_s": 125647.7,
+        "uptime_s": 17496.0
+      },
+      "drives": {
+        "consolidate": 0.077,
+        "explore": 0.087,
+        "practice": 0.1,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 684,
+        "memories": 8620,
+        "open_goals": 3,
+        "pending_facts": 4,
+        "rest_streak": 1,
+        "since_consolidation_s": 390.3,
+        "since_explore_s": 27.7,
+        "since_input_s": 125642.0,
+        "vocab_size": 17662,
+        "worst_misses": 1
+      },
+      "tick": 19146,
+      "ts": 1792336744.1084719,
+      "id": 43441
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336504.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -10801.552,
+        "kwh_today": 0.095847881,
+        "since_last_input_s": 125659.3,
+        "uptime_s": 17507.7
+      },
+      "drives": {
+        "consolidate": 0.077,
+        "explore": 0.102,
+        "practice": 0.1,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 684,
+        "memories": 8620,
+        "open_goals": 3,
+        "pending_facts": 4,
+        "rest_streak": 2,
+        "since_consolidation_s": 400.5,
+        "since_explore_s": 38.0,
+        "since_input_s": 125652.8,
+        "vocab_size": 17662,
+        "worst_misses": 1
+      },
+      "tick": 19147,
+      "ts": 1792336755.7648885,
+      "id": 43442
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336515.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -10801.552,
+        "kwh_today": 0.095847881,
+        "since_last_input_s": 125670.9,
+        "uptime_s": 17519.2
+      },
+      "drives": {
+        "consolidate": 0.077,
+        "explore": 0.119,
+        "practice": 0.1,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 684,
+        "memories": 8620,
+        "open_goals": 3,
+        "pending_facts": 4,
+        "rest_streak": 3,
+        "since_consolidation_s": 412.1,
+        "since_explore_s": 49.5,
+        "since_input_s": 125664.4,
+        "vocab_size": 17662,
+        "worst_misses": 1
+      },
+      "tick": 19148,
+      "ts": 1792336767.3258755,
+      "id": 43443
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 336535.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -10804.755,
+        "kwh_today": 0.095859722,
+        "since_last_input_s": 125689.0,
+        "uptime_s": 17537.3
+      },
+      "drives": {
+        "consolidate": 0.077,
+        "explore": 0.137,
+        "practice": 0.1,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 7851.2,
+      "result": {
+        "kind": "generate",
+        "memory": 8621,
+        "prompt": "once upon a time ,",
+        "said": "there was a little girl named lily . she had a big , red ball that she loved to play with . one day , she went to the park with her mom and her ball . at the park"
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 684,
+        "memories": 8620,
+        "open_goals": 3,
+        "pending_facts": 4,
+        "rest_streak": 4,
+        "since_consolidation_s": 423.8,
+        "since_explore_s": 61.2,
+        "since_input_s": 125676.0,
+        "vocab_size": 17662,
+        "worst_misses": 1
+      },
+      "tick": 19149,
+      "ts": 1792336785.4455652,
+      "id": 43445
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 336548.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -10808.479,
+        "kwh_today": 0.095872833,
+        "since_last_input_s": 125702.7,
+        "uptime_s": 17551.0
+      },
+      "drives": {
+        "consolidate": 0.085,
+        "explore": 0.071,
+        "practice": 0.1,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 4290.7,
+      "result": {
+        "misses": [
+          "q : what does the suffix ive mean ? a :"
+        ],
+        "n": 6,
+        "ok": 5
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 684,
+        "memories": 8621,
+        "open_goals": 3,
+        "pending_facts": 5,
+        "rest_streak": 0,
+        "since_consolidation_s": 441.1,
+        "since_explore_s": 17.3,
+        "since_input_s": 125694.2,
+        "vocab_size": 17662,
+        "worst_misses": 1
+      },
+      "tick": 19150,
+      "ts": 1792336799.1536415,
+      "id": 43449
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336559.2,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -10808.479,
+        "kwh_today": 0.095872833,
+        "since_last_input_s": 125714.7,
+        "uptime_s": 17563.1
+      },
+      "drives": {
+        "consolidate": 0.095,
+        "explore": 0.093,
+        "practice": 0.083,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 684,
+        "memories": 8621,
+        "open_goals": 2,
+        "pending_facts": 5,
+        "rest_streak": 0,
+        "since_consolidation_s": 455.7,
+        "since_explore_s": 31.9,
+        "since_input_s": 125707.8,
+        "vocab_size": 17662,
+        "worst_misses": 2
+      },
+      "tick": 19151,
+      "ts": 1792336811.1570246,
+      "id": 43450
+    },
+    {
+      "action": "consolidate",
+      "clock": {
+        "age_s": 336829.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11279.309,
+        "kwh_today": 0.097354191,
+        "since_last_input_s": 125983.5,
+        "uptime_s": 17831.8
+      },
+      "drives": {
+        "consolidate": 0.095,
+        "explore": 0.111,
+        "practice": 0.083,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 258506.6,
+      "result": {
+        "checkpoint": "checkpoints\\gen_0685.pt",
+        "exams": [
+          {
+            "accuracy": 0.953,
+            "exam": "E1_composition",
+            "score": "82/86",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E2_affix_recall",
+            "score": "24/24",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E3_recall_echo",
+            "score": "12/12",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E4_deferral",
+            "score": "10/10",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.979,
+            "exam": "E6_grammar",
+            "score": "47/48",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.925,
+            "exam": "E7_reading",
+            "score": "37/40",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.45,
+            "exam": "E7L_longread",
+            "score": "18/40",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 0.977,
+            "exam": "E1b_bridge",
+            "score": "84/86",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 0.017,
+            "exam": "E10_induction",
+            "score": "35/2016",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": null,
+            "exam": "E9_owner_exam",
+            "score": "0 items",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": null,
+            "exam": "E8_writing",
+            "score": "4 samples",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 0.571,
+            "exam": "E5_facts_in_weights",
+            "score": "4/7",
+            "verdict": "INFO"
+          }
+        ],
+        "facts_new": 5,
+        "generation": 685,
+        "loss_first": 1.2956,
+        "loss_last": 1.1545,
+        "vocab_size": 17662
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 684,
+        "memories": 8621,
+        "open_goals": 2,
+        "pending_facts": 5,
+        "rest_streak": 1,
+        "since_consolidation_s": 467.6,
+        "since_explore_s": 43.8,
+        "since_input_s": 125719.9,
+        "vocab_size": 17662,
+        "worst_misses": 2
+      },
+      "tick": 19152,
+      "ts": 1792337079.900403,
+      "id": 43455
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 336844.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11283.026,
+        "kwh_today": 0.09736534,
+        "since_last_input_s": 125997.9,
+        "uptime_s": 17846.3
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 4043.5,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 10.4,
+        "since_explore_s": 312.7,
+        "since_input_s": 125988.5,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19153,
+      "ts": 1792337094.3613677,
+      "id": 43463
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 336859.2,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11286.208,
+        "kwh_today": 0.097371525,
+        "since_last_input_s": 126013.1,
+        "uptime_s": 17861.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 5529.6,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 24.1,
+        "since_explore_s": 326.4,
+        "since_input_s": 126003.0,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19154,
+      "ts": 1792337109.5670052,
+      "id": 43467
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336868.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11286.208,
+        "kwh_today": 0.097371525,
+        "since_last_input_s": 126024.2,
+        "uptime_s": 17872.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 39.4,
+        "since_explore_s": 341.7,
+        "since_input_s": 126018.2,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19155,
+      "ts": 1792337120.640877,
+      "id": 43468
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336879.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11286.208,
+        "kwh_today": 0.097371525,
+        "since_last_input_s": 126033.9,
+        "uptime_s": 17882.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 50.4,
+        "since_explore_s": 352.7,
+        "since_input_s": 126029.3,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19156,
+      "ts": 1792337130.3111074,
+      "id": 43469
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336891.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11286.208,
+        "kwh_today": 0.097371525,
+        "since_last_input_s": 126045.4,
+        "uptime_s": 17893.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 61.9,
+        "since_explore_s": 364.2,
+        "since_input_s": 126039.0,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19157,
+      "ts": 1792337141.8419194,
+      "id": 43470
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 336909.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11287.292,
+        "kwh_today": 0.097375931,
+        "since_last_input_s": 126063.6,
+        "uptime_s": 17911.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 6526.7,
+      "result": {
+        "a": "The word ruptable means can be break.",
+        "kind": "rehearse",
+        "memory": 2840,
+        "q": "the"
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 73.6,
+        "since_explore_s": 375.9,
+        "since_input_s": 126050.5,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19158,
+      "ts": 1792337160.0305588,
+      "id": 43473
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336920.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11287.292,
+        "kwh_today": 0.097375931,
+        "since_last_input_s": 126075.3,
+        "uptime_s": 17923.6
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.07,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 90.5,
+        "since_explore_s": 16.9,
+        "since_input_s": 126068.7,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19159,
+      "ts": 1792337171.7466164,
+      "id": 43474
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336931.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11287.292,
+        "kwh_today": 0.097375931,
+        "since_last_input_s": 126087.2,
+        "uptime_s": 17935.5
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.088,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 102.3,
+        "since_explore_s": 28.7,
+        "since_input_s": 126080.4,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19160,
+      "ts": 1792337183.6472857,
+      "id": 43475
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336943.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11287.292,
+        "kwh_today": 0.097375931,
+        "since_last_input_s": 126098.8,
+        "uptime_s": 17947.2
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.105,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 113.9,
+        "since_explore_s": 40.3,
+        "since_input_s": 126092.3,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19161,
+      "ts": 1792337195.2746584,
+      "id": 43476
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336955.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11287.292,
+        "kwh_today": 0.097375931,
+        "since_last_input_s": 126110.4,
+        "uptime_s": 17958.7
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.123,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 125.4,
+        "since_explore_s": 51.8,
+        "since_input_s": 126103.9,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19162,
+      "ts": 1792337206.7957704,
+      "id": 43477
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336966.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11287.292,
+        "kwh_today": 0.097375931,
+        "since_last_input_s": 126121.9,
+        "uptime_s": 17970.2
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.14,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 4,
+        "since_consolidation_s": 137.0,
+        "since_explore_s": 63.4,
+        "since_input_s": 126115.5,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19163,
+      "ts": 1792337218.3384137,
+      "id": 43478
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 336982.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11290.469,
+        "kwh_today": 0.097387257,
+        "since_last_input_s": 126136.1,
+        "uptime_s": 17984.4
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.157,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 4060.1,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 5,
+        "since_consolidation_s": 148.5,
+        "since_explore_s": 74.9,
+        "since_input_s": 126127.0,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19164,
+      "ts": 1792337232.508722,
+      "id": 43481
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336992.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11290.469,
+        "kwh_today": 0.097387257,
+        "since_last_input_s": 126147.5,
+        "uptime_s": 17995.8
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.178,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 162.6,
+        "since_explore_s": 89.0,
+        "since_input_s": 126141.2,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19165,
+      "ts": 1792337243.9236739,
+      "id": 43482
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 337003.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11290.469,
+        "kwh_today": 0.097387257,
+        "since_last_input_s": 126159.3,
+        "uptime_s": 18007.6
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.196,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 174.4,
+        "since_explore_s": 100.7,
+        "since_input_s": 126152.5,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19166,
+      "ts": 1792337255.6948984,
+      "id": 43483
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 337019.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11294.07,
+        "kwh_today": 0.097400254,
+        "since_last_input_s": 126173.0,
+        "uptime_s": 18021.4
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.213,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 4114.3,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 185.5,
+        "since_explore_s": 111.8,
+        "since_input_s": 126164.4,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19167,
+      "ts": 1792337269.4717655,
+      "id": 43486
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 337036.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11296.634,
+        "kwh_today": 0.097410657,
+        "since_last_input_s": 126190.3,
+        "uptime_s": 18038.6
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 7302.0,
+      "result": {
+        "a": "The word profer means bring forward.",
+        "kind": "rehearse",
+        "memory": 1772,
+        "q": "super"
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 199.5,
+        "since_explore_s": 125.9,
+        "since_input_s": 126178.1,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19168,
+      "ts": 1792337286.7150593,
+      "id": 43489
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 337046.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11296.634,
+        "kwh_today": 0.097410657,
+        "since_last_input_s": 126202.1,
+        "uptime_s": 18050.4
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.071,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 217.2,
+        "since_explore_s": 17.6,
+        "since_input_s": 126195.4,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19169,
+      "ts": 1792337298.4924784,
+      "id": 43490
+    },
+    {
+      "action": "consolidate",
+      "clock": {
+        "age_s": 337295.2,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11730.67,
+        "kwh_today": 0.098697012,
+        "since_last_input_s": 126449.1,
+        "uptime_s": 18297.5
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.089,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 236942.9,
+      "result": {
+        "checkpoint": "checkpoints\\gen_0686.pt",
+        "exams": [
+          {
+            "accuracy": 0.965,
+            "exam": "E1_composition",
+            "score": "83/86",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.917,
+            "exam": "E2_affix_recall",
+            "score": "22/24",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E3_recall_echo",
+            "score": "12/12",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E4_deferral",
+            "score": "10/10",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.979,
+            "exam": "E6_grammar",
+            "score": "47/48",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.875,
+            "exam": "E7_reading",
+            "score": "35/40",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.4,
+            "exam": "E7L_longread",
+            "score": "16/40",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 0.942,
+            "exam": "E1b_bridge",
+            "score": "81/86",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 0.048,
+            "exam": "E10_induction",
+            "score": "96/2016",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": null,
+            "exam": "E9_owner_exam",
+            "score": "0 items",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": null,
+            "exam": "E8_writing",
+            "score": "4 samples",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 0.714,
+            "exam": "E5_facts_in_weights",
+            "score": "5/7",
+            "verdict": "INFO"
+          }
+        ],
+        "facts_new": 0,
+        "generation": 686,
+        "loss_first": 1.5842,
+        "loss_last": 1.1503,
+        "vocab_size": 17662
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 228.7,
+        "since_explore_s": 29.2,
+        "since_input_s": 126207.1,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19170,
+      "ts": 1792337545.5604534,
+      "id": 43495
+    }
+  ],
+  "last_events": [
+    {
+      "kind": "goal",
+      "misses_recent": 0,
+      "part": "suffix:ive",
+      "status": "met",
+      "target": "0 misses in the last 10 tries",
+      "tries_recent": 10,
+      "ts": 1792337109.548499,
+      "id": 43466
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 336859.2,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11286.208,
+        "kwh_today": 0.097371525,
+        "since_last_input_s": 126013.1,
+        "uptime_s": 17861.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 5529.6,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 7,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 24.1,
+        "since_explore_s": 326.4,
+        "since_input_s": 126003.0,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19154,
+      "ts": 1792337109.5670052,
+      "id": 43467
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336868.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11286.208,
+        "kwh_today": 0.097371525,
+        "since_last_input_s": 126024.2,
+        "uptime_s": 17872.5
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 39.4,
+        "since_explore_s": 341.7,
+        "since_input_s": 126018.2,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19155,
+      "ts": 1792337120.640877,
+      "id": 43468
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336879.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11286.208,
+        "kwh_today": 0.097371525,
+        "since_last_input_s": 126033.9,
+        "uptime_s": 17882.2
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 50.4,
+        "since_explore_s": 352.7,
+        "since_input_s": 126029.3,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19156,
+      "ts": 1792337130.3111074,
+      "id": 43469
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336891.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11286.208,
+        "kwh_today": 0.097371525,
+        "since_last_input_s": 126045.4,
+        "uptime_s": 17893.7
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 61.9,
+        "since_explore_s": 364.2,
+        "since_input_s": 126039.0,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19157,
+      "ts": 1792337141.8419194,
+      "id": 43470
+    },
+    {
+      "kind": "consumption",
+      "ms": 586.5,
+      "recalls": 0,
+      "tokens_in": 5,
+      "tokens_out": 7,
+      "ts": 1792337158.7142231,
+      "turn": 60,
+      "id": 43471
+    },
+    {
+      "cpu_s": 0.4844,
+      "gpu_s": 0.5994,
+      "gpu_watts_sample": 14.34,
+      "kind": "meter",
+      "kwh_est": 4.406e-06,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792337160.0145588,
+      "wall_s": 0.5994,
+      "what": "explore_rehearse",
+      "id": 43472
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 336909.6,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11287.292,
+        "kwh_today": 0.097375931,
+        "since_last_input_s": 126063.6,
+        "uptime_s": 17911.9
+      },
+      "drives": {
+        "consolidate": 0.0,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 6526.7,
+      "result": {
+        "a": "The word ruptable means can be break.",
+        "kind": "rehearse",
+        "memory": 2840,
+        "q": "the"
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 73.6,
+        "since_explore_s": 375.9,
+        "since_input_s": 126050.5,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19158,
+      "ts": 1792337160.0305588,
+      "id": 43473
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336920.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11287.292,
+        "kwh_today": 0.097375931,
+        "since_last_input_s": 126075.3,
+        "uptime_s": 17923.6
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.07,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 90.5,
+        "since_explore_s": 16.9,
+        "since_input_s": 126068.7,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19159,
+      "ts": 1792337171.7466164,
+      "id": 43474
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336931.8,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11287.292,
+        "kwh_today": 0.097375931,
+        "since_last_input_s": 126087.2,
+        "uptime_s": 17935.5
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.088,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 102.3,
+        "since_explore_s": 28.7,
+        "since_input_s": 126080.4,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19160,
+      "ts": 1792337183.6472857,
+      "id": 43475
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336943.4,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11287.292,
+        "kwh_today": 0.097375931,
+        "since_last_input_s": 126098.8,
+        "uptime_s": 17947.2
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.105,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 113.9,
+        "since_explore_s": 40.3,
+        "since_input_s": 126092.3,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19161,
+      "ts": 1792337195.2746584,
+      "id": 43476
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336955.0,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11287.292,
+        "kwh_today": 0.097375931,
+        "since_last_input_s": 126110.4,
+        "uptime_s": 17958.7
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.123,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 3,
+        "since_consolidation_s": 125.4,
+        "since_explore_s": 51.8,
+        "since_input_s": 126103.9,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19162,
+      "ts": 1792337206.7957704,
+      "id": 43477
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336966.5,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11287.292,
+        "kwh_today": 0.097375931,
+        "since_last_input_s": 126121.9,
+        "uptime_s": 17970.2
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.14,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 4,
+        "since_consolidation_s": 137.0,
+        "since_explore_s": 63.4,
+        "since_input_s": 126115.5,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19163,
+      "ts": 1792337218.3384137,
+      "id": 43478
+    },
+    {
+      "cpu_s": 1.375,
+      "gpu_s": 1.8024,
+      "gpu_watts_sample": 11.18,
+      "kind": "meter",
+      "kwh_est": 1.1326e-05,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792337232.1034865,
+      "wall_s": 1.8024,
+      "what": "practice",
+      "id": 43479
+    },
+    {
+      "items": [
+        {
+          "expected": "un pos means place not .",
+          "focus": "prefix:un",
+          "got": "un pos means place not .",
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:pos"
+          ],
+          "q": "q : what does un pos mean ? a :"
+        },
+        {
+          "expected": "struct ed means in the past build .",
+          "focus": "suffix:ed",
+          "got": "struct ed means in the past build .",
+          "ok": true,
+          "parts": [
+            "root:struct",
+            "suffix:ed"
+          ],
+          "q": "q : what does struct ed mean ? a :"
+        },
+        {
+          "expected": "un graph means write not .",
+          "focus": "prefix:un",
+          "got": "un graph means write not .",
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:graph"
+          ],
+          "q": "q : what does un graph mean ? a :"
+        },
+        {
+          "expected": "super port means carry above .",
+          "focus": "root:port",
+          "got": "super port means carry above .",
+          "ok": true,
+          "parts": [
+            "prefix:super",
+            "root:port"
+          ],
+          "q": "q : what does super port mean ? a :"
+        },
+        {
+          "expected": "trans dict means say across .",
+          "focus": null,
+          "got": "trans dict means say across .",
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:dict"
+          ],
+          "q": "q : what does trans dict mean ? a :"
+        },
+        {
+          "expected": "form ive means tending to shape .",
+          "focus": null,
+          "got": "form ive means tending to shape .",
+          "ok": true,
+          "parts": [
+            "root:form",
+            "suffix:ive"
+          ],
+          "q": "q : what does form ive mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792337232.115992,
+      "id": 43480
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 336982.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11290.469,
+        "kwh_today": 0.097387257,
+        "since_last_input_s": 126136.1,
+        "uptime_s": 17984.4
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.157,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 4060.1,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 5,
+        "since_consolidation_s": 148.5,
+        "since_explore_s": 74.9,
+        "since_input_s": 126127.0,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19164,
+      "ts": 1792337232.508722,
+      "id": 43481
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 336992.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11290.469,
+        "kwh_today": 0.097387257,
+        "since_last_input_s": 126147.5,
+        "uptime_s": 17995.8
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.178,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 162.6,
+        "since_explore_s": 89.0,
+        "since_input_s": 126141.2,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19165,
+      "ts": 1792337243.9236739,
+      "id": 43482
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 337003.9,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11290.469,
+        "kwh_today": 0.097387257,
+        "since_last_input_s": 126159.3,
+        "uptime_s": 18007.6
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.196,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 174.4,
+        "since_explore_s": 100.7,
+        "since_input_s": 126152.5,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19166,
+      "ts": 1792337255.6948984,
+      "id": 43483
+    },
+    {
+      "cpu_s": 1.7344,
+      "gpu_s": 1.8665,
+      "gpu_watts_sample": 11.13,
+      "kind": "meter",
+      "kwh_est": 1.2997e-05,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792337269.1151936,
+      "wall_s": 1.8665,
+      "what": "practice",
+      "id": 43484
+    },
+    {
+      "items": [
+        {
+          "expected": "un ject means throw not .",
+          "focus": "prefix:un",
+          "got": "un ject means throw not .",
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:ject"
+          ],
+          "q": "q : what does un ject mean ? a :"
+        },
+        {
+          "expected": "luc ness means the state of light .",
+          "focus": "suffix:ness",
+          "got": "luc ness means the state of light .",
+          "ok": true,
+          "parts": [
+            "root:luc",
+            "suffix:ness"
+          ],
+          "q": "q : what does luc ness mean ? a :"
+        },
+        {
+          "expected": "mit ness means the state of send .",
+          "focus": "suffix:ness",
+          "got": "mit ness means the state of send .",
+          "ok": true,
+          "parts": [
+            "root:mit",
+            "suffix:ness"
+          ],
+          "q": "q : what does mit ness mean ? a :"
+        },
+        {
+          "expected": "pos ed means in the past place .",
+          "focus": "suffix:ed",
+          "got": "pos ed means in the past place .",
+          "ok": true,
+          "parts": [
+            "root:pos",
+            "suffix:ed"
+          ],
+          "q": "q : what does pos ed mean ? a :"
+        },
+        {
+          "expected": "super spect means look above .",
+          "focus": null,
+          "got": "super spect means look above .",
+          "ok": true,
+          "parts": [
+            "prefix:super",
+            "root:spect"
+          ],
+          "q": "q : what does super spect mean ? a :"
+        },
+        {
+          "expected": "mis vis means see wrong .",
+          "focus": null,
+          "got": "mis vis means see wrong .",
+          "ok": true,
+          "parts": [
+            "prefix:mis",
+            "root:vis"
+          ],
+          "q": "q : what does mis vis mean ? a :"
+        }
+      ],
+      "kind": "practice",
+      "n": 6,
+      "ok": 6,
+      "ts": 1792337269.1171942,
+      "id": 43485
+    },
+    {
+      "action": "practice",
+      "clock": {
+        "age_s": 337019.1,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11294.07,
+        "kwh_today": 0.097400254,
+        "since_last_input_s": 126173.0,
+        "uptime_s": 18021.4
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.213,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 4114.3,
+      "result": {
+        "misses": [],
+        "n": 6,
+        "ok": 6
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 2,
+        "since_consolidation_s": 185.5,
+        "since_explore_s": 111.8,
+        "since_input_s": 126164.4,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19167,
+      "ts": 1792337269.4717655,
+      "id": 43486
+    },
+    {
+      "kind": "consumption",
+      "ms": 1503.2,
+      "recalls": 39,
+      "tokens_in": 5,
+      "tokens_out": 6,
+      "ts": 1792337285.2670865,
+      "turn": 61,
+      "id": 43487
+    },
+    {
+      "cpu_s": 1.0469,
+      "gpu_s": 1.5167,
+      "gpu_watts_sample": 14.34,
+      "kind": "meter",
+      "kwh_est": 1.0403e-05,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792337286.7098653,
+      "wall_s": 1.5167,
+      "what": "explore_rehearse",
+      "id": 43488
+    },
+    {
+      "action": "explore",
+      "clock": {
+        "age_s": 337036.3,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11296.634,
+        "kwh_today": 0.097410657,
+        "since_last_input_s": 126190.3,
+        "uptime_s": 18038.6
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.225,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 7302.0,
+      "result": {
+        "a": "The word profer means bring forward.",
+        "kind": "rehearse",
+        "memory": 1772,
+        "q": "super"
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 199.5,
+        "since_explore_s": 125.9,
+        "since_input_s": 126178.1,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19168,
+      "ts": 1792337286.7150593,
+      "id": 43489
+    },
+    {
+      "action": "rest",
+      "clock": {
+        "age_s": 337046.7,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11296.634,
+        "kwh_today": 0.097410657,
+        "since_last_input_s": 126202.1,
+        "uptime_s": 18050.4
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.071,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 0.0,
+      "result": {},
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 0,
+        "since_consolidation_s": 217.2,
+        "since_explore_s": 17.6,
+        "since_input_s": 126195.4,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19169,
+      "ts": 1792337298.4924784,
+      "id": 43490
+    },
+    {
+      "checkpoint": "checkpoints\\gen_0686.pt",
+      "fact_sentences": 753,
+      "facts_new": 0,
+      "facts_self": 1392,
+      "facts_total": 1415,
+      "facts_user": 7,
+      "generation": 686,
+      "kind": "consolidation",
+      "lesson_share": 0.2,
+      "loss_first": 1.5842,
+      "loss_last": 1.1503,
+      "lr": 7.5e-05,
+      "memory_ids": [],
+      "read_share": 0.4,
+      "seconds": 129.9,
+      "self_ids": [
+        21,
+        28,
+        34,
+        40,
+        41,
+        47,
+        48,
+        49,
+        55,
+        56,
+        57,
+        58,
+        64,
+        65,
+        66,
+        72,
+        73,
+        79,
+        80,
+        81,
+        87,
+        93,
+        94,
+        95,
+        96,
+        102,
+        103,
+        109,
+        110,
+        126,
+        127,
+        133,
+        134,
+        140,
+        141,
+        142,
+        148,
+        149,
+        155,
+        161,
+        162,
+        168,
+        169,
+        175,
+        176,
+        177,
+        183,
+        184,
+        185,
+        186,
+        187,
+        193,
+        194,
+        195,
+        201,
+        202,
+        208,
+        214,
+        215,
+        221,
+        227,
+        233,
+        239,
+        240,
+        246,
+        247,
+        248,
+        254,
+        255,
+        256,
+        262,
+        268,
+        274,
+        275,
+        276,
+        277,
+        283,
+        289,
+        290,
+        291,
+        297,
+        303,
+        309,
+        310,
+        311,
+        312,
+        313,
+        319,
+        320,
+        326,
+        327,
+        328,
+        334,
+        335,
+        341,
+        342,
+        348,
+        349,
+        355,
+        361,
+        367,
+        368,
+        374,
+        380,
+        381,
+        387,
+        388,
+        389,
+        390,
+        396,
+        397,
+        398,
+        399,
+        405,
+        406,
+        412,
+        418,
+        419,
+        420,
+        426,
+        432,
+        433,
+        434,
+        440,
+        441,
+        448,
+        454,
+        455,
+        456,
+        462,
+        463,
+        469,
+        475,
+        476,
+        482,
+        493,
+        494,
+        495,
+        501,
+        502,
+        503,
+        509,
+        515,
+        516,
+        522,
+        523,
+        524,
+        525,
+        531,
+        532,
+        533,
+        539,
+        540,
+        541,
+        547,
+        548,
+        549,
+        550,
+        556,
+        557,
+        568,
+        569,
+        570,
+        571,
+        572,
+        578,
+        579,
+        585,
+        586,
+        592,
+        593,
+        594,
+        600,
+        601,
+        607,
+        608,
+        609,
+        615,
+        616,
+        617,
+        623,
+        629,
+        630,
+        636,
+        637,
+        638,
+        649,
+        650,
+        656,
+        657,
+        658,
+        664,
+        665,
+        666,
+        672,
+        673,
+        674,
+        680,
+        681,
+        687,
+        688,
+        689,
+        695,
+        696,
+        702,
+        703,
+        709,
+        710,
+        716,
+        717,
+        723,
+        729,
+        730,
+        731,
+        732,
+        738,
+        739,
+        740,
+        741,
+        747,
+        748,
+        749,
+        750,
+        756,
+        757,
+        763,
+        764,
+        765,
+        771,
+        772,
+        778,
+        779,
+        785,
+        791,
+        792,
+        798,
+        799,
+        805,
+        806,
+        807,
+        808,
+        814,
+        820,
+        821,
+        827,
+        828,
+        834,
+        835,
+        841,
+        847,
+        848,
+        854,
+        855,
+        861,
+        862,
+        863,
+        869,
+        870,
+        876,
+        877,
+        883,
+        884,
+        890,
+        891,
+        897,
+        898,
+        904,
+        905,
+        911,
+        912,
+        918,
+        919,
+        925,
+        926,
+        932,
+        933,
+        939,
+        940,
+        946,
+        947,
+        953,
+        954,
+        955,
+        961,
+        962,
+        963,
+        969,
+        970,
+        971,
+        972,
+        978,
+        979,
+        985,
+        986,
+        992,
+        993,
+        994,
+        995,
+        1001,
+        1002,
+        1008,
+        1009,
+        1010,
+        1016,
+        1017,
+        1023,
+        1024,
+        1030,
+        1031,
+        1037,
+        1038,
+        1039,
+        1045,
+        1046,
+        1047,
+        1053,
+        1054,
+        1060,
+        1061,
+        1067,
+        1073,
+        1074,
+        1075,
+        1076,
+        1082,
+        1088,
+        1089,
+        1095,
+        1096,
+        1102,
+        1103,
+        1109,
+        1110,
+        1111,
+        1117,
+        1118,
+        1124,
+        1125,
+        1131,
+        1137,
+        1138,
+        1144,
+        1145,
+        1146,
+        1147,
+        1153,
+        1154,
+        1155,
+        1161,
+        1162,
+        1163,
+        1169,
+        1170,
+        1171,
+        1177,
+        1178,
+        1184,
+        1185,
+        1186,
+        1192,
+        1193,
+        1194,
+        1200,
+        1201,
+        1207,
+        1208,
+        1214,
+        1231,
+        1240,
+        1241,
+        1250,
+        1251,
+        1252,
+        1261,
+        1262,
+        1272,
+        1273,
+        1274,
+        1283,
+        1284,
+        1285,
+        1286,
+        1295,
+        1296,
+        1305,
+        1306,
+        1315,
+        1324,
+        1325,
+        1334,
+        1335,
+        1344,
+        1345,
+        1354,
+        1355,
+        1356,
+        1365,
+        1366,
+        1375,
+        1376,
+        1377,
+        1386,
+        1387,
+        1388,
+        1389,
+        1390,
+        1391,
+        1400,
+        1401,
+        1410,
+        1411,
+        1420,
+        1421,
+        1422,
+        1439,
+        1440,
+        1441,
+        1442,
+        1451,
+        1460,
+        1461,
+        1470,
+        1471,
+        1480,
+        1481,
+        1482,
+        1483,
+        1492,
+        1493,
+        1502,
+        1525,
+        1537,
+        1582,
+        1610,
+        1611,
+        1623,
+        1624,
+        1636,
+        1637,
+        1649,
+        1650,
+        1662,
+        1663,
+        1675,
+        1676,
+        1688,
+        1700,
+        1701,
+        1702,
+        1703,
+        1715,
+        1716,
+        1717,
+        1718,
+        1730,
+        1731,
+        1743,
+        1744,
+        1756,
+        1757,
+        1769,
+        1770,
+        1771,
+        1772,
+        1784,
+        1785,
+        1797,
+        1798,
+        1810,
+        1811,
+        1812,
+        1824,
+        1825,
+        1837,
+        1838,
+        1850,
+        1851,
+        1863,
+        1864,
+        1865,
+        1877,
+        1878,
+        1890,
+        1891,
+        1903,
+        1904,
+        1905,
+        1906,
+        1907,
+        1919,
+        1920,
+        1932,
+        1933,
+        1934,
+        1946,
+        1947,
+        1948,
+        1960,
+        1961,
+        1973,
+        1974,
+        1975,
+        1987,
+        1988,
+        2000,
+        2001,
+        2013,
+        2014,
+        2026,
+        2027,
+        2039,
+        2040,
+        2041,
+        2053,
+        2054,
+        2066,
+        2067,
+        2079,
+        2080,
+        2092,
+        2093,
+        2094,
+        2106,
+        2107,
+        2108,
+        2109,
+        2121,
+        2122,
+        2123,
+        2124,
+        2136,
+        2137,
+        2138,
+        2150,
+        2151,
+        2163,
+        2164,
+        2165,
+        2166,
+        2178,
+        2179,
+        2191,
+        2192,
+        2193,
+        2194,
+        2195,
+        2207,
+        2208,
+        2220,
+        2221,
+        2222,
+        2234,
+        2235,
+        2236,
+        2248,
+        2249,
+        2261,
+        2262,
+        2263,
+        2275,
+        2276,
+        2288,
+        2289,
+        2301,
+        2302,
+        2303,
+        2304,
+        2316,
+        2317,
+        2318,
+        2330,
+        2331,
+        2343,
+        2391,
+        2392,
+        2405,
+        2418,
+        2431,
+        2444,
+        2493,
+        2494,
+        2507,
+        2520,
+        2521,
+        2534,
+        2547,
+        2560,
+        2573,
+        2574,
+        2575,
+        2576,
+        2577,
+        2590,
+        2603,
+        2604,
+        2617,
+        2642,
+        2643,
+        2656,
+        2669,
+        2682,
+        2683,
+        2696,
+        2697,
+        2698,
+        2711,
+        2712,
+        2713,
+        2726,
+        2727,
+        2740,
+        2741,
+        2754,
+        2755,
+        2768,
+        2769,
+        2782,
+        2783,
+        2784,
+        2797,
+        2798,
+        2799,
+        2812,
+        2813,
+        2826,
+        2827,
+        2840,
+        2841,
+        2854,
+        2855,
+        2856,
+        2869,
+        2870,
+        2871,
+        2872,
+        2885,
+        2886,
+        2887,
+        2888,
+        2889,
+        2902,
+        2903,
+        2916,
+        2917,
+        2930,
+        2931,
+        2932,
+        2945,
+        2946,
+        2947,
+        2960,
+        2961,
+        2974,
+        2975,
+        2988,
+        2989,
+        2990,
+        3003,
+        3004,
+        3017,
+        3018,
+        3055,
+        3068,
+        3081,
+        3082,
+        3095,
+        3108,
+        3109,
+        3122,
+        3123,
+        3136,
+        3149,
+        3150,
+        3151,
+        3164,
+        3177,
+        3178,
+        3191,
+        3192,
+        3193,
+        3194,
+        3219,
+        3220,
+        3221,
+        3234,
+        3235,
+        3248,
+        3249,
+        3274,
+        3287,
+        3288,
+        3301,
+        3314,
+        3315,
+        3328,
+        3329,
+        3342,
+        3343,
+        3356,
+        3357,
+        3358,
+        3359,
+        3360,
+        3373,
+        3374,
+        3387,
+        3400,
+        3401,
+        3414,
+        3415,
+        3416,
+        3429,
+        3430,
+        3443,
+        3444,
+        3481,
+        3518,
+        3531,
+        3544,
+        3545,
+        3570,
+        3571,
+        3572,
+        3573,
+        3586,
+        3587,
+        3600,
+        3613,
+        3626,
+        3627,
+        3640,
+        3641,
+        3654,
+        3655,
+        3656,
+        3669,
+        3682,
+        3683,
+        3696,
+        3697,
+        3698,
+        3711,
+        3724,
+        3737,
+        3738,
+        3751,
+        3752,
+        3765,
+        3766,
+        3779,
+        3792,
+        3805,
+        3806,
+        3831,
+        3844,
+        3845,
+        3846,
+        3847,
+        3884,
+        3885,
+        3898,
+        3899,
+        3912,
+        3925,
+        3950,
+        3975,
+        3988,
+        4001,
+        4014,
+        4027,
+        4052,
+        4089,
+        4090,
+        4127,
+        4128,
+        4141,
+        4154,
+        4179,
+        4192,
+        4193,
+        4206,
+        4207,
+        4208,
+        4209,
+        4222,
+        4223,
+        4236,
+        4237,
+        4238,
+        4251,
+        4252,
+        4253,
+        4254,
+        4267,
+        4268,
+        4305,
+        4306,
+        4307,
+        4320,
+        4321,
+        4334,
+        4335,
+        4348,
+        4349,
+        4350,
+        4363,
+        4364,
+        4377,
+        4390,
+        4391,
+        4404,
+        4417,
+        4430,
+        4431,
+        4432,
+        4433,
+        4434,
+        4435,
+        4448,
+        4449,
+        4462,
+        4463,
+        4464,
+        4465,
+        4478,
+        4479,
+        4480,
+        4493,
+        4494,
+        4495,
+        4508,
+        4521,
+        4534,
+        4535,
+        4536,
+        4561,
+        4562,
+        4575,
+        4576,
+        4577,
+        4590,
+        4591,
+        4592,
+        4605,
+        4606,
+        4619,
+        4632,
+        4633,
+        4634,
+        4647,
+        4648,
+        4661,
+        4662,
+        4663,
+        4676,
+        4677,
+        4678,
+        4691,
+        4692,
+        4693,
+        4694,
+        4719,
+        4720,
+        4733,
+        4746,
+        4759,
+        4760,
+        4773,
+        4786,
+        4787,
+        4800,
+        4801,
+        4802,
+        4815,
+        4852,
+        4865,
+        4866,
+        4867,
+        4880,
+        4881,
+        4894,
+        4895,
+        4920,
+        4921,
+        4922,
+        4923,
+        4936,
+        4937,
+        4962,
+        4975,
+        4976,
+        4977,
+        4990,
+        5003,
+        5004,
+        5017,
+        5018,
+        5019,
+        5032,
+        5057,
+        5058,
+        5071,
+        5072,
+        5109,
+        5146,
+        5159,
+        5172,
+        5185,
+        5198,
+        5199,
+        5212,
+        5225,
+        5238,
+        5251,
+        5252,
+        5265,
+        5266,
+        5267,
+        5268,
+        5269,
+        5282,
+        5283,
+        5296,
+        5297,
+        5310,
+        5323,
+        5336,
+        5337,
+        5350,
+        5351,
+        5364,
+        5365,
+        5378,
+        5379,
+        5380,
+        5381,
+        5394,
+        5395,
+        5396,
+        5397,
+        5410,
+        5411,
+        5424,
+        5437,
+        5438,
+        5439,
+        5440,
+        5453,
+        5454,
+        5455,
+        5468,
+        5469,
+        5470,
+        5483,
+        5484,
+        5485,
+        5498,
+        5523,
+        5524,
+        5537,
+        5538,
+        5551,
+        5552,
+        5565,
+        5566,
+        5567,
+        5580,
+        5617,
+        5630,
+        5643,
+        5644,
+        5645,
+        5658,
+        5659,
+        5660,
+        5673,
+        5674,
+        5675,
+        5688,
+        5689,
+        5702,
+        5703,
+        5716,
+        5717,
+        5718,
+        5731,
+        5732,
+        5733,
+        5746,
+        5747,
+        5748,
+        5761,
+        5762,
+        5775,
+        5776,
+        5777,
+        5790,
+        5791,
+        5804,
+        5805,
+        5818,
+        5819,
+        5832,
+        5833,
+        5834,
+        5847,
+        5848,
+        5849,
+        5862,
+        5875,
+        5876,
+        5889,
+        5890,
+        5891,
+        5892,
+        5905,
+        5906,
+        5907,
+        5920,
+        5921,
+        5922,
+        5935,
+        5936,
+        5937,
+        5950,
+        5951,
+        5964,
+        5965,
+        5978,
+        5979,
+        5992,
+        5993,
+        5994,
+        5995,
+        6008,
+        6021,
+        6022,
+        6035,
+        6036,
+        6037,
+        6038,
+        6051,
+        6052,
+        6053,
+        6066,
+        6067,
+        6080,
+        6093,
+        6094,
+        6107,
+        6108,
+        6109,
+        6110,
+        6135,
+        6136,
+        6149,
+        6150,
+        6175,
+        6176,
+        6177,
+        6178,
+        6191,
+        6192,
+        6205,
+        6206,
+        6219,
+        6220,
+        6233,
+        6234,
+        6247,
+        6260,
+        6261,
+        6274,
+        6275,
+        6288,
+        6289,
+        6302,
+        6303,
+        6316,
+        6317,
+        6318,
+        6319,
+        6332,
+        6333,
+        6346,
+        6347,
+        6348,
+        6361,
+        6362,
+        6375,
+        6376,
+        6377,
+        6378,
+        6379,
+        6380,
+        6393,
+        6418,
+        6431,
+        6432,
+        6457,
+        6458,
+        6471,
+        6472,
+        6485,
+        6486,
+        6487,
+        6500,
+        6537,
+        6538,
+        6563,
+        6576,
+        6577,
+        6590,
+        6591,
+        6604,
+        6605,
+        6618,
+        6619,
+        6620,
+        6621,
+        6622,
+        6635,
+        6636,
+        6637,
+        6638,
+        6651,
+        6652,
+        6665,
+        6666,
+        6667,
+        6668,
+        6669,
+        6682,
+        6683,
+        6684,
+        6697,
+        6698,
+        6711,
+        6712,
+        6713,
+        6714,
+        6715,
+        6728,
+        6729,
+        6730,
+        6743,
+        6744,
+        6745,
+        6746,
+        6747,
+        6760,
+        6761,
+        6762,
+        6763,
+        6776,
+        6777,
+        6790,
+        6791,
+        6792,
+        6805,
+        6806,
+        6819,
+        6820,
+        6833,
+        6834,
+        6847,
+        6848,
+        6861,
+        6874,
+        6875,
+        6876,
+        6889,
+        6890,
+        6903,
+        6904,
+        6917,
+        6930,
+        6931,
+        6944,
+        6945,
+        6946,
+        6959,
+        6960,
+        7021,
+        7022,
+        7035,
+        7036,
+        7037,
+        7038,
+        7039,
+        7052,
+        7053,
+        7054,
+        7067,
+        7080,
+        7081,
+        7094,
+        7107,
+        7120,
+        7121,
+        7122,
+        7123,
+        7148,
+        7149,
+        7150,
+        7151,
+        7152,
+        7153,
+        7154,
+        7179,
+        7180,
+        7193,
+        7194,
+        7207,
+        7208,
+        7209,
+        7210,
+        7223,
+        7224,
+        7225,
+        7226,
+        7227,
+        7240,
+        7241,
+        7242,
+        7243,
+        7256,
+        7257,
+        7258,
+        7271,
+        7272,
+        7285,
+        7286,
+        7311,
+        7312,
+        7325,
+        7326,
+        7327,
+        7340,
+        7341,
+        7342,
+        7355,
+        7368,
+        7393,
+        7418,
+        7431,
+        7444,
+        7457,
+        7458,
+        7471,
+        7472,
+        7485,
+        7486,
+        7487,
+        7488,
+        7501,
+        7502,
+        7515,
+        7540,
+        7541,
+        7554,
+        7567,
+        7568,
+        7581,
+        7582,
+        7595,
+        7596,
+        7597,
+        7622,
+        7635,
+        7636,
+        7637,
+        7650,
+        7651,
+        7676,
+        7677,
+        7690,
+        7703,
+        7704,
+        7705,
+        7718,
+        7719,
+        7720,
+        7733,
+        7734,
+        7747,
+        7748,
+        7761,
+        7762,
+        7775,
+        7776,
+        7777,
+        7790,
+        7815,
+        7816,
+        7829,
+        7842,
+        7855,
+        7856,
+        7869,
+        7870,
+        7883,
+        7884,
+        7897,
+        7898,
+        7911,
+        7912,
+        7925,
+        7938,
+        7939,
+        7952,
+        7965,
+        7966,
+        7979,
+        7992,
+        7993,
+        7994,
+        8007,
+        8008,
+        8009,
+        8022,
+        8023,
+        8036,
+        8037,
+        8038,
+        8051,
+        8052,
+        8065,
+        8066,
+        8067,
+        8080,
+        8081,
+        8094,
+        8107,
+        8108,
+        8121,
+        8122,
+        8147,
+        8148,
+        8161,
+        8186,
+        8187,
+        8188,
+        8201,
+        8202,
+        8203,
+        8216,
+        8217,
+        8230,
+        8231,
+        8232,
+        8245,
+        8246,
+        8247,
+        8260,
+        8261,
+        8286,
+        8311,
+        8312,
+        8325,
+        8326,
+        8327,
+        8328,
+        8329,
+        8342,
+        8343,
+        8344,
+        8357,
+        8358,
+        8359,
+        8372,
+        8373,
+        8374,
+        8387,
+        8388,
+        8401,
+        8426,
+        8463,
+        8488,
+        8501,
+        8502,
+        8503,
+        8516,
+        8517,
+        8530,
+        8579,
+        8592,
+        8617,
+        8618,
+        8619,
+        8620,
+        8621
+      ],
+      "self_new": [],
+      "sentences": 2511,
+      "steps": 200,
+      "talk_share": 0.2,
+      "tokens": 83456,
+      "ts": 1792337438.7191772,
+      "vocab_added": [],
+      "vocab_size": 17662,
+      "id": 43491
+    },
+    {
+      "generation": 686,
+      "kind": "exam",
+      "results": [
+        {
+          "accuracy": 0.965,
+          "exam": "E1_composition",
+          "score": "83/86",
+          "verdict": "PASS"
+        },
+        {
+          "accuracy": 0.917,
+          "exam": "E2_affix_recall",
+          "score": "22/24",
+          "verdict": "PASS"
+        },
+        {
+          "accuracy": 1.0,
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "verdict": "PASS"
+        },
+        {
+          "accuracy": 1.0,
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "verdict": "PASS"
+        },
+        {
+          "accuracy": 0.979,
+          "exam": "E6_grammar",
+          "score": "47/48",
+          "verdict": "PASS"
+        },
+        {
+          "accuracy": 0.875,
+          "exam": "E7_reading",
+          "score": "35/40",
+          "verdict": "PASS"
+        },
+        {
+          "accuracy": 0.4,
+          "exam": "E7L_longread",
+          "score": "16/40",
+          "verdict": "INFO"
+        },
+        {
+          "accuracy": 0.942,
+          "exam": "E1b_bridge",
+          "score": "81/86",
+          "verdict": "INFO"
+        },
+        {
+          "accuracy": 0.048,
+          "exam": "E10_induction",
+          "score": "96/2016",
+          "verdict": "INFO"
+        },
+        {
+          "accuracy": null,
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "verdict": "INFO"
+        },
+        {
+          "accuracy": null,
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "verdict": "INFO"
+        },
+        {
+          "accuracy": 0.714,
+          "exam": "E5_facts_in_weights",
+          "score": "5/7",
+          "verdict": "INFO"
+        }
+      ],
+      "trigger": "consolidation gen 686",
+      "ts": 1792337543.7272224,
+      "vocab_size": 17662,
+      "id": 43492
+    },
+    {
+      "generation": 686,
+      "items": [
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:graph"
+          ],
+          "q": "co graph"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:cred"
+          ],
+          "q": "trans cred"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:luc"
+          ],
+          "q": "trans luc"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "prefix:un",
+            "root:port"
+          ],
+          "q": "un port"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:phon"
+          ],
+          "q": "inter phon"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:re",
+            "root:struct"
+          ],
+          "q": "re struct"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:ject"
+          ],
+          "q": "ex ject"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:spect"
+          ],
+          "q": "inter spect"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:pend"
+          ],
+          "q": "inter pend"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:scrib"
+          ],
+          "q": "ex scrib"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:pos"
+          ],
+          "q": "inter pos"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:vis"
+          ],
+          "q": "inter vis"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter",
+            "root:port"
+          ],
+          "q": "inter port"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:re",
+            "root:form"
+          ],
+          "q": "re form"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:aud"
+          ],
+          "q": "co aud"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pro",
+            "root:pos"
+          ],
+          "q": "pro pos"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:luc"
+          ],
+          "q": "ex luc"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:vis"
+          ],
+          "q": "co vis"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:dis",
+            "root:ject"
+          ],
+          "q": "dis ject"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:sub",
+            "root:mit"
+          ],
+          "q": "sub mit"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:dis",
+            "root:bio"
+          ],
+          "q": "dis bio"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:super",
+            "root:struct"
+          ],
+          "q": "super struct"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:fer"
+          ],
+          "q": "co fer"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:dis",
+            "root:phon"
+          ],
+          "q": "dis phon"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:sub",
+            "root:rupt"
+          ],
+          "q": "sub rupt"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:fer"
+          ],
+          "q": "un fer"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:un",
+            "root:pend"
+          ],
+          "q": "un pend"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pre",
+            "root:chron"
+          ],
+          "q": "pre chron"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:super",
+            "root:pos"
+          ],
+          "q": "super pos"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:phon"
+          ],
+          "q": "trans phon"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:trans",
+            "root:fer"
+          ],
+          "q": "trans fer"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:super",
+            "root:dict"
+          ],
+          "q": "super dict"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:pend"
+          ],
+          "q": "ex pend"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pre",
+            "root:aud"
+          ],
+          "q": "pre aud"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:super",
+            "root:fer"
+          ],
+          "q": "super fer"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:dict"
+          ],
+          "q": "ex dict"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pre",
+            "root:fer"
+          ],
+          "q": "pre fer"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:re",
+            "root:ject"
+          ],
+          "q": "re ject"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:super",
+            "root:luc"
+          ],
+          "q": "super luc"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pro",
+            "root:pend"
+          ],
+          "q": "pro pend"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex",
+            "root:spect"
+          ],
+          "q": "ex spect"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "prefix:co",
+            "root:spect"
+          ],
+          "q": "co spect"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co",
+            "root:geo"
+          ],
+          "q": "co geo"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:cred",
+            "suffix:less"
+          ],
+          "q": "cred less"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:ject",
+            "suffix:ology"
+          ],
+          "q": "ject ology"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:scrib",
+            "suffix:ist"
+          ],
+          "q": "scrib ist"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:pend",
+            "suffix:able"
+          ],
+          "q": "pend able"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:spect",
+            "suffix:ology"
+          ],
+          "q": "spect ology"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:bio",
+            "suffix:able"
+          ],
+          "q": "bio able"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:chron",
+            "suffix:ive"
+          ],
+          "q": "chron ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:port",
+            "suffix:ly"
+          ],
+          "q": "port ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:form",
+            "suffix:less"
+          ],
+          "q": "form less"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:rupt",
+            "suffix:less"
+          ],
+          "q": "rupt less"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:cred",
+            "suffix:ive"
+          ],
+          "q": "cred ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:vis",
+            "suffix:able"
+          ],
+          "q": "vis able"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:phon",
+            "suffix:ful"
+          ],
+          "q": "phon ful"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:chron",
+            "suffix:ology"
+          ],
+          "q": "chron ology"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:geo",
+            "suffix:ly"
+          ],
+          "q": "geo ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:bio",
+            "suffix:er"
+          ],
+          "q": "bio er"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:fer",
+            "suffix:able"
+          ],
+          "q": "fer able"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:rupt",
+            "suffix:ive"
+          ],
+          "q": "rupt ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:scrib",
+            "suffix:ive"
+          ],
+          "q": "scrib ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:luc",
+            "suffix:ly"
+          ],
+          "q": "luc ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:log",
+            "suffix:ful"
+          ],
+          "q": "log ful"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:geo",
+            "suffix:tion"
+          ],
+          "q": "geo tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:bio",
+            "suffix:ly"
+          ],
+          "q": "bio ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:dict",
+            "suffix:ing"
+          ],
+          "q": "dict ing"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:port",
+            "suffix:er"
+          ],
+          "q": "port er"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:tract",
+            "suffix:ly"
+          ],
+          "q": "tract ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:spect",
+            "suffix:ive"
+          ],
+          "q": "spect ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:port",
+            "suffix:ed"
+          ],
+          "q": "port ed"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:ten",
+            "suffix:ed"
+          ],
+          "q": "ten ed"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:fer",
+            "suffix:ness"
+          ],
+          "q": "fer ness"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:phon",
+            "suffix:tion"
+          ],
+          "q": "phon tion"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "root:bio",
+            "suffix:ness"
+          ],
+          "q": "bio ness"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:chron",
+            "suffix:tion"
+          ],
+          "q": "chron tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:struct",
+            "suffix:ful"
+          ],
+          "q": "struct ful"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:mit",
+            "suffix:tion"
+          ],
+          "q": "mit tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:luc",
+            "suffix:ive"
+          ],
+          "q": "luc ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:spect",
+            "suffix:tion"
+          ],
+          "q": "spect tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:fer",
+            "suffix:ly"
+          ],
+          "q": "fer ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:ject",
+            "suffix:less"
+          ],
+          "q": "ject less"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:phon",
+            "suffix:ology"
+          ],
+          "q": "phon ology"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:dict",
+            "suffix:ful"
+          ],
+          "q": "dict ful"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:phon",
+            "suffix:ness"
+          ],
+          "q": "phon ness"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "root:geo",
+            "suffix:ive"
+          ],
+          "q": "geo ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:re"
+          ],
+          "q": "re"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "prefix:un"
+          ],
+          "q": "un"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pre"
+          ],
+          "q": "pre"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:dis"
+          ],
+          "q": "dis"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:trans"
+          ],
+          "q": "trans"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:sub"
+          ],
+          "q": "sub"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:super"
+          ],
+          "q": "super"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:inter"
+          ],
+          "q": "inter"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:mis"
+          ],
+          "q": "mis"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:ex"
+          ],
+          "q": "ex"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:pro"
+          ],
+          "q": "pro"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "prefix:co"
+          ],
+          "q": "co"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:er"
+          ],
+          "q": "er"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ing"
+          ],
+          "q": "ing"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ed"
+          ],
+          "q": "ed"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:tion"
+          ],
+          "q": "tion"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:able"
+          ],
+          "q": "able"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:less"
+          ],
+          "q": "less"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ful"
+          ],
+          "q": "ful"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ly"
+          ],
+          "q": "ly"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ness"
+          ],
+          "q": "ness"
+        },
+        {
+          "ok": false,
+          "parts": [
+            "suffix:ive"
+          ],
+          "q": "ive"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ology"
+          ],
+          "q": "ology"
+        },
+        {
+          "ok": true,
+          "parts": [
+            "suffix:ist"
+          ],
+          "q": "ist"
+        }
+      ],
+      "kind": "exam_detail",
+      "ts": 1792337543.7297304,
+      "id": 43493
+    },
+    {
+      "cpu_s": 199.0781,
+      "gpu_s": 234.9583,
+      "gpu_watts_sample": 7.0,
+      "kind": "meter",
+      "kwh_est": 0.001286355,
+      "kwh_note": "gpu watts sampled (real); cpu at assumed 15 W (estimate)",
+      "ts": 1792337545.5549407,
+      "wall_s": 234.9583,
+      "what": "consolidate",
+      "id": 43494
+    },
+    {
+      "action": "consolidate",
+      "clock": {
+        "age_s": 337295.2,
+        "budget_left_frac": 0.0,
+        "budget_left_s": -11730.67,
+        "kwh_today": 0.098697012,
+        "since_last_input_s": 126449.1,
+        "uptime_s": 18297.5
+      },
+      "drives": {
+        "consolidate": 0.065,
+        "explore": 0.089,
+        "practice": 0.15,
+        "rest": 0.98,
+        "stop": 0.0
+      },
+      "kind": "tick",
+      "ms": 236942.9,
+      "result": {
+        "checkpoint": "checkpoints\\gen_0686.pt",
+        "exams": [
+          {
+            "accuracy": 0.965,
+            "exam": "E1_composition",
+            "score": "83/86",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.917,
+            "exam": "E2_affix_recall",
+            "score": "22/24",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E3_recall_echo",
+            "score": "12/12",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 1.0,
+            "exam": "E4_deferral",
+            "score": "10/10",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.979,
+            "exam": "E6_grammar",
+            "score": "47/48",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.875,
+            "exam": "E7_reading",
+            "score": "35/40",
+            "verdict": "PASS"
+          },
+          {
+            "accuracy": 0.4,
+            "exam": "E7L_longread",
+            "score": "16/40",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 0.942,
+            "exam": "E1b_bridge",
+            "score": "81/86",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 0.048,
+            "exam": "E10_induction",
+            "score": "96/2016",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": null,
+            "exam": "E9_owner_exam",
+            "score": "0 items",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": null,
+            "exam": "E8_writing",
+            "score": "4 samples",
+            "verdict": "INFO"
+          },
+          {
+            "accuracy": 0.714,
+            "exam": "E5_facts_in_weights",
+            "score": "5/7",
+            "verdict": "INFO"
+          }
+        ],
+        "facts_new": 0,
+        "generation": 686,
+        "loss_first": 1.5842,
+        "loss_last": 1.1503,
+        "vocab_size": 17662
+      },
+      "state": {
+        "budget_left_frac": 0.0,
+        "consolidations_owed_after_growth": 0,
+        "generation": 685,
+        "memories": 8633,
+        "open_goals": 6,
+        "pending_facts": 0,
+        "rest_streak": 1,
+        "since_consolidation_s": 228.7,
+        "since_explore_s": 29.2,
+        "since_input_s": 126207.1,
+        "vocab_size": 17662,
+        "worst_misses": 3
+      },
+      "tick": 19170,
+      "ts": 1792337545.5604534,
+      "id": 43495
+    }
+  ],
+  "memories": 8645,
+  "vocab_size": 17662,
+  "generation": 686
+}
