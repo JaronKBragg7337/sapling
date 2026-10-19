@@ -6,6 +6,22 @@ v1's three steps: (1) runs-without-you is DONE (the heartbeat); (2) record -> co
 is DONE (no gate; `/confirm` and `/invalidate` verdicts are the selection events); (3) a world
 to practice in is still open. Ordered by dependency.
 
+## 000. The growth run (Jaron's direction 10/18: GROW, not refresh; spends wait for his yes)
+
+Jaron: refreshes spend to stand still; the next cloud spend is a bigger core, not maintenance. Long reading will
+slowly settle (~10-12/40) meanwhile - acceptable, nothing else drips. The plan, ready to execute when he adds funds:
+
+1. **Speed test first (minutes, cents):** bench a bigger core on the rented H100 (`tools/bench_speed.py` pattern,
+   cloud edition) so tokens/s - and therefore exact cost - is measured, not guessed. A run never starts before the
+   dollar figure is in the log.
+2. **Size candidates:** ~100M (d768/12L) and ~150M class, sized so the run reads >= 20 tokens per parameter inside
+   the budget he approves. Community tier first, secure fallback (the runner already does this).
+3. **What it reads:** the v4 recipe widened - FineWeb-Edu, Wikipedia+books, TinyStories, school rehearsal - PLUS the
+   long-reading lesson baked in from the start (not patched on after): reading and lesson interleaved every step.
+4. **The check that counts:** same exams + chat samples before/after, then 5 of its own consolidations; an ability
+   counts only once it survives folding. Old core archived and restorable, one `growth` row, generation keeps counting.
+5. **If it truly holds a conversation afterwards:** that's the Acorn naming moment (his pick).
+
 ## 0000. Lesson retention - CLOSED 10/16 ~10:20 PM (D36 adopted); second cloud lesson DONE 10/17 ~12:20 AM
 The wear is fixed: cores that had the cloud lesson no longer rehearse the school's old `longread`/`docs` sentences in
 consolidations (D36; the S1-S4 fold-test matrix in CHANGELOG 10/16 ~10:20 PM). E7L wear per 5 folds: 5-6 -> ~1.

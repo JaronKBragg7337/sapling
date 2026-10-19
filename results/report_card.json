@@ -1,9 +1,9 @@
 {
-  "ts": "2026-10-18T23:13:36",
+  "ts": "2026-10-18T23:36:17",
   "seed": 7337,
-  "trigger": "consolidation gen 765",
+  "trigger": "consolidation gen 767",
   "corpus_sha": "0dd51f33e5eb6ddf",
-  "generation": 765,
+  "generation": 767,
   "vocab_size": 17662,
   "bars": {
     "E1_composition": 0.6,
@@ -17,8 +17,8 @@
     {
       "exam": "E1_composition",
       "bar": 0.6,
-      "score": "82/86",
-      "accuracy": 0.953,
+      "score": "83/86",
+      "accuracy": 0.965,
       "verdict": "PASS",
       "detail": [
         {
@@ -30,13 +30,7 @@
         {
           "q": "co spect",
           "expected": "co spect means look together .",
-          "got": "co spect means look above .",
-          "ok": false
-        },
-        {
-          "q": "port er",
-          "expected": "port er means one who carry .",
-          "got": "port er means one who carry ) the load .",
+          "got": "co spect means look for patterns in life .",
           "ok": false
         },
         {
@@ -68,20 +62,32 @@
           "expected": "un port means carry not .",
           "got": "un port means carry not .",
           "ok": true
+        },
+        {
+          "q": "inter phon",
+          "expected": "inter phon means sound between .",
+          "got": "inter phon means sound between .",
+          "ok": true
         }
       ]
     },
     {
       "exam": "E2_affix_recall",
       "bar": 0.9,
-      "score": "23/24",
-      "accuracy": 0.958,
+      "score": "22/24",
+      "accuracy": 0.917,
       "verdict": "PASS",
       "detail": [
         {
           "q": "er",
           "expected": "one who",
           "got": "one who practices .",
+          "ok": false
+        },
+        {
+          "q": "able",
+          "expected": "can be",
+          "got": "can you tell me what ai is that is done with it ? what ai can do ! for example , with",
           "ok": false
         },
         {
@@ -118,12 +124,6 @@
           "q": "sub",
           "expected": "under",
           "got": "under .",
-          "ok": true
-        },
-        {
-          "q": "super",
-          "expected": "above",
-          "got": "above .",
           "ok": true
         }
       ]
@@ -237,10 +237,17 @@
     {
       "exam": "E6_grammar",
       "bar": 0.6,
-      "score": "47/48",
-      "accuracy": 0.979,
+      "score": "46/48",
+      "accuracy": 0.958,
       "verdict": "PASS",
       "detail": [
+        {
+          "kind": "negation",
+          "q": "q : say no : the bird makes the bus . a :",
+          "expected": "the bird does not make the bus .",
+          "got": "the bird does not make the boat .",
+          "ok": false
+        },
         {
           "kind": "yesno",
           "q": "q : do the bags read the box ? a :",
@@ -288,13 +295,6 @@
           "q": "q : make a question : the child finds the frog . a :",
           "expected": "does the child find the frog ?",
           "got": "does the child find the frog ?",
-          "ok": true
-        },
-        {
-          "kind": "yesno",
-          "q": "q : does the fish read the cat ? a :",
-          "expected": "yes , the fish reads the cat .",
-          "got": "yes , the fish reads the cat .",
           "ok": true
         }
       ]
@@ -359,8 +359,8 @@
     {
       "exam": "E7L_longread",
       "bar": null,
-      "score": "12/40",
-      "accuracy": 0.3,
+      "score": "16/40",
+      "accuracy": 0.4,
       "verdict": "INFO",
       "detail": [
         {
@@ -381,42 +381,42 @@
           "kind": "one passage",
           "q": " these wild fancies , which transcend the order of time and development . they are the sublimest recreation of the intellect . q : copy the first sentence . a :",
           "expected": "the geologist has discovered that the figures of serpents , griffins , flying dragons , and other fanciful embellishments of heraldry , have their prototypes in the forms of fossil species which were extinct before man was created , and hence indicate a faint and shadowy knowledge of a previous state of organic existence .",
-          "got": "the geologist has discovered that the figures of serpents , griffins , flying dragons , and other raymondeformes are extinct before man was created , and hence indicate a faint andidical knowledge of a",
+          "got": "the geologist has discovered that the figures of serpents , griffins , flying dragons , and other ray of venom , have their aim in studying fossil species which were extinct before man was created .",
           "ok": false
         },
         {
           "kind": "two passages",
           "q": " up , we are unable to detect the substance of the thought itself . our winged thoughts are turned to poultry . q : what word comes before western impulse ? a :",
           "expected": "this .",
-          "got": "far .",
+          "got": "the .",
           "ok": false
         },
         {
           "kind": "one passage",
           "q": "pell of enchantment , as if i had been transported to an heroic age , and breathed an atmosphere of chivalry . q : which sentence has the word transported ? a :",
           "expected": "i floated along under the spell of enchantment , as if i had been transported to an heroic age , and breathed an atmosphere of chivalry .",
-          "got": "i floated along under the spell ofum , as if i had been transported to an heroic age , and message from the holy land .",
+          "got": "i floated along under the spell of turning under the spell ofmer , as if i had been transported to an heroic age , and breathed an atmosphere of complacency .",
           "ok": false
         },
         {
           "kind": "two passages",
           "q": "ng their works on the tops of columns as perfectly as on the lower and more visible parts ! q : copy the first sentence of the passage with the word above . a :",
           "expected": "but , above all , i discovered around me , it was near the end of june , on the ends of the topmost branches only , a few minute and delicate red conelike blossoms , the fertile flower of the white pine looking heavenward .",
-          "got": "but , above all , i discovered around me , it was near the end of june , on the ends of the topmost branches only , a few minute and delicate red conelike blossoms , the fertile flower of",
+          "got": "the valleys of the engineering the valley of the western isles , as old as mankind , and , whether that does or not , will endure as long ; for the decay of otherien institutions makes the soil in which it",
           "ok": false
         },
         {
           "kind": "one passage",
           "q": "de to citizens . front yards are not made to walk in , but , at most , through , and you could go in the back way . q : what word comes before the dweller ? a :",
           "expected": "as .",
-          "got": "to .",
+          "got": "of .",
           "ok": false
         },
         {
           "kind": "two passages",
           "q": " honestly slumbered a fool's allowance . there may be an excess even of informing light . q : copy the first sentence of the passage with the word culture . a :",
           "expected": "give me a culture which imports much muck from the meadows , and deepens the soil not that which trusts to heating manures , and improved implements and modes of culture only !",
-          "got": "when i would investigate , i seek the darkest wood , the thickest and most learns ?",
+          "got": "they who have been traveling long on the steppes of tartary say , on reentering cultivated lands , theage , of grass and water , the wine , and the other plants adapted to the living environment ?",
           "ok": false
         }
       ]
@@ -424,8 +424,8 @@
     {
       "exam": "E1b_bridge",
       "bar": null,
-      "score": "81/86",
-      "accuracy": 0.942,
+      "score": "80/86",
+      "accuracy": 0.93,
       "verdict": "INFO",
       "detail": [
         {
@@ -435,21 +435,27 @@
           "ok": false
         },
         {
-          "q": "expend",
-          "expected": "the word expend means hang out .",
-          "got": "the word expend means throw away .",
+          "q": "exspect",
+          "expected": "the word exspect means look out .",
+          "got": "the word exspect means look out for each other .",
           "ok": false
         },
         {
-          "q": "portly",
-          "expected": "the word portly means in that manner carry .",
-          "got": "the word portly means in that manner carry out .",
+          "q": "cospect",
+          "expected": "the word cospect means look together .",
+          "got": "the word cospect means look again .",
           "ok": false
         },
         {
-          "q": "tened",
-          "expected": "the word tened means in the past hold .",
-          "got": "the word tened means in",
+          "q": "spectology",
+          "expected": "the word spectology means the study of look .",
+          "got": "the word spectology is the study of .",
+          "ok": false
+        },
+        {
+          "q": "chronology",
+          "expected": "the word chronology means the study of time .",
+          "got": "the word chronology is the study of .",
           "ok": false
         },
         {
@@ -469,31 +475,25 @@
           "expected": "the word transcred means believe across .",
           "got": "the word transcred means believe across .",
           "ok": true
-        },
-        {
-          "q": "transluc",
-          "expected": "the word transluc means light across .",
-          "got": "the word transluc means light across .",
-          "ok": true
         }
       ]
     },
     {
       "exam": "E10_induction",
       "bar": null,
-      "score": "49/2016",
-      "accuracy": 0.024,
+      "score": "58/2016",
+      "accuracy": 0.029,
       "verdict": "INFO",
       "detail": [
         {
           "length": 32,
-          "score": "18/496",
-          "accuracy": 0.036
+          "score": "32/496",
+          "accuracy": 0.065
         },
         {
           "length": 96,
-          "score": "31/1520",
-          "accuracy": 0.02
+          "score": "26/1520",
+          "accuracy": 0.017
         }
       ]
     },
@@ -522,7 +522,7 @@
         },
         {
           "prompt": "tom has a red ball .",
-          "text": "tom is new . max is at the garden . max likes to walk ."
+          "text": "tom is new . as far as my miles in the town , i occasionally see them . they sitting alone ."
         },
         {
           "prompt": "the little dog",
@@ -530,10 +530,10 @@
         },
         {
           "prompt": "q : what do you like to do ? a :",
-          "text": "i like the sky . i can see you at your house . there is a house for you and a friend . the boat stopped near a lake . then we can see the widely away pick and go for our adventures . the hot air balloon port . i want to fly away . the other boats wave at me . after a while the air gently coats me . i try to go back but i can't"
+          "text": "there is no one thing i like , but doing others primarily blue veggie , contains large amounts of content , is my personal favorite ."
         }
       ],
-      "file": "2026-10-18T231336_gen765.txt"
+      "file": "2026-10-18T233617_gen767.txt"
     },
     {
       "exam": "E5_facts_in_weights",
@@ -57582,6 +57582,170 @@
           "exam": "E5_facts_in_weights",
           "score": "5/7",
           "accuracy": 0.714,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-18T23:13:36",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 765,
+      "trigger": "consolidation gen 765",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "23/24",
+          "accuracy": 0.958,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "47/48",
+          "accuracy": 0.979,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "35/40",
+          "accuracy": 0.875,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "12/40",
+          "accuracy": 0.3,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "81/86",
+          "accuracy": 0.942,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "49/2016",
+          "accuracy": 0.024,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "7/7",
+          "accuracy": 1.0,
+          "verdict": "INFO"
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-18T23:30:09",
+      "seed": 7337,
+      "corpus_sha": "0dd51f33e5eb6ddf",
+      "generation": 766,
+      "trigger": "consolidation gen 766",
+      "vocab_size": 17662,
+      "exams": [
+        {
+          "exam": "E1_composition",
+          "score": "82/86",
+          "accuracy": 0.953,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E2_affix_recall",
+          "score": "20/24",
+          "accuracy": 0.833,
+          "verdict": "FAIL"
+        },
+        {
+          "exam": "E3_recall_echo",
+          "score": "12/12",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E4_deferral",
+          "score": "10/10",
+          "accuracy": 1.0,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E6_grammar",
+          "score": "47/48",
+          "accuracy": 0.979,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7_reading",
+          "score": "37/40",
+          "accuracy": 0.925,
+          "verdict": "PASS"
+        },
+        {
+          "exam": "E7L_longread",
+          "score": "12/40",
+          "accuracy": 0.3,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E1b_bridge",
+          "score": "76/86",
+          "accuracy": 0.884,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E10_induction",
+          "score": "63/2016",
+          "accuracy": 0.031,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E9_owner_exam",
+          "score": "0 items",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E8_writing",
+          "score": "4 samples",
+          "accuracy": null,
+          "verdict": "INFO"
+        },
+        {
+          "exam": "E5_facts_in_weights",
+          "score": "3/7",
+          "accuracy": 0.429,
           "verdict": "INFO"
         }
       ]
