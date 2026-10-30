@@ -270,6 +270,7 @@ def self_facts(core_path: str | None = None) -> dict:
 
 
 def build(seed: int = 7337, core_path: str | None = None, verbose: bool = True) -> dict:
+    raise RuntimeError("Training paused: legacy sources require provenance review; see PROVENANCE.md")
     rng = random.Random(seed)
     convs = oasst_conversations() + dolly_conversations()
     facts = self_facts(core_path)
@@ -367,6 +368,7 @@ def train(core: str, staged: str = STAGED, epochs: float = 2.0, conv_per_step: i
           school_per_step: int = 4, micro: int = 16, lr: float = 1e-4, min_lr: float = 1e-5, warmup: int = 200,
           seed: int = 7337, device: str | None = None, out_dir: str = OUT_DIR, store=None, wait_for_gpu: bool = True,
           verbose: bool = True, max_steps: int | None = None, lessons: str = LESSONS, label: str = "conversation lessons") -> dict:
+    raise RuntimeError("Training paused: legacy sources require provenance review; see PROVENANCE.md")
     from .consolidate import reading_replay
     from .reading import eval_windows, gpu_busy, rehearsal_sentences, wait_until_gpu_free, window_losses, SHARD_DIR
     from .train import get_batch, sentences_to_tensor

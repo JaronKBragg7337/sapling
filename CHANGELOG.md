@@ -122,7 +122,7 @@ Claude-only. Kimi ran the queued evening work. Nothing here adds a rule, gate or
   E7L, so the wear has another cause too (next steps in NEXT.md). E7L still drops ~5 in 5 folds with every setting.
 - Live core rolled forward again: gen 362 = gen 319's weights (E7L 17/40), heartbeat restarted on D34. Gens kept.
 
-## v4.1.1 (2026-10-16 morning) - the lesson now survives the heartbeat (better, not fully) (Claude as teacher)
+## v4.1.1 (2026-10-16 morning) - the lesson now survives the heartbeat (better, not fully) (Trainer: Kimi (Moonshot). Claude: orchestrator only (schedules jobs, reads results; writes no training data).)
 - **Found (coordinator's retention check):** 27 heartbeat consolidations after the cloud lesson (gen 319 -> 346) took
   E7L 17 -> 8/40, E1b 84 -> 56/86, E1 86 -> 76/86; reading, conversation, E6/E7 held. Consolidation replayed reading,
   conversation and school but not the new lesson, and the bridge set was 100 of ~1,600 school sentences.
@@ -147,7 +147,7 @@ Claude-only. Kimi ran the queued evening work. Nothing here adds a rule, gate or
   Try 1 kept more E7L but cost reading (windows +0.15-0.26) and E10 (131 -> 44), so D33 keeps the additive mix. Both
   still lose some of the lesson in 5 folds (17 -> 13-15; one seed, 40 items, so +-2 is noise). Next lever in NEXT.md.
 
-## v4.1 (2026-10-16, built ~12:30 AM, NOT run yet) - the long-reading lesson + a rented-GPU runner (Claude as teacher)
+## v4.1 (2026-10-16, built ~12:30 AM, NOT run yet) - the long-reading lesson + a rented-GPU runner (Trainer: Kimi (Moonshot). Claude: orchestrator only (schedules jobs, reads results; writes no training data).)
 Jaron wants to step up with a cloud GPU. Built tonight while the v4 chain finished on the MSI; nothing trained.
 - **`sapling/longread_lesson.py`** - a lesson aimed at E7L (0/40) and the look-back skill under it (E10 109/2016 at
   1.08B tokens). Passages of 200-450 tokens of human text already on disk (Simple English Wikipedia, Gutenberg,
@@ -225,7 +225,7 @@ the tick to end). The driver was restarted on the fixed code (pid 45024), waitin
   data. Self lessons stay his own words (D29).
 - 3 new tests (no self lesson without an owner file; his words only, normalised; the relay saves as an owner action).
 
-## v4 (2026-10-15 afternoon -> night) - a bigger core, conversation lessons (Claude as teacher)
+## v4 (2026-10-15 afternoon -> night) - a bigger core, conversation lessons (Trainer: Kimi (Moonshot). Claude: orchestrator only (schedules jobs, reads results; writes no training data).)
 Jaron 10/15 1:53 PM: "take control, be a teacher, advance sapling ... better communication ... build it as an AI like any
 other AI first." His own ideas are paused; nothing here adds a rule, gate or limit (PROPOSALS.md unchanged).
 - **Finding first:** the 17.6M core had no copy circuit at all - on a random sequence shown twice, loss on the second copy
@@ -255,7 +255,7 @@ other AI first." His own ideas are paused; nothing here adds a rule, gate or lim
 - Bug found on the way: the core's loss used `.view()` on targets, which fails on a non-contiguous slice; now `.reshape()`.
 - Tests: 52 (8 new in tests/test_v4.py); 55 with v4.0.1; 56 with v4.0.2.
 
-## v3.2.1 (2026-10-15 ~2 PM) - consolidations no longer erase the reading (Claude as teacher, 10/15)
+## v3.2.1 (2026-10-15 ~2 PM) - consolidations no longer erase the reading (Trainer: Kimi (Moonshot). Claude: orchestrator only (schedules jobs, reads results; writes no training data).)
 - **Finding:** every heartbeat consolidation since gen 241 trained 200 steps on school sentences only, and that wiped the
   400M-token reading out of the weights: loss on fixed held-in adult-text windows 3.82 (gen 241) -> 8.12 (gen 250) ->
   9.60 (gen 286); stories 1.47 -> 4.13. The exams (school-shaped) barely showed it; the loss windows did.

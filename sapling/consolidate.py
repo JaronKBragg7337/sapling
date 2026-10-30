@@ -220,6 +220,7 @@ def talk_replay(brain, rng: random.Random):
 def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | None = None,
                 batch_size: int = 32, seed: int = 7337, verbose: bool = True,
                 rehearsal: int = 400) -> dict:
+    raise RuntimeError("Training paused: legacy sources require provenance review; see PROVENANCE.md")
     t0 = time.time()
     rng = random.Random(seed + brain.generation + 1)
     torch.manual_seed(seed + brain.generation + 1)

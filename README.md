@@ -80,7 +80,7 @@ from the control room or `python -m sapling.archive restore <gen>`. The manifest
 (and the Supabase table `sapling_archive`). Later homes, when they exist: a Heartbeat Observatory GitHub organisation,
 then Hugging Face (Jaron sets that one up).
 
-## v4 (10/15, Claude as teacher): a bigger core that reads 1.2B tokens, then conversation lessons
+## v4 (10/15, Trainer: Kimi (Moonshot). Claude: orchestrator only (schedules jobs, reads results; writes no training data).): a bigger core that reads 1.2B tokens, then conversation lessons
 
 Jaron (10/15 1:53 PM): "take control, be a teacher, advance sapling ... better communication ... build it as an AI like
 any other AI first." The plan and why each choice was made: CHANGELOG "v4", DESIGN-CHOICES D24-D28.

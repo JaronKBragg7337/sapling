@@ -188,6 +188,7 @@ def prepare(tok: Tokenizer, raw_dir: str = RAW_DIR, shard_dir: str = SHARD_DIR, 
             sources: dict | None = None, verbose: bool = True) -> dict:
     """Tokenize every source once into uint16 shards + index.json. `sources` = {name: iterator of
     normalised documents} (the default = stories + adult from raw_dir)."""
+    raise RuntimeError("Training paused: legacy sources require provenance review; see PROVENANCE.md")
     assert len(tok.itos) < 65535, "uint16 shards need a vocabulary under 65,535"
     os.makedirs(shard_dir, exist_ok=True)
     enc = FastEncoder(tok)
@@ -407,6 +408,7 @@ def stage(target_tokens: float = 400e6, batch: int = 32, shares: dict | None = N
     `probe_every` tokens; pause while the GPU is busy; write the staged core for `grow swap`.
     v4: `init_config` = a FRESH core of that shape with the live tokenizer (same vocabulary, same ids) instead of
     the live weights; `micro` = micro-batch size (gradient accumulation, so a bigger core fits the 8 GB card)."""
+    raise RuntimeError("Training paused: legacy sources require provenance review; see PROVENANCE.md")
     t_all = time.time()
     device = device or ("cuda" if torch.cuda.is_available() else "cpu")
     shares = {**SHARES, **(shares or {})}
