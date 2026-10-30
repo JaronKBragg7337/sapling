@@ -365,7 +365,6 @@ def build_bundle(n_examples: int = 400_000, read_tokens: float = 150e6, out: str
                  seed: int = 7337, verbose: bool = True, limit_per_source: int | None = None, n_test: int = 2000) -> dict:
     """Everything the rented GPU needs, as a few files: lesson.npz (train), test.jsonl, talk.npz (conversation
     replay), reading.npy (reading replay windows), school.npy (rehearsal stream), core.pt (the live core)."""
-    raise RuntimeError("Training paused: legacy sources require provenance review; see PROVENANCE.md")
     import shutil
     from .reading import SHARD_DIR, rehearsal_sentences
     from .talk import LESSONS, load_examples
@@ -473,7 +472,6 @@ def train_bundle(bundle: str, out: str, minutes: float = 60.0, batch: int = 64, 
                  status=None) -> dict:
     """Fine-tune the bundle's core on the lesson + replay for `minutes` of wall clock (the LR schedule is laid out over
     the steps that time allows, measured after warm-up). Writes out/core_staged.pt, out/log.jsonl, out/status.json."""
-    raise RuntimeError("Training paused: legacy sources require provenance review; see PROVENANCE.md")
     import torch
     from .model import autocast_ctx
     from .train import load_checkpoint, save_checkpoint

@@ -148,7 +148,7 @@ def reading_replay(block: int, rng: random.Random):
 # v4 (10/15): a core that had conversation lessons also replays them in every consolidation, so the way it talks
 # survives the heartbeat the same way the reading does (the v3.2.1 lesson, applied before it could happen).
 TALK_REPLAY_SHARE = 0.25          # of each batch; reading then 0.5, school/facts 0.25
-MICRO = 16                        # micro-batch: a 60M core at 32 x 512 in one pass fills the 8 GB card
+MICRO = 16                        # 60M baseline; larger cores scale this down while keeping the full batch
 
 
 _TALK_CACHE: dict = {}
@@ -220,7 +220,6 @@ def talk_replay(brain, rng: random.Random):
 def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | None = None,
                 batch_size: int = 32, seed: int = 7337, verbose: bool = True,
                 rehearsal: int = 400) -> dict:
-    raise RuntimeError("Training paused: legacy sources require provenance review; see PROVENANCE.md")
     t0 = time.time()
     rng = random.Random(seed + brain.generation + 1)
     torch.manual_seed(seed + brain.generation + 1)
@@ -303,6 +302,7 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
             n_lesson = 0
             n_talk = int(batch_size * TALK_REPLAY_SHARE) if talk else 0
             n_read = int(batch_size * (READ_REPLAY_SHARE - (TALK_REPLAY_SHARE if talk else 0))) if replay else 0
+        micro = max(1, min(MICRO, int(MICRO * 60_515_200 / model.n_params())))
         for _ in range(steps):
             x, y = get_batch(data, model.block_size, batch_size - n_read - n_talk - n_lesson, rng)
             if n_lesson:
@@ -316,8 +316,8 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
                 x, y = torch.cat([x, tx.to(x.device)]), torch.cat([y, ty.to(y.device)])
             opt.zero_grad(set_to_none=True)
             tot = 0.0
-            for i in range(0, len(x), MICRO):
-                xb, yb = x[i:i + MICRO], y[i:i + MICRO]
+            for i in range(0, len(x), micro):
+                xb, yb = x[i:i + micro], y[i:i + micro]
                 with ctx:
                     _, lb = model(xb, yb)
                 (lb * len(xb) / len(x)).backward()

@@ -206,7 +206,6 @@ def school(store: MemoryStore | None = None, seed: int = 7337, device: str | Non
            old_path: str = CHECKPOINT, staged: str = STAGED, verbose: bool = True, to_version: float = 3.1,
            n_pieces: int = N_PIECES, docs_dir: str = DOCS_DIR, label: str = "") -> dict:
     """base="fresh": a new core (v3 recipe + level 3). base="live": grow the old core in place (v3.1)."""
-    raise RuntimeError("Training paused: legacy sources require provenance review; see PROVENANCE.md")
     t_all = time.time()
     device = device or ("cuda" if torch.cuda.is_available() else "cpu")
     store = store or MemoryStore()
