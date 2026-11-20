@@ -5,10 +5,10 @@ CRITICAL FIX. It must be able to become what it learns." and "Learning gated
 by owner approval -> REMOVE." So: no gate. The heartbeat chooses when to
 consolidate; this module fine-tunes the live core on its own record.
 
-What it trains on (fed-not-filled: prefer what resolved, don't block the rest):
-- taught / found / self facts from memory, weighted: confirmed x3,
-  recalled-at-least-twice x2, otherwise x1; invalidated rows are left out
-  (an invalidation is a verdict, not a fade)
+What it trains on:
+- taught / found facts and confirmed self records, weighted: confirmed x3,
+  recalled-at-least-twice x2, otherwise x1; invalidated rows and unreviewed
+  self-generated notes are left out
 - practice items for its open goals (weak parts), training material only
 - a rehearsal slice of the original school corpus (so it does not forget
   the language while learning the facts) - catastrophic forgetting is the
@@ -43,9 +43,13 @@ def consolidated_ids(store) -> set[int]:
     return ids
 
 
+def _trainable_fact(fact: dict) -> bool:
+    return fact["state"] != "invalidated" and (fact.get("provenance") != "self" or fact["state"] == "confirmed")
+
+
 def pending_facts(store) -> list[dict]:
     done = consolidated_ids(store)
-    return [f for f in store.facts() if f["id"] not in done and f["state"] != "invalidated"]
+    return [f for f in store.facts() if f["id"] not in done and _trainable_fact(f)]
 
 
 def _fact_sentences(fact: dict) -> list[str]:
@@ -69,18 +73,16 @@ BIG_PARAMS = 50_000_000
 REHEARSAL2 = 600     # level-2 generated sentences per consolidation
 REHEARSAL_STORIES = 150
 # v3.1: level 3 rehearsal (copy / bridge / document reading) so reading skills survive consolidation too
-REHEARSAL3 = {"copy": 200, "bridge": 300, "docs": 80, "longread": 40, "prose": 60}   # bridge 100 -> 300 (D33: E1b 84 -> 56 in 27 folds)
+REHEARSAL3 = {"copy": 200, "bridge": 300, "docs": 80, "longread": 40, "prose": 60}
 _CORPUS2 = {}
 _CORPUS3 = {}
 
 
 def record_sentences(store) -> list[str]:
-    """Everything it was taught or said, as training sentences, weighted the way
-    consolidation weights them (confirmed x3, recalled-twice x2, else x1).
-    Shared by consolidate() and grow() so the grown core carries the same record."""
+    """Reviewed facts for consolidation and growth; captured self-notes stay out."""
     out: list[str] = []
     for f in store.facts():
-        if f["state"] == "invalidated":
+        if not _trainable_fact(f):
             continue
         w = 3 if f["state"] == "confirmed" else (2 if f["recalls"] >= 2 else 1)
         for s in _fact_sentences(f):
@@ -167,7 +169,8 @@ _LESSON_CACHE: dict = {}
 
 def had_longread(brain) -> bool:
     m = brain.meta or {}
-    return bool(m.get("longread")) or "long-reading lesson" in str(m.get("label") or "")
+    label = str(m.get("label") or "")
+    return bool(m.get("longread")) or "long-reading lesson" in label or "long-reading interleaved" in label
 
 
 def lesson_replay(brain, rng: random.Random):
@@ -229,7 +232,7 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
     if lr is None:
         lr = (LR_BIG if model.n_params() > BIG_PARAMS else LR_V3) if v3 else 5e-4
 
-    facts = [f for f in store.facts() if f["state"] != "invalidated"]
+    facts = [f for f in store.facts() if _trainable_fact(f)]
     pending = pending_facts(store)
     pending_ids = {f["id"] for f in pending}
     fact_mix: list[str] = []
@@ -242,9 +245,12 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
     other: list[str] = []
     for it in pick_practice(goals, rng, batch=24, seed=seed):
         other += [f"{it['q']} {it['a']}"] * 2
+    repair = os.environ.get("SAPLING_KIMI_REPAIR", "1") == "1"
     corpus = build_corpus(seed)
     school = [s for name in LESSONS for s in corpus["lessons"][name]]
-    other += rng.sample(school, min(rehearsal, len(school)))
+    other += rng.sample(school, min(rehearsal * (2 if repair else 1), len(school)))
+    if repair:
+        other += list(corpus["lessons"]["affixes"])
     if v3:
         c2 = _corpus2(seed)
         gen2 = [s for n in ("simple", "grammar", "paragraphs", "comprehension") for s in c2["lessons"][n]]
@@ -253,7 +259,9 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
             other += rng.sample(c2["lessons"]["stories"], min(int(rehearsal * REHEARSAL_STORIES / 400), len(c2["lessons"]["stories"])))
     if v31:
         c3 = _corpus3(seed)
-        r3 = REHEARSAL3
+        r3 = dict(REHEARSAL3)
+        if repair:
+            r3["bridge"] = 600
         if had_longread(brain):
             # D36: the old docs/longread school rehearsal (40 + 80 sentences in a different answer style) wears
             # the cloud long-reading lesson out of the weights - fold tests S1-S4 (10/16): E7L 12 -> 16/40 in 5
@@ -339,9 +347,7 @@ def consolidate(brain, store, goals: list[dict], steps: int = 200, lr: float | N
                                path=os.path.join(CHECKPOINT_DIR, f"gen_{brain.generation:04d}.pt"), half=True)
         save_checkpoint(model, tok, meta, path=CHECKPOINT)
 
-    # Jaron 10/14 2:59 PM (P2): self-made memories DO train its brain - try it and
-    # observe. Record which of them went in, so exam/E5 drift with vs without
-    # self rows can be compared later (tools/self_memory_drift.py).
+    # Confirmed self records are logged separately; captured self-notes never enter this set.
     self_ids = sorted(f["id"] for f in facts if f.get("provenance") == "self")
     row = {
         "generation": brain.generation, "memory_ids": sorted(pending_ids),

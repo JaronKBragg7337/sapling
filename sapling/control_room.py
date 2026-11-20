@@ -180,8 +180,16 @@ def make_handler(hb):
     return Handler
 
 
+class ControlRoomServer(ThreadingHTTPServer):
+    def handle_error(self, request, client_address):
+        import sys
+        if isinstance(sys.exc_info()[1], (BrokenPipeError, ConnectionResetError, ConnectionAbortedError)):
+            return
+        super().handle_error(request, client_address)
+
+
 def serve(hb, port: int = 7337):
-    server = ThreadingHTTPServer(("127.0.0.1", port), make_handler(hb))
+    server = ControlRoomServer(("127.0.0.1", port), make_handler(hb))
     server.daemon_threads = True
     threading.Thread(target=server.serve_forever, daemon=True, name="control-room").start()
     return server

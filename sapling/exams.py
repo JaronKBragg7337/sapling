@@ -40,6 +40,7 @@ from .train import RESULTS_DIR, load_checkpoint
 BARS = {"E1_composition": 0.60, "E2_affix_recall": 0.90,
         "E3_recall_echo": 0.90, "E4_deferral": 0.80,
         "E6_grammar": 0.60, "E7_reading": 0.50}
+LONGREAD_ANSWER_TOKENS = 64
 REPORT_CARD = os.path.join(RESULTS_DIR, "report_card.json")
 # v3.1: E9 is the owner's own exam about his own documents (NEXT.md section 0, item 5). The file is his;
 # empty = "not yet written" (INFO). E7L (long reading on a held-out public-domain essay) and E1b (the
@@ -213,9 +214,9 @@ def run_exams(seed: int = 7337, verbose: bool = True, model=None, tok=None,
     # E7L (INFO): reading tasks on a whole held-out essay (public domain), one or two passages per prompt (v3.1).
     rows, passed, total = [], 0, 0
     for it in exam_items_longread(seed):
-        if len(tok.encode(it["q"], eos=False)) + 44 > model.block_size:
+        if len(tok.encode(it["q"], eos=False)) + LONGREAD_ANSWER_TOKENS > model.block_size:
             continue
-        got = answer(model, tok, it["q"], max_new=44)
+        got = answer(model, tok, it["q"], max_new=LONGREAD_ANSWER_TOKENS)
         ok = got.strip() == it["a"]
         passed += ok; total += 1; rows.append({"kind": it["kind"], "q": it["q"][-160:], "expected": it["a"], "got": got, "ok": ok})
     rows.sort(key=lambda r: r["ok"])

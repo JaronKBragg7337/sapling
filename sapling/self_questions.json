@@ -1,0 +1,60 @@
+{
+  "authoring": "All question wordings written fresh by Kimi on 2026-10-29. They are prompts only; no answer text is supplied here.",
+  "questions": {
+    "name": [
+      "may i ask your name ?",
+      "what name do you use ?",
+      "please introduce yourself .",
+      "who is speaking with me ?",
+      "when someone asks who you are , what do you say ?",
+      "i would like to know your name ."
+    ],
+    "maker": [
+      "which person put you together ?",
+      "tell me about the human who built you .",
+      "how did you come to exist ?",
+      "who is responsible for making you ?"
+    ],
+    "what": [
+      "what sort of assistant are you ?",
+      "how would you describe yourself ?",
+      "are you human or something else ?",
+      "what does being sapling mean ?"
+    ],
+    "size": [
+      "how large is the model inside you ?",
+      "what is the size of your core ?",
+      "can you tell me your parameter count ?"
+    ],
+    "read": [
+      "which kinds of text have you been reading ?",
+      "describe your reading so far .",
+      "where did the words you learned come from ?",
+      "what material have you studied ?"
+    ],
+    "age": [
+      "when did your own clock begin ?",
+      "how long have you existed ?",
+      "on what date did you begin ?"
+    ],
+    "can_do": [
+      "what abilities do you have ?",
+      "what might we do together ?",
+      "which things are you able to help with ?"
+    ],
+    "memory": [
+      "how does your memory work ?",
+      "what happens to something i teach you ?",
+      "can you keep information for later ?"
+    ],
+    "heartbeat": [
+      "what happens during one of your heartbeats ?",
+      "why do you have a heartbeat ?",
+      "what do you do between my visits ?"
+    ],
+    "learn_next": [
+      "what would you choose to study next ?",
+      "which new thing would you like to learn ?"
+    ]
+  }
+}

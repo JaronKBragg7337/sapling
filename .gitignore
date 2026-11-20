@@ -30,3 +30,26 @@ results/talk/*.pt
 results/cloud/
 results/core_self_topup_staged.pt
 results/core_rollforward_staged.pt
+
+# Never publish local secrets or model weights through the source repository.
+.env
+.env.*
+*.pt
+*.pth
+*.ckpt
+
+# Operational and bulk generated results stay on the MSI; publish reviewed aggregates/samples only.
+results/github-sync.log
+results/github-sync.lock
+results/wake.log
+results/heartbeat-before-disconnect-fix-*.log
+results/conversation/
+results/stop_reports/
+results/teacher/98m_fix_2026-11-01/
+results/teacher/balanced_2026-11-02/
+results/teacher/retention_2026-11-01/
+results/writing_samples/*
+!results/writing_samples/2026-10-29T011734_gen1396.txt
+!results/writing_samples/2026-11-15T001054_gen1673.txt
+results/chat_samples/*
+!results/chat_samples/2026-10-29T003519_after_growth_20261028___fresh_98_6M_v5.json

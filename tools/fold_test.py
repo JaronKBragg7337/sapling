@@ -30,13 +30,15 @@ def main():
     ap.add_argument("--batch", type=int, default=None)
     ap.add_argument("--steps", type=int, default=None, help="steps per fold (default: membrane consolidate_steps)")
     ap.add_argument("--no-school-docs", action="store_true", help="drop the old longread/docs school rehearsal from the fold")
+    ap.add_argument("--memory", default=os.path.join(ROOT, "results", "memory.db"), help="frozen SQLite memory snapshot")
+    ap.add_argument("--keep-dir", help="preserve the final copied checkpoint and run JSON here")
     a = ap.parse_args()
     from sapling import consolidate as C, exams as E, membrane
     from sapling.goals import GoalTracker
     from sapling.memory import MemoryStore
     from sapling.session import Brain
     work = tempfile.mkdtemp(prefix="sapling_folds_")
-    with sqlite3.connect(os.path.join(ROOT, "results", "memory.db")) as src, sqlite3.connect(os.path.join(work, "memory.db")) as dst:
+    with sqlite3.connect(a.memory) as src, sqlite3.connect(os.path.join(work, "memory.db")) as dst:
         src.backup(dst)
     os.makedirs(os.path.join(work, "ck"))
     C.CHECKPOINT_DIR, C.CHECKPOINT = os.path.join(work, "ck"), os.path.join(work, "live.pt")
@@ -55,12 +57,19 @@ def main():
     for i in range(a.folds):
         goals = GoalTracker(store).update()
         r = C.consolidate(brain, store, goals, steps=steps, lr=a.lr, verbose=False)
-        rows.append({k: r.get(k) for k in ("generation", "lr", "loss_first", "loss_last", "lesson_share", "read_share", "talk_share", "seconds")})
+        rows.append({k: r.get(k) for k in ("generation", "lr", "loss_first", "loss_last", "lesson_share", "read_share", "talk_share", "facts_self", "facts_user", "facts_new", "seconds", "exams")})
         print(json.dumps(rows[-1]), flush=True)
     last = os.path.join(work, "ck", f"gen_{brain.generation:04d}.pt")
     from measure_core import measure
     m = measure(last, f"fold test: {a.label} ({a.folds} folds from {os.path.basename(a.core)})")
     out = {"label": a.label, "folds": rows, "seconds": round(time.time() - t0), "measure": {k: m[k] for k in ("window_loss", "exams", "e7l_by_kind")}}
+    if a.keep_dir:
+        os.makedirs(a.keep_dir, exist_ok=True)
+        candidate = os.path.join(a.keep_dir, "candidate.pt")
+        shutil.copy2(last, candidate)
+        out["candidate"] = candidate
+        with open(os.path.join(a.keep_dir, "run.json"), "w", encoding="utf-8") as f:
+            json.dump(out, f, indent=1)
     os.makedirs(os.path.join(ROOT, "results", "teacher"), exist_ok=True)
     with open(os.path.join(ROOT, "results", "teacher", "fold_tests.jsonl"), "a", encoding="utf-8") as f:
         f.write(json.dumps(out) + "\n")

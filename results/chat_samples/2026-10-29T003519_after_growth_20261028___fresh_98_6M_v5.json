@@ -1,0 +1,77 @@
+{
+ "ts": "2026-10-29T00:35:19",
+ "label": "after growth 20261028 - fresh 98.6M v5",
+ "core": "results\\cloud\\20261028-224312\\core_staged.pt",
+ "single": [
+  {
+   "prompt": "hello! who are you?",
+   "answer": "I'm Sapling, a small synthetic cognitive assistant that grows as it learns.  [memory:447 user/captured: the word hello means a greeting]",
+   "seconds": 0.96
+  },
+  {
+   "prompt": "what is your name?",
+   "answer": "I'm Sapling, a small synthetic cognitive assistant that grows as it learns.",
+   "seconds": 0.82
+  },
+  {
+   "prompt": "what is the sun?",
+   "answer": "The sun is how we refer to the star in our solar system, around which each of the planets move.",
+   "seconds": 1.07
+  },
+  {
+   "prompt": "why is the sky blue?",
+   "answer": "All the other colors in the sky are involved in blue light. To understand this, douglas adams was given a task named deep space nine to ask the proper filter in his sky box for determining the color of the sun.",
+   "seconds": 3.38
+  },
+  {
+   "prompt": "tell me a short story about a dog.",
+   "answer": "Sure, here is a short story about a dog. 1. Know the outcome of jumpsuitche. 2. See the dog in the park. 3. Fall in love. 4. Do an alert reaction for the dog. 5. Move his finger to where the ground is. 6. Eat the him. 7.? Oh no! Talk about the dog! 8. Bark is for there. 9. Make it speak. 10 in this story, I and the dog she and I are doing just like each other. I am thinking of you and the dog and the west only after seeing you have an open mind. There never was an open mind when I started thinking about so.",
+   "seconds": 16.96
+  },
+  {
+   "prompt": "what does respect mean?",
+   "answer": "The word respect means look again.",
+   "seconds": 0.69
+  },
+  {
+   "prompt": "how do plants make their food?",
+   "answer": "Many plants are leaves, or branches, preserved by the process of selection, what is the actual number of elements in the plant?",
+   "seconds": 1.29
+  },
+  {
+   "prompt": "can you help me write a short note to thank a friend?",
+   "answer": "Sure, here's a short note to thank you: 1. When saying goodbye, my name isation, and I feel much more strongly ego than we both know each other. 2. Your overall presence, no more crying, being with your hands, and your faces bright with your eyes will be closed. 3. Your close up, fulsiwork, having someone else say excuse me, because I want a kiss. 4. It's always nice to meet people who like to talk, but very few of us likes to chat or nod. 5. How about the coffee enrollment, when I'm hungry? 6. Special treat, for example made by an ice cream cone, I plan to guided largely by my friend ron kensington or something past my",
+   "seconds": 6.6
+  },
+  {
+   "prompt": "what is a roof made of?",
+   "answer": "Typically, a roof is made of wood and it would be thinned down with hard wood all around. They would be good to see. A little redwood panelled house is an example but a very small piece of wood, this is where most people live and how they use their home.",
+   "seconds": 2.51
+  },
+  {
+   "prompt": "what would you like to learn next?",
+   "answer": "More about the world, and how to talk well with people. I would like to read more and to be taught.",
+   "seconds": 16.79
+  }
+ ],
+ "conversation": [
+  {
+   "prompt": "hi, i am jaron.",
+   "answer": "Hi inserts a question: what is your reason for wanting more information?"
+  },
+  {
+   "prompt": "what is my name?",
+   "answer": "My name is coco."
+  },
+  {
+   "prompt": "what do you know about rain?",
+   "answer": "I am trained with the knowledge that wind, rain and water are different and pass my data in order to make forecasts. While I believe rain is the force that brings rain to our lives. Water is invisible against the light of the sun, so you may not have a chance to knowing when it will stop. Your own experience with water is certainly different from those you experience on earth. Water flows through multiple structures, such as channels, plates and contacts. Depending on your experience, such as watering how, you give water to a bird, or under what conditions you take an raindrop to a writing system. In some cases, the rain can be a threat to others, so it is better to stay safe than sorry."
+  },
+  {
+   "prompt": "why does it fall down?",
+   "answer": "The force comes from rain."
+  }
+ ],
+ "params": 98584320,
+ "generation": 1395
+}

@@ -1,15 +1,18 @@
 # Sapling training data provenance audit
 
-2026-10-29. Trainer: Kimi (Moonshot). Claude: orchestrator only (schedules jobs, reads results; writes no training data).
+2026-10-29 audit; 2026-11-01 swap by Kimi (Moonshot). Trainer and replacement-text author: Kimi. Claude: orchestrator only (schedules jobs, reads results; writes no training data).
 
 ## Findings and limits
 
-- TinyStories train and validation are GPT-4-generated, including the tokenized stories shards. They and the mixed reading replay are quarantined. Past weights have already learned from these sources; quarantine cannot undo that exposure.
-- The generated school and self-question templates were authored in code attributed to Claude; mixed school replay, conversation lessons containing those prompts, self-only lessons, and the long-reading-augmented conversation set are quarantined pending a row-by-row reconstruction. The mixed talk replay was also quarantined. The exact mixed contents were not independently decoded.
-- Kimi conversation manifest states Kimi authored practice and Jaron supplied exact self answers. Its source is an untracked local script; git history alone does not prove authorship. Owner self lessons are attributed to Jaron in the data and git commit 0195b83; modified local content was not independently authenticated.
-- OpenAssistant and Dolly are licensed datasets, but individual authorship and any embedded AI-generated text were not verified. FineWeb is crawled web text; it is not possible to prove every document human-authored from the available manifest. Treat those sources as unknown at row level, not certified clean.
-- Existing checkpoints, archived bundles, cloud release copies, in-memory cached data and previous runs were not erased or proven clean. An already-running process may have loaded data before quarantine. Legacy Python training entry points are blocked until their inputs are rebuilt and reviewed; separate cloud scripts and already running processes need independent review. No training was started by this audit.
-- Git history inspected: data tracked only owner_self_lessons.json (0195b83); most datasets and generated files are gitignored. Code history attributes curriculum changes to commits 9d099aa, 0c0eb5a, 741664d, daa870d, 221a7c5; commit author is not proof of each text author. Gutenberg mentions of Claude are not evidence of AI authorship.
+- On 2026-11-01 Jaron approved the swap. TinyStories train/validation, all 11 tokenized story shards, the old mixed reading replay, old school/talk replay, old mixed conversations, old self-only lessons, and OpenAssistant raw input were MOVED to `data/quarantine/`; nothing was deleted. They are not active training inputs.
+- Active school lessons come from Kimi's `sapling/kimi_school.py`, with fixed exam generators retained for evaluation only. The full story replacement completed on 2026-11-02: **2,717,495 train stories / 516,895,754 tokenized tokens** and **27,630 validation stories / 6,221,698 tokens**. Exhaustive QA passed all counts, lengths, hashes, exact uniqueness, split separation and token-budget checks. The sampled near-duplicate limitations remain in `stories_full/qa_report.json`.
+- `data/talk/lessons.jsonl` was rebuilt from 8,000 Kimi practice rows, 75 Kimi lead-in/Jaron-answer rows, 150 new self-only rows, and 14,962 fresh Dolly rows. `conversation_train_with_longread.jsonl` contains 8,000 Kimi practice rows, the same 225 self rows, 4,000 new Kimi/Gutenberg exact-span tasks, and 2,578 fresh Dolly rows. No rows were salvaged from the old mixed files and no OpenAssistant rows are included.
+- Active cloud `school.npy`, `talk.npz`, `lesson.npz`, and `reading.npy` use rebuilt/approved inputs. Reading replay has **292,396 uint16 windows of 513 tokens** (149,999,148 stored tokens) in the 11:4:14 story/adult/web proportions. The bundle is COMPLETE for the bounded fresh-350M pilot. `test.jsonl` is historical evaluation-only; `core_gen1590.pt` supplies the tokenizer and has historical exposure.
+- Jaron accepted the balanced-practice candidate on 2026-11-02, including the measured small drops. It installed as generation 1626; the previous live checkpoint moved to `results/checkpoints/core_v5_gen_1625.pt`. Level-1 x2, bridge x2, and fresh Kimi definition forms are now the default live recipe. `SAPLING_KIMI_REPAIR=0` is the diagnostic opt-out.
+- Kimi conversation manifest states Kimi authored practice and Jaron supplied exact self answers. Owner self lessons are attributed to Jaron in the data and git commit 0195b83; modified local content was not independently authenticated.
+- Dolly is a licensed dataset, but individual authorship and any embedded AI-generated text were not verified. FineWeb is crawled web text; it is not possible to prove every document human-authored from the available manifest. Treat those approved sources as unknown at row level, not certified human-only.
+- Every existing checkpoint, archived bundle, cloud release copy and previous run has historical exposure to the flagged sources. The swap changes future inputs only; it does not make existing weights clean. A fresh-core run is required for a core with no historical exposure.
+- Git history inspected in the original audit: data tracked only owner_self_lessons.json (0195b83); most datasets and generated files are gitignored. Commit authorship is not proof of each text author. Gutenberg mentions of Claude are not evidence of AI authorship.
 
 ## File inventory
 
@@ -17,10 +20,26 @@ Each path is relative to this repository. Quarantine paths preserve the original
 
 | File | Source / status |
 |---|---|
-| `data/cloud/bundle/bundle.json` | Manifest or index; see source records, not training text |
-| `data/cloud/bundle/core_gen0458.pt` | Checkpoint weights, trained on historical mixed sources; not raw text |
-| `data/cloud/bundle/lesson.npz` | Rule-generated long-reading examples from web, Wikipedia and Gutenberg; template authorship unverified |
-| `data/cloud/bundle/test.jsonl` | Rule-generated long-reading examples from web, Wikipedia and Gutenberg; template authorship unverified |
+| `data/cloud/bundle/bundle.json` | Active COMPLETE manifest for the bounded fresh-350M pilot |
+| `data/cloud/bundle/core_gen1590.pt` | Baseline checkpoint; supplies tokenizer only to fresh pilot and has historical exposure |
+| `data/quarantine/2026-11-01-before-full-reading/cloud/bundle/core_gen0458.pt` | Superseded historical core; moved backup |
+| `data/cloud/bundle/lesson.npz` | Active 4,000 Kimi/Gutenberg exact-span long-reading examples; answer-only masks |
+| `data/quarantine/cloud/bundle/lesson.npz` | Old 400,002-example mixed-template replay; quarantined and replaced 2026-11-01 |
+| `data/cloud/bundle/test.jsonl` | Historical rule-generated evaluation examples; template authorship unverified |
+| `data/cloud/bundle/school.npy` | Active Kimi school replay without memory-record text |
+| `data/cloud/bundle/talk.npz` | Active answer-masked replay, rebuilt from clean 23,187-row lessons mix |
+| `data/cloud/bundle/reading.npy` | Active 292,396-window replay from full Kimi stories plus adult/web shards |
+| `data/kimi_rebuild/school_level1.json` | Staged Kimi school source; generator includes normal and test-only repair modes |
+| `data/kimi_rebuild/school_level2.json` | Staged Kimi school source with original story batch 001 |
+| `data/kimi_rebuild/school_level3.json` | Staged Kimi school source with Gutenberg passages; pg1022 held out |
+| `data/kimi_rebuild/stories_full/` | Complete validated Kimi corpus; see build_manifest.json and qa_report.json |
+| `data/kimi_rebuild/stories/train_batch_001.txt` | Immutable original 110-story Kimi batch, included in full build |
+| `data/kimi_rebuild/stories/valid_batch_001.txt` | Immutable 20-story Kimi validation batch, included in full build |
+| `data/talk/lessons.jsonl` | Active rebuilt 23,187-row mix; exact sources and hashes in `data/kimi_rebuild/mix_manifest.json` |
+| `data/talk/conversation_train_with_longread.jsonl` | Active rebuilt 14,803-row mix with 4,000 Kimi/Gutenberg exact-span tasks |
+| `data/talk/self_only.jsonl` | Active 150 fresh Kimi-question/Jaron-answer rows |
+| `sapling/self_questions.json` | Package copy of Kimi's prompt bank so cloud clones do not depend on gitignored data |
+| `sapling/goals.py` | Weak-part practice now uses the same Kimi school question wording |
 | `data/gutenberg/pg1.txt` | Project Gutenberg human-authored books; public-domain status per local manifest |
 | `data/gutenberg/pg1022.txt` | Project Gutenberg human-authored books; public-domain status per local manifest |
 | `data/gutenberg/pg1228.txt` | Project Gutenberg human-authored books; public-domain status per local manifest |
@@ -28,9 +47,9 @@ Each path is relative to this repository. Quarantine paths preserve the original
 | `data/gutenberg/pg205.txt` | Project Gutenberg human-authored books; public-domain status per local manifest |
 | `data/gutenberg/pg2680.txt` | Project Gutenberg human-authored books; public-domain status per local manifest |
 | `data/gutenberg/pg2944.txt` | Project Gutenberg human-authored books; public-domain status per local manifest |
-| `data/quarantine/cloud/bundle/reading.npy` | Mixed generated/replay data; quarantined pending reconstruction |
-| `data/quarantine/cloud/bundle/school.npy` | Mixed generated/replay data; quarantined pending reconstruction |
-| `data/quarantine/cloud/bundle/talk.npz` | Mixed generated/replay data; quarantined pending reconstruction |
+| `data/quarantine/cloud/bundle/reading.npy` | Old mixed replay; quarantined and replaced 2026-11-02 |
+| `data/quarantine/cloud/bundle/school.npy` | Old mixed replay; quarantined and replaced 2026-11-01 |
+| `data/quarantine/cloud/bundle/talk.npz` | Old mixed replay; quarantined and replaced 2026-11-01 |
 | `data/quarantine/reading/raw/TinyStoriesV2-GPT4-train.txt` | GPT-4 TinyStories; quarantined |
 | `data/quarantine/reading/shards/stories_000.npy` | GPT-4 TinyStories; quarantined |
 | `data/quarantine/reading/shards/stories_001.npy` | GPT-4 TinyStories; quarantined |
@@ -43,9 +62,10 @@ Each path is relative to this repository. Quarantine paths preserve the original
 | `data/quarantine/reading/shards/stories_008.npy` | GPT-4 TinyStories; quarantined |
 | `data/quarantine/reading/shards/stories_009.npy` | GPT-4 TinyStories; quarantined |
 | `data/quarantine/reading/shards/stories_010.npy` | GPT-4 TinyStories; quarantined |
-| `data/quarantine/talk/conversation_train_with_longread.jsonl` | Mixed generated/replay data; quarantined pending reconstruction |
-| `data/quarantine/talk/lessons.jsonl` | Mixed generated/replay data; quarantined pending reconstruction |
-| `data/quarantine/talk/self_only.jsonl` | Mixed generated/replay data; quarantined pending reconstruction |
+| `data/quarantine/talk/conversation_train_with_longread.jsonl` | Old mixed data; quarantined and replaced 2026-11-01 |
+| `data/quarantine/talk/lessons.jsonl` | Old mixed data; quarantined and replaced 2026-11-01 |
+| `data/quarantine/talk/self_only.jsonl` | Old self-prompt data; quarantined and replaced 2026-11-01 |
+| `data/quarantine/reading/raw/oasst1_ready.trees.jsonl.gz` | OpenAssistant source; quarantined and excluded from all rebuilt mixes |
 | `data/quarantine/tinystories/TinyStoriesV2-GPT4-valid.txt` | GPT-4 TinyStories; quarantined |
 | `data/reading/manifest.json` | Manifest or index; see source records, not training text |
 | `data/reading/raw/databricks-dolly-15k.jsonl` | Databricks Dolly, CC BY-SA; individual authorship unverified |
@@ -166,12 +186,11 @@ Each path is relative to this repository. Quarantine paths preserve the original
 | `data/reading/raw/gutenberg/pg910.txt` | Project Gutenberg human-authored books; public-domain status per local manifest |
 | `data/reading/raw/gutenberg/pg98.txt` | Project Gutenberg human-authored books; public-domain status per local manifest |
 | `data/reading/raw/gutenberg/pg996.txt` | Project Gutenberg human-authored books; public-domain status per local manifest |
-| `data/reading/raw/oasst1_ready.trees.jsonl.gz` | OpenAssistant, Apache-2.0; individual authorship unverified |
 | `data/reading/raw/simplewiki.parquet` | Simple Wikipedia and Gutenberg; mixed human-authored source per manifest; row-level provenance unverified |
 | `data/reading/shards/adult_000.npy` | Simple Wikipedia and Gutenberg; mixed human-authored source per manifest; row-level provenance unverified |
 | `data/reading/shards/adult_001.npy` | Simple Wikipedia and Gutenberg; mixed human-authored source per manifest; row-level provenance unverified |
 | `data/reading/shards/index.json` | Manifest or index; see source records, not training text |
-| `data/reading/shards/index.v32.json` | Manifest or index; see source records, not training text |
+| `data/quarantine/reading/shards/index.v32.json` | Historical story/adult index; quarantined with the old story shards |
 | `data/reading/shards/web_000.npy` | FineWeb-Edu / Common Crawl; mixed web authorship unverified |
 | `data/reading/shards/web_001.npy` | FineWeb-Edu / Common Crawl; mixed web authorship unverified |
 | `data/reading/shards/web_002.npy` | FineWeb-Edu / Common Crawl; mixed web authorship unverified |

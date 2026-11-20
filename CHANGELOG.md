@@ -1,5 +1,33 @@
 # Changelog
 
+## 2026-10-29 ~1:20 AM - v5 growth: 98.6M core, 1.972B tokens, long reading baked in (Kimi)
+- Jaron's 10/18 growth run, funded 10/28. Speed test on the exact d768/12L candidate: eager micro 32 = 168,819 tok/s
+  (too slow for the deadline); compiled micro 64 = 459,389 tok/s. The logged worst-case plan was $6.74. Actual training:
+  60,172 steps, **1,971,716,096 tokens = 20.00 per parameter**, 78.6 min, 418,207 tok/s, loss 1.8356. Every 64-sequence
+  batch mixed lesson 16 / stories 12 / adult 4 / web 16 / talk 8 / school 8. Licensed reading and rule-based questions as before.
+- **All RunPod cost $6.25** (three speed pods, one 84.2-min training pod). Every START/TERMINATE is in cloud-gpu-log.md;
+  final API check: **zero pods**. Old gen 1395 was hash-matched and reload-verified at
+  `results/checkpoints/pre_growth_20261028-223553.pt`; the swap also kept `core_v4_gen_1395.pt`.
+- One growth row installed **v5 gen 1396: 60,515,200 -> 98,584,320 params**. Held-out lesson documents 0/300 -> 514/1000.
+  The same exams before / after / after five isolated heartbeat folds:
+
+| Exam | v4 gen 1395 | v5 staged | v5 after 5 folds |
+|---|---|---|---|
+| E1 composition | 84/86 | 86/86 | 86/86 |
+| E2 affix | 22/24 | 24/24 | 24/24 |
+| E6 grammar | 48/48 | 48/48 | 48/48 |
+| E7 reading | 39/40 | 36/40 | 36/40 |
+| E7L long reading | 16/40 | 22/40 | 17/40 |
+| E1b bridge | 83/86 | 85/86 | 83/86 |
+| E10 induction | 53/2016 | 60/2016 | 54/2016 |
+| E5 facts in weights | 6/7 | 0/7 | 0/7 |
+| Window loss stories / adult / web | 1.313 / 2.978 / 3.045 | 1.190 / 2.715 / 2.602 | 1.238 / 2.784 / 2.672 |
+
+- Chat samples ran through the real path before and after. The new core answers some factual prompts better but fails the
+  name-thread test and still rambles: **not the Acorn naming moment**. E5 staying 0/7 after five folds and E7L giving back
+  5 of its 6-point gain are the open retention problems. All 66 pytest tests passed; consolidation now scales its micro-batch
+  by core size (full batch unchanged), keeping the five-fold check inside 5.5 GB VRAM.
+
 ## 2026-10-18 ~11:25 PM - day-and-a-half check: long reading fades slowly, everything else holds (Kimi)
 Gen 765 (296 of its own folds since the second cloud lesson): long reading 20 -> 17 -> **12/40** (-5 in 241 folds,
 ~0.1 per 5 - about 17x slower than the old mix, still a slow leak); affix recall recovered on its own 18 -> 23/24
@@ -521,3 +549,9 @@ Trained core (~0.8M params), morphology curriculum, cold exams with predeclared 
 hash-chained memory with promotion and clock decay, session loop, membrane with forbidden actions
 (incl. self_shutdown), tests. Verified by Claude the same day: tests green, trains in 17 s on the
 RTX 4060, exams pass, cross-session memory works.
+
+## Story worth keeping (Jaron, told 2026-10-28 11:14 PM)
+Early on, Sapling once wrote "Jaron" about 50 times in a row, and in the middle of it the words "do not respect", so it read
+like "do not respect Jaron, Jaron, Jaron...". Jaron still laughs about it. The original output wasn't found in the
+logs; this is his memory of it. A seed-stage model looping on the word it saw most is normal: no attitude, just a small
+brain stuck repeating.

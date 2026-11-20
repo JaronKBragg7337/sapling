@@ -39,3 +39,15 @@ Test: pod cvnd3rc2lle3cs, started 11:57 PM, terminated 12:02 AM, logged in AI-Sh
 | roll-forward 1 (gen 319 -> 348) + 5 consolidations (try 1 mix, batch 32) | MSI | 08:28-08:52 (24 min) | ~105 s per consolidation incl. exams |
 | roll-forward 2 (gen 319 -> 354) + 5 consolidations (D33 mix, batch 40) | MSI | 08:55-09:38 (43 min) | ~110 s per consolidation; the 5th waited ~20 min (budget overspent -> rest drive 0.98) |
 | fold tests x3 (5 forced consolidations each, isolated, tools/fold_test.py) | MSI | 10:00-11:00 (~12 min each incl. measure) | ~107 s per consolidation; heartbeat stopped for the GPU |
+
+## Growth speed test (10/28, fresh 98,584,320-parameter d768/12L core)
+| Settings | Tokens/s | Time for 1,971,686,400 tokens (20/param) | Result |
+|---|---|---|---|
+| H100 SXM, micro 32, eager | 168,819 | 3 h 15 min | Too slow for the 2:30 AM deadline; pod ahn183thmmeu2w, 2.6 min, $0.17 |
+| H100 SXM, micro 64, torch.compile | 459,389 | 1 h 12 min | Fits; logged worst-case growth + all speed tests $6.74; pod fowy9l9ij5tsjb, 3.6 min, $0.24 |
+
+## Growth run (10/28-29, fresh 98.6M v5)
+| Run | Machine | Tokens | Start | End | Wall | Speed | Cost | Result |
+|---|---|---|---|---|---|---|---|---|
+| Fresh d768/12L growth + interleaved lesson | RunPod H100 SXM secure, $3.99/h, compiled micro 64 | 1,971,716,096 (20.00/param) | 23:06 | 00:30 (pod 23:06-00:30) | 78.6 min training / 84.2 min pod | 418,207 tok/s | $5.60 training; $6.25 all pods | v5 gen 1396; held-out 0/300 -> 514/1000; E7L 16 -> 22 -> 17/40 after 5 folds; zero pods |
+| Five isolated folds + final measure | MSI RTX 4060, scaled micro 9 | - | 00:36 | 01:11 | 35 min | - | electricity | E1 86/86, E6 48/48 held; E7 36/40; E10 54/2016; E5 0/7 |

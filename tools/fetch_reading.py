@@ -1,15 +1,11 @@
 """Fetch the reading-stage text (v3.2 "much more reading", Jaron 10/14 9:40 PM) into data/reading/raw/.
 
-Three sources, each license-checked LIVE at fetch time and written to data/reading/manifest.json:
-- TinyStories, the full GPT-4 train split (roneneldan/TinyStories on Hugging Face, CDLA-Sharing-1.0)
-- Simple English Wikipedia (wikimedia/wikipedia on Hugging Face, config 20231101.simple; CC BY-SA 3.0 + GFDL;
-  attribution: Wikipedia contributors - kept in README)
-- Project Gutenberg books (public domain in the US; each file's own header must carry the "anyone anywhere ...
-  almost no restrictions" line or the book is NOT kept; the Gutenberg header/footer/licence text is stripped
-  before training, nothing of theirs is trained on)
+Sources are license-checked at fetch time and written to data/reading/manifest.json.
+TinyStories and OpenAssistant are quarantined and are not fetched by default.
+Kimi's original stories live separately in data/kimi_rebuild/stories/.
 
 Everything lands under data/ (gitignored). Usage:
-    python tools/fetch_reading.py              # all three (skips files already present)
+    python tools/fetch_reading.py              # allowed sources (skips files already present)
     python tools/fetch_reading.py gutenberg    # one source
 """
 
@@ -84,13 +80,7 @@ def _get(url: str, dest: str, resume: bool = True, tries: int = 8) -> bool:
 
 
 def fetch_tinystories(m: dict):
-    dest = os.path.join(RAW, "TinyStoriesV2-GPT4-train.txt")
-    if not os.path.exists(dest) or os.path.getsize(dest) < 2_000_000_000:
-        print("[fetch] TinyStories train split (~2.2 GB) ...", flush=True)
-        _get(TINYSTORIES_URL, dest)
-    m["sources"]["tinystories"] = {"file": os.path.basename(dest), "bytes": os.path.getsize(dest), "url": TINYSTORIES_URL,
-                                   "license": "CDLA-Sharing-1.0 (dataset card roneneldan/TinyStories, checked live 2026-10-14)",
-                                   "attribution": "TinyStories (Ronen Eldan & Yuanzhi Li, 2023)", "fetched": time.strftime("%Y-%m-%dT%H:%M:%S")}
+    raise RuntimeError("TinyStories is quarantined; use data/kimi_rebuild/stories/ instead")
 
 
 def fetch_simplewiki(m: dict):
@@ -151,21 +141,19 @@ def fetch_fineweb_edu(m: dict):
 
 
 def fetch_dialogue(m: dict):
-    for key, url, fn, lic, attr in [
-        ("oasst1", OASST1_URL, "oasst1_ready.trees.jsonl.gz", "Apache-2.0 (dataset card OpenAssistant/oasst1, checked live 2026-10-15)",
-         "OpenAssistant Conversations (oasst1), LAION / OpenAssistant contributors"),
-        ("dolly15k", DOLLY_URL, "databricks-dolly-15k.jsonl", "CC BY-SA 3.0 (dataset card databricks/databricks-dolly-15k, checked live 2026-10-15)",
-         "databricks-dolly-15k, Databricks employees (CC BY-SA 3.0)")]:
-        dest = os.path.join(RAW, fn)
-        if not os.path.exists(dest):
-            print(f"[fetch] {key} ...", flush=True)
-            _get(url, dest, resume=False)
-        m["sources"][key] = {"file": fn, "bytes": os.path.getsize(dest), "url": url, "license": lic, "attribution": attr,
-                             "fetched": time.strftime("%Y-%m-%dT%H:%M:%S")}
+    key, url, fn = "dolly15k", DOLLY_URL, "databricks-dolly-15k.jsonl"
+    lic = "CC BY-SA 3.0 (dataset card databricks/databricks-dolly-15k, checked live 2026-10-15)"
+    attr = "databricks-dolly-15k, Databricks employees (CC BY-SA 3.0)"
+    dest = os.path.join(RAW, fn)
+    if not os.path.exists(dest):
+        print(f"[fetch] {key} ...", flush=True)
+        _get(url, dest, resume=False)
+    m["sources"][key] = {"file": fn, "bytes": os.path.getsize(dest), "url": url, "license": lic, "attribution": attr,
+                         "fetched": time.strftime("%Y-%m-%dT%H:%M:%S")}
 
 
 def main(argv=None):
-    what = (argv or sys.argv[1:]) or ["tinystories", "simplewiki", "gutenberg", "fineweb_edu", "dialogue"]
+    what = (argv or sys.argv[1:]) or ["simplewiki", "gutenberg", "fineweb_edu", "dialogue"]
     os.makedirs(RAW, exist_ok=True)
     m = _manifest()
     for w in what:

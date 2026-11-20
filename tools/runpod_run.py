@@ -43,8 +43,7 @@ CLOUD_LOG = r"C:\Users\lilli\AI-Shared\state\cloud-gpu-log.md"
 BUNDLE = os.path.join(ROOT, "data", "cloud", "bundle")
 GPU = "NVIDIA H100 80GB HBM3"           # H100 SXM
 IMAGE = "runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04"
-REST = "https://rest.runpod.io/v1"
-GQL = "https://api.runpod.io/graphql"
+REST = "https://api.runpod.io/v2"
 REAPER_TASK = "Sapling Cloud Reaper"
 NAME_PREFIX = "sapling-"
 
@@ -86,21 +85,23 @@ def _http(method: str, url: str, body: dict | None = None, timeout: int = 60, au
 
 
 def price_quote(gpu: str = GPU) -> dict:
-    q = {"query": 'query { gpuTypes(input: {id: "%s"}) { id displayName memoryInGb securePrice communityPrice '
-                  'secureCloud communityCloud lowestPrice(input: {gpuCount: 1}) { minimumBidPrice uninterruptablePrice } } }' % gpu}
-    code, r = _http("POST", GQL, q)
-    if code != 200 or not isinstance(r, dict) or "data" not in r:
-        return {"error": f"price query {code}: {str(r)[:200]}"}
-    g = (r["data"]["gpuTypes"] or [{}])[0]
-    return {k: g.get(k) for k in ("id", "displayName", "memoryInGb", "securePrice", "communityPrice", "secureCloud",
-                                  "communityCloud")} | {"lowest": g.get("lowestPrice")}
+    from urllib.parse import quote, urlencode
+    path = f"{REST}/catalog/gpus/{quote(gpu, safe='')}?{urlencode({'include': 'AVAILABILITY', 'product': 'POD', 'count': 1})}"
+    code, g = _http("GET", path)
+    if code != 200 or not isinstance(g, dict) or "price" not in g:
+        return {"error": f"price query {code}: {str(g)[:200]}"}
+    price = g["price"]
+    return {"id": g.get("id"), "displayName": g.get("name"), "memoryInGb": g.get("memory"),
+            "securePrice": price.get("secure"), "communityPrice": price.get("community"),
+            "secureCloud": g.get("secure"), "communityCloud": g.get("community"),
+            "availability": g.get("availability"), "price": price}
 
 
 def list_pods() -> list[dict]:
     code, r = _http("GET", f"{REST}/pods")
     if code != 200:
         raise RuntimeError(f"list pods {code}: {str(r)[:200]}")
-    return r if isinstance(r, list) else r.get("pods", [])
+    return r.get("pods", []) if isinstance(r, dict) else []
 
 
 def delete_pod(pod_id: str) -> bool:
@@ -109,7 +110,7 @@ def delete_pod(pod_id: str) -> bool:
         return False
     for _ in range(12):
         c, g = _http("GET", f"{REST}/pods/{pod_id}")
-        if c == 404 or (isinstance(g, dict) and g.get("desiredStatus") == "TERMINATED"):
+        if c == 404 or (isinstance(g, dict) and g.get("status") == "TERMINATED"):
             return True
         time.sleep(5)
     return pod_id not in {p.get("id") for p in list_pods()}
@@ -139,8 +140,10 @@ class Run:
 def ensure_bundle(run: Run, examples: int, read_tokens: float, rebuild: bool) -> dict:
     from sapling.train import CHECKPOINT
     info_p = os.path.join(BUNDLE, "bundle.json")
-    if not rebuild and os.path.exists(info_p):
-        info = json.load(open(info_p, encoding="utf-8"))
+    info = json.load(open(info_p, encoding="utf-8")) if os.path.exists(info_p) else None
+    if info and str(info.get("status", "")).startswith("INCOMPLETE"):
+        raise RuntimeError("clean bundle is incomplete; full Kimi reading replay is required before any cloud run")
+    if not rebuild and info is not None:
         fresh = time.time() - os.path.getmtime(os.path.join(BUNDLE, "lesson.npz")) < 48 * 3600
         if fresh and info.get("lesson", {}).get("train", 0) >= examples * 0.9:
             import shutil
@@ -223,17 +226,20 @@ sleep infinity
     return ["bash", "-c", script]
 
 
+def pod_create_body(name: str, cloud: str, disk: int, command: list[str]) -> dict:
+    return {"name": name, "image": IMAGE, "gpu": {"id": GPU, "count": 1}, "cloud": cloud,
+            "disk": disk, "ports": ["8000/http"], "env": {},
+            "args": json.dumps({"entrypoint": ["/bin/bash"], "cmd": command[1:]})}
+
+
 def create_pod(run: Run, base: str, minutes: float, max_pod_minutes: float, micro: int) -> dict:
     last = None
     for cloud in ("COMMUNITY", "SECURE"):
-        body = {"name": f"{NAME_PREFIX}{run.stamp}", "imageName": IMAGE, "gpuTypeIds": [GPU], "gpuCount": 1,
-                "cloudType": cloud, "interruptible": False, "containerDiskInGb": 40, "volumeInGb": 0,
-                "ports": ["8000/http"], "env": {}, "dockerStartCmd": start_cmd(base, minutes, max_pod_minutes, micro)}
+        body = pod_create_body(f"{NAME_PREFIX}{run.stamp}", cloud, 40, start_cmd(base, minutes, max_pod_minutes, micro))
         code, r = _http("POST", f"{REST}/pods", body, timeout=120)
         if code in (200, 201) and isinstance(r, dict) and r.get("id"):
-            run.log(step="pod created", cloud=cloud, pod=r["id"], cost_per_hr=r.get("costPerHr"),
-                    adjusted=r.get("adjustedCostPerHr"))
-            return {"id": r["id"], "cloud": cloud, "cost_per_hr": float(r.get("adjustedCostPerHr") or r.get("costPerHr") or 0)}
+            run.log(step="pod created", cloud=cloud, pod=r["id"], cost_per_hr=r.get("cost"))
+            return {"id": r["id"], "cloud": cloud, "cost_per_hr": float(r.get("cost") or 0)}
         last = f"{cloud}: {code} {str(r)[:300]}"
         run.log(step="pod not created", cloud=cloud, why=last)
     raise RuntimeError(f"no H100 pod: {last}")
@@ -358,7 +364,7 @@ def main(argv=None):
     run.log(step="start", dry=a.dry_run, minutes=a.minutes, max_pod_minutes=a.max_pod_minutes, gpu=GPU, image=IMAGE)
     quote = price_quote()
     run.log(step="price", quote=quote)
-    running = [p for p in list_pods() if p.get("desiredStatus") == "RUNNING"]
+    running = [p for p in list_pods() if p.get("status") == "RUNNING"]
     run.log(step="pods running before", n=len(running), names=[p.get("name") for p in running])
     info = ensure_bundle(run, a.examples, a.read_tokens, a.rebuild)
     base = None if (a.dry_run and a.skip_upload) else upload_bundle(run, info)

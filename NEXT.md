@@ -6,7 +6,7 @@ v1's three steps: (1) runs-without-you is DONE (the heartbeat); (2) record -> co
 is DONE (no gate; `/confirm` and `/invalidate` verdicts are the selection events); (3) a world
 to practice in is still open. Ordered by dependency.
 
-## 000. The growth run (Jaron's direction 10/18: GROW, not refresh; spends wait for his yes)
+## 000. The growth run - DONE 10/29 ~1:20 AM (v5 gen 1396; Acorn name not earned)
 
 Jaron: refreshes spend to stand still; the next cloud spend is a bigger core, not maintenance. Long reading will
 slowly settle (~10-12/40) meanwhile - acceptable, nothing else drips. The plan, ready to execute when he adds funds:
@@ -21,6 +21,10 @@ slowly settle (~10-12/40) meanwhile - acceptable, nothing else drips. The plan, 
 4. **The check that counts:** same exams + chat samples before/after, then 5 of its own consolidations; an ability
    counts only once it survives folding. Old core archived and restorable, one `growth` row, generation keeps counting.
 5. **If it truly holds a conversation afterwards:** that's the Acorn naming moment (his pick).
+
+Result (CHANGELOG 2026-10-29 ~1:20 AM): 98.58M params, 1.9717B tokens, $6.25 total, zero pods, old core archived,
+one growth row. E7L 16 -> 22 -> 17/40 after 5 folds; E1 86/86 and E6 48/48 held; E5 0/7. Chat still fails the
+name-thread test, so the Acorn name stays reserved. Open: E5 did not return in the five folds and E7L gave back 5 points.
 
 ## 0000. Lesson retention - CLOSED 10/16 ~10:20 PM (D36 adopted); second cloud lesson DONE 10/17 ~12:20 AM
 The wear is fixed: cores that had the cloud lesson no longer rehearse the school's old `longread`/`docs` sentences in

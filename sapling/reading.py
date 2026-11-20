@@ -10,8 +10,8 @@ What this is NOT: a new core. It is the same weights (grown in place, DESIGN-CHO
 vocabulary (17,660; words it merely reads are spelled from pieces, D16), the same memory.db and hash chain
 (school never writes the ledger; the swap adds ONE `growth` row, D15), the generation keeps counting.
 
-Text (license-checked live at fetch, tools/fetch_reading.py -> data/reading/manifest.json):
-- TinyStories full GPT-4 train split (CDLA-Sharing-1.0): ~2.7M children's stories
+Text (data/reading/manifest.json):
+- Kimi original simple-story batches; the full shard replacement is still in progress
 - Simple English Wikipedia (CC BY-SA 3.0 + GFDL, attribution in README): ~242k articles
 - Project Gutenberg books, public domain in the US (each header checked; header/footer/licence stripped)
 
@@ -192,7 +192,7 @@ def prepare(tok: Tokenizer, raw_dir: str = RAW_DIR, shard_dir: str = SHARD_DIR, 
     os.makedirs(shard_dir, exist_ok=True)
     enc = FastEncoder(tok)
     if sources is None:
-        sources = {"stories": iter_stories(os.path.join(raw_dir, "TinyStoriesV2-GPT4-train.txt")),
+        sources = {"stories": iter_stories(os.path.join(raw_dir, "../kimi_rebuild/stories/train_batch_001.txt")),
                    "adult": iter_adult(raw_dir)}
     index = {"vocab_size": len(tok.itos), "vocab_sha": vocab_sha(tok), "shard_tokens": shard_tokens,
              "ts": time.strftime("%Y-%m-%dT%H:%M:%S"), "sources": {}}
@@ -702,7 +702,7 @@ def main(argv=None):
         _, tok, _ = load_checkpoint(device="cpu")
         src = None
         if args.only == "stories":
-            src = {"stories": iter_stories(os.path.join(RAW_DIR, "TinyStoriesV2-GPT4-train.txt"))}
+            src = {"stories": iter_stories(os.path.join(RAW_DIR, "../kimi_rebuild/stories/train_batch_001.txt"))}
         elif args.only == "adult":
             src = {"adult": iter_adult(RAW_DIR)}
         elif args.only == "web":

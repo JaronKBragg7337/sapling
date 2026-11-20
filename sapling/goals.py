@@ -13,12 +13,14 @@ never studied - the exam stays cold.
 
 from __future__ import annotations
 
+import os
 import random
 
 from .curriculum import PREFIXES, ROOTS, SUFFIXES, compose, prefix_gloss, split_combos, suffix_gloss
 
-RECENT_TRIES = 10          # a goal looks at the last N tries of its part
-OPEN_IF_MISSES_GE = 1      # any miss in the recent window keeps the goal open
+RECENT_TRIES = 10
+OPEN_IF_MISSES_GE = 1
+REPAIR = os.environ.get("SAPLING_KIMI_REPAIR", "1") == "1"
 
 
 def part_items(split: dict) -> dict[str, list[tuple[str, str]]]:
@@ -26,20 +28,26 @@ def part_items(split: dict) -> dict[str, list[tuple[str, str]]]:
     items: dict[str, list[tuple[str, str]]] = {}
     for p, r in split["pre_train"]:
         w, g = compose([p, r]), prefix_gloss(r, p)
-        q, a = f"q : what does {w} mean ? a :", f"{w} means {g} ."
+        q, a = ((f"q : give the meaning of {w} . a :", f"{w} means {g} .") if REPAIR else
+                (f"q : explain {w} . a :", f"it means {g} ."))
         items.setdefault(f"prefix:{p}", []).append((q, a))
         items.setdefault(f"root:{r}", []).append((q, a))
     for r, s in split["suf_train"]:
         w, g = compose([r, s]), suffix_gloss(r, s)
-        q, a = f"q : what does {w} mean ? a :", f"{w} means {g} ."
+        q, a = ((f"q : give the meaning of {w} . a :", f"{w} means {g} .") if REPAIR else
+                (f"q : explain {w} . a :", f"it means {g} ."))
         items.setdefault(f"suffix:{s}", []).append((q, a))
         items.setdefault(f"root:{r}", []).append((q, a))
     for p, g in PREFIXES.items():
-        items.setdefault(f"prefix:{p}", []).append((f"q : what does the prefix {p} mean ? a :", f"{g} ."))
+        pair = ((f"q : what meaning does the prefix {p} carry ? a :", f"{g} .") if REPAIR else
+                (f"q : tell me what prefix {p} means . a :", f"it means {g} ."))
+        items.setdefault(f"prefix:{p}", []).append(pair)
     for s, g in SUFFIXES.items():
-        items.setdefault(f"suffix:{s}", []).append((f"q : what does the suffix {s} mean ? a :", f"{g} ."))
+        pair = ((f"q : give the short meaning of the suffix {s} . a :", f"{g} .") if REPAIR else
+                (f"q : tell me what suffix {s} means . a :", f"it means {g} ."))
+        items.setdefault(f"suffix:{s}", []).append(pair)
     for r, g in ROOTS.items():
-        items.setdefault(f"root:{r}", []).append((f"q : what does the root {r} mean ? a :", f"the root {r} means {g} ."))
+        items.setdefault(f"root:{r}", []).append((f"q : tell me the meaning of root {r} . a :", f"{r} means {g} ."))
     return items
 
 

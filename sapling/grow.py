@@ -328,7 +328,7 @@ def swap(store: MemoryStore | None = None, seed: int = 7337, device: str | None 
             old["exams"] = [{k: e[k] for k in ("exam", "score", "accuracy", "verdict")} for e in card["exams"]]
         os.makedirs(checkpoint_dir, exist_ok=True)
         keep = os.path.join(checkpoint_dir, f"core_v{old['core_version']:g}_gen_{old['generation']:04d}.pt")
-        shutil.copy(checkpoint, keep)
+        shutil.move(checkpoint, keep)
         old["kept_as"] = os.path.relpath(keep, os.path.dirname(checkpoint_dir))
         del om
     from_v = f"{old['core_version']:g}" if old else "-"

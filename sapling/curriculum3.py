@@ -340,25 +340,11 @@ LESSONS3 = ["copy", "bridge", "prose", "docs", "longread"]
 def build_corpus3(seed: int = 7337, docs: bool = True, words: list[str] | None = None,
                   story_sents: list[str] | None = None, sizes: dict | None = None,
                   docs_dir: str = DOCS_DIR) -> dict:
-    """{lessons, docs_stats}. `words` = the wider vocabulary the copy lesson
-    draws from (whole words from stories + documents); `story_sents` = real
-    sentences for "say again". `sizes` shrinks lessons for the CPU smoke test."""
-    sizes = sizes or {}
-    rng = random.Random(seed + 31)
-    split1 = split_combos(seed)
-    D = load_docs(docs_dir=docs_dir) if docs else {}
-    words = list(words or [])
-    lessons = {
-        "copy": lesson_copy(rng, words, list(story_sents or []), sizes.get("copy", 2400)),
-        "bridge": lesson_bridge(rng, split1),
-        "prose": lesson_prose(rng, D, sizes.get("prose", 6000)),
-        "docs": lesson_docs(rng, D, sizes.get("docs", 3000)),
-        "longread": lesson_longread(rng, D, sizes.get("longread", 2000)),
-    }
-    stats = {"present": bool(D), "docs": {k: {"title": v["title"], "passages": len(v["passages"]),
-                                               "tokens": sum(len(p.split()) for p in v["passages"])} for k, v in D.items()},
-             "note": DOCS_NOTE, "holdout": DOCS_HOLDOUT}
-    return {"lessons": lessons, "docs_stats": stats, "split1": split1}
+    """Build Kimi's replacement lessons; fixed exams remain in this module."""
+    from pathlib import Path
+    from .kimi_school import build_corpus3 as build_rebuilt
+    return build_rebuilt(seed, docs_dir=Path(docs_dir) if docs else None,
+                         words=words, story_rows=story_sents, sizes=sizes)
 
 
 # ---------------------------------------------------------------------------

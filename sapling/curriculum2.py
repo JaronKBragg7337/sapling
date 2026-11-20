@@ -10,9 +10,7 @@ grows". The stages, after the level-1 lessons (roots -> affixes -> composition
                    agreement, questions, negation - each as a "fill" task
     paragraphs     2-4 sentences about one or two characters
     comprehension  read a 2-4 sentence passage, answer a question about it
-    stories        real children's stories (TinyStories, CDLA-Sharing-1.0;
-                   see STORIES_NOTE) - the only text here a person did not
-                   generate by rule
+    stories        original simple stories written by Kimi (see STORIES_NOTE)
     record         what it has already been taught and said (memory.db), so
                    the grown core is the same individual (train.py adds it)
 
@@ -267,10 +265,8 @@ def lesson_comprehension(rng: random.Random, split: dict, n: int = 2400) -> list
 # ---------------------------------------------------------------------------
 
 STORIES_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-                            "data", "tinystories", "TinyStoriesV2-GPT4-valid.txt")
-STORIES_NOTE = ("TinyStories (Eldan & Li, 2023), dataset roneneldan/TinyStories on Hugging Face, "
-                "license CDLA-Sharing-1.0 (checked live 2026-10-14); the GPT-4 validation split only "
-                "(27,630 stories, 22.5 MB). Attribution kept here and in README.")
+                            "data", "kimi_rebuild", "stories", "train_batch_001.txt")
+STORIES_NOTE = "Kimi-authored simple stories, batch 001; no TinyStories text."
 STORY_VOCAB_CAP = 3000      # whole words: the most common N in the file; stories with rarer words are left out
 STORY_MAX_TOKENS = 300      # longer stories are left out (the context window is 256)
 
@@ -306,20 +302,12 @@ LESSONS2 = ["simple", "grammar", "paragraphs", "comprehension", "stories"]
 
 def build_corpus2(seed: int = 7337, stories: bool = True, max_stories: int = 12000,
                   sizes: dict | None = None, vocab_cap: int = STORY_VOCAB_CAP) -> dict:
-    """{lessons: {name: [sentences]}, split, story_stats}. `sizes` lets the CPU
-    smoke test shrink every lesson."""
-    sizes = sizes or {}
-    rng = random.Random(seed + 1)
-    split = split_level2(seed)
-    lessons = {
-        "simple": lesson_simple(rng, split, sizes.get("simple", 900)),
-        "grammar": lesson_grammar(rng, split, sizes.get("grammar", 2400)),
-        "paragraphs": lesson_paragraphs(rng, split, sizes.get("paragraphs", 1200)),
-        "comprehension": lesson_comprehension(rng, split, sizes.get("comprehension", 2400)),
-    }
+    """Build Kimi's replacement lessons and story mix; `sizes` shrinks smoke tests."""
+    from .kimi_school import build_corpus2 as build_rebuilt
     st = load_stories(max_stories=max_stories, seed=seed, vocab_cap=vocab_cap) if stories else {"stories": [], "stats": {"present": False}}
-    lessons["stories"] = st["stories"]
-    return {"lessons": lessons, "split": split, "story_stats": st["stats"]}
+    corpus = build_rebuilt(seed, story_rows=st["stories"], sizes=sizes)
+    corpus["story_stats"] = st["stats"]
+    return corpus
 
 
 def exam_items_grammar(seed: int = 7337, n: int = 48) -> list[dict]:

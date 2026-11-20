@@ -191,8 +191,7 @@ def test_practice_never_touches_held_out():
     held = {compose([p, r]) for p, r in split["pre_exam"]} | {compose([r, s]) for r, s in split["suf_exam"]}
     goals = [{"part": "prefix:co", "status": "open", "misses_recent": 3}]
     for it in pick_practice(goals, random.Random(1), batch=40):
-        words = it["q"].replace("q : what does ", "").replace(" mean ? a :", "")
-        assert words not in held
+        assert all(word not in it["q"] for word in held)
 
 
 # -- the brain: vocab growth, consolidation, self-stop (need a checkpoint) ------
@@ -359,20 +358,36 @@ def test_generation_checkpoints_save_in_bf16_and_load(tmp_path):
     assert torch.allclose(m2.tok_emb.weight, m.tok_emb.weight, atol=1e-2)
 
 
+def test_unreviewed_self_notes_do_not_enter_training(store):
+    from sapling.consolidate import pending_facts, record_sentences
+    store.remember("the word glorp means happy", provenance="user")
+    store.remember("a retrieved passage", provenance="retrieval")
+    captured = store.remember("the root cred means break", provenance="self", state="captured")
+    store.record_recall(captured, "cred")
+    store.record_recall(captured, "cred again")
+    store.remember("a reviewed growth event", provenance="self", state="confirmed")
+    trained = record_sentences(store)
+    assert not any("cred means break" in row for row in trained)
+    assert any("glorp" in row for row in trained)
+    assert any("retrieved passage" in row for row in trained)
+    assert any("reviewed growth" in row for row in trained)
+    assert all(row["id"] != captured for row in pending_facts(store))
+
+
 @pytest.mark.skipif(not _core_available(), reason="no trained core")
-def test_consolidation_records_self_made_memories(store, tmp_path, monkeypatch):
+def test_consolidation_excludes_unreviewed_self_made_memories(store, tmp_path, monkeypatch):
     from sapling import consolidate as C, exams as E
     from sapling.session import Brain
     monkeypatch.setattr(C, "CHECKPOINT_DIR", str(tmp_path / "ck"))
     monkeypatch.setattr(C, "CHECKPOINT", str(tmp_path / "latest.pt"))
     monkeypatch.setattr(E, "REPORT_CARD", str(tmp_path / "card.json"))
-    monkeypatch.setattr(E, "WRITING_DIR", str(tmp_path / "writing"))   # E8 samples: never into results/ from a test
+    monkeypatch.setattr(E, "WRITING_DIR", str(tmp_path / "writing"))
     b = Brain(store=store)
     store.remember("the word glorp means happy", provenance="user")
-    sid = store.remember("the root zan zan ly", provenance="self", state="captured")
+    store.remember("the root zan zan ly", provenance="self", state="captured")
     row = C.consolidate(b, store, goals=[], steps=10, verbose=False, rehearsal=30)
-    assert row["self_ids"] == [sid] and row["self_new"] == [sid] and row["facts_self"] == 1 and row["facts_user"] == 1
-    assert store.last_ledger("consolidation")["self_ids"] == [sid]
+    assert row["self_ids"] == [] and row["self_new"] == [] and row["facts_self"] == 0 and row["facts_user"] == 1
+    assert store.last_ledger("consolidation")["self_ids"] == []
 
 
 def test_recall_count_handles_missing_row(store, monkeypatch):
@@ -540,7 +555,8 @@ def test_level3_lessons_are_cold_for_E6_and_E1():
         head, _, rest = v.partition(" ")
         for form in (head,) + VERBS[head]:
             assert f" {form}{(' ' + rest) if rest else ''} {o} " not in text
-    assert any("q : copy :" in s for s in c["lessons"]["copy"]) and any("q : fill :" in s for s in c["lessons"]["copy"])
+    assert any("q : repeat these words exactly :" in s for s in c["lessons"]["copy"])
+    assert any("q : use the past :" in s for s in c["lessons"]["copy"])
     bridge = " " + " ".join(c["lessons"]["bridge"]) + " "
     s1 = split_combos(7337)
     for p, r in s1["pre_exam"]:                      # E1's held-out combos: neither spelling in the bridge lesson

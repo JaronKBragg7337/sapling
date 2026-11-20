@@ -224,17 +224,9 @@ LESSONS = ["roots", "affixes", "composition", "sentences", "recall"]
 
 
 def build_corpus(seed: int = 7337) -> dict:
-    """Returns {lesson_name: [sentences]} plus the held-out exam split."""
-    rng = random.Random(seed)
-    split = split_combos(seed)
-    corpus = {
-        "roots": lesson_roots(rng),
-        "affixes": lesson_affixes(rng),
-        "composition": lesson_composition(rng, split),
-        "sentences": lesson_sentences(rng, split),
-        "recall": lesson_recall(rng),
-    }
-    return {"lessons": corpus, "split": split}
+    """Returns Kimi's rebuilt lessons plus the unchanged held-out exam split."""
+    from .kimi_school import build_corpus as build_rebuilt
+    return build_rebuilt(seed)
 
 
 def build_vocab(corpus: dict) -> dict:

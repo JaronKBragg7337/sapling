@@ -2,8 +2,7 @@
 
 A small AI of its own design, rebuilt (v2) to Jaron's decisions of 2026-10-14: a **heartbeat**
 that keeps going on its own and feels time and energy passing, a **trained core** (from scratch;
-~0.82M parameters in v2, ~11.9M in v3, ~17.6M in v3.1-v3.2.1, **60.5M in v4** (10/15, see "v4" below - live
-once its overnight training swaps in; the control room's core line shows which is live) with 512 tokens of context) that can **become what it learns**, **memory** that grows and is
+**98.6M parameters in the current v5**, with 512 tokens of context) that can **become what it learns**, **memory** that grows and is
 protected by use, **goals it sets itself**, **outside exams** it cannot fake, the freedom to
 **stop itself** (every stop is a report), and a **membrane** of rules only the owner edits -
 each rule with its origin. A plain-words **control room** (on the MSI, and on the phone at heartbeatobservatory.com/admin/sapling/) shows all of it and has
@@ -13,6 +12,13 @@ Why each piece is the way it is: [CHANGELOG.md](CHANGELOG.md) (each change tied 
 decision line), the system shape in [ARCHITECTURE.md](ARCHITECTURE.md), the v1 reasoning in
 [WRITEUP.md](WRITEUP.md), what comes next in [NEXT.md](NEXT.md), and the things Claude would
 have added as rules but did not in [PROPOSALS.md](PROPOSALS.md).
+
+## Current status (2026-11-20)
+
+- **Live core:** v5, **98,584,320 parameters**, **generation 1673**. The October growth run read 1.972B tokens; long reading was interleaved from the start. It still does not sustain a multi-turn name thread, so the Acorn name remains reserved.
+- **Latest full exam card (2026-11-15):** composition 85/86, affix recall 22/24, recall echo 12/12, deferral 9/10, grammar 48/48, reading 38/40; informational probes: long reading 19/40, bridge 48/86, facts in weights 7/7. All six exams with declared bars passed. The full table is in [STATUS.md](STATUS.md).
+- **Next:** improve multi-turn conversation and reading/bridge retention; prepare and validate the bounded fresh ~350M-parameter core pilot on rebuilt inputs, with cloud spending still subject to Jaron's approval; investigate the heartbeat's long delays outside measured GPU work.
+- **Public evidence:** [the results summary](results/PUBLIC-RESULTS.md), aggregate exam/fold measurements, and three reviewed samples. Raw chat/memory context, stop reports, operational logs, databases, and model weights are not bulk-published.
 
 ## Where to run it from
 

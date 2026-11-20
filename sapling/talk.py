@@ -1,30 +1,12 @@
-"""Conversation lessons - Stage B of the 10/15 teaching plan (Claude as teacher; Jaron: "better communication...
-build it as an AI like any other AI first").
+"""Conversation lessons for general communication, using Kimi's rebuilt mix.
 
-What it learns here is the shape of a conversation, in the format the chat box already uses:
+The chat format gives the model answer-only loss and replays reading and school
+alongside conversations. The reviewed mix contains Kimi practice and questions,
+Jaron's exact self answers, Dolly instructions, and no OpenAssistant rows.
+Answers that call themselves another assistant are filtered from source data.
 
-    <bos> q : <what you said> a : <its answer> <eos> q : <next thing you said> a : <its answer> <eos> ...
-
-A question that comes with a text keeps the reading frame it was taught at school:
-
-    <bos> passage : <text> q : <question> a : <answer> <eos>
-
-Loss is on its own answers only (and the <eos> that ends each one) - it learns to answer, not to imitate the person.
-Every step also replays reading windows and its school, so the reading and the school stay (the v3.2.1 lesson).
-
-Text (licences checked live 10/15, recorded in data/reading/manifest.json by tools/fetch_reading.py):
-- OpenAssistant oasst1 (Apache-2.0): English conversation trees; each path through the best-ranked answers
-- databricks-dolly-15k (CC BY-SA 3.0): instructions with answers, some with a passage
-- its own lessons about who it is: the question wordings are prompts; the ANSWERS are Jaron's own words only
-  (data/talk/owner_self_lessons.json, written on the control room card "Sapling's own words"). A missing answer
-  = no lesson; the builder's example answers are shown there for reference and never trained on
-
-Cleaning (DESIGN-CHOICES D26): code blocks and non-English trees are left out (the tokenizer has no symbols for
-code); an answer that refuses, or that calls itself another assistant ("as an ai language model", "open assistant"),
-ends the conversation before that turn - that is another system's caution and another system's name, not Sapling's.
-
-    python -m sapling.talk build                  # -> data/talk/lessons.jsonl (CPU, ~1 min)
-    python -m sapling.talk train --core results/core_v4_staged.pt   # GPU -> results/core_v4_talk_staged.pt
+    python -m sapling.talk build
+    python -m sapling.talk train --core results/core_v4_staged.pt
 """
 
 from __future__ import annotations
@@ -136,19 +118,8 @@ def dolly_conversations(path: str = os.path.join(RAW, "databricks-dolly-15k.json
 # partnership with AI companies - no AI-written words in Sapling's training data). AI_EXAMPLES are shown on the control
 # room next to his text box as reference and are NEVER trained on (DESIGN-CHOICES D26, amended).
 SELF_KEYS = ["name", "maker", "what", "size", "read", "age", "can_do", "memory", "heartbeat", "learn_next"]
-SELF_QUESTIONS = {
-    "name": ["what is your name ?", "who are you ?", "what are you called ?", "tell me your name .", "hello ! who are you ?",
-             "hi , who am i talking to ?"],
-    "maker": ["who made you ?", "who built you ?", "who created you ?", "where do you come from ?"],
-    "what": ["what are you ?", "are you an ai ?", "what kind of thing are you ?", "are you a person ?"],
-    "size": ["how big is your brain ?", "how many parameters do you have ?", "how large is your core ?"],
-    "read": ["what have you read ?", "what did you learn from ?", "what do you read ?", "what books have you read ?"],
-    "age": ["how old are you ?", "when were you born ?", "when did you start ?"],
-    "can_do": ["what can you do ?", "how can you help me ?", "what are you good at ?"],
-    "memory": ["do you remember things ?", "can you remember what i tell you ?", "do you have a memory ?"],
-    "heartbeat": ["what is a heartbeat for you ?", "what does your heartbeat do ?", "are you always running ?"],
-    "learn_next": ["what would you like to learn next ?", "what do you want to learn ?"],
-}
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "self_questions.json"), encoding="utf-8") as _self_questions_file:
+    SELF_QUESTIONS = json.load(_self_questions_file)["questions"]
 OWNER_SELF = os.path.join(TALK_DIR, "owner_self_lessons.json")
 SELF_ONLY = os.path.join(TALK_DIR, "self_only.jsonl")
 
@@ -270,25 +241,20 @@ def self_facts(core_path: str | None = None) -> dict:
 
 
 def build(seed: int = 7337, core_path: str | None = None, verbose: bool = True) -> dict:
-    rng = random.Random(seed)
-    convs = oasst_conversations() + dolly_conversations()
-    facts = self_facts(core_path)
-    own = self_lessons(rng)
-    convs += own
+    import shutil
+    rebuilt = os.path.join(ROOT, "data", "kimi_rebuild", "lessons.jsonl")
+    with open(rebuilt, encoding="utf-8") as f:
+        convs = [json.loads(line) for line in f if line.strip()]
     os.makedirs(TALK_DIR, exist_ok=True)
-    with open(SELF_ONLY, "w", encoding="utf-8") as f:          # for the short "self lessons only" top-up
-        for c in own:
-            f.write(json.dumps(c) + "\n")
-    rng.shuffle(convs)
-    os.makedirs(TALK_DIR, exist_ok=True)
-    with open(LESSONS, "w", encoding="utf-8") as f:
-        for c in convs:
-            f.write(json.dumps(c) + "\n")
+    shutil.copyfile(rebuilt, LESSONS)
+    shutil.copyfile(os.path.join(ROOT, "data", "kimi_rebuild", "self_only.jsonl"), SELF_ONLY)
     by = {}
     for c in convs:
         by[c["src"]] = by.get(c["src"], 0) + 1
-    info = {"conversations": len(convs), "by_source": by, "owner_self_keys": sorted({c["key"] for c in own}),
-            "facts": facts, "file": os.path.relpath(LESSONS, ROOT)}
+    info = {"conversations": len(convs), "by_source": by,
+            "owner_self_keys": sorted({c["key"] for c in convs if c.get("key")}),
+            "facts": self_facts(core_path), "file": os.path.relpath(LESSONS, ROOT),
+            "source": os.path.relpath(rebuilt, ROOT)}
     if verbose:
         print(json.dumps(info, indent=1))
     return info
@@ -481,7 +447,7 @@ def train(core: str, staged: str = STAGED, epochs: float = 2.0, conv_per_step: i
            "epochs": epochs, "seconds": round(time.time() - t0, 1), "loss_last": round(sum(losses[-100:]) / max(1, len(losses[-100:])), 4),
            "window_loss_after": wl, "lessons": os.path.relpath(lessons, ROOT)}
     meta = {k: ck.get(k) for k in ("seed", "corpus_sha", "generation", "core_version", "grown_from", "story_stats",
-                                    "docs_stats", "school", "reading")}
+                                    "docs_stats", "school", "reading", "longread")}
     talk_runs = (ck.get("talk") or {}).get("runs") or ([ck["talk"]] if ck.get("talk") else [])
     meta.update({"staged": True, "label": (ck.get("label") or "v4") + " + " + label, "talk": run | {"runs": talk_runs + [run]},
                  "note": f"growth: core -> v{float(ck.get('core_version', 4)):g} + {label}"})

@@ -178,3 +178,56 @@ def test_heartbeat_skips_gpu_work_while_a_render_holds_the_card_and_owes_consoli
     assert hb.consolidations_owed_after_growth() == 5
     hb.store.meter("consolidation", {"generation": 1})
     assert hb.consolidations_owed_after_growth() == 4
+
+
+def test_conversation_practice_has_disjoint_fresh_entities_and_exact_owner_words():
+    import os, random, sys
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tools"))
+    import conversation_lessons as C
+    from sapling.talk import owner_answers
+    from sapling.text import normalize
+    train = C.practice(random.Random(3), 80) + C.owner_chats(random.Random(3))
+    test = C.heldout()
+    assert sum(row["kind"] == "name" for row in test) == 12
+    train_text = "\n".join(str(row["turns"]).lower() for row in train)
+    for entity in C.HELDOUT_NAMES + C.HELDOUT_OBJECTS + C.HELDOUT_PLACES:
+        assert normalize(entity) not in train_text
+    for row in test:
+        assert normalize(row["expected"]) in row["turns"][0][0]
+    own = owner_answers()
+    for row in train:
+        if row["src"] == "kimi chat + Jaron's exact words":
+            assert row["turns"][-1][1] == normalize(own[row["key"]])
+
+
+def test_heldout_answer_matching_is_normalized_and_not_empty():
+    import os, sys
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tools"))
+    from conversation_eval import hit
+    assert hit("Your name is Zorielle.", "zorielle", "name")
+    assert hit("zorielle", "zorielle", "name")
+    assert not hit("Zorielle is a computer programmer.", "zorielle", "name")
+    assert not hit("Your name is Jaron.", "zorielle", "name")
+    assert not hit("I do not know.", "")
+
+
+def test_talk_training_carries_longread_marker(tmp_path, monkeypatch):
+    import json
+    from sapling import consolidate, reading, talk
+    from sapling.model import SaplingCore
+    from sapling.train import Tokenizer, load_checkpoint, save_checkpoint
+    itos = ["<pad>", "<bos>", "<eos>", "<unk>", "q", ":", "a", "hi", "hello", "."]
+    tok = Tokenizer({t: i for i, t in enumerate(itos)}, itos)
+    model = SaplingCore(len(itos), d_model=32, n_head=4, n_layer=1, block_size=16, rope=True)
+    core = tmp_path / "core.pt"
+    staged = tmp_path / "staged.pt"
+    save_checkpoint(model, tok, {"generation": 3, "longread": {"steps": 10}}, path=str(core))
+    lessons = tmp_path / "lessons.jsonl"
+    lessons.write_text(json.dumps({"passage": None, "turns": [["hi", "hello"]], "src": "test"}) + "\n")
+    monkeypatch.setattr(consolidate, "reading_replay", lambda *args: None)
+    monkeypatch.setattr(reading, "rehearsal_sentences", lambda *args, **kwargs: ["hi hello ."])
+    monkeypatch.setattr(reading, "eval_windows", lambda *args: {})
+    monkeypatch.setattr(reading, "window_losses", lambda *args: {})
+    talk.train(core=str(core), staged=str(staged), epochs=0, lessons=str(lessons),
+               device="cpu", out_dir=str(tmp_path), wait_for_gpu=False, verbose=False)
+    assert load_checkpoint(device="cpu", path=str(staged))[2]["longread"] == {"steps": 10}

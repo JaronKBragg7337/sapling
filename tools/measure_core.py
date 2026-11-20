@@ -35,12 +35,12 @@ def e7l_kind(q: str) -> str:
 def e7l_by_kind(model, tok) -> dict:
     """E7L broken down by question kind and by one / two passages (the exam's own items, same greedy answers)."""
     from sapling.curriculum3 import exam_items_longread
-    from sapling.exams import answer
+    from sapling.exams import LONGREAD_ANSWER_TOKENS, answer
     out = {}
     for it in exam_items_longread(7337):
-        if len(tok.encode(it["q"], eos=False)) + 44 > model.block_size:
+        if len(tok.encode(it["q"], eos=False)) + LONGREAD_ANSWER_TOKENS > model.block_size:
             continue
-        ok = answer(model, tok, it["q"], max_new=44).strip() == it["a"]
+        ok = answer(model, tok, it["q"], max_new=LONGREAD_ANSWER_TOKENS).strip() == it["a"]
         for key in (e7l_kind(it["q"]), f"{e7l_kind(it['q'])} / {it['kind']}"):
             c = out.setdefault(key, [0, 0]); c[0] += ok; c[1] += 1
     return {k: f"{a}/{b}" for k, (a, b) in sorted(out.items())}
