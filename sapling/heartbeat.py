@@ -262,6 +262,11 @@ class Heartbeat:
                                                    ("age_s", "uptime_s", "since_last_input_s",
                                                     "budget_left_s", "budget_left_frac", "kwh_today")}}
         self.store.meter("tick", row)
+        try:
+            from .firsts import detector_state_path, log_error, scan_store
+            scan_store(self.store, detector_state_path(self.store.path), include_own_words=False)
+        except Exception as e:
+            log_error(f"tick detector failed: {type(e).__name__}: {e}")
         return row
 
     def housekeeping(self) -> dict | None:
@@ -281,6 +286,12 @@ class Heartbeat:
     def chat(self, line: str) -> str:
         out = self.session.handle(line)
         self.store.meter("chat", {"in": line, "out": out})
+        if line.lstrip().lower().startswith("/confirm "):
+            try:
+                from .firsts import detector_state_path, log_error, scan_store
+                scan_store(self.store, detector_state_path(self.store.path), include_own_words=True)
+            except Exception as e:
+                log_error(f"own-words detector failed: {type(e).__name__}: {e}")
         return out
 
     def run(self, max_ticks: int | None = None, max_seconds: float | None = None):

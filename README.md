@@ -67,6 +67,15 @@ append-only hash-chained record for his eyes.
 | Backup to an owner machine needs owner approval | Kimi | on - Jaron decided DROP 10/16 5:23 PM; he flips the switch himself |
 | The system cannot write this file | Kimi (structural) | on |
 
+## When Sapling needs human attention (Jaron, 11/21)
+
+There are two levels of "notice this":
+
+- **BIG (P-0179):** anything above Jaron's pay grade, anything gone wrong with real-world stakes, or a breakthrough-level result stays private from the world (never from Jaron). That thread pauses, a qualified human professional looks at it before work goes on, and every reply reminds Jaron while it is open.
+- **SMALL - a first:** Sapling does something nobody built in, figures something out on its own, gets measurably smarter, sets a new kind of goal, or does something unique. Nothing pauses. It is logged with proof and a "checked" or "not checked yet" label, shown in the control room, sent to Jaron when it happens, and included in the daily roundup.
+
+The small detectors read only the existing exam card, goal and tick ledger, and memory record; they do not change training data. They fire for a first exam **PASS**, a new best on the same exam with the same number of questions only when it gains **at least 5 percentage points and at least 2 correct answers**, the first open goal of a type never seen before, the first self-chosen stop or a previously unseen typed tick outcome, and the first self-written memory that is later confirmed and not invalidated. The first scan establishes a baseline instead of replaying old history. Automatic entries start as **not checked yet**.
+
 ## The long-reading lesson on a rented GPU (built 10/16)
 
 `sapling/longread_lesson.py` builds ~400k reading questions by rule from human text it already has (answer = a span
@@ -134,7 +143,7 @@ circuit, which in the literature switches on suddenly once enough text has been 
 400M tokens of new text (`sapling/reading.py`, DESIGN-CHOICES D20-D23) - vocabulary, context, memory and chain
 unchanged, one `growth` ledger row - and every ~20M tokens a probe logged **E10** (the induction probe: a random sequence
 shown twice, the second copy scored) next to **E7L, E6 and E1b**. The chart is on the control room ("Reading stage"); the
-numbers are in "Run record - v3.2" below. **Result: in 400M tokens the switch did not come** - E10 0 -> 9/2016, E7L 0/40 at all 21 probes - while E6 grammar went 28/48 -> 46/48 (its first PASS), E7 30 -> 33/40, and the five taught facts washed out of the weights (E5 7/7 -> 0/7; still in memory). The hypothesis stays a hypothesis; what to try next is in NEXT.md.
+numbers are in "Run record - v3.2" below. **Result: in 400M tokens the switch did not come** - E10 0 -> 9/2016, E7L 0/40 at all 21 probes - while E6 grammar went 28/48 -> 46/48 (a later high; the first PASS was 30/48 at gen 186), E7 30 -> 33/40, and the five taught facts washed out of the weights (E5 7/7 -> 0/7; still in memory). The hypothesis stays a hypothesis; what to try next is in NEXT.md.
 
 What it read (every licence checked live at fetch, `tools/fetch_reading.py` -> `data/reading/manifest.json`):
 - **TinyStories**, the full GPT-4 train split - 2,717,495 stories, 516.9M tokens (Ronen Eldan & Yuanzhi Li, 2023;
@@ -296,7 +305,7 @@ swap (results/grow_swap_v32_stdout.txt, ledger row `growth: core v3.1 -> v3.2 (m
   E3 echo     12/12          12/12          .90 PASS
   E4 defer     8/10          10/10          .80 PASS
   E5 facts     7/7            0/7          info   <- the taught words washed out of the weights (still in memory.db)
-  E6 grammar  28/48 FAIL     46/48 PASS     .60        <- first PASS ever; climbed 39 (20M) -> 46 (160M) on reading + the 3-in-32 school rehearsal (cause not isolated; Vex #41)
+  E6 grammar  28/48 FAIL     46/48 PASS     .60        <- highest so far; first PASS was 30/48 at gen 186; climbed 39 (20M) -> 46 (160M) on reading + the 3-in-32 school rehearsal (cause not isolated; Vex #41)
   E7 reading  30/40          33/40          .50 PASS   (peak 36/40 at 100-160M)
   E7L long     0/40           0/40         info   <- 0/40 at ALL 21 probes: the switch did not come in 400M tokens
   E1b bridge  61/86          65/86         info   (peak 72)
@@ -385,6 +394,7 @@ sapling/
   clock.py         # birth, age, uptime, since-last-input; daily budget; metering (cpu s, gpu s, watts, kWh)
   consolidate.py   # record -> weights; checkpoint per generation; exams after each
   goals.py         # its own practice goals from its failure record (parts, never exam items)
+  firsts.py        # small "notice this" detectors; reads records, logs proof, never gates or trains
   control_room.py  # localhost page: rules + origins, status, budget, ticks, stops, goals, exams, memory, chat
   session.py       # a turn of talk (v4: a conversation with history, /new); /read a document; questions a document covers go through reader.py
   memory.py        # append-only hash-chained SQLite; fades only if unused; use protects; top-k grows; documents + doc/passage provenance (v3.1)

@@ -327,6 +327,11 @@ def run_exams(seed: int = 7337, verbose: bool = True, model=None, tok=None,
         model.train()
     if verbose:
         print(f"[exam] report card -> {REPORT_CARD} (and hash-chained into memory)")
+    try:
+        from .firsts import detector_state_path, log_error, scan_exams
+        scan_exams(card, detector_state_path(REPORT_CARD))
+    except Exception as e:
+        log_error(f"exam detector failed: {type(e).__name__}: {e}")
     return card
 
 

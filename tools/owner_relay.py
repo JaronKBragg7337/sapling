@@ -174,6 +174,8 @@ def full_state() -> dict:
     except Exception as e:
         st = down_state()
         st["hb_error"] = str(e)
+    from sapling.firsts import read_firsts
+    st["firsts"] = read_firsts()
     st["relay"] = f"up {int(time.time() - STARTED)} s, pid {os.getpid()}"
     return st
 

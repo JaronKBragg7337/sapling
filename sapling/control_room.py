@@ -96,7 +96,9 @@ def state_of(hb) -> dict:
         self_words = self_words_info()
     except Exception:
         self_words = None
+    from .firsts import read_firsts
     return {
+        "firsts": read_firsts(),
         "self_words": self_words,
         "teacher": teacher,
         "documents": docs,
