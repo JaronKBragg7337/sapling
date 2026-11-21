@@ -1,6 +1,6 @@
 # Sapling current status
 
-Automatically regenerated on **2026-11-20** from the aggregate report card. The daily sync commits only this file and pushes committed work; it does not auto-add source, raw results, secrets, databases, or weights.
+Automatically regenerated on **2026-11-21** from the aggregate report card. The daily sync commits only this file and pushes committed work; it does not auto-add source, raw results, secrets, databases, or weights.
 
 - **Core:** v5, **98,584,320 parameters** (98.6M), 512-token context.
 - **Generation:** **1673**.
