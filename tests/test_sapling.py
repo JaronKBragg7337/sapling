@@ -374,6 +374,30 @@ def test_unreviewed_self_notes_do_not_enter_training(store):
     assert all(row["id"] != captured for row in pending_facts(store))
 
 
+def test_facts_uses_bulk_derived_state_and_recall_counts(store, monkeypatch):
+    confirmed = store.remember("confirmed", provenance="user")
+    invalidated = store.remember("invalidated", provenance="self")
+    stored = store.remember("stored confirmed", provenance="self", state="confirmed")
+    store.record_recall(confirmed, "one")
+    store.record_recall(confirmed, "two")
+    store.remember(f"confirm #{confirmed}", provenance="verdict", state="confirmed")
+    store.remember(f"confirm #{invalidated}", provenance="verdict", state="confirmed")
+    store.remember(f"invalidate #{invalidated}", provenance="verdict", state="confirmed")
+    calls = []
+    real_execute = store.db.execute
+    def counting_execute(*args, **kwargs):
+        calls.append(args[0])
+        return real_execute(*args, **kwargs)
+    monkeypatch.setattr(store.db, "execute", counting_execute)
+    facts = {row["id"]: row for row in store.facts()}
+    assert len(calls) == 3
+    assert facts[confirmed]["state"] == "confirmed" and facts[confirmed]["recalls"] == 2
+    assert facts[invalidated]["state"] == "invalidated"
+    assert facts[stored]["state"] == "confirmed" and facts[stored]["recalls"] == 0
+    for mid, row in facts.items():
+        assert row["state"] == store.state_of(mid) and row["recalls"] == store.recall_count(mid)
+
+
 @pytest.mark.skipif(not _core_available(), reason="no trained core")
 def test_consolidation_excludes_unreviewed_self_made_memories(store, tmp_path, monkeypatch):
     from sapling import consolidate as C, exams as E

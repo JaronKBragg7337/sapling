@@ -424,12 +424,24 @@ class MemoryStore:
 
     def facts(self) -> list[dict]:
         """Everything taught or found (not verdicts / exam rows), with derived state."""
-        rows = self.db.execute(
-            "SELECT id, ts, content, provenance, doc, passage FROM memories "
-            "WHERE provenance IN ('user','self','retrieval') ORDER BY id"
-        ).fetchall()
-        return [{"id": mid, "ts": ts, "content": c, "provenance": p, "state": self.state_of(mid),
-                 "recalls": self.recall_count(mid), "doc": d, "passage": pg} for mid, ts, c, p, d, pg in rows]
+        with self.lock:
+            rows = self.db.execute(
+                "SELECT id, ts, content, provenance, state, doc, passage FROM memories "
+                "WHERE provenance IN ('user','self','retrieval') ORDER BY id"
+            ).fetchall()
+            verdicts: dict[int, set[str]] = {}
+            for (content,) in self.db.execute("SELECT content FROM memories WHERE provenance='verdict'").fetchall():
+                verb, sep, raw_id = content.partition(" #")
+                if sep and raw_id.isdigit() and verb.lower() in ("confirm", "invalidate"):
+                    verdicts.setdefault(int(raw_id), set()).add(verb.lower())
+            recalls = dict(self.db.execute("SELECT memory_id, COUNT(*) FROM recalls GROUP BY memory_id").fetchall())
+        out = []
+        for mid, ts, content, provenance, stored_state, doc, passage in rows:
+            flags = verdicts.get(mid, set())
+            state = "invalidated" if "invalidate" in flags else ("confirmed" if "confirm" in flags else stored_state)
+            out.append({"id": mid, "ts": ts, "content": content, "provenance": provenance, "state": state,
+                        "recalls": recalls.get(mid, 0), "doc": doc, "passage": passage})
+        return out
 
     # -- integrity -------------------------------------------------------------
     def verify_chain(self) -> bool:

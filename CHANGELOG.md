@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-21 evening - heartbeat memory scans fixed (Kimi)
+- Symptom: tick 43108 around noon -> 43147 at 5:58 PM despite `tick_seconds: 5`; the control-room request timed out and no new consolidation had run since gen 1673. Rest rows were misleadingly 0 ms because `tick()` started its timer after `choose()`; their ledger timestamps still showed the delay.
+- Backed up the live record first with SQLite's consistent online backup: `results/memory_backup_20261121-180822.db`, **23,780 memories**, integrity `ok`. Profiling used a disposable copy, never the live record.
+- Cause: `MemoryStore.facts()` derived every fact's state and recall count with separate queries. One profiled explore tick made **37,566 SQLite executions** and spent **80.421 of 81.612 s** in two `facts()` calls: one in `drives()` / `pending_facts()` before the tick timer, then one in `do_explore()`. GPU generation was only 0.740 s.
+- Fix: read the fact rows, verdict rows, and grouped recall counts in **three bulk queries**, then derive the same states in Python. Invalidation still beats confirmation; stored confirmation and zero-recall defaults are unchanged. No schema, training data, checkpoint, or training-mix change.
+- Same copied-record explore tick after the fix: **0.649 s total**, with `facts()` measured at **0.0235 s**. All 4,694 real backup facts matched the original per-memory state and recall methods exactly. Tests: **91 pytest passed** plus the plain invariant runner `ALL GREEN`.
+- Live verification after restarting only the heartbeat (PID 58736 -> 37916): **82 ticks in 11 minutes** (43154 -> 43236), median gap **6.649 s**, mean **7.992 s** with the configured 5-s pause plus real work; before, 39 ticks took about six hours. Both control-room endpoints reported `running:true`; the heartbeat API answered in **0.792 s**. The relay was not restarted for the code fix, but was restarted after it later exited (new PID 26744) and also reported `running:true` with both firsts.
+- Final memory check: chain `True`, **23,798 memories** (normal new explore rows; none lost). No live consolidation was due: zero pending trainable facts and worst open-goal misses 1, below the trigger of 3. No consolidation was forced and no training run was performed; the temporary-core consolidation test passed.
+
 ## 2026-10-29 ~1:20 AM - v5 growth: 98.6M core, 1.972B tokens, long reading baked in (Kimi)
 - Jaron's 10/18 growth run, funded 10/28. Speed test on the exact d768/12L candidate: eager micro 32 = 168,819 tok/s
   (too slow for the deadline); compiled micro 64 = 459,389 tok/s. The logged worst-case plan was $6.74. Actual training:

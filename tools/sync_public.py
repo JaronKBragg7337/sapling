@@ -69,11 +69,15 @@ Automatically regenerated on **{date}** from the aggregate report card. The dail
 
 The six scored exams with declared bars are composition, affix recall, recall echo, deferral, grammar, and reading. Long reading, bridge, induction, and facts-in-weights are informational probes without declared pass bars.
 
+## Heartbeat health (2026-11-21)
+
+The memory-read stall is fixed: three bulk queries replaced per-fact state/recall queries. After the heartbeat restart, **82 ticks ran in 11 minutes** (median gap **6.649 s**, mean **7.992 s**, including the configured 5-s pause and real work). Both control-room APIs reported `running:true`; the memory chain verified. No training or live consolidation was run because consolidation was not due.
+
 ## What is next
 
 1. Improve sustained multi-turn conversation, especially the name-thread check, and reading/bridge retention.
 2. Prepare and validate the bounded fresh ~350M-parameter core pilot on rebuilt inputs. Cloud spending remains subject to Jaron's approval.
-3. Investigate heartbeat delays outside measured GPU work before treating process liveness as proof of healthy ticking.
+3. Keep heartbeat tick rate and control-room latency visible after the bulk memory-read fix.
 
 ## Evidence and privacy
 
