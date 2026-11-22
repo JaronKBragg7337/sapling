@@ -73,6 +73,8 @@ The six scored exams with declared bars are composition, affix recall, recall ec
 
 The memory-read stall is fixed: three bulk queries replaced per-fact state/recall queries. After the heartbeat restart, **82 ticks ran in 11 minutes** (median gap **6.649 s**, mean **7.992 s**, including the configured 5-s pause and real work). Both control-room APIs reported `running:true`; the memory chain verified. No training or live consolidation was run because consolidation was not due.
 
+On 2026-11-22, malformed ledger JSON was guarded after a `JSONDecodeError` crash: valid rows still read, a bad row is skipped with a logged warning and counted in `ledger_health`. The full live/backup audit found **zero stored malformed rows**, so no history was edited or repaired. The one-off decode trigger was not reproduced. After news published at 05:25:32, the fixed heartbeat started and ran **84 ticks in 11 minutes** (median **6.041 s**, mean **7.906 s**), with both APIs `running:true` and zero skipped rows.
+
 ## What is next
 
 1. Improve sustained multi-turn conversation, especially the name-thread check, and reading/bridge retention.
