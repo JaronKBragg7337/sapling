@@ -284,6 +284,7 @@ def test_every_tick_is_logged_with_drives(tmp_path, monkeypatch):
     from sapling import heartbeat as H
     monkeypatch.setattr(H, "PID_FILE", str(tmp_path / "pid"))
     monkeypatch.setattr(H, "STOP_FILE", str(tmp_path / "stop"))
+    monkeypatch.setattr(H, "STOP_DIR", str(tmp_path / "stops"))
     hb = H.Heartbeat(memory_path=str(tmp_path / "m.db"), serve=False,
                      settings={**settings(), "tick_seconds": 0.01})
     hb.rng.choices = lambda pop, weights, k: ["rest"]
@@ -293,6 +294,9 @@ def test_every_tick_is_logged_with_drives(tmp_path, monkeypatch):
     assert all(set(t["drives"]) == {"practice", "consolidate", "explore", "rest", "stop"} for t in ticks)
     assert all("budget_left_s" in t["clock"] for t in ticks)
     assert hb.store.last_ledger("birth") is not None
+    assert hb.store.last_ledger("stop")["who"] == "max_ticks"
+    reports = os.listdir(tmp_path / "stops")
+    assert len(reports) == 1 and reports[0].endswith("_max_ticks.json")
 
 
 # -- 10/14 2:59 PM decisions: owner's hand, archive, self-made memories on record ---

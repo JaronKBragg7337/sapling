@@ -75,6 +75,8 @@ The memory-read stall is fixed: three bulk queries replaced per-fact state/recal
 
 On 2026-11-22, malformed ledger JSON was guarded after a `JSONDecodeError` crash: valid rows still read, a bad row is skipped with a logged warning and counted in `ledger_health`. The full live/backup audit found **zero stored malformed rows**, so no history was edited or repaired. The one-off decode trigger was not reproduced. After news published at 05:25:32, the fixed heartbeat started and ran **84 ticks in 11 minutes** (median **6.041 s**, mean **7.906 s**), with both APIs `running:true` and zero skipped rows.
 
+After PID 10064 later vanished without an exit record, the Windows launcher moved to the manual **Sapling Heartbeat** scheduled task, so no CLI session owns it. Normal exits now always write stop reports; Wake appends one chained `vanished` report and restarts after hard exits, while owner/external stops stay stopped. PID 56812 started through that task at 07:55. It then ran **97 ticks in 11 minutes** (median **5.828 s**, mean **6.847 s**), with both APIs `running:true`.
+
 ## What is next
 
 1. Improve sustained multi-turn conversation, especially the name-thread check, and reading/bridge retention.

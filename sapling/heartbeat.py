@@ -77,6 +77,7 @@ class Heartbeat:
         self.running = False
         self.gpu_backoff_until = 0.0
         self.stopped_by: str | None = None
+        self.stop_report_written = False
         self.server = None
         self.serve = serve
         self.store.meter("heartbeat", {"event": "process_start", "pid": os.getpid(),
@@ -217,6 +218,7 @@ class Heartbeat:
         with open(path, "w", encoding="utf-8") as f:
             json.dump(report, f, indent=2)
         self.store.meter("crash" if kind == "crash" else "stop", {"who": who, "reason": reason, "tick": self.tick_no, "report": os.path.basename(path)})
+        self.stop_report_written = True
         return path
 
     # -- the loop ---------------------------------------------------------------------
@@ -342,6 +344,9 @@ class Heartbeat:
             raise
         finally:
             self.running = False
+            if not self.stop_report_written:
+                who = self.stopped_by or "unknown"
+                self.stop_report(who, f"process ended: {who}", kind="crash" if who == "crash" else "stop")
             self.store.meter("heartbeat", {"event": "process_end", "stopped_by": self.stopped_by,
                                            "ticks_this_run": n})
             if self.server:
@@ -376,11 +381,16 @@ def main(argv=None):
     elif cmd == "start":
         if os.path.exists(PID_FILE) and _pid_alive(int(open(PID_FILE).read().strip() or 0)):
             print("already running (pid file alive)"); return
+        if os.name == "nt":
+            r = subprocess.run(["schtasks", "/Run", "/TN", "Sapling Heartbeat"], capture_output=True, text=True)
+            if r.returncode:
+                raise RuntimeError(f"could not start Sapling Heartbeat scheduled task: {(r.stderr or r.stdout).strip()}")
+            print("started through scheduled task 'Sapling Heartbeat'; log results/heartbeat.log; "
+                  f"control room http://127.0.0.1:{membrane.settings()['control_room_port']}/")
+            return
         log = open(os.path.join(RESULTS_DIR, "heartbeat.log"), "a", encoding="utf-8")
-        flags = 0x00000008 | 0x00000200 if os.name == "nt" else 0   # DETACHED_PROCESS | NEW_PROCESS_GROUP
         p = subprocess.Popen([sys.executable, "-m", "sapling.heartbeat", "run"] + argv[1:],
-                             stdout=log, stderr=subprocess.STDOUT, creationflags=flags,
-                             cwd=os.path.dirname(RESULTS_DIR))
+                             stdout=log, stderr=subprocess.STDOUT, cwd=os.path.dirname(RESULTS_DIR))
         print(f"started pid {p.pid}; log results/heartbeat.log; control room http://127.0.0.1:{membrane.settings()['control_room_port']}/")
     elif cmd == "stop":
         open(STOP_FILE, "w").write(time.strftime("%Y-%m-%dT%H:%M:%S"))
