@@ -52,6 +52,28 @@ def test_ledger_tamper_is_detected(store):
     assert not store.verify_chain()
 
 
+def test_ledger_rows_skip_malformed_json_without_breaking_chain(store, capsys):
+    store.meter("exam_detail", {"items": [{"ok": True, "parts": ["root:one"]}]})
+    payload = '{"ts":1,"kind":"exam_detail","items":['
+    prev = store._last_hash("ledger")
+    store.db.execute("INSERT INTO ledger (ts,kind,payload,prev_hash,hash) VALUES (?,?,?,?,?)",
+                     (2.0, "exam_detail", payload, prev, store._hash(payload, prev)))
+    store.db.commit()
+    store.meter("exam_detail", {"items": [{"ok": False, "parts": ["root:two"]}]})
+    rows = store.ledger_rows("exam_detail", limit=10)
+    assert len(rows) == 2
+    assert store.ledger_health()["malformed_rows_skipped"] == 1
+    assert store.ledger_health()["rows"][0]["kind"] == "exam_detail"
+    assert "skipping malformed ledger row 2" in capsys.readouterr().out
+    warning = open(store.ledger_warning_log, encoding="utf-8").read()
+    assert '"id": 2' in warning and '"kind": "exam_detail"' in warning
+    store.ledger_rows("exam_detail", limit=10)
+    assert store.ledger_health()["malformed_rows_skipped"] == 1
+    from sapling.goals import failure_record
+    assert failure_record(store)["root:two"] == [False]
+    assert store.verify_chain()
+
+
 # -- memory: promotion by use, fading only when unused -------------------------
 def test_promotion_by_recall(store):
     mid = store.remember("the word glorp means happy")

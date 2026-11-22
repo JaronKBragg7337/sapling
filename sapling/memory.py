@@ -110,6 +110,8 @@ class _LockedDB:
 class MemoryStore:
     def __init__(self, path: str = DEFAULT_DB):
         self.path = path
+        self.ledger_warning_log = os.path.join(os.path.dirname(path), "ledger_warnings.log")
+        self.skipped_ledger_rows: dict[int, dict] = {}
         os.makedirs(os.path.dirname(path), exist_ok=True)
         self.lock = threading.RLock()
         self.db = _LockedDB(sqlite3.connect(path, check_same_thread=False), self.lock)
@@ -260,6 +262,23 @@ class MemoryStore:
             return int(cur.lastrowid)
 
     # -- ledger reads ----------------------------------------------------------
+    def _warn_bad_ledger(self, rid: int, kind: str, error: Exception) -> None:
+        if rid in self.skipped_ledger_rows:
+            return
+        row = {"id": rid, "kind": kind, "error": str(error)}
+        self.skipped_ledger_rows[rid] = row
+        line = json.dumps({"ts": time.strftime("%Y-%m-%dT%H:%M:%S"), **row})
+        print(f"[memory] skipping malformed ledger row {rid} ({kind}): {error}", flush=True)
+        try:
+            with open(self.ledger_warning_log, "a", encoding="utf-8") as f:
+                f.write(line + "\n")
+        except OSError:
+            pass
+
+    def ledger_health(self) -> dict:
+        return {"malformed_rows_skipped": len(self.skipped_ledger_rows),
+                "rows": list(self.skipped_ledger_rows.values())}
+
     def ledger_rows(self, kind: str | None = None, limit: int = 100, since_id: int = 0) -> list[dict]:
         q = "SELECT id, ts, kind, payload FROM ledger WHERE id>?"
         args: list = [since_id]
@@ -270,7 +289,11 @@ class MemoryStore:
         args.append(limit)
         out = []
         for rid, ts, k, payload in self.db.execute(q, args).fetchall():
-            d = json.loads(payload)
+            try:
+                d = json.loads(payload)
+            except (TypeError, ValueError) as e:
+                self._warn_bad_ledger(rid, k, e)
+                continue
             d["id"] = rid
             out.append(d)
         return out

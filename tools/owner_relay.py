@@ -157,6 +157,7 @@ def down_state() -> dict:
     except Exception:
         self_words = None
     return {"running": False, "down": True, "tick": ticks[0]["tick"] if ticks else None, "reading": reading, "teacher": teacher, "self_words": self_words,
+            "ledger_health": store.ledger_health() if 'store' in locals() else {"malformed_rows_skipped": 0, "rows": []},
             "generation": generation, "vocab_size": last_vocab,
             "last_action": ticks[0]["action"] if ticks else None, "clock": clock, "memories": memories,
             "rules": cfg["rules"], "settings": cfg["settings"], "goals": [], "exams": [], "ticks": ticks,

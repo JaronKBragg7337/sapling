@@ -32,6 +32,7 @@ results/core_self_topup_staged.pt
 results/core_rollforward_staged.pt
 results/firsts_detector.json
 results/firsts_detector.log
+results/ledger_warnings.log
 
 # Never publish local secrets or model weights through the source repository.
 .env

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-22 early - malformed ledger reads cannot stop the heartbeat (Kimi)
+- Crash at tick 43759 (11/21 7:35 PM): `goals.failure_record()` read `exam_detail` through `ledger_rows()`, which raised `JSONDecodeError` at payload character 2378 and stopped the process.
+- Backed up first: `results/memory_backup_20261122-041531.db`, **23,917 memories / 97,142 ledger rows**, integrity `ok`. Audited every stored ledger payload in both the live DB and backup: **zero malformed JSON rows**, full chain `True`, and the exact `failure_record()` path succeeded. The DB's last modification was the crash itself. Therefore there was no persistent bad row to identify or repair and no chained row was edited or deleted. The prior bulk-read change only reads memory/fact tables; it does not write ledger JSON. The one-off decode trigger could not be reproduced.
+- Guard: `ledger_rows()` now catches malformed JSON per row, skips only that row, prints and files a warning (`results/ledger_warnings.log`), and counts unique skipped IDs for the process in `ledger_health` through `/api/state`. Valid rows and hash verification are unchanged. A regression test inserts a deliberately malformed but correctly hash-chained row into a temporary DB, appends after it, reads the valid neighbors, and verifies the chain.
+
 ## 2026-11-21 evening - heartbeat memory scans fixed (Kimi)
 - Symptom: tick 43108 around noon -> 43147 at 5:58 PM despite `tick_seconds: 5`; the control-room request timed out and no new consolidation had run since gen 1673. Rest rows were misleadingly 0 ms because `tick()` started its timer after `choose()`; their ledger timestamps still showed the delay.
 - Backed up the live record first with SQLite's consistent online backup: `results/memory_backup_20261121-180822.db`, **23,780 memories**, integrity `ok`. Profiling used a disposable copy, never the live record.

@@ -98,6 +98,7 @@ def state_of(hb) -> dict:
         self_words = None
     from .firsts import read_firsts
     return {
+        "ledger_health": hb.store.ledger_health(),
         "firsts": read_firsts(),
         "self_words": self_words,
         "teacher": teacher,
