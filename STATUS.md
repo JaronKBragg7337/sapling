@@ -1,25 +1,25 @@
 # Sapling current status
 
-Automatically regenerated on **2026-11-21** from the aggregate report card. The daily sync commits only this file and pushes committed work; it does not auto-add source, raw results, secrets, databases, or weights.
+Automatically regenerated on **2026-11-23** from the aggregate report card. The daily sync commits only this file and pushes committed work; it does not auto-add source, raw results, secrets, databases, or weights.
 
 - **Core:** v5, **98,584,320 parameters** (98.6M), 512-token context.
-- **Generation:** **1673**.
+- **Generation:** **1688**.
 - **Vocabulary:** 17,663 tokens.
-- **Latest full exam run:** 2026-11-15T00:10:54.
+- **Latest full exam run:** 2026-11-23T06:38:56.
 
 ## Exams
 
 | Exam | Score | Verdict |
 |---|---:|---|
 | Composition | 85/86 | PASS |
-| Affix recall | 22/24 | PASS |
+| Affix recall | 18/24 | FAIL |
 | Recall echo | 12/12 | PASS |
 | Deferral | 9/10 | PASS |
-| Grammar | 48/48 | PASS |
-| Reading | 38/40 | PASS |
-| Long reading (informational) | 19/40 | INFO |
+| Grammar | 47/48 | PASS |
+| Reading | 37/40 | PASS |
+| Long reading (informational) | 17/40 | INFO |
 | Bridge (informational) | 48/86 | INFO |
-| Induction (informational) | 31/2016 | INFO |
+| Induction (informational) | 13/2016 | INFO |
 | Owner exam | 0 items | INFO |
 | Writing | 4 samples | INFO |
 | Facts in weights (informational) | 7/7 | INFO |
