@@ -1,28 +1,28 @@
 # Sapling current status
 
-Automatically regenerated on **2026-11-25** from the aggregate report card. The daily sync commits only this file and pushes committed work; it does not auto-add source, raw results, secrets, databases, or weights.
+Automatically regenerated on **2026-11-26** from the aggregate report card. The daily sync commits only this file and pushes committed work; it does not auto-add source, raw results, secrets, databases, or weights.
 
 - **Core:** v5, **98,584,320 parameters** (98.6M), 512-token context.
-- **Generation:** **1693**.
+- **Generation:** **1696**.
 - **Vocabulary:** 17,663 tokens.
-- **Latest full exam run:** 2026-11-25T02:17:25.
+- **Latest full exam run:** 2026-11-26T01:47:01.
 
 ## Exams
 
 | Exam | Score | Verdict |
 |---|---:|---|
 | Composition | 84/86 | PASS |
-| Affix recall | 24/24 | PASS |
+| Affix recall | 23/24 | PASS |
 | Recall echo | 12/12 | PASS |
 | Deferral | 9/10 | PASS |
-| Grammar | 47/48 | PASS |
-| Reading | 36/40 | PASS |
-| Long reading (informational) | 21/40 | INFO |
-| Bridge (informational) | 31/86 | INFO |
-| Induction (informational) | 11/2016 | INFO |
+| Grammar | 48/48 | PASS |
+| Reading | 37/40 | PASS |
+| Long reading (informational) | 15/40 | INFO |
+| Bridge (informational) | 42/86 | INFO |
+| Induction (informational) | 10/2016 | INFO |
 | Owner exam | 0 items | INFO |
 | Writing | 4 samples | INFO |
-| Facts in weights (informational) | 6/7 | INFO |
+| Facts in weights (informational) | 7/7 | INFO |
 
 The six scored exams with declared bars are composition, affix recall, recall echo, deferral, grammar, and reading. Long reading, bridge, induction, and facts-in-weights are informational probes without declared pass bars.
 
